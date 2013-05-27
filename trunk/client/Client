@@ -1,4 +1,14 @@
 #!/usr/bin/python
+"""
+"" Client for Zappy in /home/haz3/projet/zappy-poney/client
+"" 
+"" Made by Maxime Wojciak
+"" Login   <wojcia_m@epitech.net>
+"" 
+"" Started on  Mon May 27 15:16:34 2013 Maxime Wojciak
+"" Last update Mon May 27 15:17:00 2013 Maxime Wojciak
+"""
+
 import sfml as sf
 import socket
 import sys
