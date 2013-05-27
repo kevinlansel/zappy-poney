@@ -60,9 +60,9 @@ def init_connect():
         print "Connexion etablie avec le serveur"
         query = "Yoooo C'est le Rap du Ratz !!"
         sock.send(query)
- #   else:
-  #      print "USAGE: ./Client [-h hote] [-n equipe] [-p port]"
-   #     exit()
+    else:
+        print "USAGE: ./Client [-h hote] [-n equipe] [-p port]"
+        exit()
 
 def main():
     try:
