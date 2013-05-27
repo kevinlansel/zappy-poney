@@ -1,0 +1,38 @@
+#!/usr/bin/python
+"""
+"" testClient.py for window in /home/haz3/projet/zappy-poney/client
+"" 
+"" Made by Maxime Wojciak
+"" Login   <wojcia_m@epitech.net>
+"" 
+"" Started on  Mon May 27 13:15:43 2013 Maxime Wojciak
+"" Last update Mon May 27 13:56:49 2013 Maxime Wojciak
+"""
+
+import sfml as sf
+import Image
+
+# create the main window
+window = sf.RenderWindow(sf.VideoMode(800, 600), "Client")
+try:
+# load a sprite to display
+# create some graphical text to display
+    texture = sf.Texture.from_file("Advert.png")
+    sprite = sf.Sprite(texture)
+# load music to play
+#    music = sf.Music.from_file("nice_music.ogg")
+
+except IOError: exit(1)
+
+# play the music
+
+# start the game loop
+while window.is_open:
+    # process events
+    for event in window.events:
+	# close window: exit
+	if type(event) is sf.CloseEvent:
+	    window.close()
+    window.clear() # clear screen
+    window.draw(sprite) # draw the string
+    window.display() # update the window
