@@ -5,14 +5,16 @@
 ## Login   <duez_a@epitech.net>
 ## 
 ## Started on  Mon Feb  4 12:48:16 2013 guillaume duez
-## Last update Fri May 24 17:15:30 2013 guillaume duez
+## Last update Mon May 27 15:57:52 2013 guillaume duez
 ##
 
 SERV	=	serveur
 
 SRC_SERV=	serveur.c		\
 		client_utils.c		\
-		tools/tools_socket.c \
+		tools/tools_socket.c	\
+		send_receiv.c		\
+		action.c		\
 		tools/xmalloc.c
 
 OBJ_SERV=	$(SRC_SERV:.c=.o)

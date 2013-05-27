@@ -5,10 +5,28 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:19:39 2013 guillaume duez
-** Last update Thu May 23 18:20:05 2013 guillaume duez
+** Last update Mon May 27 15:27:42 2013 guillaume duez
 */
 
 #include	"serveur.h"
+
+t_client        *end_client(t_client *client)
+{
+  if (client && client->prev == NULL && client->end != 1)
+    {
+      client = client->nt;
+      client->prev = NULL;
+      return client;
+    }
+  else if (client && client->prev && client->end != 1)
+    {
+      client = client->prev;
+      client->nt = client->nt->nt;
+      if (client->nt)
+        client->nt->prev = client;
+    }
+  return client;
+}
 
 t_client        *client_reset(t_client *client)
 {

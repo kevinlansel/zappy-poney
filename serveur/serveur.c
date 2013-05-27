@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 17:52:10 2013 guillaume duez
-** Last update Thu May 23 18:51:42 2013 guillaume duez
+** Last update Mon May 27 16:43:02 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -33,20 +33,18 @@ static void		open_serv(int fd,  socklen_t s_in_s,
   fd_set        fd_read;
   int		max;
   
+  error = 0;
   while (error != -1)
     {
       set_fd(&fd_read, client, &max, fd);
       if ((error = select(max + 1, &fd_read, NULL, NULL, NULL)) != -1)
         {
           if (FD_ISSET(fd, &fd_read))
-	    {
-	      xaccept(fd, s_in_c, s_in_s);
-	      client = create_client(fd, client);
-	    }
+	    client = create_client(xaccept(fd, s_in_c, s_in_s), client);
           while (client && client->end != 1)
             {
               if (FD_ISSET(client->fd, &fd_read))
-		printf("ask from client\n");
+		do_action(client);
               if (client->end != 1)
                 client = client->nt;
             }
