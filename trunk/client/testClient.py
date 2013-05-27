@@ -29,6 +29,8 @@ while window.is_open:
 	# close window: exit
 	if type(event) is sf.CloseEvent:
 	    window.close()
+        if type(event) is sf.KeyEvent and event.code is sf.Keyboard.ESCAPE:
+            window.close()
     window.clear() # clear screen
     window.draw(sprite) # draw the sprite
     # window.draw(text) # draw the string
