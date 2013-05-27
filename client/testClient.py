@@ -49,6 +49,9 @@ def     init_connexion():
 
 # start the game loop
 # sf.sleep(sf.seconds(5))
+
+init_connexion()
+
 while window.is_open:
     # process events
     for event in window.events:
@@ -58,7 +61,6 @@ while window.is_open:
         if type(event) is sf.KeyEvent and event.code is sf.Keyboard.ESCAPE:
             window.close()
         gereKey()
-        init_connexion()
     window.clear() # clear screen
     window.draw(sprite) # draw the sprite
     # window.draw(text) # draw the string
