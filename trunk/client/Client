@@ -1,14 +1,4 @@
 #!/usr/bin/python
-"""
-"" Client for Zappy in /home/haz3/projet/zappy-poney/client
-"" 
-"" Made by Maxime Wojciak
-"" Login   <wojcia_m@epitech.net>
-"" 
-"" Started on  Mon May 27 15:16:34 2013 Maxime Wojciak
-"" Last update Mon May 27 15:17:00 2013 Maxime Wojciak
-"""
-
 import sfml as sf
 import socket
 import sys
@@ -47,8 +37,19 @@ def mainWindow():
 	window.display() # update the window
 
 def init_connect():
-    HOST = sys.argv[1]
-    PORT = 4242
+    HOST = "localhost"
+    i = 1
+    while i < len(sys.argv):
+        if sys.argv[i] == "-n":
+            TEAM = sys.argv[i + 1]
+        elif sys.argv[i] == "-h":
+            HOST = sys.argv[i + 1]
+        elif sys.argv[i] == "-p":
+            PORT = int(sys.argv[i + 1])
+        i = i + 2
+    print "Nom d'equipe: " + TEAM
+    print "Hote: " + HOST
+    print "Port: " + str(PORT)
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
 	sock.connect((HOST, PORT))
