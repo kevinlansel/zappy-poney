@@ -21,6 +21,16 @@ except IOError: exit(1)
 # # play the music
 music.play()
 
+def gereKey():
+    if sf.Keyboard.is_key_pressed(sf.Keyboard.LEFT):
+        print "gauche"
+    elif sf.Keyboard.is_key_pressed(sf.Keyboard.RIGHT):
+        print "droite"
+    elif sf.Keyboard.is_key_pressed(sf.Keyboard.UP):
+        print "haut"
+    elif sf.Keyboard.is_key_pressed(sf.Keyboard.DOWN):
+        print "bas"
+
 # start the game loop
 # sf.sleep(sf.seconds(5))
 while window.is_open:
@@ -31,6 +41,7 @@ while window.is_open:
 	    window.close()
         if type(event) is sf.KeyEvent and event.code is sf.Keyboard.ESCAPE:
             window.close()
+        gereKey()
     window.clear() # clear screen
     window.draw(sprite) # draw the sprite
     # window.draw(text) # draw the string
