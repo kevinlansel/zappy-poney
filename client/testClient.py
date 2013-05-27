@@ -33,7 +33,7 @@ def gereKey():
     elif sf.Keyboard.is_key_pressed(sf.Keyboard.DOWN):
         print "bas"
 
-HOST = "127.0.0.1"
+HOST = sys.argv[1]
 PORT = 4242
 
 def     init_connexion():
