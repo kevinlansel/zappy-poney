@@ -1,5 +1,7 @@
 #!/usr/bin/python
 import sfml as sf
+import socket
+import sys
 
 # create the main window
 window = sf.RenderWindow(sf.VideoMode(640, 480), "Client")
@@ -31,6 +33,20 @@ def gereKey():
     elif sf.Keyboard.is_key_pressed(sf.Keyboard.DOWN):
         print "bas"
 
+HOST = "127.0.0.1"
+PORT = 4242
+
+def     init_connexion():
+    sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+    try:
+        sock.connect((HOST, PORT))
+    except socket.error:
+        print "La connexion a echoue."
+        sys.exit()    
+    print "Connexion etablie avec le serveur."  
+    query = "bonjour tout le monde je viens de me connecter"
+    sock.send(query)
+
 # start the game loop
 # sf.sleep(sf.seconds(5))
 while window.is_open:
@@ -42,6 +58,7 @@ while window.is_open:
         if type(event) is sf.KeyEvent and event.code is sf.Keyboard.ESCAPE:
             window.close()
         gereKey()
+        init_connexion()
     window.clear() # clear screen
     window.draw(sprite) # draw the sprite
     # window.draw(text) # draw the string
