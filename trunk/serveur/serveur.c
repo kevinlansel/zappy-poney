@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 17:52:10 2013 guillaume duez
-** Last update Mon May 27 16:43:02 2013 guillaume duez
+** Last update Tue May 28 10:58:25 2013 gery baudry
 */
 
 #include	"serveur.h"
@@ -32,7 +32,7 @@ static void		open_serv(int fd,  socklen_t s_in_s,
   int		error;
   fd_set        fd_read;
   int		max;
-  
+
   error = 0;
   while (error != -1)
     {
@@ -82,7 +82,10 @@ int		main(int ac, char **av)
   int                   port;
 
   if (ac != 2)
-    return 1;
+    {
+      printf("USAGE : ./serveur [port]\n");
+      return 1;
+    }
   port = atoi(av[1]);
   run_server(port);
   return 0;
