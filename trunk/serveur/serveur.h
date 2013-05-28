@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Mon May 27 15:59:10 2013 guillaume duez
+** Last update Mon May 27 17:20:06 2013 guillaume duez
 */
 
 #ifndef         __SERVEUR_H__
@@ -24,6 +24,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <sys/wait.h>
+#include <sys/timeb.h>
 
 #define	NB_FUNC	1
 
@@ -44,6 +45,13 @@ typedef struct	s_msg
   char	name[128];
   int	id;
 }		t_msg;
+
+typedef	struct	s_task
+{
+  struct timeb	time;
+  struct s_task	*next;
+  struct s_task	*prev;
+}		t_task;
 
 void            *xmalloc(size_t size);
 void		xlisten(int fd);
