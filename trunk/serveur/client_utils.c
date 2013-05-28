@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:19:39 2013 guillaume duez
-** Last update Mon May 27 15:27:42 2013 guillaume duez
+** Last update Tue May 28 17:55:10 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -35,6 +35,32 @@ t_client        *client_reset(t_client *client)
   return client;
 }
 
+t_inventory	*new_inventory()
+{
+  t_inventory *in;
+  
+  in = xmalloc(sizeof(t_inventory));
+  in->food = 1260;
+  in->linemate = 0;
+  in->deraumere = 0;
+  in->sibur = 0;
+  in->mendiane = 0;
+  in->phiras = 0;
+  in->thystame = 0;
+  return in;
+}
+
+t_pos		*new_pos(t_map *map)
+{
+  t_pos		*pos;
+  
+  pos = xmalloc(sizeof(t_pos));
+  pos->pos = SUD;
+  pos->x = rand() % map->x;
+  pos->y = rand() % map->y;
+  return pos;
+}
+
 t_client        *create_client(int fd, t_client *client)
 {
   t_client      *new;
@@ -54,6 +80,7 @@ t_client        *create_client(int fd, t_client *client)
       new->end = 0;
       new->id = (void *)new;
       new->nt = client;
+      new->inventory = new_inventory();
     }
   new->prev = NULL;
   return new;

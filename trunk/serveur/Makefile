@@ -5,12 +5,13 @@
 ## Login   <duez_a@epitech.net>
 ## 
 ## Started on  Mon Feb  4 12:48:16 2013 guillaume duez
-## Last update Mon May 27 15:57:52 2013 guillaume duez
+## Last update Tue May 28 18:28:38 2013 guillaume duez
 ##
 
 SERV	=	serveur
 
 SRC_SERV=	serveur.c		\
+		main.c			\
 		client_utils.c		\
 		tools/tools_socket.c	\
 		send_receiv.c		\
