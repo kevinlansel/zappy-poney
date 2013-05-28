@@ -5,14 +5,14 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:08:13 2013 guillaume duez
-** Last update Mon May 27 16:01:02 2013 guillaume duez
+** Last update Tue May 28 20:50:56 2013 guillaume duez
 */
 
 #include	"serveur.h"
 
 static void	init_tab_func(void (*tab_func[NB_FUNC])(t_msg *, t_client *))
 {
-  //  tab_func[0] = &affich_chanel;
+  //  tab_func[0] = &avance;
 }
 
 void	do_action(t_client *client)
@@ -21,8 +21,9 @@ void	do_action(t_client *client)
   t_msg	*msg;
   int	bool;
   int	i;
-  static char	str[NB_FUNC][8] = { "test" };
-
+  static char	str[NB_FUNC][LEN] = { "avance", "droite", "gauche", "voir"
+				    "inventaire", "prend objet", "pose objet"
+				     "expulse"};
   i = 0;
   bool = 0;
   if ((msg = get_mess(client)) != NULL)
@@ -38,6 +39,6 @@ void	do_action(t_client *client)
 	  i++;
 	}
     }
-  if (bool == 0)
-    printf("No comand found from the client, or an error has come\n");
+  if (bool == 0);
+  //    printf("No comand found from the client, or an error has come\n");
 }
