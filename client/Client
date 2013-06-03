@@ -24,8 +24,16 @@ def     drawRectangle(pos):
     rectangle = sf.RectangleShape()
     rectangle.size = paddle_size - (3, 3)
     rectangle.outline_thickness = 1
-    rectangle.outline_color = sf.Color.BLACK
+    rectangle.outline_color = sf.Color.RED
     rectangle.fill_color = sf.Color.GREEN
+    rectangle.move(pos)
+    return rectangle
+
+def	drawRectangleFun(pos):
+    paddle_size = sf.Vector2(75, 20)
+    rectangle = sf.RectangleShape()
+    rectangle.size = paddle_size - (3, 3)
+    rectangle.fill_color = sf.Color.WHITE
     rectangle.move(pos)
     return rectangle
 
@@ -35,9 +43,9 @@ def     mainWindow():
     position_x = 0
     position_y = 0
     paddle_size = sf.Vector2(20,20)
-    while position_x <= 680:
+    while position_x <= 400:
 	position_y = 0
-	while position_y <= 480:
+	while position_y <= 400:
 	    toto.append(drawRectangle(sf.Vector2(position_x, position_y)))
 	    position_y += 20
 	position_x += 20
@@ -45,14 +53,14 @@ def     mainWindow():
     #sprite = sf.Sprite(texture)
     font = sf.Font.from_file("ressources/Sansation_Bold.ttf")
     instructions = sf.Text("C'est le Zappy Pipi de chameau en culotte courte",font, 20)
-    instructions.position = (100, 50)
+    instructions.position = (100, 500)
     instructions.color = sf.Color(80, 80, 80)
     ball = sf.CircleShape()
     ball.radius = ball_radius - 3
-    ball.outline_thickness = 10
-    ball.outline_color = sf.Color.RED
-    ball.fill_color = sf.Color.WHITE
-    ball.move(sf.Vector2(150,150))
+    ball.outline_thickness = 6
+    ball.outline_color = sf.Color.WHITE
+    ball.fill_color = sf.Color.RED
+    ball.move(sf.Vector2(500,150))
     print "ball -- x --> %f" % ball.position.x
     print "ball -- y --> %f" % ball.position.y
 
@@ -74,6 +82,7 @@ def     mainWindow():
 	    print "position_x %f" % position_x
 	    print "position y %f" % position_y
         window.draw(instructions)
+	window.draw(drawRectangleFun(sf.Vector2(510, 190)))
 	window.display() # update the window
 
 def init_connect():
