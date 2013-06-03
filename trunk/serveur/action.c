@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:08:13 2013 guillaume duez
-** Last update Tue May 28 20:50:56 2013 guillaume duez
+** Last update Fri May 31 19:17:27 2013 Maxime Wojciak
 */
 
 #include	"serveur.h"
@@ -21,9 +21,9 @@ void	do_action(t_client *client)
   t_msg	*msg;
   int	bool;
   int	i;
-  static char	str[NB_FUNC][LEN] = { "avance", "droite", "gauche", "voir"
-				    "inventaire", "prend objet", "pose objet"
-				     "expulse"};
+  static char	str[NB_FUNC][LEN] = { "avance", "droite", "gauche", "voir",
+				      "inventaire", "prend objet", "pose objet"
+				      "expulse"};
   i = 0;
   bool = 0;
   if ((msg = get_mess(client)) != NULL)
