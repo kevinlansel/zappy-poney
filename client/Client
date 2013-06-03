@@ -19,21 +19,34 @@ def gereKey():
     elif sf.Keyboard.is_key_pressed(sf.Keyboard.DOWN):
         print "bas"
 
+def     drawRectangle(pos):
+    paddle_size = sf.Vector2(20, 20)
+    rectangle = sf.RectangleShape()
+    rectangle.size = paddle_size - (3, 3)
+    rectangle.outline_thickness = 1
+    rectangle.outline_color = sf.Color.BLACK
+    rectangle.fill_color = sf.Color.GREEN
+    rectangle.move(pos)
+    return rectangle
+
 def     mainWindow():
+    toto = []
     ball_radius = 50
-    paddle_size = sf.Vector2(100, 100)
+    position_x = 0
+    position_y = 0
+    paddle_size = sf.Vector2(20,20)
+    while position_x <= 680:
+	position_y = 0
+	while position_y <= 480:
+	    toto.append(drawRectangle(sf.Vector2(position_x, position_y)))
+	    position_y += 20
+	position_x += 20
     #texture = sf.Texture.from_file("ressources/jolie.jpg")
     #sprite = sf.Sprite(texture)
     font = sf.Font.from_file("ressources/Sansation_Bold.ttf")
     instructions = sf.Text("C'est le Zappy Pipi de chameau en culotte courte",font, 20)
     instructions.position = (100, 50)
     instructions.color = sf.Color(80, 80, 80)
-    rectangle = sf.RectangleShape()
-    rectangle.size = paddle_size - (3, 3)
-    rectangle.outline_thickness = 1
-    rectangle.outline_color = sf.Color.BLACK
-    rectangle.fill_color = sf.Color.GREEN
-    rectangle.move(sf.Vector2(300,150))
     ball = sf.CircleShape()
     ball.radius = ball_radius - 3
     ball.outline_thickness = 10
@@ -56,7 +69,10 @@ def     mainWindow():
 	window.clear() # clear screen
 	#window.draw(sprite) # draw the sprite
         window.draw(ball)
-        window.draw(rectangle)
+	for i in range(0, len(toto)):
+	    window.draw(toto[i])
+	    print "position_x %f" % position_x
+	    print "position y %f" % position_y
         window.draw(instructions)
 	window.display() # update the window
 
