@@ -1,13 +1,4 @@
 #!/usr/bin/python
-"""
-""Client for Zappy in /home/haz3/projet/zappy-poney/client
-"" 
-"" Made by Maxime Wojciak
-"" Login   <wojcia_m@epitech.net>
-"" 
-"" Started on  Mon May 27 16:51:27 2013 Maxime Wojciak
-"" Last update Fri May 31 19:16:56 2013 Maxime Wojciak
-"""
 
 import sfml as sf
 import socket
@@ -15,7 +6,7 @@ import sys
 
 def music():
 #play music
-    music = sf.Music.from_file("contact.wav")
+    music = sf.Music.from_file("ressources/contact.wav")
     music.play()
 
 def gereKey():
@@ -28,22 +19,45 @@ def gereKey():
     elif sf.Keyboard.is_key_pressed(sf.Keyboard.DOWN):
         print "bas"
 
-def mainWindow():
-    texture = sf.Texture.from_file("jolie.jpg")
-    sprite = sf.Sprite(texture)
-    rectangle = sf.Rectangle((10, 20), (0, 0))
+def     mainWindow():
+    ball_radius = 50
+    paddle_size = sf.Vector2(100, 100)
+    #texture = sf.Texture.from_file("ressources/jolie.jpg")
+    #sprite = sf.Sprite(texture)
+    font = sf.Font.from_file("ressources/Sansation_Bold.ttf")
+    instructions = sf.Text("C'est le Zappy Pipi de chameau en culotte courte",font, 20)
+    instructions.position = (100, 50)
+    instructions.color = sf.Color(80, 80, 80)
+    rectangle = sf.RectangleShape()
+    rectangle.size = paddle_size - (3, 3)
+    rectangle.outline_thickness = 1
+    rectangle.outline_color = sf.Color.BLACK
+    rectangle.fill_color = sf.Color.GREEN
+    rectangle.move(sf.Vector2(300,150))
+    ball = sf.CircleShape()
+    ball.radius = ball_radius - 3
+    ball.outline_thickness = 10
+    ball.outline_color = sf.Color.RED
+    ball.fill_color = sf.Color.WHITE
+    ball.move(sf.Vector2(150,150))
+    print "ball -- x --> %f" % ball.position.x
+    print "ball -- y --> %f" % ball.position.y
+
     window = sf.RenderWindow(sf.VideoMode(640, 480), "Client")
-# start the game loop
+    # start the game loop
     while window.is_open:
 	for event in window.events:
-# close window: exit
+            # close window: exit
 	    if type(event) is sf.CloseEvent:
 		window.close()
 	    if type(event) is sf.KeyEvent and event.code is sf.Keyboard.ESCAPE:
 		window.close()
 	    gereKey()
 	window.clear() # clear screen
-	window.draw(sprite) # draw the sprite
+	#window.draw(sprite) # draw the sprite
+        window.draw(ball)
+        window.draw(rectangle)
+        window.draw(instructions)
 	window.display() # update the window
 
 def init_connect():
@@ -94,8 +108,9 @@ def init_connect():
 
 def main():
     try:
-	init_connect()
+	#init_connect()
 	music()
 	mainWindow()
+	draw()
     except IOError: exit(1)
 main()
