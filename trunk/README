@@ -15,3 +15,9 @@ Kevin, Géry, Max, Flo'
 Pour ceux qui n'ont pas le binding sfml avec python 
 
 http://www.python-sfml.org/download.html
+
+sudo add-apt-repository ppa:sonkun/sfml-stable
+sudo apt-get update
+sudo apt-get install python-sfml
+# or
+sudo apt-get install python3-sfml
