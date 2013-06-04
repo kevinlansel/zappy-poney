@@ -5,40 +5,60 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:08:13 2013 guillaume duez
-** Last update Fri May 31 19:17:27 2013 Maxime Wojciak
+** Last update Tue Jun  4 18:37:40 2013 guillaume duez
 */
 
 #include	"serveur.h"
 
-static void	init_tab_func(void (*tab_func[NB_FUNC])(t_msg *, t_client *))
+static void	init_tab_func(void (*tab_func[NB_FUNC])(t_msg *, t_client *, t_map **))
 {
-  //  tab_func[0] = &avance;
+  tab_func[0] = &avance;
+  tab_func[1] = &droite;
+  tab_func[2] = &gauche;
+  tab_func[3] = &voir;
+  tab_func[4] = &inventaire;
 }
 
-void	do_action(t_client *client)
+static t_msg	*check_and_call(t_client *client, t_map **map)
 {
-  void	(*tab_func[NB_FUNC])(t_msg *, t_client *);
+  void	(*tab_func[NB_FUNC])(t_msg *, t_client *, t_map **);
   t_msg	*msg;
   int	bool;
   int	i;
   static char	str[NB_FUNC][LEN] = { "avance", "droite", "gauche", "voir",
-				      "inventaire", "prend objet", "pose objet"
+				      "inventaire", "prend objet", "pose objet",
 				      "expulse"};
   i = 0;
   bool = 0;
+  init_tab_func(tab_func);
   if ((msg = get_mess(client)) != NULL)
     {
       while (i < NB_FUNC)
 	{
-	  if (strcmp(msg->cmd, str[i]) == 0)
+	  if (strcmp(msg->cmd, str[i]) == 0 && i < 5)
 	    {
-	      // tab_func[i](msg, client);
-	      printf("function call\n");
+	      tab_func[i](msg, client, map);
 	      bool = 1;
 	    }
 	  i++;
 	}
     }
-  if (bool == 0);
-  //    printf("No comand found from the client, or an error has come\n");
+  if (bool == 0)
+    {
+      printf("Invalid comand\n");
+      return NULL;
+    }
+  return msg;
+}
+
+
+void		do_action(t_client *client, t_map **map, t_msg *msg)
+{
+  t_msg *new;
+
+  new = check_and_call(client, map);
+  if (new != NULL)
+    msg = into_order_task(msg, new);
+  if (msg)
+    msg = exec_task(msg);
 }
