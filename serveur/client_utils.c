@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:19:39 2013 guillaume duez
-** Last update Tue May 28 17:55:10 2013 guillaume duez
+** Last update Tue Jun  4 15:07:32 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -35,33 +35,35 @@ t_client        *client_reset(t_client *client)
   return client;
 }
 
-t_inventory	*new_inventory()
+void	new_inventory(t_client *client)
 {
-  t_inventory *in;
-  
-  in = xmalloc(sizeof(t_inventory));
-  in->food = 1260;
-  in->linemate = 0;
-  in->deraumere = 0;
-  in->sibur = 0;
-  in->mendiane = 0;
-  in->phiras = 0;
-  in->thystame = 0;
-  return in;
+  client->ress[NOURRITURE] = 1260;
+  client->ress[LINEMATE] = 0;
+  client->ress[DERAUMERE] = 0;
+  client->ress[SIBUR] = 0;
+  client->ress[MENDIANE] = 0;
+  client->ress[PHIRAS] = 0;
+  client->ress[THYSTAME] = 0;
 }
 
-t_pos		*new_pos(t_map *map)
+void		new_map(t_client *client, t_opt *opt)
 {
-  t_pos		*pos;
-  
-  pos = xmalloc(sizeof(t_pos));
-  pos->pos = SUD;
-  pos->x = rand() % map->x;
-  pos->y = rand() % map->y;
-  return pos;
+  client->ress[NOURRITURE] = 1260;
+  client->ress[LINEMATE] = 0;
+  client->ress[DERAUMERE] = 0;
+  client->ress[SIBUR] = 0;
+  client->ress[MENDIANE] = 0;
+  client->ress[PHIRAS] = 0;
+  client->ress[THYSTAME] = 0;
+  client->map = xmalloc(sizeof(t_map));
+  client->map->direct = SUD;
+  client->map->x = rand() % opt->x_world;
+  client->map->y = rand() % opt->y_world;
+  client->map->x_world = opt->x_world;
+  client->map->y_world = opt->y_world;
 }
 
-t_client        *create_client(int fd, t_client *client)
+t_client        *create_client(int fd, t_client *client, t_opt *opt)
 {
   t_client      *new;
 
@@ -80,7 +82,15 @@ t_client        *create_client(int fd, t_client *client)
       new->end = 0;
       new->id = (void *)new;
       new->nt = client;
-      new->inventory = new_inventory();
+      new_inventory(new);
+      new->level = 1;
+      new->time_eat = get_time();
+      if (opt != NULL)
+	{
+	  printf("Opt is not null, time :%d\n", opt->time_world);
+	  new_map(new, opt);
+	  new->time = opt->time_world;
+	}
     }
   new->prev = NULL;
   return new;
