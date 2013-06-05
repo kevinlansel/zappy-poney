@@ -9,18 +9,13 @@ def music():
     music = sf.Music.from_file("ressources/contact.wav")
     music.play()
 
-def gereKey():
-    if sf.Keyboard.is_key_pressed(sf.Keyboard.LEFT):
-        print "gauche"
-    elif sf.Keyboard.is_key_pressed(sf.Keyboard.RIGHT):
-        print "droite"
-    elif sf.Keyboard.is_key_pressed(sf.Keyboard.UP):
-        print "haut"
-    elif sf.Keyboard.is_key_pressed(sf.Keyboard.DOWN):
-        print "bas"
+def gereMouse():
+    if sf.Mouse.is_button_pressed(sf.Mouse.LEFT):
+	position = sf.Mouse.get_position()
+        print "Mouse Position -- %f -- %f " % (position.x, position.y)
 
 def     drawRectangle(pos):
-    paddle_size = sf.Vector2(20, 20)
+    paddle_size = sf.Vector2(50, 50)
     rectangle = sf.RectangleShape()
     rectangle.size = paddle_size - (3, 3)
     rectangle.outline_thickness = 1
@@ -38,19 +33,18 @@ def	drawRectangleFun(pos):
     return rectangle
 
 def     mainWindow():
-    toto = []
+    tab1 = []
     ball_radius = 50
     position_x = 0
     position_y = 0
     paddle_size = sf.Vector2(20,20)
-    while position_x <= 400:
-	position_y = 0
-	while position_y <= 400:
-	    toto.append(drawRectangle(sf.Vector2(position_x, position_y)))
-	    position_y += 20
-	position_x += 20
-    #texture = sf.Texture.from_file("ressources/jolie.jpg")
-    #sprite = sf.Sprite(texture)
+    while position_y <= 400:
+	position_x = 0
+	while position_x <= 400:
+	    tab1.append(drawRectangle(sf.Vector2(position_x, position_y)))
+	    position_x += 50
+	#tab.append(tab1[:])
+	position_y += 50
     font = sf.Font.from_file("ressources/Sansation_Bold.ttf")
     instructions = sf.Text("C'est le Zappy Pipi de chameau en culotte courte",font, 20)
     instructions.position = (100, 500)
@@ -61,8 +55,6 @@ def     mainWindow():
     ball.outline_color = sf.Color.WHITE
     ball.fill_color = sf.Color.RED
     ball.move(sf.Vector2(500,150))
-    print "ball -- x --> %f" % ball.position.x
-    print "ball -- y --> %f" % ball.position.y
 
     window = sf.RenderWindow(sf.VideoMode(640, 480), "Client")
     # start the game loop
@@ -73,14 +65,12 @@ def     mainWindow():
 		window.close()
 	    if type(event) is sf.KeyEvent and event.code is sf.Keyboard.ESCAPE:
 		window.close()
-	    gereKey()
+	    gereMouse()
 	window.clear() # clear screen
 	#window.draw(sprite) # draw the sprite
         window.draw(ball)
-	for i in range(0, len(toto)):
-	    window.draw(toto[i])
-	    print "position_x %f" % position_x
-	    print "position y %f" % position_y
+	for i in range(0, len(tab1)):
+	    window.draw(tab1[i])
         window.draw(instructions)
 	window.draw(drawRectangleFun(sf.Vector2(510, 190)))
 	window.display() # update the window
@@ -136,6 +126,5 @@ def main():
 	#init_connect()
 	music()
 	mainWindow()
-	draw()
     except IOError: exit(1)
 main()
