@@ -1,18 +1,18 @@
 #!/usr/bin/python
 
-import sfml as sf
-import socket
-import sys
+import	sfml as sf
+import	socket
+import	sys
 
-def music():
+def	music():
 #play music
     music = sf.Music.from_file("ressources/contact.wav")
     music.play()
 
-def gereMouse():
+def	gereMouse():
     if sf.Mouse.is_button_pressed(sf.Mouse.LEFT):
 	position = sf.Mouse.get_position()
-        print "Mouse Position -- %f -- %f " % (position.x, position.y)
+	print "Mouse Position -- %f -- %f " % (position.x, position.y)
 
 def     drawRectangle(pos):
     paddle_size = sf.Vector2(50, 50)
@@ -32,50 +32,53 @@ def	drawRectangleFun(pos):
     rectangle.move(pos)
     return rectangle
 
-def     mainWindow():
-    tab1 = []
+def	drawBall():
     ball_radius = 50
-    position_x = 0
-    position_y = 0
-    paddle_size = sf.Vector2(20,20)
-    while position_y <= 400:
-	position_x = 0
-	while position_x <= 400:
-	    tab1.append(drawRectangle(sf.Vector2(position_x, position_y)))
-	    position_x += 50
-	#tab.append(tab1[:])
-	position_y += 50
-    font = sf.Font.from_file("ressources/Sansation_Bold.ttf")
-    instructions = sf.Text("C'est le Zappy Pipi de chameau en culotte courte",font, 20)
-    instructions.position = (100, 500)
-    instructions.color = sf.Color(80, 80, 80)
     ball = sf.CircleShape()
     ball.radius = ball_radius - 3
     ball.outline_thickness = 6
     ball.outline_color = sf.Color.WHITE
     ball.fill_color = sf.Color.RED
     ball.move(sf.Vector2(500,150))
+    return ball
 
-    window = sf.RenderWindow(sf.VideoMode(640, 480), "Client")
-    # start the game loop
+def	drawText():
+    font = sf.Font.from_file("ressources/Sansation_Bold.ttf")
+    instructions = sf.Text("C'est le Zappy Pipi de chameau en culotte courte",font, 20)
+    instructions.position = (100, 500)
+    instructions.color = sf.Color(80, 80, 80)
+    return instructions
+
+def	drawMap():
+    tab = []
+    position_x = 0
+    postion_y = 0
+    paddle_size = sf.Vector2(20, 20)
+    while position_y <= 400:
+	position_x = 0
+	while position_x <= 400:
+	    tab.append(drawRectangle(sf.Vector2(position_x, position_y)))
+	    position_x += 50
+	position_y += 50
+    return tab
+
+def     mainWindow():
+    window = sf.RenderWindow(sf.VideoMode(800, 600), "Client", sf.Style.FULLSCREEN)
     while window.is_open:
 	for event in window.events:
-            # close window: exit
 	    if type(event) is sf.CloseEvent:
 		window.close()
 	    if type(event) is sf.KeyEvent and event.code is sf.Keyboard.ESCAPE:
 		window.close()
-	    gereMouse()
-	window.clear() # clear screen
-	#window.draw(sprite) # draw the sprite
-        window.draw(ball)
-	for i in range(0, len(tab1)):
-	    window.draw(tab1[i])
-        window.draw(instructions)
+	window.clear()
+        window.draw(drawBall())
+	for i in range(0, len(drawMap())):
+	    window.draw(drawMap())
+        window.draw(drawText())
 	window.draw(drawRectangleFun(sf.Vector2(510, 190)))
-	window.display() # update the window
+	window.display()
 
-def init_connect():
+def	init_connect():
     HOST = "localhost"
     if (len(sys.argv) == 5):
         i = 1
@@ -121,7 +124,7 @@ def init_connect():
 	print "USAGE: ./Client [-h hote] [-n equipe] [-p port]"
 	exit()
 
-def main():
+def	main():
     try:
 	#init_connect()
 	music()
