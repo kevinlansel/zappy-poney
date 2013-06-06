@@ -11,15 +11,16 @@ def	    music():
     music.play()
 
 def     getPosMouse():
+    position = 0
     if sf.Mouse.is_button_pressed(sf.Mouse.LEFT):
         position = sf.Mouse.get_position()
     return position
 
-def	gereMouse(window):
+def	gereMouse(window, liste):
+    position = getPosMouse()
     if sf.Mouse.is_button_pressed(sf.Mouse.LEFT):
-        position = sf.Mouse.get_position()
-        checkCase()
-        window.draw(drawText("Case Numero x -- \n\nInfo 1 :\tToto\nInfo2 :\t" +
+        positioncarre = checkCase(liste, position)
+        window.draw(drawText("Case Numero x"+str(positioncarre)+" -- \n\nInfo 1 :\tToto\nInfo2 :\t" +
             "Tutu\nInfo3 :\t Titi", 20, 480, 100))
 
 def     recTab():
@@ -28,25 +29,28 @@ def     recTab():
     y = 50
     liste.append(0)
     liste.append(0)
+    i = 0
     while (x != 500 and y != 500):
+        liste.append(i)
         liste.append(x)
         liste.append(y)
         if (x == 450):
             x = 0
             y += 50
         x += 50
+        i += 1
     return liste
 
-def     checkCase():
-    liste = recTab()
-    position = getPosMouse()
-    x = 2
-    y = 3
-    while (x  < len(liste)):
-        if ((position.x < liste[x] and position.x > liste[x - 2]) and (position.y < liste[y] and position.y > liste[y - 2])):
-           print "yo"
-        x += 2
-        y += 2
+def     checkCase(liste, position):
+    x = 3
+    y = 4
+    carre = 2
+    while (carre < len(liste)):
+        if ((position.x < liste[x] and position.x > liste[x - 3]) and (position.y < liste[y] and position.y > liste[y - 3])):
+            return (liste[carre])
+        x += 3
+        y += 3
+        carre += 3
 
 def     drawRectangle(pos):
     paddle_size = sf.Vector2(50, 50)
@@ -83,6 +87,7 @@ def     mainWindow():
     drawmap = []
     drawmap = drawMap()
     window = sf.RenderWindow(sf.VideoMode(800, 600), "Client", sf.Style.FULLSCREEN)
+    liste = recTab()
     while window.is_open:
 	for event in window.events:
 	    if type(event) is sf.CloseEvent:
@@ -92,7 +97,7 @@ def     mainWindow():
 	window.clear()
 	for i in range(0, len(drawMap())):
 	    window.draw(drawmap[i])
-        if gereMouse(window):
+        if gereMouse(window, liste):
             window.display()
 	#window.draw(drawText("C'est le zappy pipi de chameau !!", 20, 150, 500))
         window.display()
