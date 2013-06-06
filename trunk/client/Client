@@ -2,6 +2,7 @@
 
 import	sfml as sf
 import	socket
+import  time
 import	sys
 
 def	music():
@@ -9,10 +10,10 @@ def	music():
     music = sf.Music.from_file("ressources/contact.wav")
     music.play()
 
-def	gereMouse():
+def	gereMouse(window):
     if sf.Mouse.is_button_pressed(sf.Mouse.LEFT):
-	position = sf.Mouse.get_position()
-	print "Mouse Position -- %f -- %f " % (position.x, position.y)
+        window.draw(drawText("Case Numero x -- \n\nInfo 1 :\tToto\nInfo2 :\tTutu\nInfo3 :\t Titi", 20, 480, 100))
+
 
 def     drawRectangle(pos):
     paddle_size = sf.Vector2(50, 50)
@@ -24,35 +25,30 @@ def     drawRectangle(pos):
     rectangle.move(pos)
     return rectangle
 
-def	drawRectangleFun(pos):
-    paddle_size = sf.Vector2(75, 20)
-    rectangle = sf.RectangleShape()
-    rectangle.size = paddle_size - (3, 3)
-    rectangle.fill_color = sf.Color.WHITE
-    rectangle.move(pos)
-    return rectangle
-
-def	drawBall():
-    ball_radius = 50
-    ball = sf.CircleShape()
-    ball.radius = ball_radius - 3
-    ball.outline_thickness = 6
-    ball.outline_color = sf.Color.WHITE
-    ball.fill_color = sf.Color.RED
-    ball.move(sf.Vector2(500,150))
-    return ball
-
-def	drawText():
+def drawNumber():
     font = sf.Font.from_file("ressources/Sansation_Bold.ttf")
-    instructions = sf.Text("C'est le Zappy Pipi de chameau en culotte courte",font, 20)
-    instructions.position = (100, 500)
+    y = 25
+    for x in range(25, 450):
+        instructions = sf.Text("")
+        instructions.position = (x, y)
+        instructions.color = sf.Color(80,80,80)
+        x += 50
+        if (x == 450 and y != 500):
+            y += 50
+            x = 25
+    return instructions
+
+def	drawText(msg, size, pos_x, pos_y):
+    font = sf.Font.from_file("ressources/Sansation_Bold.ttf")
+    instructions = sf.Text(msg, font, size)
+    instructions.position = (pos_x, pos_y)
     instructions.color = sf.Color(80, 80, 80)
     return instructions
 
 def	drawMap():
     tab = []
     position_x = 0
-    postion_y = 0
+    position_y = 0
     paddle_size = sf.Vector2(20, 20)
     while position_y <= 400:
 	position_x = 0
@@ -63,7 +59,10 @@ def	drawMap():
     return tab
 
 def     mainWindow():
-    window = sf.RenderWindow(sf.VideoMode(800, 600), "Client", sf.Style.FULLSCREEN)
+    drawmap = []
+    drawmap = drawMap()
+    # sf.Style.FULLSCREEN
+    window = sf.RenderWindow(sf.VideoMode(800, 600), "Client")
     while window.is_open:
 	for event in window.events:
 	    if type(event) is sf.CloseEvent:
@@ -71,12 +70,13 @@ def     mainWindow():
 	    if type(event) is sf.KeyEvent and event.code is sf.Keyboard.ESCAPE:
 		window.close()
 	window.clear()
-        window.draw(drawBall())
 	for i in range(0, len(drawMap())):
-	    window.draw(drawMap())
-        window.draw(drawText())
-	window.draw(drawRectangleFun(sf.Vector2(510, 190)))
-	window.display()
+	    window.draw(drawNumber())
+	    window.draw(drawmap[i])
+        if gereMouse(window):
+            window.display()
+	#window.draw(drawText("C'est le zappy pipi de chameau !!", 20, 150, 500))
+        window.display()
 
 def	init_connect():
     HOST = "localhost"
