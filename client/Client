@@ -15,19 +15,38 @@ def     getPosMouse():
         position = sf.Mouse.get_position()
     return position
 
-def	    gereMouse(window):
+def	gereMouse(window):
     if sf.Mouse.is_button_pressed(sf.Mouse.LEFT):
         position = sf.Mouse.get_position()
+        checkCase()
         window.draw(drawText("Case Numero x -- \n\nInfo 1 :\tToto\nInfo2 :\t" +
             "Tutu\nInfo3 :\t Titi", 20, 480, 100))
 
-def     checkCase():
-    # tab = []
-    # tab = drawMap()
-    # position = getPosMouse()
-    # while tab:
-    #     if (position.x < tab[i])
+def     recTab():
+    liste = []
+    x = 50
+    y = 50
+    liste.append(0)
+    liste.append(0)
+    while (x != 500 and y != 500):
+        liste.append(x)
+        liste.append(y)
+        if (x == 450):
+            x = 0
+            y += 50
+        x += 50
+    return liste
 
+def     checkCase():
+    liste = recTab()
+    position = getPosMouse()
+    x = 2
+    y = 3
+    while (x  < len(liste)):
+        if ((position.x < liste[x] and position.x > liste[x - 2]) and (position.y < liste[y] and position.y > liste[y - 2])):
+           print "yo"
+        x += 2
+        y += 2
 
 def     drawRectangle(pos):
     paddle_size = sf.Vector2(50, 50)
@@ -63,8 +82,7 @@ def	drawMap():
 def     mainWindow():
     drawmap = []
     drawmap = drawMap()
-    # sf.Style.FULLSCREEN
-    window = sf.RenderWindow(sf.VideoMode(800, 600), "Client")
+    window = sf.RenderWindow(sf.VideoMode(800, 600), "Client", sf.Style.FULLSCREEN)
     while window.is_open:
 	for event in window.events:
 	    if type(event) is sf.CloseEvent:
