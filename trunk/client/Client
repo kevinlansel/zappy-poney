@@ -5,14 +5,28 @@ import	socket
 import  time
 import	sys
 
-def	music():
+def	    music():
 #play music
     music = sf.Music.from_file("ressources/contact.wav")
     music.play()
 
-def	gereMouse(window):
+def     getPosMouse():
     if sf.Mouse.is_button_pressed(sf.Mouse.LEFT):
-        window.draw(drawText("Case Numero x -- \n\nInfo 1 :\tToto\nInfo2 :\tTutu\nInfo3 :\t Titi", 20, 480, 100))
+        position = sf.Mouse.get_position()
+    return position
+
+def	    gereMouse(window):
+    if sf.Mouse.is_button_pressed(sf.Mouse.LEFT):
+        position = sf.Mouse.get_position()
+        window.draw(drawText("Case Numero x -- \n\nInfo 1 :\tToto\nInfo2 :\t" +
+            "Tutu\nInfo3 :\t Titi", 20, 480, 100))
+
+def     checkCase():
+    # tab = []
+    # tab = drawMap()
+    # position = getPosMouse()
+    # while tab:
+    #     if (position.x < tab[i])
 
 
 def     drawRectangle(pos):
@@ -25,19 +39,6 @@ def     drawRectangle(pos):
     rectangle.move(pos)
     return rectangle
 
-def drawNumber():
-    font = sf.Font.from_file("ressources/Sansation_Bold.ttf")
-    y = 25
-    for x in range(25, 450):
-        instructions = sf.Text("")
-        instructions.position = (x, y)
-        instructions.color = sf.Color(80,80,80)
-        x += 50
-        if (x == 450 and y != 500):
-            y += 50
-            x = 25
-    return instructions
-
 def	drawText(msg, size, pos_x, pos_y):
     font = sf.Font.from_file("ressources/Sansation_Bold.ttf")
     instructions = sf.Text(msg, font, size)
@@ -46,14 +47,15 @@ def	drawText(msg, size, pos_x, pos_y):
     return instructions
 
 def	drawMap():
+    tab1 = []
     tab = []
     position_x = 0
     position_y = 0
     paddle_size = sf.Vector2(20, 20)
     while position_y <= 400:
-	position_x = 0
-	while position_x <= 400:
-	    tab.append(drawRectangle(sf.Vector2(position_x, position_y)))
+        position_x = 0
+        while position_x <= 400:
+            tab.append(drawRectangle(sf.Vector2(position_x, position_y)))
 	    position_x += 50
 	position_y += 50
     return tab
@@ -71,7 +73,6 @@ def     mainWindow():
 		window.close()
 	window.clear()
 	for i in range(0, len(drawMap())):
-	    window.draw(drawNumber())
 	    window.draw(drawmap[i])
         if gereMouse(window):
             window.display()
