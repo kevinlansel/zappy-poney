@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 17:52:10 2013 guillaume duez
-** Last update Thu Jun  6 18:18:23 2013 guillaume duez
+** Last update Fri Jun  7 18:11:15 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -111,6 +111,8 @@ void		run_server(t_opt *opt)
   xlisten(connect->fd);
   client = create_client(0, NULL, NULL);
   map = create_map(opt);
+  create_link_x(map);
+  create_link_y(map);
   open_serv(connect, client, opt, map);
   close(connect->fd);
 }
