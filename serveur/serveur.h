@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Tue Jun  4 18:37:50 2013 guillaume duez
+** Last update Fri Jun  7 16:43:41 2013 guillaume duez
 */
 
 #ifndef         __SERVEUR_H__
@@ -77,6 +77,10 @@ typedef	struct	s_map
   int		y_world;  
   int		ress[MAX];
   e_direct	direct;
+  struct s_map	*left;
+  struct s_map	*right;
+  struct s_map	*down;
+  struct s_map	*up;
 }		t_map;
 
 typedef struct  s_client
@@ -109,6 +113,7 @@ typedef struct	s_msg
   char		*cmd;
   double	time;
   t_client	*client;
+  int		end;
   struct s_msg	*nt;
   struct s_msg	*prev;
 }		t_msg;
@@ -122,7 +127,7 @@ t_client	*create_client(int fd, t_client *client, t_opt *opt);
 t_client	*client_reset(t_client *client);
 t_msg           *get_mess(t_client *client);
 t_client        *end_client(t_client *client);
-void		do_action(t_client *client, t_map **map, t_msg *msg);
+t_msg		*do_action(t_client *client, t_map **map, t_msg *msg);
 void            run_server(t_opt *opt);
 void            avance(t_msg *msg, t_client *client, t_map **map);
 void            droite(t_msg *msg, t_client *client, t_map **map);

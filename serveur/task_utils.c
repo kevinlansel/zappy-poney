@@ -5,53 +5,62 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun  3 15:13:05 2013 guillaume duez
-** Last update Tue Jun  4 18:17:39 2013 guillaume duez
+** Last update Thu Jun  6 21:29:48 2013 guillaume duez
 */
 
 #include	"serveur.h"
 
 t_msg		*exec_task(t_msg *task)
 {
-  t_msg *msg;
-
-  while (task && task->time > get_time())
+  while (task && task->end != 1 && task->time < get_time())
     {
       if (send_mess(task) == -1)
 	{
 	  //find and suppres  client of the task 
 	  printf("TO DO\n");
 	}
-      msg = task;
       task = task->nt;
-      task->prev = NULL;
-      //      free(msg);
+      free(task->prev);
     }
+  if (task)
+    task->prev = NULL;
   return task;
+}
+
+t_msg		*create_first()
+{
+  t_msg *new;
+  
+  new =	xmalloc(sizeof(t_msg));
+  new->time = get_time() * 2;
+  new->end = 1;
+  return new;
 }
 
 t_msg		*into_order_task(t_msg *first, t_msg *new)
 {
-  return new;
-
-  while (first && new->time > first->time && first->nt)
+  while (first && new && new->time > first->time && first->end != 1)
     first = first->nt;
-  if (first)
+  if (first && first->prev)
+    first = first->prev;
+  if (first && first->end != 1)
     {
-      new->nt = first;
-      new->prev = first->prev;
-      first = first->prev;
+      new->nt = first->nt;
+      new->prev = first;
       first->nt = new;
+      new->nt->prev = new;
+      new->end = 0;
       while (first->prev != NULL)
 	first = first->prev;
     }
-  else
+  else if (new)
     {
-      first = new;
-      if (new)
-	{
-	  first->nt = NULL;
-	  first->prev = NULL;
-	}
+      first = create_first();
+      new->end = 0;
+      new->nt = first;
+      new->prev = NULL;
+      first->prev = new;
+      return new;
     }
   return first;
 }

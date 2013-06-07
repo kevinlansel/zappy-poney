@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Tue May 28 16:48:58 2013 guillaume duez
-** Last update Tue Jun  4 17:32:48 2013 guillaume duez
+** Last update Thu Jun  6 18:07:22 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -15,7 +15,7 @@ void		avance(t_msg *msg, t_client *client, t_map **map)
   e_direct	type;
 
   type = client->map->direct;
-  sub_food(msg, client, "ok");
+  sub_food(msg, client, "ok\n");
   msg->time = get_time() + (7 / client->time);
   if (type == SUD)
     client->map = (client->map->y + 1) < client->map->y_world ?
@@ -39,7 +39,7 @@ void		droite(t_msg *msg, t_client *client, t_map **map)
 {
   if (map)
     {
-      sub_food(msg, client, "ok");
+      sub_food(msg, client, "ok\n");
       msg->time = get_time() + (7 / client->time);
       if (client->map->direct == SUD)
 	client->map->direct = OUEST;
@@ -56,7 +56,7 @@ void		gauche(t_msg *msg, t_client *client, t_map **map)
 {
   if (map)
     {
-      sub_food(msg, client, "ok");
+      sub_food(msg, client, "ok\n");
       msg->time = get_time() + (7 / client->time);
       if (client->map->direct == SUD)
 	client->map->direct = EST;
@@ -92,6 +92,7 @@ void		inventaire(t_msg *mess, t_client *client, t_map **map)
       len += strlen(str);
       i++;
     }
+  mess->time = get_time() + (7 / client->time);
   sub_food(mess, client, msg);
   printf("%s\n", msg);
 }
