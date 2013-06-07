@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:15:13 2013 guillaume duez
-** Last update Tue Jun  4 17:20:25 2013 guillaume duez
+** Last update Thu Jun  6 18:10:10 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -14,7 +14,7 @@ int		send_mess(t_msg *msg)
 {
   if (!msg || !msg->client)
     return -1;
-  if (send(msg->client->fd, msg->cmd , strlen(msg->cmd), MSG_OOB) == -1)
+  if (send(msg->client->fd, msg->cmd , strlen(msg->cmd) + 1, MSG_OOB) == -1)
     {
       printf("Unable to send message, for client :%s", msg->client->nick);
       close(msg->client->fd);

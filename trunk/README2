@@ -1,9 +1,3 @@
-# Etre la a 10H !!!
-# Etre la a 10H !!!
-# Etre la a 10H !!!
-# Etre la a 10H !!!
-# Etre la a 10H !!!
-
 Client :
 	-Sauvag_m -> Socket + envoie de commande
 	-Wojcia_m -> Graphique
@@ -26,6 +20,7 @@ _____________________
 # Client envoie la commande au serveur qui l'effectue au bout d'un time. (envoie de retour ...)
 # Time en parrametre du serveur.
 # Affichage graphique SFML. (couleur de case, clik = info)
+# generation de ressources aléatoires sur la map
 
 _____________________
 
@@ -41,8 +36,3 @@ _____________________
 # Sur une fenêtre info du client en temps réel, + la map.
 # Plusieure item par case !
 # Légende !
-# Etre la a 10H !!!
-# Etre la a 10H !!!
-# Etre la a 10H !!!
-# Etre la a 10H !!!
-# Etre la a 10H !!!
