@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun  3 15:13:05 2013 guillaume duez
-** Last update Thu Jun  6 21:29:48 2013 guillaume duez
+** Last update Fri Jun  7 17:11:33 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -92,5 +92,5 @@ void		sub_food(t_msg *msg, t_client *client, const char *str)
   if (client->ress[NOURRITURE] > 0)
     strcpy(msg->cmd, str);
   else
-    strcpy(msg->cmd, "mort");
+    strcpy(msg->cmd, "mort\n");
 }

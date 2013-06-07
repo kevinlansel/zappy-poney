@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Fri Jun  7 16:43:41 2013 guillaume duez
+** Last update Fri Jun  7 18:11:49 2013 guillaume duez
 */
 
 #ifndef         __SERVEUR_H__
@@ -139,5 +139,7 @@ void            voir(t_msg *mess, t_client *client, t_map **map);
 t_msg           *into_order_task(t_msg *first, t_msg *new);
 int             send_mess(t_msg *msg);
 t_msg           *exec_task(t_msg *task);
+void            create_link_x(t_map **map);
+void            create_link_y(t_map **map);
 
 #endif
