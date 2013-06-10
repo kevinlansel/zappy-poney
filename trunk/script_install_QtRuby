@@ -1,0 +1,2 @@
+sudo apt-get install qt4-dev-tools qtcreator ruby ruby1.8-dev ruby1.8-full ruby1.9.1-full rubygems
+sudo gem install qtbindings
