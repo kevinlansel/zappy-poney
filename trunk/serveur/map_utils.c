@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Fri Jun  7 18:09:18 2013 guillaume duez
-** Last update Fri Jun  7 18:13:29 2013 guillaume duez
+** Last update Mon Jun 10 11:16:15 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -47,13 +47,13 @@ void            create_link_y(t_map **map)
       while (y < map[0][0].y_world)
         {
           if (y + 1 < map[0][0].y_world)
-            map[y][x].left = &(map[y + 1][x]);
+            map[y][x].up = &(map[y + 1][x]);
           else
-            map[y][x].left = &(map[0][x]);
+            map[y][x].up = &(map[0][x]);
           if (y - 1 >= 0)
-            map[y][x].right = &(map[y - 1][x]);
+            map[y][x].down = &(map[y - 1][x]);
           else
-            map[y][x].right = &(map[map[0][0].y_world][x]);
+            map[y][x].down = &(map[map[0][0].y_world][x]);
           y++;
         }
       x++;
