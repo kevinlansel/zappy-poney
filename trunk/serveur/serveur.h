@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Fri Jun  7 18:11:49 2013 guillaume duez
+** Last update Mon Jun 10 12:00:20 2013 guillaume duez
 */
 
 #ifndef         __SERVEUR_H__
@@ -74,7 +74,7 @@ typedef	struct	s_map
   int		x;
   int		y;
   int		x_world;
-  int		y_world;  
+  int		y_world;
   int		ress[MAX];
   e_direct	direct;
   struct s_map	*left;

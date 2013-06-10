@@ -5,11 +5,12 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:19:39 2013 guillaume duez
-** Last update Tue Jun  4 15:07:32 2013 guillaume duez
+** Last update Mon Jun 10 16:36:44 2013 guillaume duez
 */
 
 #include	"serveur.h"
 
+//premet de supprimer un cllient de la liste
 t_client        *end_client(t_client *client)
 {
   if (client && client->prev == NULL && client->end != 1)
@@ -28,6 +29,7 @@ t_client        *end_client(t_client *client)
   return client;
 }
 
+// reset la liste chaine de client
 t_client        *client_reset(t_client *client)
 {
   while (client && client->prev != NULL)
@@ -35,6 +37,7 @@ t_client        *client_reset(t_client *client)
   return client;
 }
 
+//initialise l'inventaire pour le client
 void	new_inventory(t_client *client)
 {
   client->ress[NOURRITURE] = 1260;
