@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*- 
+# -*- coding: utf-8 -*-
 
 import	sfml as sf
 import	socket
@@ -11,51 +11,48 @@ def	    music():
     music = sf.Music.from_file("ressources/contact.wav")
     music.play()
 
-def     getPosMouse():
+def     getPosMouse(window):
     position = 0
     if sf.Mouse.is_button_pressed(sf.Mouse.LEFT):
-        position = sf.Mouse.get_position()
+        position = sf.Mouse.get_position(window)
+        if (position.x > 450 or position.y > 450):
+            position = getPosMouse(window)
     return position
 
 def	gereMouse(window, liste):
-    position = getPosMouse()
+    position = getPosMouse(window)
     if sf.Mouse.is_button_pressed(sf.Mouse.LEFT):
         positioncarre = checkCase(liste, position)
-        window.draw(drawText("Case Numero - " + str(positioncarre) + " - \n\nInfo 1 :\tToto\nInfo2 :\t" +
+        window.draw(drawText("Case Numero "+str(positioncarre)+" \n\nInfo 1 :\tToto\nInfo2 :\t" +
             "Tutu\nInfo3 :\t Titi", 20, 480, 100))
 
 def     recTab():
     liste = []
-    x = 50
-    y = 50
-    liste.append(0)
-    liste.append(0)
+    liste2 = []
+    x = 0
+    y = 0
     i = 0
     while (x != 500 and y != 500):
         liste.append(i)
         liste.append(x)
         liste.append(y)
+        liste2.append(liste)
         if (x == 450):
             x = 0
             y += 50
         x += 50
         i += 1
-    return liste
+        liste = []
+    return liste2
 
 def     checkCase(liste, position):
-    x = 3
-    y = 4
-    carre = 2
-    while (carre < len(liste)):
-        if ((position.x < liste[x] and position.x > liste[x - 3]) and (position.y < liste[y] and position.y > liste[y - 3])):
-            carre += 3
-            return (liste[carre])
-        x += 3
-        y += 3
-        carre += 3
-    
+    i = 0
+    while (i < len(liste)):
+        if ((position.x > liste[i][1] and position.x < liste[i][1] + 50) and (position.y > liste[i][2] and position.y < liste[i][2] + 50)):
+            return (liste[i][0])
+        i += 1
 
-def drawRectangle(pos):
+def     drawRectangle(pos):
     paddle_size = sf.Vector2(50, 50)
     rectangle = sf.RectangleShape()
     rectangle.size = paddle_size - (3, 3)
@@ -89,7 +86,7 @@ def	drawMap():
 def     mainWindow():
     drawmap = []
     drawmap = drawMap()
-    window = sf.RenderWindow(sf.VideoMode(800, 600), "Client", sf.Style.FULLSCREEN)
+    window = sf.RenderWindow(sf.VideoMode(800, 600), "Client")# sf.Style.FULLSCREEN)
     liste = recTab()
     while window.is_open:
 	for event in window.events:
