@@ -47,7 +47,6 @@ def     recTab():
             x += 50
         i += 1
         liste = []
-    print liste2[9]
     return liste2
 
 def     checkCase(liste, position):
