@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 17:52:10 2013 guillaume duez
-** Last update Mon Jun 10 16:40:09 2013 guillaume duez
+** Last update Mon Jun 10 17:26:13 2013 florian dewulf
 */
 
 #include	"serveur.h"
@@ -75,6 +75,7 @@ static void		open_serv(t_connect *co, t_client *client, t_opt *opt, t_map **map)
   t_msg		*msg;
 
   error = 0;
+  msg = NULL;
   while (error != -1)
     {
       set_fd(&fd_read, client, &max, co->fd);
