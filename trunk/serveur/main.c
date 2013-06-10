@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Tue May 28 17:55:49 2013 guillaume duez
-** Last update Fri May 31 19:16:28 2013 Maxime Wojciak
+** Last update Mon Jun 10 16:39:58 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -50,13 +50,13 @@ t_opt		*check(int *val, char **name_team)
     opt->time_world = 100;
   opt->name_team = name_team;
   return opt;
-}		
+}
 
 int		check_tab(int i, int ac, char **av)
 {
   static char		str[OPT_INT][3] = { "-p", "-x", "-y", "-c", "-t"};
   int			j;
-  
+
   j = 0;
   while (j < OPT_INT)
     {
@@ -65,7 +65,7 @@ int		check_tab(int i, int ac, char **av)
       j++;
     }
   return -1;
-}		
+}
 
 void		parse_args(int ac, char **av)
 {
@@ -74,7 +74,7 @@ void		parse_args(int ac, char **av)
   char			**name_team;
   int			nb_team;
   int			ret;
-  
+
   val = xmalloc(sizeof(int) * OPT_INT);
   bzero(val, OPT_INT * sizeof(int));
   nb_team = 0;

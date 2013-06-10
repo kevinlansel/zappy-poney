@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Tue May 28 16:48:58 2013 guillaume duez
-** Last update Mon Jun 10 11:36:43 2013 guillaume duez
+** Last update Mon Jun 10 16:40:21 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -24,11 +24,11 @@ void		avance(t_msg *msg, t_client *client, t_map **map)
     client->map = (client->map->x + 1) < client->map->x_world ?
       &map[client->map->y][client->map->x + 1] : &map[client->map->y][0];
   else if (type == OUEST)
-    client->map = (client->map->x - 1) >= 0 ? 
+    client->map = (client->map->x - 1) >= 0 ?
       &map[client->map->y][client->map->x - 1] : &map[client->map->y][client->map->x_world - 1];
   else if (type == NORD)
     {
-      client->map = (client->map->y - 1) >= 0 ? 
+      client->map = (client->map->y - 1) >= 0 ?
 	&map[client->map->y - 1][client->map->x] : &map[client->map->y_world - 1][client->map->x];
     }
   client->map->direct = type;
