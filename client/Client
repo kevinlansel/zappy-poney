@@ -15,8 +15,8 @@ def     getPosMouse(window):
     position = 0
     if sf.Mouse.is_button_pressed(sf.Mouse.LEFT):
         position = sf.Mouse.get_position(window)
-        if (position.x > 450 or position.y > 450):
-            position = getPosMouse(window)
+        # if (position.x > 450 or position.y > 450):
+        #     position = getPosMouse(window)
     return position
 
 def	gereMouse(window, liste):
@@ -37,12 +37,14 @@ def     recTab():
         liste.append(x)
         liste.append(y)
         liste2.append(liste)
-        if (x == 450):
+        if (x == 400):
             x = 0
             y += 50
-        x += 50
+        else:
+            x += 50
         i += 1
         liste = []
+    print liste2[9]
     return liste2
 
 def     checkCase(liste, position):
