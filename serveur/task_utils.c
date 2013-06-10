@@ -5,11 +5,12 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun  3 15:13:05 2013 guillaume duez
-** Last update Fri Jun  7 17:11:33 2013 guillaume duez
+** Last update Mon Jun 10 16:34:55 2013 guillaume duez
 */
 
 #include	"serveur.h"
 
+//execution des taches
 t_msg		*exec_task(t_msg *task)
 {
   while (task && task->end != 1 && task->time < get_time())
@@ -27,6 +28,7 @@ t_msg		*exec_task(t_msg *task)
   return task;
 }
 
+// crztion du premier maillon
 t_msg		*create_first()
 {
   t_msg *new;
@@ -37,6 +39,7 @@ t_msg		*create_first()
   return new;
 }
 
+//met le maillon au bonne endroit
 t_msg		*into_order_task(t_msg *first, t_msg *new)
 {
   while (first && new && new->time > first->time && first->end != 1)
@@ -65,6 +68,7 @@ t_msg		*into_order_task(t_msg *first, t_msg *new)
   return first;
 }
 
+//recupere le time actuellen en seconde , et les milliseconde 
 double		get_time()
 {
  struct timeb	tp;
@@ -78,6 +82,7 @@ double		get_time()
  return  time;
 }
 
+//soustrait la nouriture et renvoie mort s il y a plus de nourriture
 void		sub_food(t_msg *msg, t_client *client, const char *str)
 {
   double	time_elipse;

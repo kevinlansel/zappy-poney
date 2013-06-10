@@ -5,11 +5,13 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:08:13 2013 guillaume duez
-** Last update Thu Jun  6 21:29:39 2013 guillaume duez
+** Last update Mon Jun 10 16:33:43 2013 guillaume duez
 */
 
 #include	"serveur.h"
 
+
+//initialisation du tableau de pointeur sur func
 static void	init_tab_func(void (*tab_func[NB_FUNC])(t_msg *, t_client *, t_map **))
 {
   tab_func[0] = &avance;
@@ -19,6 +21,8 @@ static void	init_tab_func(void (*tab_func[NB_FUNC])(t_msg *, t_client *, t_map *
   tab_func[4] = &inventaire;
 }
 
+
+// recuperation du message avec get_mess et boucle pour trouver la fonction correspondante
 static t_msg	*check_and_call(t_client *client, t_map **map)
 {
   void	(*tab_func[NB_FUNC])(t_msg *, t_client *, t_map **);
@@ -48,6 +52,7 @@ static t_msg	*check_and_call(t_client *client, t_map **map)
   return msg;
 }
 
+//enregistrement des message a renvoyer avec les times
 t_msg		*do_action(t_client *client, t_map **map, t_msg *msg)
 {
   t_msg *new;

@@ -5,11 +5,13 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Fri Jun  7 18:09:18 2013 guillaume duez
-** Last update Mon Jun 10 11:16:15 2013 guillaume duez
+** Last update Mon Jun 10 16:35:09 2013 guillaume duez
 */
 
 #include	"serveur.h"
 
+
+// creation de lien en x
 void            create_link_x(t_map **map)
 {
   int   y;
@@ -35,6 +37,7 @@ void            create_link_x(t_map **map)
     }
 }
 
+// creation de lien en y
 void            create_link_y(t_map **map)
 {
   int   y;
