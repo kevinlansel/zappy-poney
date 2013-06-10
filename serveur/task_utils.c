@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun  3 15:13:05 2013 guillaume duez
-** Last update Mon Jun 10 16:34:55 2013 guillaume duez
+** Last update Mon Jun 10 16:41:01 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -17,7 +17,7 @@ t_msg		*exec_task(t_msg *task)
     {
       if (send_mess(task) == -1)
 	{
-	  //find and suppres  client of the task 
+	  //find and suppres  client of the task
 	  printf("TO DO\n");
 	}
       task = task->nt;
@@ -32,7 +32,7 @@ t_msg		*exec_task(t_msg *task)
 t_msg		*create_first()
 {
   t_msg *new;
-  
+
   new =	xmalloc(sizeof(t_msg));
   new->time = get_time() * 2;
   new->end = 1;
@@ -68,7 +68,7 @@ t_msg		*into_order_task(t_msg *first, t_msg *new)
   return first;
 }
 
-//recupere le time actuellen en seconde , et les milliseconde 
+//recupere le time actuellen en seconde , et les milliseconde
 double		get_time()
 {
  struct timeb	tp;
