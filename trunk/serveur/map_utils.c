@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Fri Jun  7 18:09:18 2013 guillaume duez
-** Last update Mon Jun 10 16:35:09 2013 guillaume duez
+** Last update Mon Jun 10 17:09:59 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -24,13 +24,13 @@ void            create_link_x(t_map **map)
       while (x < map[0][0].x_world)
         {
           if (x + 1 < map[0][0].x_world)
-            map[y][x].left = &(map[y][x + 1]);
+            map[y][x].right = &(map[y][x + 1]);
           else
-            map[y][x].left = &(map[y][0]);
+            map[y][x].right = &(map[y][0]);
           if (x - 1 >= 0)
-            map[y][x].right = &(map[y][x - 1]);
+            map[y][x].left = &(map[y][x - 1]);
           else
-            map[y][x].right = &(map[y][map[0][0].x_world]);
+            map[y][x].left = &(map[y][map[0][0].x_world - 1]);
           x++;
         }
       y++;
@@ -50,13 +50,13 @@ void            create_link_y(t_map **map)
       while (y < map[0][0].y_world)
         {
           if (y + 1 < map[0][0].y_world)
-            map[y][x].up = &(map[y + 1][x]);
+            map[y][x].down = &(map[y + 1][x]);
           else
-            map[y][x].up = &(map[0][x]);
+            map[y][x].down = &(map[0][x]);
           if (y - 1 >= 0)
-            map[y][x].down = &(map[y - 1][x]);
+            map[y][x].up = &(map[y - 1][x]);
           else
-            map[y][x].down = &(map[map[0][0].y_world][x]);
+            map[y][x].up = &(map[map[0][0].y_world - 1][x]);
           y++;
         }
       x++;
