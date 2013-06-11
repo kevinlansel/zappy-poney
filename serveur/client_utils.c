@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:19:39 2013 guillaume duez
-** Last update Mon Jun 10 16:36:44 2013 guillaume duez
+** Last update Tue Jun 11 15:48:58 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -49,24 +49,18 @@ void	new_inventory(t_client *client)
   client->ress[THYSTAME] = 0;
 }
 
-void		new_map(t_client *client, t_opt *opt)
+void		new_map(t_client *client, t_opt *opt, t_map **map)
 {
-  client->ress[NOURRITURE] = 1260;
-  client->ress[LINEMATE] = 0;
-  client->ress[DERAUMERE] = 0;
-  client->ress[SIBUR] = 0;
-  client->ress[MENDIANE] = 0;
-  client->ress[PHIRAS] = 0;
-  client->ress[THYSTAME] = 0;
-  client->map = xmalloc(sizeof(t_map));
+  int	x;
+  int	y;
+
+  x = rand() % opt->x_world;
+  y = rand() % opt->y_world;
+  client->map = &(map[y][x]);
   client->map->direct = SUD;
-  client->map->x = rand() % opt->x_world;
-  client->map->y = rand() % opt->y_world;
-  client->map->x_world = opt->x_world;
-  client->map->y_world = opt->y_world;
 }
 
-t_client        *create_client(int fd, t_client *client, t_opt *opt)
+t_client        *create_client(int fd, t_client *client, t_opt *opt, t_map **map)
 {
   t_client      *new;
 
@@ -88,13 +82,9 @@ t_client        *create_client(int fd, t_client *client, t_opt *opt)
       new_inventory(new);
       new->level = 1;
       new->time_eat = get_time();
-      if (opt != NULL)
-	{
-	  printf("Opt is not null, time :%d\n", opt->time_world);
-	  new_map(new, opt);
-	  new->time = opt->time_world;
-	}
+      new_map(new, opt, map);
+      new->time = opt->time_world;
     }
   new->prev = NULL;
-  return new;
+  return (new);
 }
