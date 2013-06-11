@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Mon Jun 10 12:00:20 2013 guillaume duez
+** Last update Tue Jun 11 15:43:36 2013 guillaume duez
 */
 
 #ifndef         __SERVEUR_H__
@@ -123,7 +123,7 @@ void		xlisten(int fd);
 int		xsocket(struct protoent *pe);
 int		xaccept(int fd, struct sockaddr_in s_in, socklen_t s_in_size);
 void		xbind(int fd, struct sockaddr_in s_in);
-t_client	*create_client(int fd, t_client *client, t_opt *opt);
+t_client	*create_client(int fd, t_client *client, t_opt *opt, t_map **map);
 t_client	*client_reset(t_client *client);
 t_msg           *get_mess(t_client *client);
 t_client        *end_client(t_client *client);

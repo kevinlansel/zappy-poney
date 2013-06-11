@@ -5,11 +5,10 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 17:52:10 2013 guillaume duez
-** Last update Mon Jun 10 17:29:18 2013 florian dewulf
+** Last update Tue Jun 11 16:18:08 2013 guillaume duez
 */
 
 #include	"serveur.h"
-
 
 //creation de chaque case de la map || creation de ressource aléatoire a faire
 static void		create_case(t_map *map, int x, int y, t_opt *opt)
@@ -81,8 +80,8 @@ static void		open_serv(t_connect *co, t_client *client, t_opt *opt, t_map **map)
       if ((error = select(max + 1, &fd_read, NULL, NULL, NULL)) != -1)
         {
           if (FD_ISSET(co->fd, &fd_read))
-	    client = create_client(xaccept(co->fd, co->s_in_client,
-					   co->s_in_size), client, opt);
+	    client = create_client(xaccept(co->fd, co->s_in_client, co->s_in_size),
+				   client, opt, map);
           while (client && client->end != 1)
             {
               if (FD_ISSET(client->fd, &fd_read))
@@ -113,10 +112,13 @@ void		run_server(t_opt *opt)
   connect->s_in.sin_addr.s_addr = INADDR_ANY;
   xbind(connect->fd, connect->s_in);
   xlisten(connect->fd);
-  client = create_client(0, NULL, NULL);
+  client = create_client(0, NULL, NULL, NULL);
   map = create_map(opt);
   create_link_x(map);
   create_link_y(map);
-  open_serv(connect, client, opt, map);
+  if (!opt)
+    printf("problem with args\n");
+  else
+    open_serv(connect, client, opt, map);
   close(connect->fd);
 }
