@@ -52,9 +52,10 @@ def     recTab():
 def     checkCase(liste, position):
     i = 0
     while (i < len(liste)):
-        if ((position.x > liste[i][1] and position.x < liste[i][1] + 50) and (position.y > liste[i][2] and position.y < liste[i][2] + 50)):
-            return (liste[i][0])
-        i += 1
+	if position and position.x and position.y:
+	    if ((position.x > liste[i][1] and position.x < liste[i][1] + 50) and (position.y > liste[i][2] and position.y < liste[i][2] + 50)):
+		return (liste[i][0])
+	    i += 1
 
 def     drawRectangle(pos):
     paddle_size = sf.Vector2(50, 50)
