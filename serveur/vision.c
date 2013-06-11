@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun  3 18:42:55 2013 guillaume duez
-** Last update Mon Jun 10 12:24:13 2013 guillaume duez
+** Last update Tue Jun 11 15:26:41 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -19,7 +19,7 @@ char		*get_object_case(t_map *map)
 				  "SIBUR", "MENDIANE", "PHIRAS", "THYSTAME" };
   int		size;
   int		bool;
-  
+
   bool = 0;
   size = 0;
   i = 0;
@@ -35,11 +35,11 @@ char		*get_object_case(t_map *map)
 	{
 	  str = realloc(str, size + strlen(tab[i]));
 	  strcpy(str + size , tab[i]);
-	  size += strlen(tab[i]);	  
+	  size += strlen(tab[i]);
 	}
       i++;
     }
-  return str;
+  return (str);
 }
 
 char		**get_object_line(t_map *map, int len, e_direct dir)
@@ -48,24 +48,24 @@ char		**get_object_line(t_map *map, int len, e_direct dir)
   t_map	*move;
   char	**str;
 
-  str = xmalloc(sizeof(char *) * len);
+  str = xmalloc(sizeof(char *) * len + 1);
   i = 0;
   move = map;
   while (i < len)
     {
       str[i] = get_object_case(map);
-      if (dir == NORD)
+      if (move && dir == NORD)
 	move = move->right;
-      else if (dir == SUD)
+      else if (move && dir == SUD)
 	move = move->left;
-      else if (dir == OUEST)
+      else if (move && dir == OUEST)
 	move = move->up;
-      else
+      else if (move)
 	move = move->down;
       i++;
     }
   str[i] = NULL;
-  return str;
+  return (str);
 }
 
 void            voir(t_msg *msg, t_client *client, t_map **map)
@@ -83,6 +83,7 @@ void            voir(t_msg *msg, t_client *client, t_map **map)
   printf("level ? %d\n", level);
   while (level > 0)
     {
+      printf("recal map x: %d  y = %d\n", client->map->x, client->map->y);
       str = get_object_line(client->map, len, client->map->direct);
       printf("pl\n");
       if (dir == NORD)
@@ -95,6 +96,7 @@ void            voir(t_msg *msg, t_client *client, t_map **map)
 	client->map = client->map->right->up;
       level--;
       len += 2;
+      /*
       //tempory for print
       int i = 0;
       while (str[i] != NULL)
@@ -102,6 +104,8 @@ void            voir(t_msg *msg, t_client *client, t_map **map)
 	  printf("%s\n", str[i]);
 	  i++;
 	}
+      */
     }
+  client->map = tmp;
 }
 
