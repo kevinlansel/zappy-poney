@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun  3 18:42:55 2013 guillaume duez
-** Last update Tue Jun 11 18:57:48 2013 guillaume duez
+** Last update Tue Jun 11 19:07:08 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -18,14 +18,15 @@ static char	*get_object(char *str, int i, int nb)
 
   if (!str)
     {
-      str = malloc(strlen(tab[i] + sprintf(NULL, "%d", nb) + 1));
-      sprintf(str, "%s %d", tab[i] , nb);
+      size = strlen(tab[i]) + sprintf(NULL, "%d", nb) + 1;
+      str = xmalloc(size);
+      snprintf(str, size,  "%s %d", tab[i] , nb);
     }
   else
     {
-      size = (str ? strlen(str) : 0);
+      size = strlen(str) + strlen(tab[i]) + sprintf(NULL, "%d", nb) + 1;
       str = realloc(str, size + strlen(tab[i]) + sprintf(NULL, "%d", nb) + 1);
-      sprintf(str, "%s %d", tab[i] , nb);
+      snprintf(str, size, "%s %d", tab[i] , nb);
     }
   return (str);
 }
