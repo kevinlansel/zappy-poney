@@ -5,23 +5,27 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Mon Jun 10 21:53:42 2013 florian dewulf
-** Last update Mon Jun 10 23:30:39 2013 florian dewulf
+** Last update Tue Jun 11 16:30:12 2013 florian dewulf
 */
 
 #include	"tmp.h"
 
 void		defaultconfig(t_conf *conf)
 {
-  config-> = ;
-  config-> = ;
-  config-> = ;
-  config-> = ;
-  config-> = ;
-  config-> = ;
-  config-> = ;
-  config-> = ;
-  config-> = ;
-  config-> = ;
+  config->max_nour = ;
+  config->max_line = ;
+  config->max_derau = ;
+  config->max_sibur = ;
+  config->max_mend = ;
+  config->max_phiras = ;
+  config->max_thyst = ;
+  config->time_repop__nour = ;
+  config->time_repop__line = ;
+  config->time_repop__derau = ;
+  config->time_repop__sibur = ;
+  config->time_repop__mend = ;
+  config->time_repop__phiras = ;
+  config->time_repop__thyst = ;
 }
 
 void		fileconfig(t_conf *config, FILE *file)
