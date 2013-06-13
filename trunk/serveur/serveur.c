@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 17:52:10 2013 guillaume duez
-** Last update Tue Jun 11 16:18:08 2013 guillaume duez
+** Last update Thu Jun 13 16:15:12 2013 florian dewulf
 */
 
 #include	"serveur.h"
@@ -29,9 +29,10 @@ static void		create_case(t_map *map, int x, int y, t_opt *opt)
 //creation de la map
 static t_map		**create_map(t_opt *opt)
 {
-  t_map	**map;
-  int	y;
-  int	x;
+  t_map			**map;
+  int			y;
+  int			x;
+  t_conf		*conf;
 
   y = 0;
   map = xmalloc(sizeof(t_map *) * opt->y_world);
@@ -46,7 +47,9 @@ static t_map		**create_map(t_opt *opt)
 	}
       y++;
     }
-  return map;
+  conf = parseconf(map);
+  init_map(map, conf);
+  return (map);
 }
 
 static void     set_fd(fd_set *listen_select,

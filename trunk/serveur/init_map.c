@@ -5,12 +5,11 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Thu Jun 13 11:31:35 2013 florian dewulf
-** Last update Thu Jun 13 11:50:56 2013 florian dewulf
+** Last update Thu Jun 13 16:00:41 2013 florian dewulf
 */
 
 #include	<stdlib.h>
 #include	"serveur.h"
-#include	"tmp.h"
 
 void		put_in_random_case(t_map **map, int type)
 {

@@ -5,14 +5,13 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Mon Jun 10 21:53:42 2013 florian dewulf
-** Last update Thu Jun 13 11:55:09 2013 florian dewulf
+** Last update Thu Jun 13 16:00:35 2013 florian dewulf
 */
 
 #include		<stdio.h>
 #include		<string.h>
 #include		<unistd.h>
 #include		"serveur.h"
-#include		"tmp.h"
 
 static void		defaultconfig(t_conf *config)
 {
@@ -99,7 +98,7 @@ static void		fileconfig(t_conf *config, FILE *file)
   free(ptr);
 }
 
-static t_conf		*parseconf(t_map **map)
+t_conf			*parseconf(t_map **map)
 {
   FILE			*file;
   t_conf		*config;
