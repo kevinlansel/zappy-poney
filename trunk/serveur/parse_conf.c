@@ -5,105 +5,129 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Mon Jun 10 21:53:42 2013 florian dewulf
-** Last update Tue Jun 11 16:30:12 2013 florian dewulf
+** Last update Thu Jun 13 11:24:36 2013 florian dewulf
 */
 
-#include	"tmp.h"
+#include		<stdio.h>
+#include		<string.h>
+#include		<unistd.h>
+#include		"serveur.h"
+#include		"tmp.h"
 
-void		defaultconfig(t_conf *conf)
+static void		defaultconfig(t_conf *config)
 {
-  config->max_nour = ;
-  config->max_line = ;
-  config->max_derau = ;
-  config->max_sibur = ;
-  config->max_mend = ;
-  config->max_phiras = ;
-  config->max_thyst = ;
-  config->time_repop__nour = ;
-  config->time_repop__line = ;
-  config->time_repop__derau = ;
-  config->time_repop__sibur = ;
-  config->time_repop__mend = ;
-  config->time_repop__phiras = ;
-  config->time_repop__thyst = ;
+  config->time_repop[NOURRITURE] = 6;
+  config->time_repop[LINEMATE] = 7;
+  config->time_repop[DERAUMERE] = 7;
+  config->time_repop[SIBUR] = 8;
+  config->time_repop[MENDIANE] = 8;
+  config->time_repop[PHIRAS] = 9;
+  config->time_repop[THYSTAME] = 9;
+  config->max_repop[NOURRITURE] = 12;
+  config->max_repop[LINEMATE] = 12;
+  config->max_repop[DERAUMERE] = 10;
+  config->max_repop[SIBUR] = 8;
+  config->max_repop[MENDIANE] = 6;
+  config->max_repop[PHIRAS] = 4;
+  config->max_repop[THYSTAME] = 2;
 }
 
-void		fileconfig(t_conf *config, FILE *file)
+static t_ptr_func_parse	*init_ptr_func_pop()
 {
-  char		buffer[1024];
-  int		binary;
+  t_ptr_func_parse	*ptr;
 
-  binary = 0;
-  while (fgets(buffer, 1024, file) == NULL)
+  ptr = xmalloc(SIZE_PTR_FUNC * sizeof(t_ptr_func_parse));
+  ptr[0].str = strdup("PopNourriture:");
+  ptr[0].off = NOURRITURE;
+  ptr[1].str = strdup("PopLinemate:");
+  ptr[1].off = LINEMATE;
+  ptr[2].str = strdup("PopDeraumere:");
+  ptr[2].off = DERAUMERE;
+  ptr[3].str = strdup("PopSibur:");
+  ptr[3].off = SIBUR;
+  ptr[4].str = strdup("PopMendiane:");
+  ptr[4].off = MENDIANE;
+  ptr[5].str = strdup("PopPhiras:");
+  ptr[5].off = PHIRAS;
+  ptr[6].str = strdup("PopThystame:");
+  ptr[6].off = THYSTAME;
+  return (ptr);
+}
+
+static void		init_ptr_func_max(t_ptr_func_parse *ptr)
+{
+  ptr[7].str = strdup("MaxNourriture:");
+  ptr[7].off = NOURRITURE;
+  ptr[8].str = strdup("MaxLinemate:");
+  ptr[8].off = LINEMATE;
+  ptr[9].str = strdup("MaxDeraumere:");
+  ptr[9].off = DERAUMERE;
+  ptr[10].str = strdup("MaxSibur:");
+  ptr[10].off = SIBUR;
+  ptr[11].str = strdup("MaxMendiane:");
+  ptr[11].off = MENDIANE;
+  ptr[12].str = strdup("MaxPhiras:");
+  ptr[12].off = PHIRAS;
+  ptr[13].str = strdup("MaxThystame:");
+  ptr[13].off = THYSTAME;
+}
+
+static void		fileconfig(t_conf *config, FILE *file)
+{
+  char			buff[1024];
+  t_ptr_func_parse	*ptr;
+  int			i;
+
+  ptr = init_ptr_func_pop();
+  init_ptr_func_max(ptr);
+  while (fgets(buff, 1023, file) != NULL)
     {
-      //à transformer en ptr sur func en envoyant binary en pointeur pour le modif
-      if (strncmp(buffer, "PopNourriture:", 14) == 0)
+      i = 0;
+      while (i < 14 && strncmp(ptr[i].str, buff, strlen(ptr[i].str)) != 0)
+	i++;
+      if (i != 14 && strncmp(buff, "Max", 3) == 0)
+	config->max_repop[ptr[i].off] = atoi(&(buff[strlen(ptr[i].str)]));
+      else if (i != 14)
+	config->time_repop[ptr[i].off] = atoi(&(buff[strlen(ptr[i].str)]));
+    }
+  i = 0;
+  while (i < 14)
+    {
+      free(ptr[i].str);
+      i++;
+    }
+  free(ptr);
+}
+
+static t_conf		*parseconf(t_map **map)
+{
+  FILE			*file;
+  t_conf		*config;
+
+  config = xmalloc(sizeof(t_conf));
+  defaultconfig(config);
+  if (access(".conf", R_OK | F_OK) != -1)
+    {
+      file = fopen(".conf", "r");
+      if (file != NULL)
 	{
-	  config-> = atoi(strdup(&(buffer[14])));
-	  binary |= 1;
-	}
-      else if (strncmp(buffer, "PopLinemate:", 12) == 0)
-	{
-	  config-> = atoi(strdup(&(buffer[12])));
-	  binary |= 2;
-	}
-      else if (strncmp(buffer, "PopDeraumere:", 13) == 0)
-	{
-	  config-> = atoi(strdup(&(buffer[13])));
-	  binary |= 4;
-	}
-      else if (strncmp(buffer, "PopSibur:", 9) == 0)
-	{
-	  config-> = atoi(strdup(&(buffer[9])));
-	  binary |= 8;
-	}
-      else if (strncmp(buffer, "PopMendiane:", 12) == 0)
-	{
-	  config-> = atoi(strdup(&(buffer[12])));
-	  binary |= 16;
-	}
-      else if (strncmp(buffer, "PopPhiras:", 10) == 0)
-	{
-	  config-> = atoi(strdup(&(buffer[10])));
-	  binary |= 32;
-	}
-      else if (strncmp(buffer, "PopThystame:", 12) == 0)
-	{
-	  config-> = atoi(strdup(&(buffer[12])));
-	  binary |= 64;
-	}
-      else
-	{
-	  defaultconfig(config);
-	  return;
+	  fileconfig(config, file);
+	  fclose(file);
 	}
     }
-  if (binary == 127)
-    defaultconfig(config);
+  ;//init_map(map, config);
+  return config;
 }
 
-void		parsefile(t_conf *config)
+/*
+int	main()
 {
-  FILE		*file;
+  t_conf	*conf;
+  t_map		**map;
 
-  file = fopen(".conf", "r");
-  if (file == NULL)
-    {
-      defaultconfig(config);
-      return;
-    }
-  fileconfig(config, file);
-  fclose(file);
+  map = NULL;
+  conf = parseconf(map);
+  printf("Pop Nourriture : %d\nPop Linemate : %d\nPop Deraumere : %d\nPop Sibur : %d\nPop Mendiane : %d\nPop Phiras : %d\nPop Thystame : %d\n", conf->time_repop[NOURRITURE], conf->time_repop[LINEMATE], conf->time_repop[DERAUMERE], conf->time_repop[SIBUR], conf->time_repop[MENDIANE], conf->time_repop[PHIRAS], conf->time_repop[THYSTAME]);
+  printf("Max Nourriture : %d\nMax Linemate : %d\nMax Deraumere : %d\nMax Sibur : %d\nMax Mendiane : %d\nMax Phiras : %d\nMax Thystame : %d\n", conf->max_repop[NOURRITURE], conf->max_repop[LINEMATE], conf->max_repop[DERAUMERE], conf->max_repop[SIBUR], conf->max_repop[MENDIANE], conf->max_repop[PHIRAS], conf->max_repop[THYSTAME]);
 }
-
-void		parseconf(t_map **map)
-{
-  t_conf	*config;
-
-  if (access(R_OK | F_OK) == -1)
-    defaultconfig(config);
-  else
-    parsefile(config);
-}
-
-
+*/
