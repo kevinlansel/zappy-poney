@@ -5,7 +5,7 @@
 ## Login   <duez_a@epitech.net>
 ## 
 ## Started on  Mon Feb  4 12:48:16 2013 guillaume duez
-## Last update Thu Jun 13 11:18:52 2013 florian dewulf
+## Last update Thu Jun 13 15:57:35 2013 florian dewulf
 ##
 
 SERV	=	serveur
@@ -20,6 +20,8 @@ SRC_SERV=	serveur.c		\
 		action.c		\
 		vision.c		\
 		task_utils.c		\
+		init_map.c		\
+		parse_conf.c		\
 		tools/xmalloc.c
 
 OBJ_SERV=	$(SRC_SERV:.c=.o)

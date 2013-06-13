@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Tue Jun 11 15:43:36 2013 guillaume duez
+** Last update Thu Jun 13 16:01:32 2013 florian dewulf
 */
 
 #ifndef         __SERVEUR_H__
@@ -29,6 +29,7 @@
 #define	NB_FUNC		8
 #define	LEN		12
 #define	OPT_INT		5
+#define	SIZE_PTR_FUNC	14
 
 typedef enum	e_direct
   {
@@ -49,6 +50,18 @@ typedef enum	e_ressource
     THYSTAME,
     MAX
   }		e_object;
+
+typedef struct	s_conf
+{
+  int		time_repop[MAX];
+  int		max_repop[MAX];
+}		t_conf;
+
+typedef struct	s_ptr_func_parse
+{
+  char		*str;
+  int		off;
+}		t_ptr_func_parse;
 
 typedef	struct	s_task
 {
