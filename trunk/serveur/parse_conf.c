@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Mon Jun 10 21:53:42 2013 florian dewulf
-** Last update Thu Jun 13 11:24:36 2013 florian dewulf
+** Last update Thu Jun 13 11:55:09 2013 florian dewulf
 */
 
 #include		<stdio.h>
@@ -115,7 +115,7 @@ static t_conf		*parseconf(t_map **map)
 	  fclose(file);
 	}
     }
-  ;//init_map(map, config);
+  init_map(map, config);
   return config;
 }
 
