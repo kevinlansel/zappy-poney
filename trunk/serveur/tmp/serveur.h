@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Thu Jun 13 16:01:32 2013 florian dewulf
+** Last update Thu Jun 13 17:20:44 2013 florian dewulf
 */
 
 #ifndef         __SERVEUR_H__
@@ -26,7 +26,7 @@
 #include <sys/wait.h>
 #include <sys/timeb.h>
 
-#define	NB_FUNC		8
+#define	NB_FUNC		9
 #define	LEN		12
 #define	OPT_INT		5
 #define	SIZE_PTR_FUNC	14
