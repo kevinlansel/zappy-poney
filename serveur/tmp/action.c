@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:08:13 2013 guillaume duez
-** Last update Mon Jun 10 16:33:43 2013 guillaume duez
+** Last update Thu Jun 13 17:23:27 2013 florian dewulf
 */
 
 #include	"serveur.h"
@@ -19,6 +19,7 @@ static void	init_tab_func(void (*tab_func[NB_FUNC])(t_msg *, t_client *, t_map *
   tab_func[2] = &gauche;
   tab_func[3] = &voir;
   tab_func[4] = &inventaire;
+  tab_func[5] = &broadcast;
 }
 
 
@@ -31,7 +32,7 @@ static t_msg	*check_and_call(t_client *client, t_map **map)
   int	i;
   static char	str[NB_FUNC][LEN] = { "avance", "droite", "gauche", "voir",
 				      "inventaire", "prend objet", "pose objet",
-				      "expulse"};
+				      "expulse", "broadcast"};
   i = 0;
   bool = 0;
   init_tab_func(tab_func);
