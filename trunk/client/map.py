@@ -5,11 +5,11 @@ import  time
 import  sys
 
 class           Map:
-    def __init__(self):
+    def __init__(self, MapX, MapY):
         self._x = 30
         self._y = 30
-        self._MapX = 0
-        self._MapY = 0
+        self._MapX = MapX
+        self._MapY = MapY
 
     def drawMap(self):
         tab = []
