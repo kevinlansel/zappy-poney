@@ -6,6 +6,11 @@ import	socket
 import  time
 import	sys
 
+host = "localhost"
+team = ""
+port = 0
+
+
 def	    music():
 #play music
     music = sf.Music.from_file("ressources/contact.wav")
@@ -16,8 +21,6 @@ def     getPosMouse(window):
     if sf.Mouse.is_button_pressed(sf.Mouse.LEFT):
         try:
             position = sf.Mouse.get_position(window)
-            print position.x
-            print position.y
             if (position.x > 450 or position.y > 450):
                 getPosMouse(window)
         except Exception, e:
@@ -111,55 +114,39 @@ def     mainWindow():
         window.display()
 
 def	init_connect():
-    HOST = "localhost"
-    if (len(sys.argv) == 5):
-        i = 1
-        while i < len(sys.argv):
-            if sys.argv[i] == "-n":
-                TEAM = sys.argv[i + 1]
-	    elif sys.argv[i] == "-p":
-                PORT = int(sys.argv[i + 1])
-            i = i + 2
- 	print "Nom d'equipe: " + TEAM
-	print "Hote: " + HOST
-	print "Port: " + str(PORT)
-	sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	try:
-	    sock.connect((HOST, PORT))
-	except socket.error:
-	    exit()
-	print "Connexion etablie avec le serveur"
-	query = "Yoooo C'est le Rap du Ratz !!"
-	sock.send(query)
-    elif (len(sys.argv) == 7):
+    host = "localhost"
+    if (len(sys.argv) == 5 or len(sys.argv) == 7):
 	i = 1
         while i < len(sys.argv):
             if sys.argv[i] == "-n":
-                TEAM = sys.argv[i + 1]
+                team = sys.argv[i + 1]
             elif sys.argv[i] == "-h":
-                HOST = sys.argv[i + 1]
+                host = sys.argv[i + 1]
 	    elif sys.argv[i] == "-p":
-                PORT = int(sys.argv[i + 1])
+                port = int(sys.argv[i + 1])
             i = i + 2
-	print "Nom d'equipe: " + TEAM
-	print "Hote: " + HOST
-	print "Port: " + str(PORT)
+	print "Nom d'equipe: " + team
+	print "Hote: " + host
+	print "Port: " + str(port)
 	sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	try:
-	    sock.connect((HOST, PORT))
+	    sock.connect((host, port))
 	except socket.error:
 	    exit()
 	print "Connexion etablie avec le serveur"
-	query = "Yoooo C'est le Rap du Ratz !!"
+	query = "Connexion d'un nouveau client"
 	sock.send(query)
+        #sock.recv(512)
     else:
 	print "USAGE: ./Client [-h hote] [-n equipe] [-p port]"
 	exit()
 
 def	main():
     try:
-	#init_connect()
-	music()
-	mainWindow()
+	init_connect()
+	#music()
+	#mainWindow()
     except IOError: exit(1)
+
+
 main()
