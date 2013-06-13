@@ -5,15 +5,15 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun  3 18:42:55 2013 guillaume duez
-** Last update Thu Jun 13 16:21:21 2013 guillaume duez
+** Last update Thu Jun 13 16:49:11 2013 guillaume duez
 */
 
 #include	"serveur.h"
 
 static char	*get_object(char *str, int i, int nb)
 {
-  static char	tab[MAX][20] = { "NOURRITURE", "LINEMATE", "DERAUMERE",
-				 "SIBUR", "MENDIANE", "PHIRAS", "THYSTAME" };
+  static char	tab[MAX][20] = { "nourriture", "linemate", "deraumere",
+				 "sibur", "mendiane", "phiras", "thystame" };
   int		size;
 
   size = 0;
@@ -21,13 +21,13 @@ static char	*get_object(char *str, int i, int nb)
     {
       size = strlen(tab[i]) + snprintf(NULL, size, "%s %d", tab[i] , nb) + 1;
       str = xmalloc(size + 1);
-      snprintf(str, size,  "%s %d", tab[i] , nb);
+      snprintf(str, size + 1,  "%s %d", tab[i] , nb);
     }
   else
     {
-      size = strlen(str) + strlen(tab[i]) + snprintf(NULL, size, "%s %d", tab[i] , nb) + 1;
+      size = strlen(str) + strlen(tab[i]) + snprintf(NULL, size, " %s %d", tab[i] , nb) + 1;
       str = realloc(str, size + 1);
-      snprintf(str, size, "%s %d", tab[i] , nb);
+      snprintf(str + strlen(str), size + 1, " %s %d", tab[i] , nb);
     }
   return (str);
 }
@@ -116,8 +116,34 @@ void            voir(t_msg *msg, t_client *client, t_map **map)
   len = 1;
   dir = client->map->direct;
   tmp = client->map;
-  level = /* client->level */ 6;
+  level = /* client->level */ 1;
   fin = NULL;
+
+
+  int   y;
+  int   x;
+
+  y = 0;
+  while (y < map[0][0].y_world)
+    {
+      x = 0;
+      while (x < map[0][0].x_world)
+        {
+	  printf("x : %d, y : %d\n", x, y);
+          printf(" NOURRITURE %d\n", map[y][x].ress[NOURRITURE]);
+          printf(" LINEMATE %d\n", map[y][x].ress[1]);
+          printf(" DERAUMERE %d\n", map[y][x].ress[2]);
+          printf(" SIBUR %d\n", map[y][x].ress[3]);
+          printf(" MENDIANE %d\n", map[y][x].ress[4]);
+          printf(" PHIRAS %d\n", map[y][x].ress[5]);
+          printf(" THYSTAME %d\n", map[y][x].ress[5]);
+	  x++;
+        }
+      y++;
+    }
+
+
+
   while (level > 0 && map)
     {
       //      printf("map x: %d  y = %d\n", client->map->x, client->map->y);
