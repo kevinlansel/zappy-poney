@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 17:52:10 2013 guillaume duez
-** Last update Thu Jun 13 16:34:35 2013 florian dewulf
+** Last update Thu Jun 13 17:18:45 2013 florian dewulf
 */
 
 #include	"serveur.h"
@@ -49,17 +49,6 @@ static t_map		**create_map(t_opt *opt)
     }
   conf = parseconf(map);
   init_map(map, conf);
-  y = 0;
-  while (y < opt->y_world)
-    {
-      x = 0;
-      while (x < opt->y_world)
-	{
-	  printf("MAP[%d][%d] = { %d : %d : %d : %d : %d : %d : %d }\n", y, x, map[y][x].ress[NOURRITURE], map[y][x].ress[LINEMATE], map[y][x].ress[DERAUMERE], map[y][x].ress[SIBUR], map[y][x].ress[MENDIANE], map[y][x].ress[PHIRAS], map[y][x].ress[THYSTAME]);
-	  x++;
-	}
-      y++;
-    }
   return (map);
 }
 
