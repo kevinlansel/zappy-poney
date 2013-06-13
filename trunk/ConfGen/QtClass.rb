@@ -7,7 +7,7 @@
 # Login   <dewulf_f@epitech.net>
 # 
 # Started on  Mon Jun 10 18:25:16 2013 florian dewulf
-# Last update Tue Jun 11 16:14:29 2013 florian dewulf
+# Last update Tue Jun 11 17:18:00 2013 florian dewulf
 =end
 
 require 'Qt'
@@ -65,6 +65,22 @@ class   QtApp < Qt::Widget
     @input_save.setReadOnly(true)
     button_go = Qt::PushButton.new('Go !')
     button_quit = Qt::PushButton.new('Quit !')
+
+    #Initialize value
+    @popnourriture.value = 6
+    @poplinemate.value = 7
+    @popderaumere.value = 7
+    @popsibur.value = 8
+    @popmendiane.value = 8
+    @popphiras.value = 9
+    @popthystame.value = 9
+    @maxnourriture.value = 12
+    @maxlinemate.value = 12
+    @maxderaumere.value = 10
+    @maxsibur.value = 8
+    @maxmendiane.value = 6
+    @maxphiras.value = 4
+    @maxthystame.value = 2
 
     #Put all in a grid
     grid = Qt::GridLayout.new(self)
@@ -132,20 +148,20 @@ class   QtApp < Qt::Widget
   end
 
   def   script
-    @file_save.write "PopNourriture:" + @popnourriture.text + "\n"
-    @file_save.write "PopLinemate:" + @poplinemate.text + "\n"
-    @file_save.write "PopDeraumere:" + @popderaumere.text + "\n"
-    @file_save.write "PopSibur:" + @popsibur.text + "\n"
-    @file_save.write "PopMendiane:" + @popmendiane.text + "\n"
-    @file_save.write "PopPhiras:" + @popphiras.text + "\n"
-    @file_save.write "PopThystame:" + @popthystame.text + "\n"
-    @file_save.write "MaxNourriture:" + @maxnourriture.text + "\n"
-    @file_save.write "MaxLinemate:" + @maxlinemate.text + "\n"
-    @file_save.write "MaxDeraumere:" + @maxderaumere.text + "\n"
-    @file_save.write "MaxSibur:" + @maxsibur.text + "\n"
-    @file_save.write "MaxMendiane:" + @maxmendiane.text + "\n"
-    @file_save.write "MaxPhiras:" + @maxphiras.text + "\n"
-    @file_save.write "MaxThystame:" + @maxthystame.text + "\n"
+    @file_save.write "PopNourriture:" + @popnourriture.value.to_s + "\n"
+    @file_save.write "PopLinemate:" + @poplinemate.value.to_s + "\n"
+    @file_save.write "PopDeraumere:" + @popderaumere.value.to_s + "\n"
+    @file_save.write "PopSibur:" + @popsibur.value.to_s + "\n"
+    @file_save.write "PopMendiane:" + @popmendiane.value.to_s + "\n"
+    @file_save.write "PopPhiras:" + @popphiras.value.to_s + "\n"
+    @file_save.write "PopThystame:" + @popthystame.value.to_s + "\n"
+    @file_save.write "MaxNourriture:" + @maxnourriture.value.to_s + "\n"
+    @file_save.write "MaxLinemate:" + @maxlinemate.value.to_s + "\n"
+    @file_save.write "MaxDeraumere:" + @maxderaumere.value.to_s + "\n"
+    @file_save.write "MaxSibur:" + @maxsibur.value.to_s + "\n"
+    @file_save.write "MaxMendiane:" + @maxmendiane.value.to_s + "\n"
+    @file_save.write "MaxPhiras:" + @maxphiras.value.to_s + "\n"
+    @file_save.write "MaxThystame:" + @maxthystame.value.to_s + "\n"
     @file_save.close
   end
 end
