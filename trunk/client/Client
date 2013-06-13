@@ -16,6 +16,8 @@ def     getPosMouse(window):
     if sf.Mouse.is_button_pressed(sf.Mouse.LEFT):
         try:
             position = sf.Mouse.get_position(window)
+            print position.x
+            print position.y
             if (position.x > 450 or position.y > 450):
                 getPosMouse(window)
         except Exception, e:
@@ -54,14 +56,14 @@ def     checkCase(liste, position):
     i = 0
     while (i < len(liste)):
 	if position and position.x and position.y:
-	    if ((position.x > liste[i][1] and position.x < liste[i][1] + 50) and (position.y > liste[i][2] and position.y < liste[i][2] + 50)):
+	    if ((position.x >= liste[i][1] and position.x <= liste[i][1] + 50) and (position.y >= liste[i][2] and position.y <= liste[i][2] + 50)):
 		return (liste[i][0])
-	    i += 1
+        i += 1
 
 def     drawRectangle(pos):
     paddle_size = sf.Vector2(50, 50)
     rectangle = sf.RectangleShape()
-    rectangle.size = paddle_size - (3, 3)
+    rectangle.size = paddle_size - (0, 0)
     rectangle.outline_thickness = 1
     rectangle.outline_color = sf.Color.RED
     rectangle.fill_color = sf.Color.GREEN
