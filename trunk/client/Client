@@ -17,13 +17,14 @@ def     getPosMouse(window):
         try:
             position = sf.Mouse.get_position(window)
             if (position.x > 450 or position.y > 450):
-                position = getPosMouse(window)
+                getPosMouse(window)
         except Exception, e:
             print "Something wrong " + str(e)
     return position
 
 def	gereMouse(window, liste):
     position = getPosMouse(window)
+    positioncarre = 0
     if sf.Mouse.is_button_pressed(sf.Mouse.LEFT):
         positioncarre = checkCase(liste, position)
         window.draw(drawText("Case Numero "+str(positioncarre)+" \n\nInfo 1 :\tToto\nInfo2 :\t" +
