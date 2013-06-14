@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Thu Jun 13 17:20:44 2013 florian dewulf
+** Last update Fri Jun 14 15:22:48 2013 florian dewulf
 */
 
 #ifndef         __SERVEUR_H__
@@ -34,9 +34,9 @@
 typedef enum	e_direct
   {
     NORD,
-    EST,
     OUEST,
-    SUD
+    SUD,
+    EST
   }		e_direct;
 
 typedef enum	e_ressource
@@ -130,6 +130,13 @@ typedef struct	s_msg
   struct s_msg	*nt;
   struct s_msg	*prev;
 }		t_msg;
+
+typedef struct		s_angle
+{
+  int			borne[2];
+  char			pond;
+  t_angle		*next;
+}			t_angle;
 
 void            *xmalloc(size_t size);
 void		xlisten(int fd);
