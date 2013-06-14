@@ -1,161 +1,38 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import	sfml as sf
-import	socket
-import  time
-import	sys
+import sys
+from net import Net
 
-host = "localhost"
-team = ""
-port = 0
-
-def	    music():
-#play music
-    music = sf.Music.from_file("ressources/contact.wav")
-    music.play()
-
-def     getPosMouse(window):
-    position = 0
-    if sf.Mouse.is_button_pressed(sf.Mouse.LEFT):
-        try:
-            position = sf.Mouse.get_position(window)
-            if (position.x > 450 or position.y > 450):
-                getPosMouse(window)
-        except Exception, e:
-            print "Something wrong " + str(e)
-    return position
-
-def	gereMouse(window, liste):
-    position = getPosMouse(window)
-    positioncarre = 0
-    if sf.Mouse.is_button_pressed(sf.Mouse.LEFT):
-        positioncarre = checkCase(liste, position)
-        window.draw(drawText("Case Numero "+str(positioncarre)+" \n\nInfo 1 :\tToto\nInfo2 :\t" +
-            "Tutu\nInfo3 :\t Titi", 20, 480, 100))
-
-def     recTab():
-    liste = []
-    liste2 = []
-    x = 0
-    y = 0
-    i = 0
-    while (x != 500 and y != 500):
-        liste.append(i)
-        liste.append(x)
-        liste.append(y)
-        liste2.append(liste)
-        if (x == 400):
-            x = 0
-            y += 50
-        else:
-            x += 50
-        i += 1
-        liste = []
-    return liste2
-
-def     checkCase(liste, position):
-    i = 0
-    while (i < len(liste)):
-	if position and position.x and position.y:
-	    if ((position.x >= liste[i][1] and position.x <= liste[i][1] + 50) and (position.y >= liste[i][2] and position.y <= liste[i][2] + 50)):
-		return (liste[i][0])
-        i += 1
-
-def     drawRectangle(pos):
-    paddle_size = sf.Vector2(50, 50)
-    rectangle = sf.RectangleShape()
-    rectangle.size = paddle_size - (0, 0)
-    rectangle.outline_thickness = 1
-    rectangle.outline_color = sf.Color.RED
-    rectangle.fill_color = sf.Color.GREEN
-    rectangle.move(pos)
-    return rectangle
-
-def	drawText(msg, size, pos_x, pos_y):
-    font = sf.Font.from_file("ressources/Sansation_Bold.ttf")
-    instructions = sf.Text(msg, font, size)
-    instructions.position = (pos_x, pos_y)
-    instructions.color = sf.Color(80, 80, 80)
-    return instructions
-
-def	drawMap():
-    tab1 = []
-    tab = []
-    position_x = 0
-    position_y = 0
-    paddle_size = sf.Vector2(20, 20)
-    while position_y <= 400:
-        position_x = 0
-        while position_x <= 400:
-            tab.append(drawRectangle(sf.Vector2(position_x, position_y)))
-	    position_x += 50
-	position_y += 50
-    return tab
-
-def     mainWindow():
-    drawmap = []
-    drawmap = drawMap()
-    window = sf.RenderWindow(sf.VideoMode(800, 600), "Client")# sf.Style.FULLSCREEN)
-    liste = recTab()
-    while window.is_open:
-	for event in window.events:
-	    if type(event) is sf.CloseEvent:
-		window.close()
-	    if type(event) is sf.KeyEvent and event.code is sf.Keyboard.ESCAPE:
-		window.close()
-	window.clear()
-	for i in range(0, len(drawMap())):
-	    window.draw(drawmap[i])
-        if gereMouse(window, liste):
-            window.display()
-	#window.draw(drawText("C'est le zappy pipi de chameau !!", 20, 150, 500))
-        window.display()
-
-def     keep_connect(sock):
+def     keep_connect(net):
     while 1:
         toto = "toto"
 
-def	init_connect():
-    #host = "localhost"
+def	check_args(net):
     if (len(sys.argv) == 5 or len(sys.argv) == 7):
-        global team
-        global host
-        global port
 	i = 1
         while i < len(sys.argv):
             if sys.argv[i] == "-n":
-                team = sys.argv[i + 1]
+                net._team = int(sys.argv[i + 1])
             elif sys.argv[i] == "-h":
-                host = sys.argv[i + 1]
+                net._host = sys.argv[i + 1]
 	    elif sys.argv[i] == "-p":
-                port = int(sys.argv[i + 1])
+                net._port = int(sys.argv[i + 1])
             i = i + 2
-
-	sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	try:
-	    sock.connect((host, port))
-	except socket.error:
-	    exit()
-	print "Connexion etablie avec le serveur"
-	query = "Connexion d'un nouveau client"
-	sock.send(query)
-        mainWindow()
-        #sock.recv(512)
-        keep_connect(sock)
-        sock.close()
     else:
 	print "USAGE: ./Client [-h hote] [-n equipe] [-p port]"
 	exit()
-    return sock
 
 def	main():
     try:
-	init_connect()
-	#music()
-        print "Nom d'equipe: " + team
-	print "Hote: " + host
-	print "Port: " + str(port)
+        net = Net()
+	check_args(net)
+        print "Nom d'equipe: " + str(net._team)
+	print "Hote: " + net._host
+	print "Port: " + str(net._port)
+        net.initConnexion
+        keep_connect(net)
+        net._sock.close()
     except IOError: exit(1)
 
 
