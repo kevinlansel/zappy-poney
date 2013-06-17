@@ -4,9 +4,9 @@ import sfml as sf
 import time
 import sys
 
-class windows:
+class   windows:
     def __init__(self):
-	self.window = sf.RenderWindow(sf.VideoMode(800, 600), "Client")
+	self.window = sf.RenderWindow(sf.VideoMode(800, 600), "Client Zappy")
 
     def DisplayWindow(self, window):
 	self.window.display()

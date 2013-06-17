@@ -23,12 +23,17 @@ class           Map:
                startY += self._y
         return tab
 
-    def drawRectangle(pos, self):
+    def drawRectangle(liste, self):
+        i = 0
         paddle_size = sf.Vector2(self.x, self.y)
         rectangle = sf.RectangleShape()
         rectangle.size = paddle_size
         rectangle.outline_thickness = 1
+        while (i < len(liste)):
+            if (liste[i][0].getbool() == True):
+                rectangle.fill.color = sf.Color.BLUE
+            else:
+                rectangle.fill.color = sf.Color.GREEN
         rectangle.outline_color = sf.Color.RED
-        rectangle.fill.color = sf.Color.GREEN
         rectangle.move(pos)
         return rectangle
