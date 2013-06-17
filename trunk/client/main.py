@@ -2,6 +2,12 @@
 
 import sys
 from net import Net
+import mouse
+import map
+import music
+import window
+
+#from mouse, map, music, window import *
 
 def     welcome():
     toto = raw_input("c'est à vous : ")
