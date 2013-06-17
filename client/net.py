@@ -5,11 +5,11 @@ import socket
 
 class   Net:
     def __init__(self):
-        self._host = "localhost"
         self._port = 0
         self._team = 0
         self._kill = 0
         self._sock = 0
+        self._host = "localhost"
 
     def initConnexion():
         self._sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

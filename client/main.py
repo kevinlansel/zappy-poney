@@ -1,21 +1,17 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 import sys
-from net import Net
-import mouse
-import map
-import music
-import window
-
-#from mouse, map, music, window import *
+from net import *
+from map import *
 
 def     welcome():
     toto = raw_input("c'est à vous : ")
-    if (toto == "IA"):
+    if (toto == "IA" or toto == "ia"):
         return 1
-    if (toto == "DISPLAY"):
+    if (toto == "DISPLAY" or toto == "display"):
         return 2
-    elif:
+    else:
         print "nous ne comprenons pas votre demande"
         welcome()
 
@@ -28,7 +24,7 @@ def	check_args(net):
 	i = 1
         while i < len(sys.argv):
             if sys.argv[i] == "-n":
-                net._team = int(sys.argv[i + 1])
+                net._team = str(sys.argv[i + 1])
             elif sys.argv[i] == "-h":
                 net._host = sys.argv[i + 1]
 	    elif sys.argv[i] == "-p":
@@ -40,20 +36,23 @@ def	check_args(net):
 
 def     main():
     try:
+        _mapX = 13
+        _mapY = 8
         net = Net()
+        map = Map(_mapX, _mapY)
         check_args(net)
-        print "Nom d'equipe : " + str(net.team)
-        print "Hote : " + net._host
+        print "Nom d'equipe : " + str(net._team)
+        print "Hote : " + str(net._host)
         print "Port : " + str(net._port)
         net.initConnexion
         print "\tBienvenue sur le Zappy ! \nPour démarrer une nouvelle partie entrer : IA \nPour voir la partie en cours entrer : DISPLAY \n"
         a = welcome()
         if (a == 1):
-            print "IA"
+            map.drawMap()
         elif (a == 2):
             print "display"
-        keep.connect(net)
-        net._sock.close()
+        #keep.connect(net)
+        #net._sock.close()
     except IOError: exit(1)
 
 main()
