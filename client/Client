@@ -5,6 +5,11 @@ import os
 import sys
 import threading
 
+# lors d'une connexion avec le serveur
+# le reseau envoi la chaine de caractere "\nBienvenue\n" au client
+# si la connexion est de type IA on envoie "IA" au serveur
+# si la connexion est de type Display on envoie "DISPLAY" au serveur
+
 host = ''
 team = 0
 port = 0
