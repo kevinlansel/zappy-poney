@@ -5,16 +5,6 @@ import sys
 from net import *
 from map import *
 
-def     welcome():
-    toto = raw_input("c'est à vous : ")
-    if (toto == "IA" or toto == "ia"):
-        return 1
-    if (toto == "DISPLAY" or toto == "display"):
-        return 2
-    else:
-        print "nous ne comprenons pas votre demande"
-        welcome()
-
 def     keep_connect(net):
     while 1:
         toto = "toto"
@@ -45,12 +35,6 @@ def     main():
         print "Hote : " + str(net._host)
         print "Port : " + str(net._port)
         net.initConnexion
-        print "\tBienvenue sur le Zappy ! \nPour démarrer une nouvelle partie entrer : IA \nPour voir la partie en cours entrer : DISPLAY \n"
-        a = welcome()
-        if (a == 1):
-            map.drawMap()
-        elif (a == 2):
-            print "display"
         #keep.connect(net)
         #net._sock.close()
     except IOError: exit(1)
