@@ -1,6 +1,3 @@
-
-
-
 - Connexion server :
 	  - fail = quitte
 	  - si réussi, le serveur enverra la size {x,y} de la map et le {x,y} du perso
