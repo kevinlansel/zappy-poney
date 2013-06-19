@@ -16,9 +16,9 @@ class   Windows:
         # taille de la map
         _mapX = 13
         _mapY = 8
-        map = Map(_mapY, _mapX)
-        toto = []
-        toto = map.drawMap()
+        themap = Map(_mapY, _mapX)
+        for i in range(0, len(themap.drawMap())):
+            self.window.draw(themap.drawMap[i])
 
     def CheckClose(self):
 	while self.window.is_open:
@@ -29,6 +29,6 @@ class   Windows:
 		if type(event) is sf.KeyEvent and event.code is sf.Keyboard.ESCAPE:
 		    self.window.close()
                     exit(1)
-            self.OnlyDraw()
-            self.DisplayWindow()
+                self.OnlyDraw()
+                self.DisplayWindow()
 	    self.window.clear()
