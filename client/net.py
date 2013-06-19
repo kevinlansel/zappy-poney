@@ -18,7 +18,7 @@ class   Net:
 	except socket.error:
 	    exit()
 	print "Connexion etablie avec le serveur"
-	query = "Bienvenue"
+	query = "BIENVENUE"
 	self._sock.send(query)
 
     def     send_sizeMap():
