@@ -35,15 +35,15 @@ class   Net:
         self._sock.send("tna")
 
     def     send_playerPosition(id_player):
-        chaine = "ppo # " + str(id_player)
+        chaine = "ppo #" + str(id_player)
         self._sock.send(chaine)
 
     def     send_playerLevel(id_player):
-        chaine = "plv # " + str(id_player)
+        chaine = "plv #" + str(id_player)
         self._sock.send(chaine)
 
     def     send_playerInventaire(id_player):
-        chaine = "pin # " + str(id_player)
+        chaine = "pin #" + str(id_player)
         self._sock.send(chaine)
 
     def     askForTimeUnit():
