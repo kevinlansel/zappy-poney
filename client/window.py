@@ -13,12 +13,16 @@ class   Windows:
 	self.window.display()
 
     def OnlyDraw(self):
-        # taille de la map
-        _mapX = 13
-        _mapY = 8
+        # taille& de la map
+        _mapX = 1
+        _mapY = 1
         themap = Map(_mapY, _mapX)
-        for i in range(0, len(themap.drawMap())):
-            self.window.draw(themap.drawMap[i])
+        test = []
+        test = themap.drawMap()
+        i = 0
+        while (i < len(test)):
+            self.window.draw(test[i])
+            i += 1
 
     def CheckClose(self):
 	while self.window.is_open:
@@ -29,6 +33,6 @@ class   Windows:
 		if type(event) is sf.KeyEvent and event.code is sf.Keyboard.ESCAPE:
 		    self.window.close()
                     exit(1)
-                self.OnlyDraw()
-                self.DisplayWindow()
+            self.OnlyDraw()
+            self.DisplayWindow()
 	    self.window.clear()
