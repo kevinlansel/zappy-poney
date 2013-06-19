@@ -17,8 +17,8 @@ class   Windows:
         _mapX = 13
         _mapY = 8
         map = Map(_mapY, _mapX)
+        toto = []
         toto = map.drawMap()
-        return toto
 
     def CheckClose(self):
 	while self.window.is_open:
