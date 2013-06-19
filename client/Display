@@ -3,16 +3,8 @@
 
 import sys
 from net import Net
-
-def     welcome():
-        toto = raw_input("c'est à vous : ")
-        if (toto == "IA"):
-		return 1
-	elif (toto == "DISPLAY"):
-		return 2
-        else:
-            print "nous ne comprenons pas votre demande"
-            welcome()
+from window import *
+from map import *
 
 def     keep_connect(net):
     while 1:
@@ -40,16 +32,12 @@ def	main():
         print "Nom d'equipe: " + str(net._team)
 	print "Hote: " + net._host
 	print "Port: " + str(net._port)
+        w = Windows()
+        w.DisplayWindow()
+        w.CheckClose()
         net.initConnexion
-        print "\tBienvenue sur le Zappy ! \n pour démarrer une nouvelle partie entrer : IA \n pour voir la partie en cours entrer : DISPLAY \n "
-        a = welcome()
-        if (a == 1):
-            print "IA"
-        elif (a == 2):
-            print "display"
         keep_connect(net)
         net._sock.close()
     except IOError: exit(1)
-
 
 main()

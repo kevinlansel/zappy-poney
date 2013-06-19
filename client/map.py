@@ -5,7 +5,6 @@ import  time
 import  sys
 
 class           Map:
-    #
     def __init__(self, MapX, MapY):
         self._x = 30
         self._y = 30
@@ -18,6 +17,7 @@ class           Map:
 
     def drawRectangle(pos, self):
         i = 0
+        print "drawrecatnge"
         liste = []
         paddle_size = sf.Vector2(self.x, self.y)
         rectangle = sf.RectangleShape()
@@ -33,6 +33,7 @@ class           Map:
         return rectangle
 
     def drawMap(self):
+        print "drawmap"
         tab = []
         startX = 0
         startY = 0
