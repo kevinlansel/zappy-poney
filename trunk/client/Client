@@ -63,6 +63,4 @@ def	main():
 	#a.Thread.__stop__()
 	#b.Thread.__stop__()
     except IOError: exit(1)
-
-
 main()
