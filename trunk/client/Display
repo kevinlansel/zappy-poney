@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import sfml as sf
 from net import Net
 from window import *
 from map import *
@@ -37,7 +38,6 @@ def	main():
 	print "Hote: " + net._host
 	print "Port: " + str(net._port)
         w = Windows()
-        w.DisplayWindow()
         w.CheckClose()
         net.initConnexion
         keep_connect(net)
