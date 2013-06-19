@@ -26,7 +26,7 @@ class           Map:
         #     if (liste[i][0].getbool() == True):
         #         rectangle.fill.color = sf.Color.BLUE
         #     else:
-        rectangle.fill.Color = sf.Color.GREEN
+        rectangle.fill_color = sf.Color.GREEN
         rectangle.outline_color = sf.Color.RED
         rectangle.move(sf.Vector2(150, 150))
         return rectangle
