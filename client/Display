@@ -1,15 +1,17 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
+
 
 import sys
+from socket import *
 import sfml as sf
 from net import Net
 from window import *
 from map import *
 
-def     keep_connect(net):
-    while 1:
-        toto = "toto"
+def     initConnexion(net):
+    net._sock = socket(AF_INET, SOCK_STREAM)
+    net._sock.connect((net._host, net._port))
+    net._sock.send("Bienvenue\n")
 
 def	check_args(net):
     if (len(sys.argv) == 5 or len(sys.argv) == 7):
@@ -31,16 +33,18 @@ def	main():
         # prendre les arguments du server pour la taille de la map
         net = Net()
 	check_args(net)
-        tailleX = sys.argv[1]
-        tailleY = sys.argv[2]
+        initConnexion(net)
+        #tailleX = sys.argv[1]
+        #tailleY = sys.argv[2]
         print "Nom d'equipe: " + str(net._team)
 	print "Hote: " + net._host
 	print "Port: " + str(net._port)
-        w = Windows(tailleX, tailleY)
-        w.CheckClose()
-        net.initConnexion
-        keep_connect(net)
-        net._sock.close()
+        #w = Windows(tailleX, tailleY)
+        #w.CheckClose()
+        #net._sock.close()
     except IOError: exit(1)
 
 main()
+
+
+# -*- coding: utf-8 -*-

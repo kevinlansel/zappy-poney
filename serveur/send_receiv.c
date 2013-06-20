@@ -32,7 +32,6 @@ t_msg		*get_mess(t_client *client)
   str = xmalloc(1024);
   size = recv(client->fd, str, 1024, MSG_DONTWAIT);
   str[size - 1] = '\0';
-  printf("%s\n", str);
   if (size != 0)
     {
       msg = xmalloc(sizeof(t_msg));
