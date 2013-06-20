@@ -11,15 +11,15 @@ class   Windows:
 	self.window = sf.RenderWindow(sf.VideoMode(800, 600), "Client Zappy")
         self.tailleX = tailleX
         self.tailleY = tailleY
+        self.themap = Map(self.tailleX, self.tailleY)
 
     def DisplayWindow(self):
 	self.window.display()
 
     def OnlyDraw(self):
         # taille& de la map
-        themap = Map(self.tailleX, self.tailleY)
         test = []
-        test = themap.drawMap()
+        test = self.themap.drawMap()
         i = 0
         while (i < len(test)):
             self.window.draw(test[i])

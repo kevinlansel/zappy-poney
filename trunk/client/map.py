@@ -15,26 +15,6 @@ class           Map:
     def __len__(self):
         return 0
 
-    # def drawRectangle(pos, self):
-    #     i = 0
-    #     liste = []
-    #     print pos
-    #     # paddle_size = sf.Vector2(self._x, self._y)
-    #     rectangle = sf.RectangleShape()
-    #     rectangle.size = sf.Vector2(30, 30)
-    #     rectangle.outline_thickness = 1
-    #     # while (i < len(liste)):
-    #     #     if (liste[i][0].getbool() == True):
-    #     #         rectangle.fill.color = sf.Color.BLUE
-    #     #     else:
-    #     rectangle.fill_color = sf.Color.GREEN
-    #     rectangle.outline_color = sf.Color.RED
-    #     rectangle.move(pos)
-    #     return rectangle
-
-    #tab.append(self.drawRectangle(sf.Vector2(startX, startY)))
-
-
     def drawMap(self):
         tab = []
         startX = 0

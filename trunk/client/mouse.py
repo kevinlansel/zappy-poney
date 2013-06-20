@@ -2,6 +2,7 @@
 
 import sfml as sf
 import sys
+from map import *
 
 class           Mouse:
     def __init__(self):
