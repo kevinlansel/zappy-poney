@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import socket
+from socket import *
 
 class   Net:
     def __init__(self):
@@ -10,16 +10,6 @@ class   Net:
         self._kill = 0
         self._sock = 0
         self._host = "localhost"
-
-    def initConnexion():
-        self._sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	try:
-	    self._sock.connect((self._host, self._port))
-	except socket.error:
-	    exit()
-	print "Connexion etablie avec le serveur"
-	query = "BIENVENUE"
-	self._sock.send(query)
 
     def     send_sizeMap():
         self._sock.send("msz")

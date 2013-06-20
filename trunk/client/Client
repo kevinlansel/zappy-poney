@@ -40,12 +40,12 @@ def	check_args():
 
 def	launchDisplay(s):
 	c = "./Display " + s
-	print c
+	#print c
 	os.system(c)
 
 def	launchIA(s):
 	print "IA"
-	os.system("pwd")
+	#os.system()
 
 def	main():
     try:
@@ -53,13 +53,14 @@ def	main():
 	global host
 	global port
 	global team
-        print "Nom d'equipe: " + str(team)
-	print "Hote: " + host
-	print "Port: " + str(port)
-	a = threading.Thread(None, launchDisplay, None, (s,), {})
-	b = threading.Thread(None, launchIA, None, (s,), {})
-	a.start()
-	b.start()
+        #print "Nom d'equipe: " + str(team)
+	#print "Hote: " + host
+	#print "Port: " + str(port)
+	launchDisplay(s)
+	#a = threading.Thread(None, launchDisplay, None, (s,), {})
+	#b = threading.Thread(None, launchIA, None, (s,), {})
+	#a.start()
+	#b.start()
 	#a.Thread.__stop__()
 	#b.Thread.__stop__()
     except IOError: exit(1)

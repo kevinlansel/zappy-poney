@@ -37,6 +37,7 @@ static t_msg	*check_and_call(t_client *client, t_map **map)
   init_tab_func(tab_func);
   if ((msg = get_mess(client)) != NULL)
     {
+      printf("%s\n", msg);
       while (i < NB_FUNC)
 	{
 	  if (strcmp(msg->cmd, str[i]) == 0 && i < 5)
