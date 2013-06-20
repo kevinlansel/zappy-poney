@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 17:52:10 2013 guillaume duez
-** Last update Thu Jun 13 17:18:45 2013 florian dewulf
+** Last update Thu Jun 20 20:20:14 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -89,7 +89,7 @@ static void		open_serv(t_connect *co, t_client *client, t_opt *opt, t_map **map)
             {
               if (FD_ISSET(client->fd, &fd_read))
 		msg = do_action(client, map, msg);
-              if (client->end != 1)
+              if (client && client->end != 1)
                 client = client->nt;
             }
         }

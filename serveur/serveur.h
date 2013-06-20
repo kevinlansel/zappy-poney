@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Thu Jun 13 16:01:32 2013 florian dewulf
+** Last update Thu Jun 20 20:24:19 2013 guillaume duez
 */
 
 #ifndef         __SERVEUR_H__
@@ -131,28 +131,39 @@ typedef struct	s_msg
   struct s_msg	*prev;
 }		t_msg;
 
+
+void            avance(t_msg *msg, t_client *client, t_map **map);
+
+t_client	*create_client(int fd, t_client *client, t_opt *opt, t_map **map);
+void            create_link_x(t_map **map);
+void            create_link_y(t_map **map);
+t_client	*client_reset(t_client *client);
+
+t_client        *end_client(t_client *client);
+t_msg           *exec_task(t_msg *task);
+
+t_msg		*do_action(t_client *client, t_map **map, t_msg *msg);
+void            droite(t_msg *msg, t_client *client, t_map **map);
+
+void            gauche(t_msg *msg, t_client *client, t_map **map);
+t_msg           *get_mess(t_client *client);
+double          get_time();
+
+void            inventaire(t_msg *mess, t_client *client, t_map **map);
+void            voir(t_msg *mess, t_client *client, t_map **map);
+t_msg           *into_order_task(t_msg *first, t_msg *new);
+
+void            run_server(t_opt *opt);
+t_msg           *remove_msg(t_msg *msg, t_client *client);
+
+int             send_mess(t_msg *msg);
+void            sub_food(t_msg *msg, t_client *client, const char *str);
+
 void            *xmalloc(size_t size);
 void		xlisten(int fd);
 int		xsocket(struct protoent *pe);
 int		xaccept(int fd, struct sockaddr_in s_in, socklen_t s_in_size);
 void		xbind(int fd, struct sockaddr_in s_in);
-t_client	*create_client(int fd, t_client *client, t_opt *opt, t_map **map);
-t_client	*client_reset(t_client *client);
-t_msg           *get_mess(t_client *client);
-t_client        *end_client(t_client *client);
-t_msg		*do_action(t_client *client, t_map **map, t_msg *msg);
-void            run_server(t_opt *opt);
-void            avance(t_msg *msg, t_client *client, t_map **map);
-void            droite(t_msg *msg, t_client *client, t_map **map);
-void            gauche(t_msg *msg, t_client *client, t_map **map);
-double          get_time();
-void            sub_food(t_msg *msg, t_client *client, const char *str);
-void            inventaire(t_msg *mess, t_client *client, t_map **map);
-void            voir(t_msg *mess, t_client *client, t_map **map);
-t_msg           *into_order_task(t_msg *first, t_msg *new);
-int             send_mess(t_msg *msg);
-t_msg           *exec_task(t_msg *task);
-void            create_link_x(t_map **map);
-void            create_link_y(t_map **map);
+
 
 #endif

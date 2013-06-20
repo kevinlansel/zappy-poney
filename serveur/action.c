@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:08:13 2013 guillaume duez
-** Last update Mon Jun 10 16:33:43 2013 guillaume duez
+** Last update Thu Jun 20 20:21:10 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -37,7 +37,7 @@ static t_msg	*check_and_call(t_client *client, t_map **map)
   init_tab_func(tab_func);
   if ((msg = get_mess(client)) != NULL)
     {
-      printf("%s\n", msg);
+      printf("%s\n", msg->cmd);
       while (i < NB_FUNC)
 	{
 	  if (strcmp(msg->cmd, str[i]) == 0 && i < 5)
@@ -61,5 +61,7 @@ t_msg		*do_action(t_client *client, t_map **map, t_msg *msg)
   new = check_and_call(client, map);
   if (new != NULL)
     msg = into_order_task(msg, new);
+  else
+    msg = remove_msg(msg, client);
   return msg;
 }
