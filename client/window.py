@@ -4,6 +4,7 @@ import sfml as sf
 import time
 import sys
 from map import *
+from mouse import *
 
 class   Windows:
     def __init__(self, tailleX, tailleY):
@@ -24,6 +25,10 @@ class   Windows:
             self.window.draw(test[i])
             i += 1
 
+    def CheckMouse(self, window):
+        mouse = Mouse()
+        mouse.gereMouse(window)
+
     def CheckClose(self):
 	while self.window.is_open:
 	    for event in self.window.events:
@@ -33,6 +38,7 @@ class   Windows:
 		if type(event) is sf.KeyEvent and event.code is sf.Keyboard.ESCAPE:
 		    self.window.close()
                     exit(1)
+            self.CheckMouse(self.window)
             self.OnlyDraw()
             self.DisplayWindow()
 	    self.window.clear()
