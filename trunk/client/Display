@@ -29,15 +29,14 @@ def	check_args(net):
 def	main():
     try:
         # prendre les arguments du server pour la taille de la map
-        _mapX = 13
-        _mapY = 8
         net = Net()
-        map = Map(_mapX, _mapY)
 	check_args(net)
+        tailleX = sys.argv[1]
+        tailleY = sys.argv[2]
         print "Nom d'equipe: " + str(net._team)
 	print "Hote: " + net._host
 	print "Port: " + str(net._port)
-        w = Windows()
+        w = Windows(tailleX, tailleY)
         w.CheckClose()
         net.initConnexion
         keep_connect(net)

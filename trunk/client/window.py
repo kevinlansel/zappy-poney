@@ -6,17 +6,17 @@ import sys
 from map import *
 
 class   Windows:
-    def __init__(self):
+    def __init__(self, tailleX, tailleY):
 	self.window = sf.RenderWindow(sf.VideoMode(800, 600), "Client Zappy")
+        self.tailleX = tailleX
+        self.tailleY = tailleY
 
     def DisplayWindow(self):
 	self.window.display()
 
     def OnlyDraw(self):
         # taille& de la map
-        _mapX = 1
-        _mapY = 1
-        themap = Map(_mapY, _mapX)
+        themap = Map(self.tailleX, self.tailleY)
         test = []
         test = themap.drawMap()
         i = 0
