@@ -8,28 +8,32 @@ class           Map:
     def __init__(self, MapX, MapY):
         self._x = 30
         self._y = 30
-        self._MapX = MapX
-        self._MapY = MapY
+        self._MapX = int(MapX) - 1
+        self._MapY = int(MapY) - 1
         self._pos = 0
 
     def __len__(self):
         return 0
 
-    def drawRectangle(pos, self):
-        i = 0
-        liste = []
-        # paddle_size = sf.Vector2(self._x, self._y)
-        rectangle = sf.RectangleShape()
-        rectangle.size = sf.Vector2(30, 30)
-        rectangle.outline_thickness = 1
-        # while (i < len(liste)):
-        #     if (liste[i][0].getbool() == True):
-        #         rectangle.fill.color = sf.Color.BLUE
-        #     else:
-        rectangle.fill_color = sf.Color.GREEN
-        rectangle.outline_color = sf.Color.RED
-        rectangle.move(pos)
-        return rectangle
+    # def drawRectangle(pos, self):
+    #     i = 0
+    #     liste = []
+    #     print pos
+    #     # paddle_size = sf.Vector2(self._x, self._y)
+    #     rectangle = sf.RectangleShape()
+    #     rectangle.size = sf.Vector2(30, 30)
+    #     rectangle.outline_thickness = 1
+    #     # while (i < len(liste)):
+    #     #     if (liste[i][0].getbool() == True):
+    #     #         rectangle.fill.color = sf.Color.BLUE
+    #     #     else:
+    #     rectangle.fill_color = sf.Color.GREEN
+    #     rectangle.outline_color = sf.Color.RED
+    #     rectangle.move(pos)
+    #     return rectangle
+
+    #tab.append(self.drawRectangle(sf.Vector2(startX, startY)))
+
 
     def drawMap(self):
         tab = []
@@ -38,7 +42,14 @@ class           Map:
         while (startY <= (self._y * self._MapY)):
                startX = 0
                while (startX <= (self._x * self._MapX)):
-                   tab.append(self.drawRectangle(sf.Vector2(startX, startY)))
+                   rectangle = sf.RectangleShape()
+                   rectangle.size = sf.Vector2(self._x, self._y)
+                   rectangle.outline_thickness = 1
+                   rectangle.fill_color = sf.Color.GREEN
+                   rectangle.outline_color = sf.Color.RED
+                   pos = sf.Vector2(startX, startY)
+                   rectangle.move(pos)
+                   tab.append(rectangle)
                    startX += self._x
                startY += self._y
         return tab
