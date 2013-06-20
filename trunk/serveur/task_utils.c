@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun  3 15:13:05 2013 guillaume duez
-** Last update Mon Jun 10 16:41:01 2013 guillaume duez
+** Last update Thu Jun 20 20:04:54 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -15,6 +15,7 @@ t_msg		*exec_task(t_msg *task)
 {
   while (task && task->end != 1 && task->time < get_time())
     {
+      printf("enter\n");
       if (send_mess(task) == -1)
 	{
 	  //find and suppres  client of the task
@@ -78,7 +79,6 @@ double		get_time()
  ftime(&tp);
  milli =  (double)tp.millitm / 1000;
  time = (double)tp.time + milli;
- // printf("%f , milli %f time:%f\n", (double)tp.time, milli, time);
  return  time;
 }
 
@@ -90,12 +90,13 @@ void		sub_food(t_msg *msg, t_client *client, const char *str)
 
   current = get_time();
   time_elipse = current - client->time_eat;
-  //  printf("time eat :%f, current : %f, time elipse :%f\n", client->time_eat, current, time_elipse);
   time_elipse = time_elipse / (1. / client->time);
   client->ress[NOURRITURE] = client->ress[NOURRITURE] - time_elipse;
   client->time_eat = current;
   if (client->ress[NOURRITURE] > 0)
     strcpy(msg->cmd, str);
   else
-    strcpy(msg->cmd, "mort\n");
+    {
+      strcpy(msg->cmd, "mort\n");
+    }
 }

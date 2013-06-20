@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun  3 18:42:55 2013 guillaume duez
-** Last update Thu Jun 13 16:49:11 2013 guillaume duez
+** Last update Thu Jun 20 20:05:33 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -109,62 +109,30 @@ void            voir(t_msg *msg, t_client *client, t_map **map)
 {
   int		level;
   t_map		*tmp;
-  e_direct	dir;
   char		*fin;
   int		len;
 
   len = 1;
-  dir = client->map->direct;
   tmp = client->map;
-  level = /* client->level */ 1;
+  level = client->level + 1;
   fin = NULL;
-
-
-  int   y;
-  int   x;
-
-  y = 0;
-  while (y < map[0][0].y_world)
-    {
-      x = 0;
-      while (x < map[0][0].x_world)
-        {
-	  printf("x : %d, y : %d\n", x, y);
-          printf(" NOURRITURE %d\n", map[y][x].ress[NOURRITURE]);
-          printf(" LINEMATE %d\n", map[y][x].ress[1]);
-          printf(" DERAUMERE %d\n", map[y][x].ress[2]);
-          printf(" SIBUR %d\n", map[y][x].ress[3]);
-          printf(" MENDIANE %d\n", map[y][x].ress[4]);
-          printf(" PHIRAS %d\n", map[y][x].ress[5]);
-          printf(" THYSTAME %d\n", map[y][x].ress[5]);
-	  x++;
-        }
-      y++;
-    }
-
-
-
   while (level > 0 && map)
     {
-      //      printf("map x: %d  y = %d\n", client->map->x, client->map->y);
-      fin = transform(get_line(client->map, len, client->map->direct), fin);
-      if (dir == NORD)
+      fin = transform(get_line(client->map, len, tmp->direct), fin);
+      if (tmp->direct == NORD)
 	client->map = client->map->up->left;
-      else if (dir == SUD)
+      else if (tmp->direct == SUD)
 	client->map = client->map->down->right;
-      else if (dir == OUEST)
+      else if  (tmp->direct== OUEST)
 	client->map = client->map->left->down;
-      else if (dir == EST)
+      else if (tmp->direct == EST)
 	client->map = client->map->right->up;
       level--;
       len += 2;
     }
-  if (fin)
-    {
-      fin = realloc(fin, strlen(fin) + 2 * sizeof(char));
-      snprintf(fin + strlen(fin), strlen(fin) + 2,  "}\n");
-      msg->cmd = fin;
-    }
   client->map = tmp;
+  fin = realloc(fin, strlen(fin) + (3 * sizeof(char)));
+  snprintf(fin + strlen(fin), strlen(fin) + 3,  "}\n");
+  sub_food(msg, client, fin);
+  msg->time = get_time() + (7 / client->time);
 }
-

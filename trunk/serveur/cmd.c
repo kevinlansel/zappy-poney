@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Tue May 28 16:48:58 2013 guillaume duez
-** Last update Mon Jun 10 16:40:21 2013 guillaume duez
+** Last update Thu Jun 20 19:34:55 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -94,5 +94,5 @@ void		inventaire(t_msg *mess, t_client *client, t_map **map)
     }
   mess->time = get_time() + (7 / client->time);
   sub_food(mess, client, msg);
-  printf("%s\n", msg);
+  //  printf("%s\n", msg);
 }
