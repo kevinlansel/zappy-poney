@@ -4,7 +4,7 @@
 import sys
 from socket import *
 import sfml as sf
-from net import Net
+from net import *
 from window import *
 from map import *
 
@@ -39,14 +39,15 @@ def	main():
         net = Net()
 	check_args(net)
         initConnexion(net)
-        #tailleX = sys.argv[1]
-        #tailleY = sys.argv[2]
+        tailleX = sys.argv[1]
+        tailleY = sys.argv[2]
         print "Nom d'equipe: " + str(net._team)
 	print "Hote: " + net._host
 	print "Port: " + str(net._port)
-        #w = Windows(tailleX, tailleY)
-        #w.CheckClose()
-        #net._sock.close()
+        w = Windows(tailleX, tailleY)
+        w.CheckClose()
+        #askForTimeUnit(net)
+        net._sock.close()
     except IOError: exit(1)
 
 main()

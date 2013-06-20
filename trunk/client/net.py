@@ -11,34 +11,34 @@ class   Net:
         self._sock = 0
         self._host = "localhost"
 
-    def     send_sizeMap():
-        self._sock.send("msz")
+def     send_sizeMap(net):
+    net._sock.send("msz\n")
 
-    def     send_caseContent(x, y):
-        chaine = "bct " + str(x) + " " + str(y)
-        self._sock.send(chaine)
+def     send_caseContent(net, x, y):
+    chaine = "bct " + str(x) + " " + str(y) + "\n"
+    net._sock.send(chaine)
 
-    def     send_mapContent():
-        self._sock.send("mct")
+def     send_mapContent(net):
+    net._sock.send("mct\n")
 
-    def     send_teamName():
-        self._sock.send("tna")
+def     send_teamName(net):
+    net._sock.send("tna\n")
 
-    def     send_playerPosition(id_player):
-        chaine = "ppo #" + str(id_player)
-        self._sock.send(chaine)
+def     send_playerPosition(net, id_player):
+    chaine = "ppo #" + str(id_player) + "\n"
+    net._sock.send(chaine)
 
-    def     send_playerLevel(id_player):
-        chaine = "plv #" + str(id_player)
-        self._sock.send(chaine)
+def     send_playerLevel(net, id_player):
+    chaine = "plv #" + str(id_player) + "\n"
+    net._sock.send(chaine)
 
-    def     send_playerInventaire(id_player):
-        chaine = "pin #" + str(id_player)
-        self._sock.send(chaine)
+def     send_playerInventaire(net, id_player):
+    chaine = "pin #" + str(id_player) + "\n"
+    net._sock.send(chaine)
 
-    def     askForTimeUnit():
-        self._sock.send("sgt")
+def     askForTimeUnit(net):
+    net._sock.send("sgt\n")
 
-    def     modifyTimeUnit(timevalue):
-        chaine = "sst " + str(timevalue)
-        self._sock.send(chaine)
+def     modifyTimeUnit(net, timevalue):
+    chaine = "sst " + str(timevalue) + "\n"
+    net._sock.send(chaine)
