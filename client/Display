@@ -9,9 +9,14 @@ from window import *
 from map import *
 
 def     initConnexion(net):
-    net._sock = socket(AF_INET, SOCK_STREAM)
-    net._sock.connect((net._host, net._port))
-    net._sock.send("Bienvenue\n")
+    try:
+        net._sock = socket(AF_INET, SOCK_STREAM)
+        net._sock.connect((net._host, net._port))
+        chaine = "Bienvenue\n"
+        net._sock.send(chaine)
+    except socket:
+        print "Pas de connexion au serveur"
+        exit()
 
 def	check_args(net):
     if (len(sys.argv) == 5 or len(sys.argv) == 7):
