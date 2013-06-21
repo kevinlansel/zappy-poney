@@ -9,7 +9,7 @@ from evoly import *
 
 class   Windows:
     def __init__(self, tailleX, tailleY):
-	self.window = sf.RenderWindow(sf.VideoMode(800, 600), "Client Zappy")
+	self.window = sf.RenderWindow(sf.VideoMode(1400, 920), "Client Zappy")
         self.tailleX = tailleX
         self.tailleY = tailleY
         self.themap = Map(self.tailleX, self.tailleY)
