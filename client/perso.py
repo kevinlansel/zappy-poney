@@ -3,5 +3,6 @@
 import sfml as sf
 
 class           Personnage:
-    def         __init__(self):
-        self.toto = 0
+    def         __init__(self, name, level):
+        self.name = ""
+        self.level = 1

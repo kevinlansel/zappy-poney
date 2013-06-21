@@ -1,7 +1,7 @@
-# -*- conding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import sfml as sf
 from perso import *
 
-Class           Aqualy(Personnage):
-    def         __init__(self):
-        self.toto = 0
+class           Aqualy(Personnage):
+    def         __init__(self, name, level):
+        Personnage.__init__("Aqualy", 8)
