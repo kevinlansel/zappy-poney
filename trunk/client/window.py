@@ -5,6 +5,7 @@ import time
 import sys
 from map import *
 from mouse import *
+from evoly import *
 
 class   Windows:
     def __init__(self, tailleX, tailleY):
@@ -25,6 +26,10 @@ class   Windows:
             self.window.draw(test[i])
             i += 1
 
+    def drawEvoli(self, window):
+        evoli = Evoli("Evoli", 1)
+        evoli.loadEvoli(window)
+
     def CheckMouse(self, window):
         mouse = Mouse()
         mouse.gereMouse(window)
@@ -40,5 +45,6 @@ class   Windows:
                     exit(1)
             self.CheckMouse(self.window)
             self.OnlyDraw()
+            self.drawEvoli(self.window)
             self.DisplayWindow()
 	    self.window.clear()

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-
+# -*- coding: utf-8 -*-
 
 import sys
 from socket import *
@@ -7,6 +7,8 @@ import sfml as sf
 from net import *
 from window import *
 from map import *
+from evoly import *
+from perso import *
 
 def     initConnexion(net):
     try:
@@ -51,6 +53,3 @@ def	main():
     except IOError: exit(1)
 
 main()
-
-
-# -*- coding: utf-8 -*-
