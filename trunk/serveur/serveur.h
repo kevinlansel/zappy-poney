@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Thu Jun 20 20:24:19 2013 guillaume duez
+** Last update Mon Jun 24 14:43:01 2013 guillaume duez
 */
 
 #ifndef         __SERVEUR_H__
@@ -102,7 +102,7 @@ typedef struct  s_client
   char                  *nick;
   int                   end;
   void                  *id;
-  double		ress[MAX];
+  int			ress[MAX];
   t_map			*map;
   int			time;
   int			level;
@@ -124,6 +124,7 @@ typedef	struct s_connect
 typedef struct	s_msg
 {
   char		*cmd;
+  char		bool;
   double	time;
   t_client	*client;
   int		end;

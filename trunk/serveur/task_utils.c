@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun  3 15:13:05 2013 guillaume duez
-** Last update Thu Jun 20 20:04:54 2013 guillaume duez
+** Last update Mon Jun 24 14:39:24 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -15,7 +15,6 @@ t_msg		*exec_task(t_msg *task)
 {
   while (task && task->end != 1 && task->time < get_time())
     {
-      printf("enter\n");
       if (send_mess(task) == -1)
 	{
 	  //find and suppres  client of the task
