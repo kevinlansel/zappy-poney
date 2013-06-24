@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:19:39 2013 guillaume duez
-** Last update Mon Jun 24 15:15:51 2013 guillaume duez
+** Last update Mon Jun 24 15:31:22 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -74,6 +74,7 @@ t_client        *create_client(int fd, t_client *client, t_opt *opt, t_map **map
     }
   else
     {
+      client->action = get_time();
       new->fd = fd;
       client->prev = new;
       new->end = 0;

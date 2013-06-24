@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun  3 18:42:55 2013 guillaume duez
-** Last update Mon Jun 24 15:17:14 2013 guillaume duez
+** Last update Mon Jun 24 15:51:45 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -134,5 +134,5 @@ void            voir(t_msg *msg, t_client *client, t_map **map)
   fin = realloc(fin, strlen(fin) + (3 * sizeof(char)));
   snprintf(fin + strlen(fin), strlen(fin) + 3,  "}\n");
   sub_food(msg, client, fin);
-  msg->time = get_time() + (7 / client->time);
+  msg->time = get_time_client(client, 7);
 }

@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Mon Jun 24 15:13:22 2013 guillaume duez
+** Last update Mon Jun 24 15:52:37 2013 guillaume duez
 */
 
 #ifndef         __SERVEUR_H__
@@ -105,6 +105,7 @@ typedef struct  s_client
   t_map			*map;
   int			time;
   int			level;
+  double		action;
   double	       	time_eat;
   e_direct		direct;
   struct s_client       *nt;
@@ -149,6 +150,7 @@ void            droite(t_msg *msg, t_client *client, t_map **map);
 void            gauche(t_msg *msg, t_client *client, t_map **map);
 t_msg           *get_mess(t_client *client);
 double          get_time();
+double          get_time_client(t_client *client, int action);
 
 void            inventaire(t_msg *mess, t_client *client, t_map **map);
 void            voir(t_msg *mess, t_client *client, t_map **map);

@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Tue May 28 16:48:58 2013 guillaume duez
-** Last update Mon Jun 24 15:18:04 2013 guillaume duez
+** Last update Mon Jun 24 15:53:01 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -16,7 +16,7 @@ void		avance(t_msg *msg, t_client *client, t_map **map)
 
   type = client->direct;
   sub_food(msg, client, "ok\n");
-  msg->time = get_time() + (7 / client->time);
+  msg->time = get_time_client(client, 7);
   if (type == SUD)
     client->map = (client->map->y + 1) < client->map->y_world ?
       &map[client->map->y + 1][client->map->x] : &map[0][client->map->x];
@@ -40,7 +40,7 @@ void		droite(t_msg *msg, t_client *client, t_map **map)
   if (map)
     {
       sub_food(msg, client, "ok\n");
-      msg->time = get_time() + (7 / client->time);
+      msg->time = get_time_client(client, 7);
       if (client->direct == SUD)
 	client->direct = OUEST;
       else if (client->direct == OUEST)
@@ -57,7 +57,7 @@ void		gauche(t_msg *msg, t_client *client, t_map **map)
   if (map)
     {
       sub_food(msg, client, "ok\n");
-      msg->time = get_time() + (7 / client->time);
+      msg->time = get_time_client(client, 7);
       if (client->direct == SUD)
 	client->direct = EST;
       else if (client->direct == EST)
@@ -92,7 +92,7 @@ void		inventaire(t_msg *mess, t_client *client, t_map **map)
       len += strlen(str);
       i++;
     }
-  mess->time = get_time() + (7 / client->time);
+  mess->time = get_time_client(client, 7);
   sub_food(mess, client, msg);
   //  printf("%s\n", msg);
 }
