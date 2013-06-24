@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:08:13 2013 guillaume duez
-** Last update Mon Jun 24 14:11:17 2013 guillaume duez
+** Last update Mon Jun 24 14:59:54 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -48,8 +48,9 @@ static t_msg	*check_and_call(t_client *client, t_map **map)
 	  i++;
 	}
     }
-  if (bool == 0)
-    return NULL;
+  bool = ((msg && bool == 0) ? 0 : (msg ? 1 : -1));
+  if (bool != -1)
+    msg->bool = bool;
   return msg;
 }
 
@@ -59,9 +60,16 @@ t_msg		*do_action(t_client *client, t_map **map, t_msg *msg)
   t_msg *new;
 
   new = check_and_call(client, map);
-  if (new != NULL)
-    msg = into_order_task(msg, new);
-  else if (msg != NULL)
+  if (new != NULL && new->bool == 1)
+    {
+      printf("enter\n");
+      msg = into_order_task(msg, new);
+    }
+  else if (msg != NULL && new == NULL)
     msg = remove_msg(msg, client);
+  else
+    {
+      printf("else\n");
+    }
   return msg;
 }
