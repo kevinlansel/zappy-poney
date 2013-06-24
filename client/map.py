@@ -6,8 +6,8 @@ import  sys
 
 class           Map:
     def __init__(self, MapX, MapY):
-        self._x = 30
-        self._y = 30
+        self._x = 50
+        self._y = 50
         self._MapX = int(MapX) - 1
         self._MapY = int(MapY) - 1
         self._pos = 0
