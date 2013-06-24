@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun  3 18:42:55 2013 guillaume duez
-** Last update Thu Jun 20 20:05:33 2013 guillaume duez
+** Last update Mon Jun 24 15:17:14 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -118,14 +118,14 @@ void            voir(t_msg *msg, t_client *client, t_map **map)
   fin = NULL;
   while (level > 0 && map)
     {
-      fin = transform(get_line(client->map, len, tmp->direct), fin);
-      if (tmp->direct == NORD)
+      fin = transform(get_line(client->map, len, client->direct), fin);
+      if (client->direct == NORD)
 	client->map = client->map->up->left;
-      else if (tmp->direct == SUD)
+      else if (client->direct == SUD)
 	client->map = client->map->down->right;
-      else if  (tmp->direct== OUEST)
+      else if  (client->direct== OUEST)
 	client->map = client->map->left->down;
-      else if (tmp->direct == EST)
+      else if (client->direct == EST)
 	client->map = client->map->right->up;
       level--;
       len += 2;
