@@ -28,13 +28,15 @@ class   Windows:
 
     def drawEvoli(self, window):
         evoli = Evoli("Evoli", 1)
-        evoli.loadEvoli(window)
+        tab = evoli.loadEvoli(window)
+        return tab
 
     def CheckMouse(self, window):
         mouse = Mouse()
         mouse.gereMouse(window)
 
     def CheckClose(self):
+        tab = []
 	while self.window.is_open:
 	    for event in self.window.events:
 		if type(event) is sf.CloseEvent:
@@ -43,8 +45,18 @@ class   Windows:
 		if type(event) is sf.KeyEvent and event.code is sf.Keyboard.ESCAPE:
 		    self.window.close()
                     exit(1)
-            self.CheckMouse(self.window)
+            #self.CheckMouse(self.window)
             self.OnlyDraw()
-            self.drawEvoli(self.window)
+            pos = sf.Vector2(100, 100)
+            tab = self.drawEvoli(self.window)
+            # print tab
+            # i = 0
+            tab[0].move(pos)
+            s = sf.Vector2(0.3, 0.3)
+            tab[0].scale(s)
+            self.window.draw(tab[0])
+        # while (i < len(tab)):
+            #     self.window.draw(tab[i])
+            #     i += 1
             self.DisplayWindow()
-	    self.window.clear()
+            self.window.clear()
