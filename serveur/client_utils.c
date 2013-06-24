@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:19:39 2013 guillaume duez
-** Last update Tue Jun 11 15:48:58 2013 guillaume duez
+** Last update Mon Jun 24 15:15:51 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -57,7 +57,7 @@ void		new_map(t_client *client, t_opt *opt, t_map **map)
   x = rand() % opt->x_world;
   y = rand() % opt->y_world;
   client->map = &(map[y][x]);
-  client->map->direct = SUD;
+  client->direct = SUD;
 }
 
 t_client        *create_client(int fd, t_client *client, t_opt *opt, t_map **map)

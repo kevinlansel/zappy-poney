@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Tue May 28 16:48:58 2013 guillaume duez
-** Last update Thu Jun 20 19:34:55 2013 guillaume duez
+** Last update Mon Jun 24 15:18:04 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -14,7 +14,7 @@ void		avance(t_msg *msg, t_client *client, t_map **map)
 {
   e_direct	type;
 
-  type = client->map->direct;
+  type = client->direct;
   sub_food(msg, client, "ok\n");
   msg->time = get_time() + (7 / client->time);
   if (type == SUD)
@@ -31,7 +31,7 @@ void		avance(t_msg *msg, t_client *client, t_map **map)
       client->map = (client->map->y - 1) >= 0 ?
 	&map[client->map->y - 1][client->map->x] : &map[client->map->y_world - 1][client->map->x];
     }
-  client->map->direct = type;
+  client->direct = type;
   printf("position x : %d , position y : %d\n",  client->map->x, client->map->y);
 }
 
@@ -41,14 +41,14 @@ void		droite(t_msg *msg, t_client *client, t_map **map)
     {
       sub_food(msg, client, "ok\n");
       msg->time = get_time() + (7 / client->time);
-      if (client->map->direct == SUD)
-	client->map->direct = OUEST;
-      else if (client->map->direct == OUEST)
-	client->map->direct = NORD;
-      else if (client->map->direct == NORD)
-	client->map->direct = EST;
-      else if (client->map->direct == EST)
-	client->map->direct = SUD;
+      if (client->direct == SUD)
+	client->direct = OUEST;
+      else if (client->direct == OUEST)
+	client->direct = NORD;
+      else if (client->direct == NORD)
+	client->direct = EST;
+      else if (client->direct == EST)
+	client->direct = SUD;
     }
 }
 
@@ -58,14 +58,14 @@ void		gauche(t_msg *msg, t_client *client, t_map **map)
     {
       sub_food(msg, client, "ok\n");
       msg->time = get_time() + (7 / client->time);
-      if (client->map->direct == SUD)
-	client->map->direct = EST;
-      else if (client->map->direct == EST)
-	client->map->direct = NORD;
-      else if (client->map->direct == NORD)
-	client->map->direct = OUEST;
-      else if (client->map->direct == OUEST)
-	client->map->direct = SUD;
+      if (client->direct == SUD)
+	client->direct = EST;
+      else if (client->direct == EST)
+	client->direct = NORD;
+      else if (client->direct == NORD)
+	client->direct = OUEST;
+      else if (client->direct == OUEST)
+	client->direct = SUD;
     }
 }
 

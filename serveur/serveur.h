@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Mon Jun 24 14:43:01 2013 guillaume duez
+** Last update Mon Jun 24 15:13:22 2013 guillaume duez
 */
 
 #ifndef         __SERVEUR_H__
@@ -89,7 +89,6 @@ typedef	struct	s_map
   int		x_world;
   int		y_world;
   int		ress[MAX];
-  e_direct	direct;
   struct s_map	*left;
   struct s_map	*right;
   struct s_map	*down;
@@ -107,6 +106,7 @@ typedef struct  s_client
   int			time;
   int			level;
   double	       	time_eat;
+  e_direct		direct;
   struct s_client       *nt;
   struct s_client       *prev;
 }               t_client;
