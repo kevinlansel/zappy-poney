@@ -5,7 +5,7 @@
 ## Login   <duez_a@epitech.net>
 ## 
 ## Started on  Mon Feb  4 12:48:16 2013 guillaume duez
-## Last update Mon Jun 24 16:23:16 2013 guillaume duez
+## Last update Tue Jun 25 13:12:59 2013 florian dewulf
 ##
 
 SERV	=	serveur
@@ -17,6 +17,8 @@ SRC_SERV=	serveur.c		\
 		main.c			\
 		cmd.c			\
 		client_utils.c		\
+		echo.c			\
+		msg.c			\
 		map_utils.c		\
 		tools/tools_socket.c	\
 		send_receiv.c		\
@@ -31,15 +33,15 @@ OBJ_SERV=	$(SRC_SERV:.c=.o)
 
 CC      = gcc -g
 
-CFLAGS  = -Wall -W -Wextra
+CFLAGS  = -Wall -W -Wextra -lm
 
 RM      = rm -f
 
 
-all: $(CLI) $(SERV)
+all:	$(SERV)
 
 $(SERV): $(OBJ_SERV)
-	$(CC) -o $(SERV) $(OBJ_SERV)
+	$(CC) -o $(SERV) $(OBJ_SERV) -lm
 
 clean   :
 	$(RM) $(OBJ_CLI) $(OBJ_SERV)

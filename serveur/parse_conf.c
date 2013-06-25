@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Mon Jun 10 21:53:42 2013 florian dewulf
-** Last update Thu Jun 13 16:00:35 2013 florian dewulf
+** Last update Tue Jun 25 13:19:09 2013 florian dewulf
 */
 
 #include		<stdio.h>
@@ -117,16 +117,3 @@ t_conf			*parseconf(t_map **map)
   init_map(map, config);
   return config;
 }
-
-/*
-int	main()
-{
-  t_conf	*conf;
-  t_map		**map;
-
-  map = NULL;
-  conf = parseconf(map);
-  printf("Pop Nourriture : %d\nPop Linemate : %d\nPop Deraumere : %d\nPop Sibur : %d\nPop Mendiane : %d\nPop Phiras : %d\nPop Thystame : %d\n", conf->time_repop[NOURRITURE], conf->time_repop[LINEMATE], conf->time_repop[DERAUMERE], conf->time_repop[SIBUR], conf->time_repop[MENDIANE], conf->time_repop[PHIRAS], conf->time_repop[THYSTAME]);
-  printf("Max Nourriture : %d\nMax Linemate : %d\nMax Deraumere : %d\nMax Sibur : %d\nMax Mendiane : %d\nMax Phiras : %d\nMax Thystame : %d\n", conf->max_repop[NOURRITURE], conf->max_repop[LINEMATE], conf->max_repop[DERAUMERE], conf->max_repop[SIBUR], conf->max_repop[MENDIANE], conf->max_repop[PHIRAS], conf->max_repop[THYSTAME]);
-}
-*/
