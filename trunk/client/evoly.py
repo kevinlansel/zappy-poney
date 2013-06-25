@@ -14,9 +14,11 @@ class           Evoli(Personnage):
 
     def loadEvoli(self, window):
         try:
+            tab = []
             # leve1
+            aquali = sf.Texture.from_file("ressources/pictures/aquali.png")
             # level 2
-#            givrali = sf.Texture.from_file("ressources/pictures/givrali.png")
+            givrali = sf.Texture.from_file("ressources/pictures/givrali.png")
             # level 3
             mentali = sf.Texture.from_file("ressources/pictures/mentali.png")
             # level 4
@@ -28,7 +30,7 @@ class           Evoli(Personnage):
             # level 7
             voltali = sf.Texture.from_file("ressources/pictures/voltali.png")
  #           heart = sf.Texture.from_file("ressources/pictures/heart.png")
-            evoli = sf.Sprite(evoli)
+            evoli = sf.Sprite(self.evoli)
             aquali = sf.Sprite(aquali)
             givrali = sf.Sprite(givrali)
             mentali = sf.Sprite(mentali)
