@@ -14,6 +14,7 @@ class   Windows:
         self.tailleY = tailleY
         self.themap = Map(self.tailleX, self.tailleY)
         self.bool_mouse = 0
+        #self.str_serveur = ""
 
     def DisplayWindow(self):
 	self.window.display()
@@ -49,6 +50,8 @@ class   Windows:
                     exit(1)
             if (self.bool_mouse == 1):
                 mouse = self.CheckMouse(self.window)
+                #envoyer mouse a sauvage !
+                #recup de la chaine de caractere a stocker dans self.str_ser
                 print mouse
                 self.bool_mouse = 2
             if (sf.Mouse.is_button_pressed(sf.Mouse.LEFT) == False and self.bool_mouse == 2):
