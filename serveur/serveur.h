@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Tue Jun 25 13:19:27 2013 florian dewulf
+** Last update Tue Jun 25 14:11:29 2013 florian dewulf
 */
 
 #ifndef         __SERVEUR_H__
@@ -97,6 +97,7 @@ typedef	struct	s_map
 
 typedef struct  s_client
 {
+  char			graphic;
   int                   fd;
   char                  *nick;
   int                   end;
