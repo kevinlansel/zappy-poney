@@ -9,10 +9,11 @@ from evoly import *
 
 class   Windows:
     def __init__(self, tailleX, tailleY):
-	self.window = sf.RenderWindow(sf.VideoMode(1400, 920), "Client Zappy")
+	self.window = sf.RenderWindow(sf.VideoMode(800, 600), "Client Zappy")
         self.tailleX = tailleX
         self.tailleY = tailleY
         self.themap = Map(self.tailleX, self.tailleY)
+        self.bool_mouse = 0
 
     def DisplayWindow(self):
 	self.window.display()
@@ -33,7 +34,8 @@ class   Windows:
 
     def CheckMouse(self, window):
         mouse = Mouse()
-        mouse.gereMouse(window)
+        position = mouse.gereMouse(window)
+        return position
 
     def CheckClose(self):
         tab = []
@@ -45,7 +47,16 @@ class   Windows:
 		if type(event) is sf.KeyEvent and event.code is sf.Keyboard.ESCAPE:
 		    self.window.close()
                     exit(1)
-            #self.CheckMouse(self.window)
+            if (self.bool_mouse == 1):
+                mouse = self.CheckMouse(self.window)
+                print mouse
+                self.bool_mouse = 2
+            if (sf.Mouse.is_button_pressed(sf.Mouse.LEFT) == False and self.bool_mouse == 2):
+                self.bool_mouse = 0
+            elif (sf.Mouse.is_button_pressed(sf.Mouse.LEFT) == True and self.bool_mouse == 0):
+                self.bool_mouse = 1
+            else:
+                self.bool_mouse = 2
             self.OnlyDraw()
             pos = sf.Vector2(100, 100)
             tab = self.drawEvoli(self.window)
