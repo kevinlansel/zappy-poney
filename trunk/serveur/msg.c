@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Fri Jun 14 16:25:39 2013 florian dewulf
-** Last update Mon Jun 17 17:00:28 2013 florian dewulf
+** Last update Tue Jun 25 14:01:52 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -18,7 +18,9 @@ void		snd_msg_broadcast(char *str, int dir, int fd)
   char		*msg;
   int		size;
 
-  size = snprint(NULL, 0, "message %d,%s\n", dir, str);
+  if (str[0] == ' ')
+    str++;
+  size = snprintf(NULL, 0, "message %d,%s\n", dir, str);
   msg = xmalloc((size + 1) * sizeof(char));
   snprintf(msg, size, "message %d,%s\n", dir, str);
   write(fd, msg, strlen(msg));

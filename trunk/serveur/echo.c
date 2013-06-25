@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Thu Jun 13 17:23:39 2013 florian dewulf
-** Last update Fri Jun 14 17:31:53 2013 florian dewulf
+** Last update Tue Jun 25 14:02:14 2013 florian dewulf
 */
 
 #include	<math.h>
@@ -78,25 +78,26 @@ static int	calcpond(int angle, int dir)
 
 static int	create_vtor(int s[2], int d[2], int size[2], int dir)
 {
-  int		newdest[2];
+  int		newd[2];
   int		v[2];
   int		scalaire;
   int		normeab;
   int		normeac;
 
-  newdest[0] = d[0];
-  newdest[1] = d[1];
+  newd[0] = d[0];
+  newd[1] = d[1];
   v[0] = d[0];
   v[1] = d[1];
   if (s[1] - d[1] > size[1] / 2)
-    newdest[1] = s[1] + (size[1] - s[1]) + d[1];
+    newd[1] = s[1] + (size[1] - s[1]) + d[1];
   if (s[0] - d[0] > size[0] / 2)
-    newdest[0] = s[0] + (size[0] - s[0]) + d[0];
+    newd[0] = s[0] + (size[0] - s[0]) + d[0];
   v[0] += ((dir == OUEST) ? -1 : ((dir == EST) ? 1 : 0));
   v[1] += ((dir == NORD) ? -1 : ((dir == SUD) ? 1 : 0));
-  scalaire = (s[0] - d[0]) * (v[0] - d[0]) + (s[1] - d[1]) * (v[1] - d[1]);
-  normeab = sqrt(pow((s[0] - d[0]), 2) + pow((s[1] - d[1]), 2));
-  normeac = sqrt(pow((v[0] - d[0]), 2) + pow((v[1] - d[1]), 2));
+  scalaire = (s[0] - newd[0]) * (v[0] - newd[0]) +
+    (s[1] - newd[1]) * (v[1] - newd[1]);
+  normeab = sqrt(pow((s[0] - newd[0]), 2) + pow((s[1] - newd[1]), 2));
+  normeac = sqrt(pow((v[0] - newd[0]), 2) + pow((v[1] - newd[1]), 2));
   return (acos(scalaire / (normeab * normeac)));
 }
 
@@ -107,7 +108,7 @@ void		broadcast(t_msg *msg, t_client *client, t_map **map)
   int		d[2];
   int		sz[2];
 
-  begin = client;
+  begin = ((map != NULL) ? client : client);
   s[1] = (s[0] = client->map->x) ? client->map->y : client->map->y;
   sz[0] = client->map->x_world;
   sz[1] = client->map->y_world;
@@ -115,16 +116,16 @@ void		broadcast(t_msg *msg, t_client *client, t_map **map)
     begin = begin->prev;
   sub_food(msg, client, "ok\n");
   msg->time = get_time() + (7 / client->time);
-  while (begin)
+  while (begin && begin->end != 1)
     {
       if (begin != client)
 	{
 	  d[0] = begin->map->x;
 	  d[1] = begin->map->y;
-	  snd_msg_broadcast(msg->cmd + 10,
-			    calcpond(create_vtor(s, d, sz, begin->map->direct),
-				     begin->map->direct), begin->fd);
+	  snd_msg_broadcast(msg->comand + 9,
+			    calcpond(create_vtor(s, d, sz, begin->direct),
+				     begin->direct), begin->fd);
 	}
-      begin = begin->next;
+      begin = begin->nt;
     }
 }
