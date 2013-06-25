@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Tue Jun 25 12:56:17 2013 guillaume duez
+** Last update Tue Jun 25 13:04:21 2013 florian dewulf
 */
 
 #ifndef         __SERVEUR_H__
@@ -134,6 +134,10 @@ typedef struct	s_msg
   struct s_msg	*prev;
 }		t_msg;
 
+
+void		broadcast(t_msg *, t_client *, t_map **);
+
+void		snd_msg_broadcast(char *, int, int);
 
 void            avance(t_msg *msg, t_client *client, t_map **map);
 
