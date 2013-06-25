@@ -5,7 +5,6 @@ from perso import *
 
 class           Givrali(Personnage):
     def         __init__(self, name, level):
-        print "Construct"
         self.givrali = sf.Texture.from_file("ressources/pictures/givrali.png")
         Personnage.__init__(self, name, level)
 

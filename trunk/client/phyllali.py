@@ -5,5 +5,15 @@ from perso import *
 
 class           Phyllali(Personnage):
     def         __init__(self, name, level):
-        Personnage.__init__("Phyllali", 5)
-        self.phyllali = sf.Image("ressources/pictures/phyllali.png", width=20, height=20)
+        self.phyllali = sf.Texture.from_file("ressources/pictures/phyllali.png")
+        Personnage.__init__(self, name, level)
+
+    def         __str__(self):
+        return "{0} {1}" .format(self.name, self.level)
+
+    def         loadPhyllali(self, window):
+        try:
+            self.phyllali = sf.Sprite(self.phyllali)
+            return self.phyllali
+        except IOError, e:
+            print str(e)
