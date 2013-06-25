@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:08:13 2013 guillaume duez
-** Last update Tue Jun 25 14:01:04 2013 florian dewulf
+** Last update Tue Jun 25 15:23:42 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -25,6 +25,7 @@ static void	init_tab_func(void (*tab_func[NB_FUNC])(t_msg *, t_client *, t_map *
   tab_func[5] = &prend_objet;
   tab_func[6] = &pose_objet;
   tab_func[7] = &broadcast;
+  tab_func[8] = &expulse;
 }
 
 // recuperation du message avec get_mess et boucle pour trouver la fonction correspondante
@@ -45,7 +46,7 @@ static t_msg	*check_and_call(t_client *client, t_map **map)
       while (i < NB_FUNC)
 	{
 	  tmp = my_str_to_wordtab(msg->comand, ' ')[0];
-	  if (tmp  && strcmp(tmp, str[i]) == 0 && i < 8)
+	  if (tmp  && strcmp(tmp, str[i]) == 0)
 	    {
 	      tab_func[i](msg, client, map);
 	      bool = 1;

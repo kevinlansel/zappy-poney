@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun 24 16:01:55 2013 guillaume duez
-** Last update Tue Jun 25 12:57:31 2013 guillaume duez
+** Last update Tue Jun 25 16:20:45 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -34,7 +34,7 @@ void            pose_objet(t_msg *msg, t_client *client, t_map **map)
   sub_food(msg, client, "ok\n");
   msg->time = get_time_client(client, 7);
   tab_cmd = my_str_to_wordtab(msg->comand, ' ');
-   if (strlen_tab(tab_cmd) != 3)
+   if (strlen_tab(tab_cmd) != 3 || !map)
      {
        printf("size:%d\n", strlen_tab(tab_cmd));
        return;
