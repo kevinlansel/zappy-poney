@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Thu Jun 13 17:23:39 2013 florian dewulf
-** Last update Tue Jun 25 14:02:14 2013 florian dewulf
+** Last update Tue Jun 25 14:16:43 2013 florian dewulf
 */
 
 #include	<math.h>
@@ -118,7 +118,7 @@ void		broadcast(t_msg *msg, t_client *client, t_map **map)
   msg->time = get_time() + (7 / client->time);
   while (begin && begin->end != 1)
     {
-      if (begin != client)
+      if (begin != client && begin->graphic != 1)
 	{
 	  d[0] = begin->map->x;
 	  d[1] = begin->map->y;

@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Fri Jun 14 16:25:39 2013 florian dewulf
-** Last update Tue Jun 25 14:01:52 2013 florian dewulf
+** Last update Tue Jun 25 14:10:47 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -25,4 +25,17 @@ void		snd_msg_broadcast(char *str, int dir, int fd)
   snprintf(msg, size, "message %d,%s\n", dir, str);
   write(fd, msg, strlen(msg));
   free(msg);
+}
+
+void		send_to_graphic(t_client *cl, char *str)
+{
+  t_client	*begin;
+
+  begin = cl;
+  while (begin->prev != NULL)
+    begin = begin->prev;
+  while (begin && begin->end != 1)
+    {
+      
+    }
 }
