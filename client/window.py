@@ -65,10 +65,10 @@ class   Windows:
             tab = self.drawEvoli(self.window)
             # print tab
             # i = 0
-            tab[0].move(pos)
+            tab[1].move(pos)
             s = sf.Vector2(0.3, 0.3)
-            tab[0].scale(s)
-            self.window.draw(tab[0])
+            tab[1].scale(s)
+            self.window.draw(tab[1])
         # while (i < len(tab)):
             #     self.window.draw(tab[i])
             #     i += 1
