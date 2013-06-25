@@ -16,7 +16,7 @@ from aqualy import *
 
 
 class   Windows:
-    def __init__(self, tailleX, tailleY):
+    def         __init__(self, tailleX, tailleY):
 	self.window = sf.RenderWindow(sf.VideoMode(800, 600), "Client Zappy")
         self.tailleX = tailleX
         self.tailleY = tailleY
@@ -24,10 +24,10 @@ class   Windows:
         self.bool_mouse = 0
         #self.str_serveur = ""
 
-    def DisplayWindow(self):
+    def         DisplayWindow(self):
 	self.window.display()
 
-    def OnlyDraw(self):
+    def         OnlyDraw(self):
         # taille& de la map
         test = []
         test = self.themap.drawMap()
@@ -36,7 +36,7 @@ class   Windows:
             self.window.draw(test[i])
             i += 1
 
-    def drawPokemon(self, _lvl):
+    def         drawPokemon(self, _lvl):
         tab = []
         if _lvl == 1:
             pokemon = Evoli("Evoli", 1)
@@ -73,24 +73,31 @@ class   Windows:
         else:
             print "Unknow level"
 
-    def drawEvoli(self, window):
+    def         drawEvoli(self, window):
         evoli = Evoli("Evoli", 1)
         tab = evoli.loadEvoli(window)
         return tab
 
-    def drawGivrali(self, window):
+    def         drawGivrali(self, window):
         print "Draw Givrali"
         givrali = Givrali("Givrali", 2)
         print "load Givrali"
         tab = givrali.loadGivrali(window)
         return tab
 
-    def CheckMouse(self, window):
+    def         CheckMouse(self, window):
         mouse = Mouse()
         position = mouse.gereMouse(window)
         return position
 
-    def CheckClose(self):
+    def         drawText(self, msg, size, pos_x, pos_y):
+        font = sf.Font.from_file("ressources/Sansation_Bold.ttf")
+        instructions = sf.Text(msg, font, size)
+        instructions.position = (pos_x, pos_y)
+        instructions.color = sf.Color(80, 80, 80)
+        return instructions
+
+    def         CheckClose(self):
         tab = []
 	while self.window.is_open:
 	    for event in self.window.events:
@@ -104,6 +111,7 @@ class   Windows:
                 mouse = self.CheckMouse(self.window)
                 #envoyer mouse a sauvage !
                 #recup de la chaine de caractere a stocker dans self.str_ser
+                self.window.draw(self.drawText("hello", 20, 480, 100))
                 print mouse
                 self.bool_mouse = 2
             if (sf.Mouse.is_button_pressed(sf.Mouse.LEFT) == False and self.bool_mouse == 2):
@@ -116,14 +124,9 @@ class   Windows:
             self.OnlyDraw()
             pos = sf.Vector2(100, 100)
             tab = self.drawEvoli(self.window)
-            # print tab
-            # i = 0
             tab[1].move(pos)
             s = sf.Vector2(0.3, 0.3)
             tab[1].scale(s)
             self.window.draw(tab[1])
-            # while (i < len(tab)):
-            #     self.window.draw(tab[i])
-            #     i += 1
             self.DisplayWindow()
             self.window.clear()
