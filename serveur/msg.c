@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Fri Jun 14 16:25:39 2013 florian dewulf
-** Last update Tue Jun 25 14:10:47 2013 florian dewulf
+** Last update Tue Jun 25 14:21:49 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -36,6 +36,8 @@ void		send_to_graphic(t_client *cl, char *str)
     begin = begin->prev;
   while (begin && begin->end != 1)
     {
-      
+      if (begin->graphic == 1)
+	write(begin->fd, str, strlen(str));
+      begin = begin->nt;
     }
 }
