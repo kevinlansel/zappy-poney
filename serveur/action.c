@@ -5,14 +5,14 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:08:13 2013 guillaume duez
-** Last update Tue Jun 25 12:12:50 2013 guillaume duez
+** Last update Tue Jun 25 13:05:46 2013 florian dewulf
 */
 
 #include	"serveur.h"
 
 static char	str[NB_FUNC][LEN] = { "avance", "droite", "gauche", "voir",
 				      "inventaire", "prend", "pose",
-				      "expulse"};
+				      "expulse", "broadcast"};
 
 //initialisation du tableau de pointeur sur func
 static void	init_tab_func(void (*tab_func[NB_FUNC])(t_msg *, t_client *, t_map **))
