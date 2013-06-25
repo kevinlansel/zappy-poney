@@ -37,34 +37,39 @@ class   Windows:
             i += 1
 
     def drawPokemon(self, _lvl):
+        tab = []
         if _lvl == 1:
-            self.window.clear()
             pokemon = Evoli("Evoli", 1)
-            self.OnlyDraw()
-            return pokemon.loadEvoli(self)
+            tab.append(pokemon.loadEvoli(self))
+            return tab
         elif _lvl == 2:
-            self.window.clear()
             pokemon = Givrali("Givrali", 2)
-            self.OnlyDraw()
-            return pokemon.loadGivrali(self)
+            tab.append(pokemon.loadEvoli(self))
+            return tab
         elif _lvl == 3:
-            pokemon = Mentali("Mentali", 3)
-            return pokemon.loadMentali(self)
+            pokemon = Mentali("Mentali", 2)
+            tab.append(pokemon.loadMentali(self))
+            return tab
         elif _lvl == 4:
-            pokemon = Noctali("Noctali", 4)
-            return pokemon.loadNoctali(self)
+            pokemon = Noctali("Noctali", 2)
+            tab.append(pokemon.loadNoctali(self))
+            return tab
         elif _lvl == 5:
-            pokemon = Phyllali("Phyllali", 5)
-            return pokemon.loadPhyllali(self)
+            pokemon = Phyllali("Phyllali", 2)
+            tab.append(pokemon.loadPhyllali(self))
+            return tab
         elif _lvl == 6:
-            pokemon = Pyroli("Pyroli", 6)
-            return pokemon.loadPyroli(self)
+            pokemon = Pyroli("Pyroli", 2)
+            tab.append(pokemon.loadPyroli(self))
+            return tab
         elif _lvl == 7:
-            pokemon = Voltali("Voltali", 7)
-            return pokemon.loadVoltali(self)
+            pokemon = Voltali("Voltali", 2)
+            tab.append(pokemon.loadVoltali(self))
+            return tab
         elif _lvl == 8:
-            pokemon = Aqualy("Aquali", 8)
-            return pokemon.loadAquali(self)
+            pokemon = Aquali("Aquali", 2)
+            tab.append(pokemon.loadAquali(self))
+            return tab
         else:
             print "Unknow level"
 

@@ -2,7 +2,7 @@
 import sfml as sf
 from perso import *
 
-class           Aqualy(Personnage):
+class           Aquali(Personnage):
     def         __init__(self, name, level):
         self.aquali = sf.Texture.from_file("ressources/pictures/aquali.png")
         Personnage.__init__(self, name, level)
