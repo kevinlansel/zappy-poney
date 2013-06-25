@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Thu Jun 13 11:31:35 2013 florian dewulf
-** Last update Thu Jun 13 16:00:41 2013 florian dewulf
+** Last update Mon Jun 24 17:06:27 2013 guillaume duez
 */
 
 #include	<stdlib.h>
@@ -30,7 +30,7 @@ void		init_map(t_map **map, t_conf *config)
   while (i < MAX)
     {
       ressource = 0;
-      while (ressource < config->max_repop[i])
+      while ((int)ressource < config->max_repop[i])
 	{
 	  put_in_random_case(map, i);
 	  ressource++;
