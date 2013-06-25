@@ -11,8 +11,8 @@ from mentali import *
 from noctali import *
 from phyllali import *
 from pyroli import *
-from voltali import *
-from aquali import *
+from voltaly import *
+from aqualy import *
 
 
 class   Windows:
@@ -63,7 +63,7 @@ class   Windows:
             pokemon = Voltali("Voltali", 7)
             return pokemon.loadVoltali(self)
         elif _lvl == 8:
-            pokemon = Aquali("Aquali", 8)
+            pokemon = Aqualy("Aquali", 8)
             return pokemon.loadAquali(self)
         else:
             print "Unknow level"
