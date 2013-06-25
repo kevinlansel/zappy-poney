@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Tue Jun 25 14:43:22 2013 florian dewulf
-** Last update Tue Jun 25 15:07:32 2013 florian dewulf
+** Last update Tue Jun 25 15:28:00 2013 florian dewulf
 */
 
 #include	<math.h>
@@ -118,5 +118,7 @@ int		calcul_K(t_client *from, t_client *actu)
   sz[1] = from->map->y_world;
   d[0] = actu->map->x;
   d[1] = actu->map->y;
+  if (d[0] == s[0] && d[1] == s[1])
+    return (0);
   return (calcpond(create_vtor(s, d, sz, actu->direct), actu->direct));
 }
