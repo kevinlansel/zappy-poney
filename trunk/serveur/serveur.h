@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Tue Jun 25 14:22:27 2013 florian dewulf
+** Last update Tue Jun 25 14:55:11 2013 florian dewulf
 */
 
 #ifndef         __SERVEUR_H__
@@ -146,16 +146,17 @@ void            avance(t_msg *msg, t_client *client, t_map **map);
 
 void		broadcast(t_msg *, t_client *, t_map **);
 
+int		calcul_K(t_client *, t_client *);
 t_client	*create_client(int fd, t_client *client, t_opt *opt, t_map **map);
 void            create_link_x(t_map **map);
 void            create_link_y(t_map **map);
 t_client	*client_reset(t_client *client);
 
-t_client        *end_client(t_client *client);
-t_msg           *exec_task(t_msg *task);
-
 t_msg		*do_action(t_client *client, t_map **map, t_msg *msg);
 void            droite(t_msg *msg, t_client *client, t_map **map);
+
+t_client        *end_client(t_client *client);
+t_msg           *exec_task(t_msg *task);
 
 void            gauche(t_msg *msg, t_client *client, t_map **map);
 t_msg           *get_mess(t_client *client);

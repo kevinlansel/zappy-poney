@@ -5,7 +5,7 @@
 ## Login   <duez_a@epitech.net>
 ## 
 ## Started on  Mon Feb  4 12:48:16 2013 guillaume duez
-## Last update Tue Jun 25 13:12:59 2013 florian dewulf
+## Last update Tue Jun 25 14:55:31 2013 florian dewulf
 ##
 
 SERV	=	serveur
@@ -17,6 +17,7 @@ SRC_SERV=	serveur.c		\
 		main.c			\
 		cmd.c			\
 		client_utils.c		\
+		calculator.c		\
 		echo.c			\
 		msg.c			\
 		map_utils.c		\
