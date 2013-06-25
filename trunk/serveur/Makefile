@@ -5,13 +5,15 @@
 ## Login   <duez_a@epitech.net>
 ## 
 ## Started on  Mon Feb  4 12:48:16 2013 guillaume duez
-## Last update Mon Jun 24 15:52:10 2013 guillaume duez
+## Last update Mon Jun 24 16:23:16 2013 guillaume duez
 ##
 
 SERV	=	serveur
 
 SRC_SERV=	serveur.c		\
+		take_let.c		\
 		task_time_client.c	\
+		tools/str_to_word.c	\
 		main.c			\
 		cmd.c			\
 		client_utils.c		\

@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun  3 15:13:05 2013 guillaume duez
-** Last update Mon Jun 24 15:56:20 2013 guillaume duez
+** Last update Mon Jun 24 17:19:52 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -93,9 +93,13 @@ void		sub_food(t_msg *msg, t_client *client, const char *str)
   client->ress[NOURRITURE] = client->ress[NOURRITURE] - time_elipse;
   client->time_eat = current;
   if (client->ress[NOURRITURE] > 0)
-    strcpy(msg->cmd, str);
+    {
+      msg->cmd = xmalloc(strlen(str) + 1 * sizeof(char));
+      strcpy(msg->cmd, str);
+    }
   else
     {
+      msg->cmd = xmalloc(strlen("mort\n") + 1 * sizeof(char));
       strcpy(msg->cmd, "mort\n");
     }
 }

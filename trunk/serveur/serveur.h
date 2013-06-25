@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Mon Jun 24 15:52:37 2013 guillaume duez
+** Last update Mon Jun 24 17:07:13 2013 guillaume duez
 */
 
 #ifndef         __SERVEUR_H__
@@ -125,6 +125,7 @@ typedef	struct s_connect
 typedef struct	s_msg
 {
   char		*cmd;
+  char		*comand;
   char		bool;
   double	time;
   t_client	*client;
@@ -153,14 +154,20 @@ double          get_time();
 double          get_time_client(t_client *client, int action);
 
 void            inventaire(t_msg *mess, t_client *client, t_map **map);
-void            voir(t_msg *mess, t_client *client, t_map **map);
+void            init_map(t_map **map, t_conf *config);
 t_msg           *into_order_task(t_msg *first, t_msg *new);
+
+char            **my_str_to_wordtab(char *str, char c);
+
+void            prend_objet(t_msg *msg, t_client *client, t_map **map);
 
 void            run_server(t_opt *opt);
 t_msg           *remove_msg(t_msg *msg, t_client *client);
 
 int             send_mess(t_msg *msg);
 void            sub_food(t_msg *msg, t_client *client, const char *str);
+
+void            voir(t_msg *mess, t_client *client, t_map **map);
 
 void            *xmalloc(size_t size);
 void		xlisten(int fd);

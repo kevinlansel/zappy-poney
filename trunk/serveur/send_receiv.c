@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:15:13 2013 guillaume duez
-** Last update Mon Jun 24 15:02:28 2013 guillaume duez
+** Last update Mon Jun 24 16:54:29 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -62,7 +62,7 @@ t_msg		*get_mess(t_client *client)
     {
       str[size - 1] = '\0';
       msg = xmalloc(sizeof(t_msg));
-      msg->cmd = str;
+      msg->comand = str;
       msg->client = client;
       msg->bool = 1;
       return msg;
