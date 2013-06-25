@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Mon Jun 24 17:07:13 2013 guillaume duez
+** Last update Tue Jun 25 12:56:17 2013 guillaume duez
 */
 
 #ifndef         __SERVEUR_H__
@@ -160,6 +160,7 @@ t_msg           *into_order_task(t_msg *first, t_msg *new);
 char            **my_str_to_wordtab(char *str, char c);
 
 void            prend_objet(t_msg *msg, t_client *client, t_map **map);
+void            pose_objet(t_msg *msg, t_client *client, t_map **map);
 
 void            run_server(t_opt *opt);
 t_msg           *remove_msg(t_msg *msg, t_client *client);
