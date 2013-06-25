@@ -2,7 +2,6 @@
 
 import sfml as sf
 from perso import *
-import Image
 
 class           Evoli(Personnage):
     def __init__(self, name, level):
@@ -68,6 +67,3 @@ class           Evoli(Personnage):
             return tab
         except IOError, e:
             print str(e)
-
-    def destroySprite(self):
-        self.evoli = sf.Sprite(0)

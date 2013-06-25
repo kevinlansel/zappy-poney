@@ -5,5 +5,15 @@ from perso import *
 
 class           Mentali(Personnage):
     def         __init__(self, name, level):
-        Personnage.__init__("Mentali", 3)
-        self.mentali = sf.Image("ressources/pictures/mentali.png", width=20, height=20)
+        self.mentali = sf.Texture.from_file("ressources/pictures/mentali.png")
+        Personnage.__init__(self, name, level)
+
+    def         __str__(self):
+        return "{0} {1}" .format(self.name, self.level)
+
+    def         loadMentali(self, window):
+        try:
+            self.mentali = sf.Sprite(self.mentali)
+            return self.mentali
+        except IOError, e:
+            print str(e)
