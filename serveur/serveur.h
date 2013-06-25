@@ -157,6 +157,7 @@ void            droite(t_msg *msg, t_client *client, t_map **map);
 
 t_client        *end_client(t_client *client);
 t_msg           *exec_task(t_msg *task);
+void            expulse(t_msg *msg, t_client *client, t_map **map);
 
 void            gauche(t_msg *msg, t_client *client, t_map **map);
 t_msg           *get_mess(t_client *client);
