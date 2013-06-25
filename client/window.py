@@ -7,6 +7,13 @@ from map import *
 from mouse import *
 from evoly import *
 from givrali import *
+from mentali import *
+from noctali import *
+from phyllali import *
+from pyroli import *
+from voltali import *
+from aquali import *
+
 
 class   Windows:
     def __init__(self, tailleX, tailleY):
@@ -29,37 +36,37 @@ class   Windows:
             self.window.draw(test[i])
             i += 1
 
-    # def drawPokemon(self, _lvl):
-    #     if _lvl == 1:
-    #         self.window.clear()
-    #         pokemon = Evoli("Evoli", 1)
-    #         self.OnlyDraw()
-    #         return pokemon.loadEvoli(self)
-    #     elif _lvl == 2:
-    #         self.window.clear()
-    #         pokemon = Givrali("Givrali", 2)
-    #         self.OnlyDraw()
-    #         return pokemon.loadGivrali(self)
-    #     elif _lvl == 3:
-    #         pokemon = Mentali("Mentali", 3)
-    #         return pokemon.loadMentali(self)
-    #     elif _lvl == 4:
-    #         pokemon = Noctali("Noctali", 4)
-    #         return pokemon.loadNoctali(self)
-    #     elif _lvl == 5:
-    #         pokemon = Phyllali("Phyllali", 5)
-    #         return pokemon.loadPhyllali(self)
-    #     elif _lvl == 6:
-    #         pokemon = Pyrolli("Pyrolli", 6)
-    #         return pokemon.loadPyrolli(self)
-    #     elif _lvl == 7:
-    #         pokemon = Voltali("Voltali", 7)
-    #         return pokemon.loadVoltali(self)
-    #     elif _lvl == 8:
-    #         pokemon = Aquali("Aquali", 8)
-    #         return pokemon.loadAquali(self)
-    #     else:
-    #         print "Unknow level"
+    def drawPokemon(self, _lvl):
+        if _lvl == 1:
+            self.window.clear()
+            pokemon = Evoli("Evoli", 1)
+            self.OnlyDraw()
+            return pokemon.loadEvoli(self)
+        elif _lvl == 2:
+            self.window.clear()
+            pokemon = Givrali("Givrali", 2)
+            self.OnlyDraw()
+            return pokemon.loadGivrali(self)
+        elif _lvl == 3:
+            pokemon = Mentali("Mentali", 3)
+            return pokemon.loadMentali(self)
+        elif _lvl == 4:
+            pokemon = Noctali("Noctali", 4)
+            return pokemon.loadNoctali(self)
+        elif _lvl == 5:
+            pokemon = Phyllali("Phyllali", 5)
+            return pokemon.loadPhyllali(self)
+        elif _lvl == 6:
+            pokemon = Pyroli("Pyroli", 6)
+            return pokemon.loadPyroli(self)
+        elif _lvl == 7:
+            pokemon = Voltali("Voltali", 7)
+            return pokemon.loadVoltali(self)
+        elif _lvl == 8:
+            pokemon = Aquali("Aquali", 8)
+            return pokemon.loadAquali(self)
+        else:
+            print "Unknow level"
 
     def drawEvoli(self, window):
         evoli = Evoli("Evoli", 1)
