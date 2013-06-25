@@ -6,6 +6,7 @@ import sys
 from map import *
 from mouse import *
 from evoly import *
+from givrali import *
 
 class   Windows:
     def __init__(self, tailleX, tailleY):
@@ -28,9 +29,48 @@ class   Windows:
             self.window.draw(test[i])
             i += 1
 
+    def drawPokemon(self, _lvl):
+        if _lvl == 1:
+            self.window.clear()
+            pokemon = Evoli("Evoli", 1)
+            self.OnlyDraw()
+            return pokemon.loadEvoli(self)
+        elif _lvl == 2:
+            self.window.clear()
+            pokemon = Givrali("Givrali", 2)
+            self.OnlyDraw()
+            return pokemon.loadGivrali(self)
+        elif _lvl == 3:
+            pokemon = Mentali("Mentali", 3)
+            return pokemon.loadMentali(self)
+        elif _lvl == 4:
+            pokemon = Noctali("Noctali", 4)
+            return pokemon.loadNoctali(self)
+        elif _lvl == 5:
+            pokemon = Phyllali("Phyllali", 5)
+            return pokemon.loadPhyllali(self)
+        elif _lvl == 6:
+            pokemon = Pyrolli("Pyrolli", 6)
+            return pokemon.loadPyrolli(self)
+        elif _lvl == 7:
+            pokemon = Voltali("Voltali", 7)
+            return pokemon.loadVoltali(self)
+        elif _lvl == 8:
+            pokemon = Aquali("Aquali", 8)
+            return pokemon.loadAquali(self)
+        else:
+            print "Unknow level"
+
     def drawEvoli(self, window):
         evoli = Evoli("Evoli", 1)
         tab = evoli.loadEvoli(window)
+        return tab
+
+    def drawGivrali(self, window):
+        print "Draw Givrali"
+        givrali = Givrali("Givrali", 2)
+        print "load Givrali"
+        tab = givrali.loadGivrali(window)
         return tab
 
     def CheckMouse(self, window):
@@ -60,6 +100,7 @@ class   Windows:
                 self.bool_mouse = 1
             else:
                 self.bool_mouse = 2
+# Draw Pokemon
             self.OnlyDraw()
             pos = sf.Vector2(100, 100)
             tab = self.drawEvoli(self.window)

@@ -7,20 +7,25 @@ import Image
 class           Evoli(Personnage):
     def __init__(self, name, level):
         Personnage.__init__(self, name, level)
+        self.evoli = sf.Texture.from_file("ressources/pictures/evoli.png")
 
     def __str__(self):
         return "{0} {1}".format(self.name, self.level)
 
     def loadEvoli(self, window):
-        tab = []
         try:
-            evoli = sf.Texture.from_file("ressources/pictures/evoli.png")
-            aquali = sf.Texture.from_file("ressources/pictures/aquali.png")
-            givrali = sf.Texture.from_file("ressources/pictures/givrali.png")
+            # leve1
+            # level 2
+#            givrali = sf.Texture.from_file("ressources/pictures/givrali.png")
+            # level 3
             mentali = sf.Texture.from_file("ressources/pictures/mentali.png")
+            # level 4
             noctali = sf.Texture.from_file("ressources/pictures/noctali.png")
+            # level 5
             phyllali = sf.Texture.from_file("ressources/pictures/phyllali.png")
+            # level 6
             pyroli = sf.Texture.from_file("ressources/pictures/pyroli.png")
+            # level 7
             voltali = sf.Texture.from_file("ressources/pictures/voltali.png")
  #           heart = sf.Texture.from_file("ressources/pictures/heart.png")
             evoli = sf.Sprite(evoli)
@@ -61,3 +66,6 @@ class           Evoli(Personnage):
             return tab
         except IOError, e:
             print str(e)
+
+    def destroySprite(self):
+        self.evoli = sf.Sprite(0)
