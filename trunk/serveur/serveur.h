@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Tue Jun 25 14:11:29 2013 florian dewulf
+** Last update Tue Jun 25 14:22:27 2013 florian dewulf
 */
 
 #ifndef         __SERVEUR_H__
@@ -26,7 +26,7 @@
 #include <sys/wait.h>
 #include <sys/timeb.h>
 
-#define	NB_FUNC		8
+#define	NB_FUNC		9
 #define	LEN		12
 #define	OPT_INT		5
 #define	SIZE_PTR_FUNC	14
@@ -176,6 +176,7 @@ void            run_server(t_opt *opt);
 t_msg           *remove_msg(t_msg *msg, t_client *client);
 
 int             send_mess(t_msg *msg);
+void		send_to_graphic(t_client *, char *);
 void		snd_msg_broadcast(char *, int, int);
 void            sub_food(t_msg *msg, t_client *client, const char *str);
 
