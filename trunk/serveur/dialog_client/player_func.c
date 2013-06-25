@@ -5,10 +5,13 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Wed Jun 19 13:19:33 2013 florian dewulf
-** Last update Wed Jun 19 14:39:16 2013 florian dewulf
+** Last update Tue Jun 25 16:58:55 2013 florian dewulf
 */
 
-#include	"serveur.h"
+#include	<stdio.h>
+#include	<stdlib.h>
+#include	<unistd.h>
+#include	"../serveur.h"
 
 void		getteam(char **arg, int fd, t_map **map, t_client *begin)
 {
