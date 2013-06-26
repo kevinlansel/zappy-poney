@@ -16,18 +16,18 @@ def     recup_sizeMap(net):
     net._sock.send("msz\n")
     data = net._sock.recv(1024)
     i = 4
-    coordX = []
-    coordY = []
-    while i <= len(data):
+    coordX = ""
+    coordY = ""
+    while i < len(data):
         while data[i] != ' ':
-            coordX.append(data[i])
+            coordX += data[i]
             i += 1
         i += 1
-        while data[i] != ' ' and i <= len(data) and data[i] != '\n':
-            coordY.append(data[i])
+        while i < len(data):
+            coordY += data[i]
             i += 1
-    print "X = " + str(coordX) + "|| Y = " + str(coordY)
-    w = Windows(tailleX, tailleY)                                                  
+        w = Windows(coordX, coordY) 
+        # crée l'instance de windows avec la taille de la map et retourne window
     return w
 
 def     recup_caseContent(net, x, y):
@@ -35,32 +35,59 @@ def     recup_caseContent(net, x, y):
     net._sock.send(chaine)
     data = net._sock.recv(1024)
     i = 4
-    chaine = []
-    while i <= len(data):
-        chaine.append(data[i])
-        i += 1
-    return chaine
+    ress = ""
+    s2 = []
+    while i < len(data):
+        if data[i] == ' ' or i+1 == len(data):
+            s2.append(ress)
+            ress = ""
+        else:
+            ress += data[i]
+            i += 1
+    # retourne un tableau de chaine de caractere ayant toutes les ressources
+    return s2
+
 
 def     recup_mapContent(net):
-    # voir combien de recev on va avoir
+    # faire un compteur avec le nombre de cases donc X * Y
+    # et recv tant qu'on est inférieur à ce nombre
     net._sock.send("mct\n")
-    data = net._sock.recv(1024)
-    i = 4
-    chaine = []
-    while i <= len(data):
-        chaine.append(data[i])
-        i += 1
-    return chaine
+    nbCase = #nombre de cases
+    j = 0
+    s1 = []
+    while j < nbCase:
+        data = net._sock.recv(1024)
+        i = 4
+        ress = ""
+        s2 = []
+        while i < len(data):
+            if data[i] == ' ' or i+1 == len(data):
+                s2.append(ress)
+                ress = ""
+            else:
+                ress += data[i]
+                i += 1
+        s1.append(s2)
+        j += 1
+    return s1
 
 def     recup_teamName(net):
+    # faire un compteur avec le nombre d'equipes
+    # et recv tant qu'on est inférieur à ce nombre
     net._sock.send("tna\n")
-    data = net._sock.recv(1024)
-    i = 4
-    chaine = []
-    while i <= len(data):
-        chaine.append(data[i])
-        i += 1
-    return chaine
+    s1 = []
+    j = 0
+    nbligne = 0
+    while j < nbligne:
+        data = raw_input()
+        i = 4
+        s2 = ""
+        while i < len(data):
+            s2 += data[i]
+            i += 1
+        j += 1
+        s1.append(s2)
+    return s1 #renvoie un tableau de chaine de caracteres
 
 def     recup_playerPosition(net, id_player):
     chaine = "ppo #" + str(id_player) + "\n"
