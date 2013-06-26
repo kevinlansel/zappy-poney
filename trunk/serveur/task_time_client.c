@@ -5,9 +5,10 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun 24 15:22:19 2013 guillaume duez
-** Last update Mon Jun 24 16:50:34 2013 guillaume duez
+** Last update Wed Jun 26 14:20:49 2013 florian dewulf
 */
 
+#include	<sys/timeb.h>
 #include	"serveur.h"
 
 double		get_time_client(t_client *client, int action)

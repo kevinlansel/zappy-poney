@@ -5,12 +5,13 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 17:52:10 2013 guillaume duez
-** Last update Thu Jun 20 20:20:14 2013 guillaume duez
+** Last update Wed Jun 26 14:23:04 2013 florian dewulf
 */
 
+#include	<stdio.h>
+#include	<unistd.h>
 #include	"serveur.h"
 
-//creation de chaque case de la map || creation de ressource aléatoire a faire
 static void		create_case(t_map *map, int x, int y, t_opt *opt)
 {
   map->ress[NOURRITURE] = 0;
@@ -26,7 +27,6 @@ static void		create_case(t_map *map, int x, int y, t_opt *opt)
   map->y_world = opt->y_world;
 }
 
-//creation de la map
 static t_map		**create_map(t_opt *opt)
 {
   t_map			**map;
@@ -68,7 +68,6 @@ static void     set_fd(fd_set *listen_select,
   client = client_reset(client);
 }
 
-// boucle select
 static void		open_serv(t_connect *co, t_client *client, t_opt *opt, t_map **map)
 {
   int		error;

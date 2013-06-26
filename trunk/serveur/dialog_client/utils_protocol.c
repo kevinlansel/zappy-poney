@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Tue Jun 18 11:50:21 2013 florian dewulf
-** Last update Wed Jun 26 14:17:03 2013 florian dewulf
+** Last update Wed Jun 26 14:27:49 2013 florian dewulf
 */
 
 #include	<stdlib.h>
@@ -21,27 +21,27 @@ int		cmp_nb_arg(int nb_waiting, char *cmd, int offset)
   i = -1;
   nb = 1;
   tmp = cmd + offset;
-  while (cmd && (cmd[++i] == ' ' || cmd[i] == '\t' || cmd[i] == '\n'));
-  while (cmd && cmd[i])
+  while (tmp && (tmp[++i] == ' ' || tmp[i] == '\t' || tmp[i] == '\n'));
+  while (tmp && tmp[i])
     {
-      if (cmd[i] == ' ' || cmd[i] == '\t')
+      if (tmp[i] == ' ' || tmp[i] == '\t')
 	{
 	  nb++;
-	  while (cmd && (cmd[i] == ' ' || cmd[i] == '\t' || cmd[i] == '\n'))
+	  while (tmp && (tmp[i] == ' ' || tmp[i] == '\t' || tmp[i] == '\n'))
 	    i++;
 	}
       else
-	while (cmd[i] && cmd[i] != ' ' && cmd[i] != '\t')
+	while (tmp[i] && tmp[i] != ' ' && tmp[i] != '\t')
 	  i++;
     }
-  i -= strlen(cmd - 2);
-  while (i > 0 && (cmd[i] == ' ' || cmd[i] == '\t'))
+  i -= strlen(tmp - 2);
+  while (i > 0 && (tmp[i] == ' ' || tmp[i] == '\t'))
     i--;
-  nb = (i == (int)(strlen(cmd) - 2)) ? nb : (nb - 1);
+  nb = (i == (int)(strlen(tmp) - 2)) ? nb : (nb - 1);
   return ((nb == nb_waiting) ? 1 : 0);
 }
 
-char		**to_tab(const char *cmd, int offset, int size)
+char		**to_tab(char *cmd, int offset, int size)
 {
   char		**tab;
   char		*str;

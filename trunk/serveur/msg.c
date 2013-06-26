@@ -5,12 +5,13 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Fri Jun 14 16:25:39 2013 florian dewulf
-** Last update Tue Jun 25 14:21:49 2013 florian dewulf
+** Last update Wed Jun 26 14:23:22 2013 florian dewulf
 */
 
 #include	<stdio.h>
-#include	<unistd.h>
 #include	<stdlib.h>
+#include	<string.h>
+#include	<unistd.h>
 #include	"serveur.h"
 
 void		snd_msg_broadcast(char *str, int dir, int fd)
