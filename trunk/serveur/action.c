@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:08:13 2013 guillaume duez
-** Last update Wed Jun 26 10:42:30 2013 florian dewulf
+** Last update Wed Jun 26 15:33:58 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -16,7 +16,6 @@ static char	str[NB_FUNC][LEN] = { "avance", "droite", "gauche", "voir",
 				      "inventaire", "prend", "pose",
 				      "broadcast", "expulse"};
 
-//initialisation du tableau de pointeur sur func
 static void	init_tab_func(void (*tab_func[NB_FUNC])(t_msg *, t_client *, t_map **))
 {
   tab_func[0] = &avance;
@@ -30,22 +29,20 @@ static void	init_tab_func(void (*tab_func[NB_FUNC])(t_msg *, t_client *, t_map *
   tab_func[8] = &expulse;
 }
 
-// recuperation du message avec get_mess et boucle pour trouver la fonction correspondante
 static t_msg	*check_and_call(t_client *client, t_map **map)
 {
-  void	(*tab_func[NB_FUNC])(t_msg *, t_client *, t_map **);
-  t_msg	*msg;
-  int	bool;
-  char	*tmp;
-  int	i;
+  void		(*tab_func[NB_FUNC])(t_msg *, t_client *, t_map **);
+  t_msg		*msg;
+  int		bool;
+  char		*tmp;
+  int		i;
 
-  i = 0;
+  i = -1;
   bool = 0;
   init_tab_func(tab_func);
   if ((msg = get_mess(client)) != NULL)
     {
-      printf("%s\n", msg->comand);
-      while (i < NB_FUNC)
+      while (++i < NB_FUNC)
 	{
 	  tmp = my_str_to_wordtab(msg->comand, ' ')[0];
 	  if (tmp  && strcmp(tmp, str[i]) == 0)
@@ -53,19 +50,19 @@ static t_msg	*check_and_call(t_client *client, t_map **map)
 	      tab_func[i](msg, client, map);
 	      bool = 1;
 	    }
-	  i++;
 	}
     }
+  if (i == NB_FUNC)
+    loop_answer(msg->comand, client, map);
   bool = ((msg && bool == 0) ? 0 : (msg ? 1 : -1));
   if (bool != -1)
     msg->bool = bool;
   return msg;
 }
 
-//enregistrement des message a renvoyer avec les times
 t_msg		*do_action(t_client *client, t_map **map, t_msg *msg)
 {
-  t_msg *new;
+  t_msg		*new;
 
   new = check_and_call(client, map);
   if (new != NULL && new->bool == 1)
