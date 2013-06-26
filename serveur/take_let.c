@@ -5,9 +5,11 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun 24 16:01:55 2013 guillaume duez
-** Last update Tue Jun 25 16:20:45 2013 guillaume duez
+** Last update Wed Jun 26 14:12:49 2013 florian dewulf
 */
 
+#include	<stdio.h>
+#include	<string.h>
 #include	"serveur.h"
 
 int		strlen_tab(char **str)

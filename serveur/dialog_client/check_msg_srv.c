@@ -5,11 +5,12 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Tue Jun 18 11:00:16 2013 florian dewulf
-** Last update Tue Jun 25 14:06:53 2013 florian dewulf
+** Last update Wed Jun 26 13:47:50 2013 florian dewulf
 */
 
 #include		<string.h>
-#include		"serveur.h"
+#include		<unistd.h>
+#include		"../serveur.h"
 
 static void		init_complement(t_protocol *proto)
 {
@@ -18,7 +19,7 @@ static void		init_complement(t_protocol *proto)
   proto[5].func = &getlevelplayer;
   proto[6].cmd = strdup("pin ");
   proto[6].nb_arg = 1;
-  proto[6].func = &getinventaireplayer;
+  proto[6].func = &getinvplayer;
   proto[7].cmd = strdup("sgt\n");
   proto[7].nb_arg = 0;
   proto[7].func = &gettime;
@@ -63,7 +64,8 @@ void			loop_answer(char *cmd, t_client *cl, t_map **map)
       if (strncmp(pr[i].cmd, cmd, strlen(pr[i].cmd)) == 0)
 	{
 	  if (cmp_nb_arg(pr[i].nb_arg, cmd, strlen(pr[i].cmd)))
-	    pr[i].func(to_tab(cmd), cl->fd, map, reroll(cl));
+	    pr[i].func(to_tab(cmd, strlen(pr[i].cmd), pr[i].nb_arg),
+		       cl->fd, map, reroll(cl));
 	  else
 	    write(cl->fd, "sbp\n", 4);
 	  i = SIZE_PROTOCOL;

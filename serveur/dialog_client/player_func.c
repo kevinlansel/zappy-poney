@@ -5,11 +5,12 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Wed Jun 19 13:19:33 2013 florian dewulf
-** Last update Tue Jun 25 16:58:55 2013 florian dewulf
+** Last update Wed Jun 26 14:10:19 2013 florian dewulf
 */
 
 #include	<stdio.h>
 #include	<stdlib.h>
+#include	<string.h>
 #include	<unistd.h>
 #include	"../serveur.h"
 
@@ -24,6 +25,7 @@ void		getposplayer(char **arg, int fd, t_map **map, t_client *begin)
   int		size;
   char		*str;
 
+  (void)(map);
   id = atoi(arg[0]);
   cl = begin;
   while (cl && id != cl->id)
@@ -49,10 +51,11 @@ void		getlevelplayer(char **arg, int fd, t_map **map, t_client *begin)
   int		size;
   char		*str;
 
+  (void)(map);
   id = atoi(arg[0]);
   cl = begin;
   while (cl && id != cl->id)
-    cl = cl->next;
+    cl = cl->nt;
   if (cl == NULL)
     {
       write(fd, "sbp\n", 4);
@@ -65,17 +68,18 @@ void		getlevelplayer(char **arg, int fd, t_map **map, t_client *begin)
   free(str);
 }
 
-void		getinventaireplayer(char **arg, int fd, t_map **map, t_client *begin)
+void		getinvplayer(char **arg, int fd, t_map **map, t_client *begin)
 {
   int		id;
   t_client	*c;
   int		size;
   char		*str;
 
+  (void)(map);
   id = atoi(arg[0]);
   c = begin;
   while (c && id != c->id)
-    c = c->next;
+    c = c->nt;
   if (c == NULL)
     {
       write(fd, "sbp\n", 4);

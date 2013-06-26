@@ -5,50 +5,62 @@
 ## Login   <duez_a@epitech.net>
 ## 
 ## Started on  Mon Feb  4 12:48:16 2013 guillaume duez
-## Last update Tue Jun 25 15:27:46 2013 guillaume duez
+## Last update Wed Jun 26 13:47:01 2013 florian dewulf
 ##
 
 SERV	=	serveur
 
-SRC_SERV=	serveur.c		\
-		take_let.c		\
-		task_time_client.c	\
-		tools/str_to_word.c	\
-		main.c			\
-		cmd.c			\
-		client_utils.c		\
-		calculator.c		\
-		echo.c			\
-		expulse.c		\
-		msg.c			\
-		map_utils.c		\
-		tools/tools_socket.c	\
-		send_receiv.c		\
-		action.c		\
-		vision.c		\
-		task_utils.c		\
-		init_map.c		\
-		parse_conf.c		\
-		tools/xmalloc.c
+SRC_SERV=	action.c			\
+		cmd.c				\
+		client_utils.c			\
+		calculator.c			\
+		dialog_client/check_msg_srv.c	\
+		dialog_client/egg.c		\
+		dialog_client/level.c		\
+		dialog_client/map_func.c	\
+		dialog_client/player_action.c	\
+		dialog_client/player_func.c	\
+		dialog_client/player_ress.c	\
+		dialog_client/serv_func.c	\
+		dialog_client/utils_protocol.c	\
+		echo.c				\
+		expulse.c			\
+		init.c				\
+		init_map.c			\
+		main.c				\
+		map_utils.c			\
+		msg.c				\
+		parse_conf.c			\
+		send_receiv.c			\
+		serveur.c			\
+		take_let.c			\
+		task_time_client.c		\
+		task_utils.c			\
+		tools/str_to_word.c		\
+		tools/tools_socket.c		\
+		tools/xmalloc.c			\
+		vision.c
 
 OBJ_SERV=	$(SRC_SERV:.c=.o)
 
-CC      = gcc -g
+CC	=	 gcc -g
 
-CFLAGS  = -Wall -W -Wextra -lm
+CFLAGS	=	 -Wall -W -Wextra -lm
 
-RM      = rm -f
+RM	=	 rm -f
 
 
-all:	$(SERV)
+all:		$(SERV)
 
-$(SERV): $(OBJ_SERV)
-	$(CC) -o $(SERV) $(OBJ_SERV) -lm
+$(SERV):	$(OBJ_SERV)
+		$(CC) -o $(SERV) $(OBJ_SERV) -lm
 
-clean   :
-	$(RM) $(OBJ_CLI) $(OBJ_SERV)
+clean	:
+		$(RM) $(OBJ_CLI) $(OBJ_SERV)
 
 fclean	:
-	$(RM) $(OBJ_CLI) $(OBJ_SERV) $(CLI) $(SERV)
+		$(RM) $(OBJ_CLI) $(OBJ_SERV) $(CLI) $(SERV)
 
-re      : clean all
+re	:	clean all
+
+.PHONY	:	all clean fclean re

@@ -5,14 +5,14 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Tue Jun 18 11:50:21 2013 florian dewulf
-** Last update Tue Jun 18 14:42:26 2013 florian dewulf
+** Last update Wed Jun 26 14:17:03 2013 florian dewulf
 */
 
 #include	<stdlib.h>
 #include	<string.h>
-#include	"serveur.h"
+#include	"../serveur.h"
 
-int		cmp_nb_arg(const int nb_waiting, const char *cmd, const int offset)
+int		cmp_nb_arg(int nb_waiting, char *cmd, int offset)
 {
   int		i;
   int		nb;
@@ -35,13 +35,13 @@ int		cmp_nb_arg(const int nb_waiting, const char *cmd, const int offset)
 	  i++;
     }
   i -= strlen(cmd - 2);
-  while (i > 0 && cmd[i] == ' ' || cmd[i] == '\t')
+  while (i > 0 && (cmd[i] == ' ' || cmd[i] == '\t'))
     i--;
-  nb = (i == strlen(cmd) - 2) ? nb : (nb - 1);
+  nb = (i == (int)(strlen(cmd) - 2)) ? nb : (nb - 1);
   return ((nb == nb_waiting) ? 1 : 0);
 }
 
-char		**to_tab(const char *cmd, int offset, const int size)
+char		**to_tab(const char *cmd, int offset, int size)
 {
   char		**tab;
   char		*str;

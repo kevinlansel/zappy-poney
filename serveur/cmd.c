@@ -5,9 +5,11 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Tue May 28 16:48:58 2013 guillaume duez
-** Last update Mon Jun 24 15:53:01 2013 guillaume duez
+** Last update Wed Jun 26 10:42:50 2013 florian dewulf
 */
 
+#include	<stdio.h>
+#include	<string.h>
 #include	"serveur.h"
 
 void		avance(t_msg *msg, t_client *client, t_map **map)
