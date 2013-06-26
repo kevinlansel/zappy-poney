@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Wed Jun 26 14:11:40 2013 florian dewulf
+** Last update Wed Jun 26 14:21:56 2013 florian dewulf
 */
 
 #ifndef			__SERVEUR_H__
@@ -150,7 +150,7 @@ void			begin_incant(int, t_client *, int, int);
 void			broadcast(t_msg *, t_client *, t_map **);
 
 int			calcul_K(t_client *, t_client *);
-int			cmp_nb_arg(const int, const char *, const int);
+int			cmp_nb_arg(int, char *, int);
 t_client		*create_client(int, t_client *, t_opt *, t_map **);
 void			create_link_x(t_map **map);
 void			create_link_y(t_map **map);
@@ -211,7 +211,7 @@ void			snd_msg_broadcast(char *, int, int);
 void			sub_food(t_msg *, t_client *, const char *);
 
 void			take_ress(int, int, t_client *);
-char			**to_tab(const char *, int, const int);
+char			**to_tab(char *, int, int);
 
 int			usage();
 

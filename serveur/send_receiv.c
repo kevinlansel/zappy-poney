@@ -5,9 +5,13 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:15:13 2013 guillaume duez
-** Last update Mon Jun 24 16:54:29 2013 guillaume duez
+** Last update Wed Jun 26 14:24:01 2013 florian dewulf
 */
 
+#include	<stdio.h>
+#include	<stdlib.h>
+#include	<string.h>
+#include	<unistd.h>
 #include	"serveur.h"
 
 t_msg		*remove_msg(t_msg *msg, t_client *client)

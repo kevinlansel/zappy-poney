@@ -5,9 +5,11 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun  3 18:42:55 2013 guillaume duez
-** Last update Mon Jun 24 15:51:45 2013 guillaume duez
+** Last update Wed Jun 26 14:22:21 2013 florian dewulf
 */
 
+#include	<stdio.h>
+#include	<string.h>
 #include	"serveur.h"
 
 static char	*get_object(char *str, int i, int nb)
