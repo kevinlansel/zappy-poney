@@ -12,6 +12,9 @@ class   Net:
         self._sock = 0
         self._host = "localhost"
 
+tailleX = ""
+tailleY = ""
+
 def     recup_sizeMap(net):
     net._sock.send("msz\n")
     data = net._sock.recv(1024)
@@ -26,7 +29,11 @@ def     recup_sizeMap(net):
         while i < len(data):
             coordY += data[i]
             i += 1
-        w = Windows(coordX, coordY) 
+        w = Windows(coordX, coordY)
+        global tailleX
+        global tailleY
+        tailleX = coordX
+        tailleY = coordY
         # crée l'instance de windows avec la taille de la map et retourne window
     return w
 
@@ -52,7 +59,7 @@ def     recup_mapContent(net):
     # faire un compteur avec le nombre de cases donc X * Y
     # et recv tant qu'on est inférieur à ce nombre
     net._sock.send("mct\n")
-    nbCase = #nombre de cases
+    nbCase = int(tailleX) * int(tailleY)
     j = 0
     s1 = []
     while j < nbCase:
