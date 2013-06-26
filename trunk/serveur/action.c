@@ -5,9 +5,11 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:08:13 2013 guillaume duez
-** Last update Tue Jun 25 15:23:42 2013 guillaume duez
+** Last update Wed Jun 26 10:42:30 2013 florian dewulf
 */
 
+#include	<stdio.h>
+#include	<string.h>
 #include	"serveur.h"
 
 static char	str[NB_FUNC][LEN] = { "avance", "droite", "gauche", "voir",

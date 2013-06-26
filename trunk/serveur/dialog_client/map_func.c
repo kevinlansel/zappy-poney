@@ -5,13 +5,13 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Tue Jun 18 14:50:20 2013 florian dewulf
-** Last update Wed Jun 19 13:04:25 2013 florian dewulf
+** Last update Wed Jun 26 10:59:06 2013 florian dewulf
 */
 
 #include	<stdio.h>
 #include	<string.h>
 #include	<unistd.h>
-#include	"serveur.h"
+#include	"../serveur.h"
 
 void		getmapsize(char **arg, int fd, t_map **map, t_client *cl)
 {
@@ -34,6 +34,7 @@ void		getcase(char **arg, int fd, t_map **m, t_client *cl)
   int		x;
   int		y;
 
+  (void)(cl);
   x = atoi(arg[0]);
   y = atoi(arg[1]);
   size = snprintf(NULL, 0, "bct %d %d %d %d %d %d %d %d %d\n",
@@ -45,10 +46,11 @@ void		getcase(char **arg, int fd, t_map **m, t_client *cl)
 		  x, y, m[y][x].ress[0], m[y][x].ress[1], m[y][x].ress[2],
 		  m[y][x].ress[3], m[y][x].ress[4], m[y][x].ress[5],
 		  m[y][x].ress[6]);
+  write(fd, str, strlen(str));
   free(str);
 }
 
-void		getcasemap(char **arg, int fd, t_map **m, t_client cl)
+void		getcasemap(char **arg, int fd, t_map **m, t_client *cl)
 {
   char		*str;
   int		size;

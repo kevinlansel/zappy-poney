@@ -5,12 +5,11 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:19:39 2013 guillaume duez
-** Last update Mon Jun 24 15:31:22 2013 guillaume duez
+** Last update Wed Jun 26 13:09:21 2013 florian dewulf
 */
 
 #include	"serveur.h"
 
-//premet de supprimer un cllient de la liste
 t_client        *end_client(t_client *client)
 {
   if (client && client->prev == NULL && client->end != 1)
@@ -29,7 +28,6 @@ t_client        *end_client(t_client *client)
   return client;
 }
 
-// reset la liste chaine de client
 t_client        *client_reset(t_client *client)
 {
   while (client && client->prev != NULL)
@@ -37,7 +35,6 @@ t_client        *client_reset(t_client *client)
   return client;
 }
 
-//initialise l'inventaire pour le client
 void	new_inventory(t_client *client)
 {
   client->ress[NOURRITURE] = 1260;
@@ -68,7 +65,7 @@ t_client        *create_client(int fd, t_client *client, t_opt *opt, t_map **map
   if (client == NULL)
     {
       client = new;
-      client->id = (void *)client;
+      client->id = give_id();
       client->end = 1;
       client->nt = NULL;
     }
@@ -78,7 +75,7 @@ t_client        *create_client(int fd, t_client *client, t_opt *opt, t_map **map
       new->fd = fd;
       client->prev = new;
       new->end = 0;
-      new->id = (void *)new;
+      new->id = give_id();
       new->nt = client;
       new_inventory(new);
       new->level = 1;
@@ -86,6 +83,5 @@ t_client        *create_client(int fd, t_client *client, t_opt *opt, t_map **map
       new_map(new, opt, map);
       new->time = opt->time_world;
     }
-  new->prev = NULL;
-  return (new);
+  return ((new->prev = NULL) ? new : new);
 }
