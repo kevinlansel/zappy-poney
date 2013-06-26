@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Tue Jun 18 11:50:21 2013 florian dewulf
-** Last update Wed Jun 26 14:27:49 2013 florian dewulf
+** Last update Wed Jun 26 16:28:57 2013 florian dewulf
 */
 
 #include	<stdlib.h>
@@ -20,6 +20,7 @@ int		cmp_nb_arg(int nb_waiting, char *cmd, int offset)
 
   i = -1;
   nb = 1;
+  printf("cmd = %s | %d | %d\n", cmd, nb_waiting, offset);
   tmp = cmd + offset;
   while (tmp && (tmp[++i] == ' ' || tmp[i] == '\t' || tmp[i] == '\n'));
   while (tmp && tmp[i])
@@ -34,9 +35,10 @@ int		cmp_nb_arg(int nb_waiting, char *cmd, int offset)
 	while (tmp[i] && tmp[i] != ' ' && tmp[i] != '\t')
 	  i++;
     }
-  i -= strlen(tmp - 2);
+  i -= (strlen(tmp) - 1);
   while (i > 0 && (tmp[i] == ' ' || tmp[i] == '\t'))
     i--;
+  printf("%d\n", i);
   nb = (i == (int)(strlen(tmp) - 2)) ? nb : (nb - 1);
   return ((nb == nb_waiting) ? 1 : 0);
 }

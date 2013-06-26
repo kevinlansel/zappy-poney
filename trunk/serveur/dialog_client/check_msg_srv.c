@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Tue Jun 18 11:00:16 2013 florian dewulf
-** Last update Wed Jun 26 13:47:50 2013 florian dewulf
+** Last update Wed Jun 26 15:58:04 2013 florian dewulf
 */
 
 #include		<string.h>
@@ -33,7 +33,8 @@ static t_protocol	*init_proto()
   t_protocol		*proto;
 
   proto = xmalloc(SIZE_PROTOCOL * sizeof(t_protocol));
-  proto[0].cmd = strdup("msz\n");
+  proto[0].cmd = strdup("msz");
+  //proto[0].cmd = strdup("msz\n");
   proto[0].nb_arg = 0;
   proto[0].func = &getmapsize;
   proto[1].cmd = strdup("bct ");
