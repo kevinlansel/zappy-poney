@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import select
 from socket import *
 import sfml as sf
 from net import *
@@ -10,10 +11,13 @@ from map import *
 from evoly import *
 from perso import *
 
+time = 0
+
 def     initConnexion(net):
     try:
         net._sock = socket(AF_INET, SOCK_STREAM)
-        net._sock.connect((net._host, net._port))
+        ip_addr = gethostbyname(net._host)
+        net._sock.connect((ip_addr, net._port))
         chaine = "GRAPHIC\n"
         net._sock.send(chaine)
     except socket:
@@ -35,6 +39,15 @@ def	check_args(net):
 	print "USAGE: ./Client [-h hote] [-n equipe] [-p port]"
 	exit()
 
+def reception(net): 
+    data = ""
+    while (data == ""):
+        inputready, outputready,exceptrdy = select.select([0, net._sock], [],[])
+        for i in inputready:
+            if i == net._sock:
+                data += net._sock.recv(4096)
+    return data
+
 def	main():
     try:
         net = Net()
@@ -44,29 +57,27 @@ def	main():
 	print "Hote: " + net._host
 	print "Port: " + str(net._port)
         # recuperation bienvenue
-        data = net._sock.recv(1024)
-        if data == "BIENVENUE":
-            print "Bienvenue"
-        else:
-            print "Problème lors de l'initialisation du client"
-            net._sock.close()
-            exit()
         # demande de l'unite de temps au serveur
-        askForTimeUnit(net)
+       # askForTimeUnit(net)
         #recuperation taille de la map
-        w = recup_sizeMap(net)
-        # recuperation de toutes les ressources contenues dans chaque case aupres du serveur
-        recup_mapContent(net)
-                
+#        data = net._sock.recv(4096)
+ #       data += net._sock.recv(4096)
+        data = reception(net)
+        data += reception(net)
+#        print data
+        req = data.split("\n")
+        if req[0] == "BIENVENUE":
+            print "Bienvenue"
+        net.recup_sizeMap(req[1])
+        global time
+        time = int(net.askForTimeUnit(req[2]))
+        print str(time)
+        #w = Windows(net._tailleX, net._tailleY)
+        s = net.recup_mapContent(3, (int(net._tailleX) * int(net._tailleY)) + 3, req)
+        #print s
+#        recup_mapContent(net)
+        
         net._sock.close()
     except IOError: exit(1)
 
 main()
-
-
-#recuperation du nombre de client qui peuvent encore se connecter
-        #si le nombre est superieur ou egal a 1 on se connecte sinon on close le socket et on exit
-        #data = net._sock.recv(1024)
-        #if int(data) < 1:
-        #    print "Il n'y a plus de connexion de disponible"
-        #    exit()
