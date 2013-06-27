@@ -1,4 +1,4 @@
-#include	"Network.hh"
+#include	"Network_display.hh"
 
 int		main()
 {
