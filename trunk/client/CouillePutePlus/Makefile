@@ -5,7 +5,7 @@
 ## Login   <wojcia_m@epitech.net>
 ## 
 ## Started on  Thu Jun 27 17:33:04 2013 Maxime Wojciak
-## Last update Thu Jun 27 18:17:36 2013 Maxime Wojciak
+## Last update Thu Jun 27 19:10:15 2013 Maxime Wojciak
 ##
 
 NAME=		client
@@ -17,12 +17,10 @@ OBJ=		$(SRC:.cpp=.o)
 
 CC=		g++
 
-SFML=		-lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
-
 #CXXFLAGS=	-W -Wall -Wextra
 
 $(NAME):	$(OBJ)
-		$(CC) -o $(NAME) $(OBJ) $(SFML)
+		$(CC) -o $(NAME) $(OBJ) -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
 
 all:		$(NAME)
 
