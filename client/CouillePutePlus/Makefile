@@ -5,12 +5,13 @@
 ## Login   <wojcia_m@epitech.net>
 ## 
 ## Started on  Thu Jun 27 17:33:04 2013 Maxime Wojciak
-## Last update Thu Jun 27 17:54:19 2013 Maxime Wojciak
+## Last update Thu Jun 27 18:17:36 2013 Maxime Wojciak
 ##
 
 NAME=		client
 
-SRC=		main.cpp
+SRC=		Windows.cpp	\
+		main.cpp
 
 OBJ=		$(SRC:.cpp=.o)
 
