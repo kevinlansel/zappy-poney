@@ -37,22 +37,7 @@ std::string		gnl::get_next_line()
   return tmp;
 }
 
-int	main()
+std::string	gnl::getbuffer() const
 {
-  int	fd;
-  std::string	tmp = "0";
-  int		i = 0;
-
-  fd = open("get_next_line.cpp", O_RDONLY);
-
-  gnl	test(fd);
-
-  while (tmp != "")
-    {
-      tmp = test.get_next_line();
-      std::cout << "string n°" << i << " : " << tmp << std::endl;
-      i++;
-    }
-  close(fd);
-  return (0);
+  return (this->_buffer);
 }

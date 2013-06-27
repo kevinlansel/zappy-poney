@@ -25,6 +25,7 @@ public:
   gnl(int);
   virtual	~gnl();
   std::string	get_next_line();
+  std::string	getbuffer() const;
 
 private:
   int		_fd;
