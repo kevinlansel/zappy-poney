@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:00:59 2013 Maxime Wojciak
-// Last update Thu Jun 27 18:12:55 2013 Maxime Wojciak
+// Last update Thu Jun 27 19:04:02 2013 Maxime Wojciak
 //
 
 #ifndef		WINDOWS__
@@ -13,13 +13,15 @@
 
 #include	<SFML/Graphics.hpp>
 
+using	namespace sf;
+
 class Windows {
 public:
   Windows();
   ~Windows();
   void	CreateWindows();
 private:
-  /*Some private functions*/
+  Event event;
 };
 
 #endif		/* WINDOWS__ */
