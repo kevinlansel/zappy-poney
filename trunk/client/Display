@@ -14,7 +14,7 @@ def     initConnexion(net):
     try:
         net._sock = socket(AF_INET, SOCK_STREAM)
         net._sock.connect((net._host, net._port))
-        chaine = "Bienvenue\n"
+        chaine = "DISPLAY\n"
         net._sock.send(chaine)
     except socket:
         print "Pas de connexion au serveur"
@@ -41,14 +41,25 @@ def	main():
         net = Net()
 	check_args(net)
         initConnexion(net)
-        tailleX = sys.argv[1]
-        tailleY = sys.argv[2]
         print "Nom d'equipe: " + str(net._team)
 	print "Hote: " + net._host
 	print "Port: " + str(net._port)
-        w = Windows(tailleX, tailleY)
-        w.CheckClose()
-        #askForTimeUnit(net)
+        # recuperation bienvenue
+        data = net._sock.recv(1024)
+        if data == "Bienvenue":
+            print "Bienvenue"
+        else:
+            print "Problème lors de l'initialisation du client"
+            net._sock.close()
+            exit()
+        #recuperation du nombre de client qui peuvent encore se connecter
+        #si le nombre est superieur ou egal a 1 on se connecte sinon on close le socket et on exit
+        data = net._sock.recv(1024)
+        if int(data) < 1:
+            print "Il n'y a plus de connexion de disponible"
+            exit()
+        #recuperation taille de la map
+        w = recup_sizeMap(net)
         net._sock.close()
     except IOError: exit(1)
 
