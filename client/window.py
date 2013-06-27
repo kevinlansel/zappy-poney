@@ -13,7 +13,6 @@ from phyllali import *
 from pyroli import *
 from voltaly import *
 from aqualy import *
-from oeuf import *
 
 class   Windows:
     def         __init__(self, tailleX, tailleY):
