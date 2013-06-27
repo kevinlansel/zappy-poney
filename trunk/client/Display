@@ -14,7 +14,7 @@ def     initConnexion(net):
     try:
         net._sock = socket(AF_INET, SOCK_STREAM)
         net._sock.connect((net._host, net._port))
-        chaine = "DISPLAY\n"
+        chaine = "GRAPHIC\n"
         net._sock.send(chaine)
     except socket:
         print "Pas de connexion au serveur"
