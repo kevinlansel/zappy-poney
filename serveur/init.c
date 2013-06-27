@@ -5,20 +5,12 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Wed Jun 26 13:00:58 2013 florian dewulf
-** Last update Wed Jun 26 14:13:07 2013 florian dewulf
+** Last update Thu Jun 27 18:14:08 2013 florian dewulf
 */
 
 #include	<stdio.h>
 #include	<string.h>
 #include	"serveur.h"
-
-int		usage()
-{
-  printf("-p numero de port\n-x largeur du monde\n-y hauteur du monde\n");
-  printf("-n nom (l'equipe_1 equipe_2 ...)\n-c nombre de client par equipe\n");
-  printf("-t delai temporel\n");
-  return (0);
-}
 
 static int	check_val(int val)
 {
@@ -56,8 +48,8 @@ static t_opt	*check(int *val, char **name_team)
 
 static int	check_tab(int i, int ac, char **av)
 {
-  static char		str[OPT_INT][3] = { "-p", "-x", "-y", "-c", "-t"};
-  int			j;
+  static char	str[OPT_INT][3] = { "-p", "-x", "-y", "-c", "-t"};
+  int		j;
 
   j = 0;
   while (j < OPT_INT)
@@ -69,24 +61,51 @@ static int	check_tab(int i, int ac, char **av)
   return (-1);
 }
 
+static char	**manage_team(char **team, char **av, int *off)
+{
+  int		count;
+  int		ac;
+  char		**tab;
+
+  ac = -1;
+  while (av[++ac]);
+  count = 1;
+  tab = team;
+  while (*off + count < ac && check_tab(*off + count, ac, av) == -1)
+    {
+      int	nb;
+
+      nb = 0;
+      while (tab && tab[nb])
+	nb++;
+      if ((tab = realloc(tab, nb + 2)) != NULL)
+	{
+	  tab[nb] = strdup(av[*off + count]);
+	  tab[nb + 1] = NULL;
+	}
+      count++;
+    }
+  *off = *off + count - 2;
+  return (tab);
+}
+
 void		parse_args(int ac, char **av)
 {
-  int                   *val;
-  int			i;
-  char			**name_team;
-  int			nb_team;
-  int			ret;
+  int		*val;
+  int		i;
+  char		**name_team;
+  int		ret;
 
   val = xmalloc(sizeof(int) * OPT_INT);
   bzero(val, OPT_INT * sizeof(int));
-  nb_team = 0;
+  name_team = NULL;
   i = 1;
   while (i < ac)
     {
       if ((ret = check_tab(i, ac, av)) != -1)
 	val[ret] = atoi(av[i + 1]);
-      else if (strcmp(av[i], "-n") == 0 &&  i + 1 < ac)
-	name_team[nb_team++] = av[i + 1];
+      else if (strcmp(av[i], "-n") == 0)
+	name_team = manage_team(name_team, av, &i);
       else
 	printf("unknow parameter :%s\n", av[i]);
       i += 2;

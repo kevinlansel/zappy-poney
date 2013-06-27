@@ -5,9 +5,10 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Tue May 28 17:55:49 2013 guillaume duez
-** Last update Wed Jun 26 13:08:40 2013 florian dewulf
+** Last update Thu Jun 27 18:10:53 2013 florian dewulf
 */
 
+#include	<stdio.h>
 #include	<time.h>
 #include	<stdlib.h>
 #include	"serveur.h"
@@ -25,7 +26,9 @@ int             main(int ac, char **av)
   srand(time(NULL));
   if (ac < 2)
     {
-      usage();
+      printf("-p numero de port\n-x largeur du monde\n-y hauteur du monde\n");
+      printf("-n nom (team_1 team_2 ...)\n-c nombre de client par equipe\n");
+      printf("-t delai temporel\n");
       return (1);
     }
   parse_args(ac, av);

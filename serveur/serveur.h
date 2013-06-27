@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Wed Jun 26 14:21:56 2013 florian dewulf
+** Last update Thu Jun 27 15:16:20 2013 florian dewulf
 */
 
 #ifndef			__SERVEUR_H__
@@ -212,8 +212,6 @@ void			sub_food(t_msg *, t_client *, const char *);
 
 void			take_ress(int, int, t_client *);
 char			**to_tab(char *, int, int);
-
-int			usage();
 
 void			voir(t_msg *mess, t_client *client, t_map **map);
 
