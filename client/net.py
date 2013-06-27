@@ -134,7 +134,7 @@ def     askForTimeUnit(net):
     data = net._sock.recv(1024)
     i = 4
     chaine = []
-    while i <= len(data):
+    while i < len(data):
         chaine.append(data[i])
         i += 1
     return chaine

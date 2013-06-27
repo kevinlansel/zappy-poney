@@ -35,8 +35,8 @@ class           Map:
                 rectangle.outline_color = sf.Color.RED
                 pos = sf.Vector2(startX, startY)
                 rectangle.move(pos)
-                save_map1.append(i)
                 save_map1.append(pos)
+                save_map1.append(rectangle)
                 tab.append(rectangle)
                 startX += self._x
                 i += 1

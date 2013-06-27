@@ -10,7 +10,7 @@ class           Aquali(Personnage):
     def         __str__(self):
         return "{0} {1}".format(self.name, self.level)
 
-    def         loadAquali(self):
+    def         loadAquali(self, window):
         try:
             self.Aquali = sf.Sprite(self.aquali)
             return self.aquali
