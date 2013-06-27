@@ -45,16 +45,16 @@ def	main():
 	print "Port: " + str(net._port)
         # recuperation bienvenue
         data = net._sock.recv(1024)
-        if data == "Bienvenue":
+        if data == "BIENVENUE":
             print "Bienvenue"
         else:
             print "Problème lors de l'initialisation du client"
             net._sock.close()
             exit()
-        #recuperation taille de la map
-        w = recup_sizeMap(net)
         # demande de l'unite de temps au serveur
         askForTimeUnit(net)
+        #recuperation taille de la map
+        w = recup_sizeMap(net)
         # recuperation de toutes les ressources contenues dans chaque case aupres du serveur
         recup_mapContent(net)
                 
