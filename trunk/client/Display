@@ -51,15 +51,22 @@ def	main():
             print "Problème lors de l'initialisation du client"
             net._sock.close()
             exit()
-        #recuperation du nombre de client qui peuvent encore se connecter
-        #si le nombre est superieur ou egal a 1 on se connecte sinon on close le socket et on exit
-        data = net._sock.recv(1024)
-        if int(data) < 1:
-            print "Il n'y a plus de connexion de disponible"
-            exit()
         #recuperation taille de la map
         w = recup_sizeMap(net)
+        # demande de l'unite de temps au serveur
+        askForTimeUnit(net)
+        # recuperation de toutes les ressources contenues dans chaque case aupres du serveur
+        recup_mapContent(net)
+                
         net._sock.close()
     except IOError: exit(1)
 
 main()
+
+
+#recuperation du nombre de client qui peuvent encore se connecter
+        #si le nombre est superieur ou egal a 1 on se connecte sinon on close le socket et on exit
+        #data = net._sock.recv(1024)
+        #if int(data) < 1:
+        #    print "Il n'y a plus de connexion de disponible"
+        #    exit()
