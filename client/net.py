@@ -59,6 +59,8 @@ def     recup_mapContent(net):
     # faire un compteur avec le nombre de cases donc X * Y
     # et recv tant qu'on est inférieur à ce nombre
     net._sock.send("mct\n")
+    global tailleX
+    global tailleY
     nbCase = int(tailleX) * int(tailleY)
     j = 0
     s1 = []
