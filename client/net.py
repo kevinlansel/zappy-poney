@@ -11,35 +11,57 @@ class   Net:
         self._kill = 0
         self._sock = 0
         self._host = "localhost"
+        self._tailleX = ""
+        self._tailleY = ""
 
-tailleX = ""
-tailleY = ""
-
-def     recup_sizeMap(net):
-    net._sock.send("msz\n")
-    data = net._sock.recv(1024)
-    i = 4
-    coordX = ""
-    coordY = ""
-    while i < len(data):
-        while data[i] != ' ':
-            coordX += data[i]
-            i += 1
-        i += 1
+    def     recup_sizeMap(self, data):
+        i = 4
+        coordX = ""
+        coordY = ""
         while i < len(data):
-            coordY += data[i]
+            while data[i] != ' ':
+                coordX += data[i]
+                i += 1
             i += 1
-        w = Windows(coordX, coordY)
-        global tailleX
-        global tailleY
-        tailleX = coordX
-        tailleY = coordY
-        # crée l'instance de windows avec la taille de la map et retourne window
-    return w
+            while i < len(data):
+                coordY += data[i]
+                i += 1
+        self._tailleX = coordX
+        self._tailleY = coordY
+        print "X: " + coordX + " Y: " + coordY
+
+    def     recup_mapContent(self, idmin, idmax, req):
+        j = idmin
+        s1 = []
+        while j < idmax:
+            data = req[j]
+            i = 4
+            ress = ""
+            s2 = []
+            while i < len(data):
+                if data[i] == ' ':
+                    s2.append(ress)
+                    ress = ""
+                else:
+                    ress += data[i]
+                i += 1
+            s1.append(s2)
+            j += 1
+        return s1
+
+    def     askForTimeUnit(self, req):
+        i = 4
+        chaine = ""
+        while i < len(req):
+            chaine += req[i]
+            i += 1
+        return chaine
+
+
 
 def     recup_caseContent(net, x, y):
-    chaine = "bct " + str(x) + " " + str(y) + "\n"
-    net._sock.send(chaine)
+    #chaine = "bct " + str(x) + " " + str(y) + "\n"
+    #net._sock.send(chaine)
     data = net._sock.recv(1024)
     i = 4
     ress = ""
@@ -55,31 +77,6 @@ def     recup_caseContent(net, x, y):
     return s2
 
 
-def     recup_mapContent(net):
-    # faire un compteur avec le nombre de cases donc X * Y
-    # et recv tant qu'on est inférieur à ce nombre
-    net._sock.send("mct\n")
-    global tailleX
-    global tailleY
-    nbCase = int(tailleX) * int(tailleY)
-    j = 0
-    s1 = []
-    while j < nbCase:
-        data = net._sock.recv(1024)
-        i = 4
-        ress = ""
-        s2 = []
-        while i < len(data):
-            if data[i] == ' ' or i+1 == len(data):
-                s2.append(ress)
-                ress = ""
-            else:
-                ress += data[i]
-                i += 1
-        s1.append(s2)
-        j += 1
-    return s1
-
 def     recup_teamName(net):
     # faire un compteur avec le nombre d'equipes
     # et recv tant qu'on est inférieur à ce nombre
@@ -88,7 +85,7 @@ def     recup_teamName(net):
     j = 0
     nbligne = 0
     while j < nbligne:
-        data = raw_input()
+        data = net._sock.recv(1024)
         i = 4
         s2 = ""
         while i < len(data):
@@ -127,16 +124,6 @@ def     recup_playerInventaire(net, id_player):
     i = 7
     chaine = []
     while i <= len(data):
-        chaine.append(data[i])
-        i += 1
-    return chaine
-
-def     askForTimeUnit(net):
-    net._sock.send("sgt\n")
-    data = net._sock.recv(1024)
-    i = 4
-    chaine = []
-    while i < len(data):
         chaine.append(data[i])
         i += 1
     return chaine

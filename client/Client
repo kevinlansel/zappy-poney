@@ -49,9 +49,10 @@ def	launchIA(s):
 def	main():
     try:
 	s = check_args()
-	a = threading.Thread(None, launchDisplay, None, (s,), {})
+	launchDisplay(s)
+	#a = threading.Thread(None, launchDisplay, None, (s,), {})
 	#b = threading.Thread(None, launchIA, None, (s,), {})
-	a.start()
+	#a.start()
 	#b.start()
 	#a.Thread.__stop__()
 	#b.Thread.__stop__()
