@@ -1,9 +1,11 @@
 #include	<unistd.h>
 #include	<string>
+#include	<iostream>
+#include	<cstdlib>
 
-void		launchDisplay(char *s)
+void		launchDisplay(const std::string &s)
 {
-  execlp("./display", "./display", s);
+  execlp("./display", "display", s.c_str(), NULL);
 }
 
 void		launchIA(char *s)
@@ -21,8 +23,9 @@ int		main(int ac, char **av)
       while (i < ac)
 	{
 	  s += (std::string)av[i] + " ";
+	  i++;
 	} 
-      launchDisplay(s.c_str());
+      launchDisplay(s);
     }
   else
     {

@@ -10,10 +10,9 @@ SRC_CLIENT=	main.cpp
 
 OBJ_DISP=	$(SRC_DISP:.cpp=.o)
 
-OBJ_DISP=	$(SRC_CLIENT:.cpp=.o)
+OBJ_CLIENT=	$(SRC_CLIENT:.cpp=.o)
 
-all:		$(OBJ_DISP)
-		$(OBJ_CLIENT)
+all:		$(OBJ_DISP) $(OBJ_CLIENT)
 		g++ -o $(NAME_DISP) $(OBJ_DISP)
 		g++ -o $(NAME_CLIENT) $(OBJ_CLIENT)
 
