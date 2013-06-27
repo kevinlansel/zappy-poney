@@ -1,0 +1,8 @@
+Bien le bonjour
+
+Pour la sfml en C++
+Merci de télécharger la lib à cette endroit :
+      sudo apt-get install libsfml-dev
+
+Plusieurs modules qui sont normalement installé sur vos machines mais bon ...
+	  sudo apt-get install libglu1-mesa-dev
