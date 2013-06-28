@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jun 28 17:41:16 2013 gery baudry
-// Last update Fri Jun 28 17:48:56 2013 gery baudry
+// Last update Fri Jun 28 17:52:36 2013 gery baudry
 //
 
 #include	"Font.hpp"
