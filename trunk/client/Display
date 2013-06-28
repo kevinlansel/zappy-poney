@@ -18,11 +18,10 @@ def     initConnexion(net):
         net._sock = socket(AF_INET, SOCK_STREAM)
         ip_addr = gethostbyname(net._host)
         net._sock.connect((ip_addr, net._port))
-        chaine = "GRAPHIC\n"
-        net._sock.send(chaine)
     except socket:
         print "Pas de connexion au serveur"
         exit()
+    return net
 
 def	check_args(net):
     if (len(sys.argv) == 5 or len(sys.argv) == 7):
@@ -38,6 +37,7 @@ def	check_args(net):
     else:
 	print "USAGE: ./Client [-h hote] [-n equipe] [-p port]"
 	exit()
+    return net
 
 def reception(net): 
     data = ""
@@ -51,12 +51,13 @@ def reception(net):
 def	main():
     try:
         net = Net()
-	check_args(net)
-        initConnexion(net)
+	net = check_args(net)
+        net = initConnexion(net)
         print "Nom d'equipe: " + str(net._team)
 	print "Hote: " + net._host
 	print "Port: " + str(net._port)
         # recuperation bienvenue
+        net._sock.send("GRAPHIC\n")
         # demande de l'unite de temps au serveur
        # askForTimeUnit(net)
         #recuperation taille de la map
