@@ -5,12 +5,14 @@
 ## Login   <wojcia_m@epitech.net>
 ## 
 ## Started on  Thu Jun 27 17:33:04 2013 Maxime Wojciak
-## Last update Thu Jun 27 19:10:15 2013 Maxime Wojciak
+## Last update Fri Jun 28 18:15:50 2013 Maxime Wojciak
 ##
 
 NAME=		client
 
 SRC=		Windows.cpp	\
+		Texture.cpp	\
+		Audio.cpp	\
 		main.cpp
 
 OBJ=		$(SRC:.cpp=.o)
@@ -20,7 +22,7 @@ CC=		g++
 #CXXFLAGS=	-W -Wall -Wextra
 
 $(NAME):	$(OBJ)
-		$(CC) -o $(NAME) $(OBJ) -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
+		$(CC) -o $(NAME) $(OBJ) -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system -ggdb3
 
 all:		$(NAME)
 
