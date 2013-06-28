@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 17:45:52 2013 Maxime Wojciak
-// Last update Fri Jun 28 17:48:53 2013 gery baudry
+// Last update Fri Jun 28 18:05:55 2013 gery baudry
 //
 
 #include	<SFML/Audio.hpp>

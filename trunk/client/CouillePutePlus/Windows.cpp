@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:01:06 2013 Maxime Wojciak
-// Last update Thu Jun 27 19:20:19 2013 Maxime Wojciak
+// Last update Fri Jun 28 18:01:21 2013 gery baudry
 //
 
 #include	<iostream>
@@ -14,7 +14,7 @@
 #include	"Windows.hpp"
 
 Windows::Windows() {
-
+  sf::RenderWindow	window(sf::VideoMode(800, 600), "SFML window");
 }
 
 Windows::~Windows() {
