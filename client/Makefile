@@ -14,11 +14,10 @@ OBJ_CLIENT=	$(SRC_CLIENT:.cpp=.o)
 
 all:		$(OBJ_DISP) $(OBJ_CLIENT)
 		g++ -o $(NAME_DISP) $(OBJ_DISP)
-		g++ -o $(NAME_CLIENT) $(OBJ_CLIENT)
+		g++ -o $(NAME_CLIENT) $(OBJ_CLIENT) -lpthread
 
 clean:
-		rm -f $(OBJ_DISP)
-		rm -f $(OBJ_CLIENT)
+		rm -f $(OBJ_DISP) $(OBJ_CLIENT)
 
 fclean:		clean
 		rm -f $(NAME_DISP)

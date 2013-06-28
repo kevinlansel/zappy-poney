@@ -2,21 +2,30 @@
 #include	<string>
 #include	<iostream>
 #include	<cstdlib>
+#include	<cstdio>
+#include	<pthread.h>
 
-void		launchDisplay(const std::string &s)
+void		*launchDisplay(void *str)
 {
-  execlp("./display", "display", s.c_str(), NULL);
+  char		*s = (char *)str;
+  //execlp("./display", "display", s, NULL);
+  std::cout << (std::string)s << "DISPLAY" << std::endl;
 }
 
-void		launchIA(char *s)
+void		*launchIA(void *str)
 {
-
+  char		*s = (char *)str;
+  //execlp("./display", "display", s, NULL);
+  std::cout << (std::string)s << "IA" << std::endl;
 }
 
 int		main(int ac, char **av)
 {
   std::string	s;
+  char		*str;
   int		i = 1;
+  pthread_t	th1, th2;
+  void		*ret;
 
   if (ac == 5 || ac == 7)
     {
@@ -24,8 +33,19 @@ int		main(int ac, char **av)
 	{
 	  s += (std::string)av[i] + " ";
 	  i++;
-	} 
-      launchDisplay(s);
+	}
+      str = (char *)s.c_str();
+      // lancement des threads
+      if (pthread_create(&th1, NULL, launchDisplay, str) < 0) {
+	std::cerr << "Erreur lors de la création du thread Display" << std::endl;
+	exit(1);
+      }
+      if (pthread_create(&th2, NULL, launchIA, str) < 0) {
+	std::cerr << "Erreur lors de la création du thread IA" << std::endl;
+	exit(1);
+      }
+      (void)pthread_join(th1, &ret);
+      (void)pthread_join(th2, &ret);
     }
   else
     {
