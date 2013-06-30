@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:01:06 2013 Maxime Wojciak
-// Last update Fri Jun 28 18:15:16 2013 Maxime Wojciak
+// Last update Sun Jun 30 16:15:22 2013 Maxime Wojciak
 //
 
 #include	<iostream>
@@ -35,9 +35,12 @@ int	Windows::CreateWindows() {
     {
       while (this->window.pollEvent(this->event))
         {
-	  if (this->event.type == sf::Event::Closed)
-	    this->window.close();
-        }
+	  if ((this->event.type == sf::Event::Closed) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)))
+	    {
+	      std::cout << "Client exiting. Bye !" << std::endl;
+	      this->window.close();
+	    }
+	}
       this->window.clear();
       this->window.draw(sprite);
       this->window.draw(text);
