@@ -5,9 +5,10 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 17:45:52 2013 Maxime Wojciak
-// Last update Fri Jun 28 18:05:55 2013 gery baudry
+// Last update Sun Jun 30 16:19:07 2013 Maxime Wojciak
 //
 
+#include	<iostream>
 #include	<SFML/Audio.hpp>
 #include	<SFML/Graphics.hpp>
 #include	"Windows.hpp"
@@ -20,7 +21,11 @@ int		main(int ac, char *av[])
   Windows	window;
   Audio		music;
 
-  music.PlaySound();
-  window.CreateWindows();
-  return 0;
+  if (ac == 7)
+    {
+      music.PlaySound();
+      window.CreateWindows();
+    }
+  else
+    std::cout << "Usage: ./client [-h hote] [-n equipe] [-p port]" << std::endl;
 }
