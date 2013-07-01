@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:01:06 2013 Maxime Wojciak
-// Last update Mon Jul  1 17:35:46 2013 gery baudry
+// Last update Mon Jul  1 15:51:41 2013 gery baudry
 //
 
 #include	<iostream>
@@ -44,7 +44,6 @@ void		Windows::CreateWindows()
 
 void		Windows::DrawMap()
 {
-  std::vector<Case>	map;
   int		x = 0;
   int		y = 0;
 
@@ -55,13 +54,18 @@ void		Windows::DrawMap()
 	{
 	  Case		macase;
 	  macase.setPosition(sf::Vector2f(x, y));
-	  map.push_back(macase);
+	  this->map.push_back(macase);
 	  x += 50;
 	}
 	y += 50;
     }
-  for (std::vector<Case>::iterator it = map.begin(); it != map.end(); ++it)
+  for (std::vector<Case>::iterator it = this->map.begin(); it != this->map.end(); ++it)
     this->window.draw(it->getRectangle());
+}
+
+std::vector<Case>		Windows::getVector() const
+{
+  return (this->map);
 }
 
 // sf::Font font;

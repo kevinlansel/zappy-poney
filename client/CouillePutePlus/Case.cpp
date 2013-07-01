@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 11:12:44 2013 gery baudry
-// Last update Mon Jul  1 17:38:38 2013 gery baudry
+// Last update Mon Jul  1 15:47:03 2013 gery baudry
 //
 
 #include	"Case.hpp"
@@ -23,10 +23,16 @@ Case::~Case()
 
 void		Case::setPosition(const sf::Vector2f &pos)
 {
+  this->_pos = pos;
   this->rectangle.move(pos);
 }
 
 sf::RectangleShape		Case::getRectangle() const
 {
   return (this->rectangle);
+}
+
+sf::Vector2f			Case::getPosition() const
+{
+  return (this->_pos);
 }

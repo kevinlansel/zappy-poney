@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 11:11:59 2013 gery baudry
-// Last update Mon Jul  1 12:05:12 2013 gery baudry
+// Last update Mon Jul  1 15:48:18 2013 gery baudry
 //
 
 #ifndef			CASE__
@@ -22,9 +22,11 @@ public:
 public:
   void				setPosition(const sf::Vector2f &);
   sf::RectangleShape		getRectangle() const;
+  sf::Vector2f			getPosition() const;
+
 private:
   sf::RectangleShape		rectangle;
-
+  sf::Vector2f			_pos;
 };
 
 #endif
