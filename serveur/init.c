@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Wed Jun 26 13:00:58 2013 florian dewulf
-** Last update Mon Jul  1 15:46:12 2013 guillaume duez
+** Last update Mon Jul  1 15:52:24 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -67,6 +67,7 @@ static char	**manage_team(char **team, char **av, int *off)
   int		count;
   int		ac;
   char		**tab;
+  int		nb;
 
   ac = -1;
   while (av[++ac]);
@@ -74,8 +75,6 @@ static char	**manage_team(char **team, char **av, int *off)
   tab = team;
   while (*off + count < ac && check_tab(*off + count, ac, av) == -1)
     {
-      int	nb;
-
       nb = 0;
       while (tab && tab[nb])
 	nb++;
