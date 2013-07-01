@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Wed Jun 26 13:00:58 2013 florian dewulf
-** Last update Mon Jul  1 15:14:31 2013 guillaume duez
+** Last update Mon Jul  1 15:46:12 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -35,11 +35,11 @@ static t_opt	*check(int *val, char **name_team)
   opt->nb_player = xmalloc((strlen_tab(name_team) + 1) * sizeof(int));
   while (i < strlen_tab(name_team))
     {
-      opt->nb_player[i] = (check_val(val[3]) == 0) ? val[3] : 4;
+      opt->nb_player[i] = (check_val(val[3]) == 1) ? val[3] : 4;
       i++;
     }
-  opt->x_world = (check_val(val[1]) == 0) ? val[1] : 50;
-  opt->y_world = (check_val(val[2]) == 0) ? val[2] : 50;
+  opt->x_world = (check_val(val[1]) == 1) ? val[1] : 50;
+  opt->y_world = (check_val(val[2]) == 1) ? val[2] : 50;
   opt->time_world = val[4];
   if (check_val(opt->time_world) == 0)
     opt->time_world = 100;

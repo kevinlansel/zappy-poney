@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Fri Jun 28 14:42:46 2013 guillaume duez
+** Last update Mon Jul  1 15:16:47 2013 guillaume duez
 */
 
 #ifndef			__SERVEUR_H__
@@ -209,6 +209,7 @@ void			send_to_graphic(t_client *, char *);
 void			settime(char **, int, t_map **, t_client *);
 void			snd_msg_broadcast(char *, int, int);
 void			sub_food(t_msg *, t_client *, const char *);
+int			strlen_tab(char **str);
 
 void			take_ress(int, int, t_client *);
 char			**to_tab(char *, int, int);

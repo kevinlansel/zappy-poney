@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 17:52:10 2013 guillaume duez
-** Last update Wed Jun 26 14:23:04 2013 florian dewulf
+** Last update Mon Jul  1 15:45:14 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -36,6 +36,7 @@ static t_map		**create_map(t_opt *opt)
 
   y = 0;
   map = xmalloc(sizeof(t_map *) * opt->y_world);
+  printf("y : %d  x : %d\n", opt->y_world, opt->x_world);
   while (y < opt->y_world)
     {
       x = 0;
