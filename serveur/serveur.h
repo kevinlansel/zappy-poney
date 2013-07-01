@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Thu Jun 27 15:16:20 2013 florian dewulf
+** Last update Fri Jun 28 14:42:46 2013 guillaume duez
 */
 
 #ifndef			__SERVEUR_H__
@@ -71,7 +71,7 @@ typedef	struct		s_opt
   int			port;
   int			x_world;
   int			y_world;
-  int			nb_player;
+  int			*nb_player;
   int			time_world;
   char			**name_team;
 }			t_opt;
