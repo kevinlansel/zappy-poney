@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:00:59 2013 Maxime Wojciak
-// Last update Mon Jul  1 11:35:44 2013 gery baudry
+// Last update Mon Jul  1 13:35:39 2013 gery baudry
 //
 
 #ifndef		WINDOWS__
@@ -22,7 +22,8 @@ public:
   ~Windows();
 
 public:
-  int		CreateWindows();
+  void		CreateWindows();
+  void		DrawMap();
 
 private:
   Event			event;
