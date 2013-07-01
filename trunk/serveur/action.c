@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:08:13 2013 guillaume duez
-** Last update Wed Jun 26 15:33:58 2013 florian dewulf
+** Last update Mon Jul  1 15:59:34 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -66,15 +66,8 @@ t_msg		*do_action(t_client *client, t_map **map, t_msg *msg)
 
   new = check_and_call(client, map);
   if (new != NULL && new->bool == 1)
-    {
-      printf("enter\n");
-      msg = into_order_task(msg, new);
-    }
+    msg = into_order_task(msg, new);
   else if (msg != NULL && new == NULL)
     msg = remove_msg(msg, client);
-  else
-    {
-      printf("else\n");
-    }
   return msg;
 }
