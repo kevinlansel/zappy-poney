@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:01:06 2013 Maxime Wojciak
-// Last update Sun Jun 30 16:15:22 2013 Maxime Wojciak
+// Last update Mon Jul  1 12:04:01 2013 gery baudry
 //
 
 #include	<iostream>
@@ -14,6 +14,7 @@
 #include	<SFML/Graphics.hpp>
 #include	"Windows.hpp"
 #include	"Texture.hpp"
+#include	"Case.hpp"
 
 Windows::Windows() : window(sf::VideoMode(800, 600), "Client Zappy") {
 }
@@ -23,6 +24,8 @@ Windows::~Windows() {
 }
 
 int	Windows::CreateWindows() {
+  Case macase;
+  macase.setPosition(sf::Vector2f(50, 50));
   sf::Font font;
   if (!font.loadFromFile("../ressources/fonts/Sansation_Bold.ttf"))
     return EXIT_FAILURE;
@@ -44,6 +47,7 @@ int	Windows::CreateWindows() {
       this->window.clear();
       this->window.draw(sprite);
       this->window.draw(text);
+      this->window.draw(macase.getRectangle());
       this->window.display();
     }
 }

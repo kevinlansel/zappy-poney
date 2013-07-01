@@ -5,15 +5,16 @@
 ## Login   <wojcia_m@epitech.net>
 ## 
 ## Started on  Thu Jun 27 17:33:04 2013 Maxime Wojciak
-## Last update Fri Jun 28 18:15:50 2013 Maxime Wojciak
+## Last update Mon Jul  1 11:41:34 2013 gery baudry
 ##
 
 NAME=		client
 
-SRC=		Windows.cpp	\
+SRC=		Audio.cpp	\
+		Case.cpp	\
+		main.cpp	\
 		Texture.cpp	\
-		Audio.cpp	\
-		main.cpp
+		Windows.cpp
 
 OBJ=		$(SRC:.cpp=.o)
 

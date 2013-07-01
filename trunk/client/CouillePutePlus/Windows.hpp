@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:00:59 2013 Maxime Wojciak
-// Last update Sun Jun 30 16:11:24 2013 Maxime Wojciak
+// Last update Mon Jul  1 11:35:44 2013 gery baudry
 //
 
 #ifndef		WINDOWS__
@@ -26,7 +26,7 @@ public:
 
 private:
   Event			event;
-  sf::RenderWindow	window;
+  RenderWindow		window;
 };
 
 #endif		/* WINDOWS__ */
