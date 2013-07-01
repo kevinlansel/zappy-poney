@@ -5,10 +5,11 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Tue Jun 25 14:18:23 2013 guillaume duez
-** Last update Tue Jun 25 16:20:03 2013 guillaume duez
+** Last update Mon Jul  1 15:29:31 2013 guillaume duez
 */
 
 #include	"serveur.h"
+#include	<stdio.h>
 
 t_client	*get_client(t_client *client)
 {
@@ -26,18 +27,32 @@ t_client	*get_client(t_client *client)
   return NULL;
 }
 
-int		check_co(t_client *client, t_client *hurt)
+int		check_co(t_client *client, t_client *hurt, t_map **map)
 {
+  e_direct	type;
+  int		x;
+  int		y;
+
+  type = hurt->direct;
   if (client == hurt)
     return 0;
-  if (client && hurt)
-    {
-      if (!client->map || !hurt->map)
-	return 0;
-      if (client->map->x == hurt->map->x && client->map->y == hurt->map->y)
-	return 1;
-    }
-  return 0;
+  if (!client || !hurt || !client->map || !hurt->map)
+    return 0;
+  if (client->map->x != hurt->map->x || client->map->y != hurt->map->y)
+    return 0;
+  x = client->map->x;
+  y = client->map->y;
+  if (type == SUD)
+    client->map = (y + 1) < client->map->y_world ? &map[y + 1][x] : &map[0][x];
+  else if (type == EST)
+    client->map = (x + 1) < client->map->x_world ? &map[y][x + 1] : &map[y][0];
+  else if (type == OUEST)
+    client->map = (x - 1) >= 0 ? &map[y][x - 1] :
+      &map[y][client->map->x_world - 1];
+  else if (type == NORD)
+    client->map = (y - 1) >= 0 ? &map[y - 1][x] :
+      &map[client->map->y_world - 1][x];
+  return 1;
 }
 
 void            expulse(t_msg *msg, t_client *client, t_map **map)
@@ -58,7 +73,7 @@ void            expulse(t_msg *msg, t_client *client, t_map **map)
 	{
 	  msg->cmd = str;
 	  msg->client = client;
-	  if (client && client->graphic != 1 && check_co(client, hurt) == 1)
+	  if (client && client->graphic != 1 && check_co(client, hurt, map) == 1)
 	    send_mess(msg);
 	  client = client->nt;
 	}
