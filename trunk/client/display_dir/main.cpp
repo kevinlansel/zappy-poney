@@ -4,7 +4,6 @@
 
 int		main(int ac, char **av)
 {
-  std::cout << (std::string)av[0] << std::endl;
   int		i = 1;
   std::string	host;
   int		port;
