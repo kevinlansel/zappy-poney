@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:01:06 2013 Maxime Wojciak
-// Last update Mon Jul  1 15:51:41 2013 gery baudry
+// Last update Mon Jul  1 16:37:41 2013 gery baudry
 //
 
 #include	<iostream>
@@ -16,6 +16,7 @@
 #include	"Windows.hpp"
 #include	"Texture.hpp"
 #include	"Case.hpp"
+#include	"Souris.hpp"
 
 Windows::Windows() : window(sf::VideoMode(800, 600), "Client Zappy") {
 }
@@ -26,6 +27,9 @@ Windows::~Windows() {
 
 void		Windows::CreateWindows()
 {
+  Souris	souris;
+  sf::Vector2i	position;
+
   while (this->window.isOpen())
     {
       while (this->window.pollEvent(this->event))
@@ -38,6 +42,12 @@ void		Windows::CreateWindows()
 	}
       this->window.clear();
       DrawMap();
+      if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+	  souris.setPosition();
+	  position = souris.getPosition();
+	}
+      std::cout << "pos X = " << position.x << "pos Y = " << position.y << std::endl;
       this->window.display();
     }
 }

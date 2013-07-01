@@ -5,7 +5,7 @@
 ## Login   <wojcia_m@epitech.net>
 ## 
 ## Started on  Thu Jun 27 17:33:04 2013 Maxime Wojciak
-## Last update Mon Jul  1 11:41:34 2013 gery baudry
+## Last update Mon Jul  1 16:18:53 2013 gery baudry
 ##
 
 NAME=		client
@@ -13,6 +13,7 @@ NAME=		client
 SRC=		Audio.cpp	\
 		Case.cpp	\
 		main.cpp	\
+		Souris.cpp	\
 		Texture.cpp	\
 		Windows.cpp
 
