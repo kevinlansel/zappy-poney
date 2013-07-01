@@ -22,7 +22,5 @@ int		main(int ac, char **av)
       i += 2;
     }
   Network	net(host, port, team);
-  //  Network net;
-  
   //net.initConnexion();
 }
