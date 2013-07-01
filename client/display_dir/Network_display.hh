@@ -13,6 +13,7 @@
 #include        <netinet/in.h>
 #include	<unistd.h>
 #include	<vector>
+#include	<sstream>
 
 #include	"get_next_line.hpp"
 
@@ -29,11 +30,21 @@ public:
 
   Network(std::string &, int, int);
   virtual ~Network();
+  int			getPort() const;
+  int			getSock() const;
+  std::string		getHost() const;
   void			initConnexion();
   std::string		recup_firstPart(std::string &data);
   void			checkData();
   std::vector<std::string>	recup_sizeMap(std::string &data);
-  std::string		askForTimeUnit(std::string &data);
+  std::string			askForTimeUnit(std::string &data);
+  std::vector<std::string>	recup_mapContent(std::string &data);
+  std::vector<std::string>	recup_caseContent(int y, int x);
+  std::string		recup_teamName(std::string &data);
+  std::vector<std::string>	recup_playerPosition(int idPlayer);
+  std::string		recup_playerLevel(int idPlayer);
+  std::vector<std::string>	recup_playerInventaire(int idPlayer);
+  void			setTimeUnit(int timeValue);
 };
 
 #endif
