@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:19:39 2013 guillaume duez
-** Last update Wed Jun 26 13:09:21 2013 florian dewulf
+** Last update Mon Jul  1 16:37:31 2013 florian dewulf
 */
 
 #include	"serveur.h"
@@ -35,7 +35,7 @@ t_client        *client_reset(t_client *client)
   return client;
 }
 
-void	new_inventory(t_client *client)
+void		new_inventory(t_client *client)
 {
   client->ress[NOURRITURE] = 1260;
   client->ress[LINEMATE] = 0;
@@ -57,25 +57,28 @@ void		new_map(t_client *client, t_opt *opt, t_map **map)
   client->direct = SUD;
 }
 
-t_client        *create_client(int fd, t_client *client, t_opt *opt, t_map **map)
+static t_client	*new_client(int fd, int end)
 {
-  t_client      *new;
+  t_client	*new;
 
   new = xmalloc(sizeof(t_client));
+  new->id = give_id();
+  new->fd = fd;
+  new->end = end;
+  return (new);
+}
+
+t_client	*create_client(int fd, t_client *client, t_opt *opt, t_map **map)
+{
+  t_client	*new;
+
   if (client == NULL)
-    {
-      client = new;
-      client->id = give_id();
-      client->end = 1;
-      client->nt = NULL;
-    }
+    client = new_client(fd, 1);
   else
     {
+      new = new_client(fd, 0);
       client->action = get_time();
-      new->fd = fd;
       client->prev = new;
-      new->end = 0;
-      new->id = give_id();
       new->nt = client;
       new_inventory(new);
       new->level = 1;
