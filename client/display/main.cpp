@@ -1,6 +1,10 @@
 #include	<cstdlib>
-
-#include	"Network_display.hh"
+#include	<iostream>
+#include	<SFML/Audio.hpp>
+#include	<SFML/Graphics.hpp>
+#include	"Windows.hpp"
+#include	"Audio.hpp"
+#include	"Network.hpp"
 
 int		main(int ac, char **av)
 {
@@ -8,6 +12,8 @@ int		main(int ac, char **av)
   std::string	host;
   int		port;
   int		team;
+  Windows	window(10, 10);
+  Audio		music;
 
   host = "localhost";
   while (i < ac)
@@ -19,6 +25,8 @@ int		main(int ac, char **av)
       else if ((std::string)av[i] == "-p")
 	port = atoi(av[i + 1]);
       i += 2;
+      music.PlaySound();
+      window.CreateWindow();
     }
   Network	net(host, port, team);
   //net.initConnexion();

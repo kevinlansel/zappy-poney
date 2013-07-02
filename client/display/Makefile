@@ -15,7 +15,8 @@ SRC=		Audio.cpp	\
 		main.cpp	\
 		Souris.cpp	\
 		Texture.cpp	\
-		Windows.cpp
+		Windows.cpp	\
+		Network.hpp
 
 OBJ=		$(SRC:.cpp=.o)
 
