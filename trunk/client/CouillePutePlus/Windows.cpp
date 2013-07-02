@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:01:06 2013 Maxime Wojciak
-// Last update Mon Jul  1 16:37:41 2013 gery baudry
+// Last update Tue Jul  2 11:52:50 2013 gery baudry
 //
 
 #include	<iostream>
@@ -18,7 +18,8 @@
 #include	"Case.hpp"
 #include	"Souris.hpp"
 
-Windows::Windows() : window(sf::VideoMode(800, 600), "Client Zappy") {
+Windows::Windows(int x, int y) : window(sf::VideoMode(800, 600), "Client Zappy"), _x(x), _y(y)
+{
 }
 
 Windows::~Windows() {
@@ -27,8 +28,8 @@ Windows::~Windows() {
 
 void		Windows::CreateWindows()
 {
-  Souris	souris;
-  sf::Vector2i	position;
+  Souris		souris;
+  sf::Vector2i		position;
 
   while (this->window.isOpen())
     {
@@ -42,12 +43,7 @@ void		Windows::CreateWindows()
 	}
       this->window.clear();
       DrawMap();
-      if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-	{
-	  souris.setPosition();
-	  position = souris.getPosition();
-	}
-      std::cout << "pos X = " << position.x << "pos Y = " << position.y << std::endl;
+      position = souris.CheckSouris(this->window);
       this->window.display();
     }
 }
@@ -57,12 +53,12 @@ void		Windows::DrawMap()
   int		x = 0;
   int		y = 0;
 
-  while (y <= 450)
+  while (y <= ((this->_y - 1) * 50))
     {
       x = 0;
-      while (x <= 450)
+      while (x <= ((this->_x - 1) * 50))
 	{
-	  Case		macase;
+	  Case		macase(1, 2 , 3, 4 ,5, 6, 7);
 	  macase.setPosition(sf::Vector2f(x, y));
 	  this->map.push_back(macase);
 	  x += 50;
@@ -78,10 +74,6 @@ std::vector<Case>		Windows::getVector() const
   return (this->map);
 }
 
-// sf::Font font;
-// if (!font.loadFromFile("../ressources/fonts/Sansation_Bold.ttf"))
-//     return EXIT_FAILURE;
-// sf::Text text("Yooo Negro", font, 50);
 // sf::Texture texture;
 // if (!texture.loadFromFile("../ressources/pictures/noctali.png"))
 //     return EXIT_FAILURE;

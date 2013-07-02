@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:00:59 2013 Maxime Wojciak
-// Last update Mon Jul  1 16:35:01 2013 gery baudry
+// Last update Tue Jul  2 11:46:22 2013 gery baudry
 //
 
 #ifndef		WINDOWS__
@@ -14,10 +14,11 @@
 #include	<SFML/Graphics.hpp>
 #include	<SFML/Audio.hpp>
 #include	"Case.hpp"
+#include	"Texte.hpp"
 
 class		Windows {
 public:
-  Windows();
+  Windows(int, int);
   ~Windows();
 
 public:
@@ -28,7 +29,10 @@ public:
 private:
   sf::Event			event;
   sf::RenderWindow		window;
-  std::vector<Case>	map;
+  std::vector<Case>		map;
+  int				_x;
+  int				_y;
+
 };
 
 #endif		/* WINDOWS__ */
