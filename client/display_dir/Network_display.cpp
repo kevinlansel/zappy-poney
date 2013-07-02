@@ -4,16 +4,16 @@ Network::Network(std::string &host, int port, int team):
   _host(host), _port(port), _team(team)
 {
   this->_kill = 0;
-  this->_tailleX = "";
-  this->_tailleY = "";
+  this->_tailleX = 0;
+  this->_tailleY = 0;
 }
 
-int	Network::getPort() const
+int		Network::getPort() const
 {
   return (this->_port);
 }
 
-int	Network::getSock() const
+int		Network::getSock() const
 {
   return (this->_sock);
 }
@@ -23,14 +23,10 @@ std::string	Network::getHost() const
   return (this->_host);
 }
 
-void	Network::initConnexion()
+void		Network::initConnexion()
 {
-  struct sockaddr_in s_in;
-  struct protoent *pe;
-  fd_set        fd_read;
-  char		buff[4096];
-  int		a;
-  std::string	req = "";
+  struct sockaddr_in	s_in;
+  struct protoent	*pe;
 
   pe = getprotobyname("TCP");
   s_in.sin_family = AF_INET;
@@ -38,8 +34,19 @@ void	Network::initConnexion()
   s_in.sin_addr.s_addr = inet_addr(this->_host.c_str());
   this->_sock = socket(AF_INET, SOCK_STREAM, pe->p_proto);
   connect(this->_sock, (struct sockaddr *)&s_in, sizeof(s_in));
+}
 
+void		Network::doLoop()
+{
+  fd_set		fd_read;
+  char			buff[4096];
+  int			a;
+  std::string		req = "";
+  std::vector<int>	list;
+  int			x;
+  int			y;
   gnl gl(this->_sock);
+
   while (1)
     {
       FD_ZERO(&fd_read);
@@ -53,10 +60,16 @@ void	Network::initConnexion()
 	      req = gl.get_next_line();
 	      if (req == "BIENVENUE")
 		write(this->_sock, "GRAPHIC\n", 8);
+	      else if (recup_firstPart(req) == "msz")
+		{
+		  list = recup_sizeMap(req);
+		  x = list.front();
+		  y = list.back();
+		  Windows(x, y);
+		}
 	    }
 	}
-      std::cout << req << std::endl;
-
+      //std::cout << req << std::endl;
     }
 }
 
@@ -96,12 +109,14 @@ void			Network::checkData(std::string &data)
     std::cout << "Unknown Command" << std::endl;
 }
 
-std::vector<std::string>	Network::recup_sizeMap(std::string &data)
+std::vector<int>	Network::recup_sizeMap(std::string &data)
 {
   int			i = 4;
   std::string		coordX = "";
   std::string		coordY = "";
-  std::vector<std::string>	list;
+  std::vector<int>	list;
+  int			x;
+  int			y;
 
   while (i < data.size())
     {
@@ -116,12 +131,16 @@ std::vector<std::string>	Network::recup_sizeMap(std::string &data)
 	  coordY += data[i];
 	  i++;
 	}
-      this->_tailleX = coordX;
-      this->_tailleY = coordY;
+      std::istringstream buffer(coordX);
+      std::istringstream buffer2(coordY);
+      buffer >> x;
+      buffer2 >> y;
+      this->_tailleX = x;
+      this->_tailleY = y;
     }
   //  std::cout << "X: " << coordX << "\tY: " << coordY << std::endl;
-  list.push_back(coordX);
-  list.push_back(coordY);
+  list.push_back(x);
+  list.push_back(y);
   return list;
 }
 
