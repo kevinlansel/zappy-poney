@@ -1,6 +1,0 @@
-#!/bin/sh
-
-# This command cleanup the current python project
-# Rm All compiled files of python *.pyc
-
-find . -name "*.pyc" -exec rm -rvf {} \;
