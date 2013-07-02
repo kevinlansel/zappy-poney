@@ -23,6 +23,16 @@ std::string	Network::getHost() const
   return (this->_host);
 }
 
+int		Network::getTailleX() const
+{
+  return (this->_tailleX);
+}
+
+int		Network::getTailleY() const
+{
+  return (this->_tailleY);
+}
+
 void		Network::initConnexion()
 {
   struct sockaddr_in	s_in;
