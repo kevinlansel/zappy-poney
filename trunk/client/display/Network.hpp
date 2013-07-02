@@ -30,6 +30,8 @@ public:
   int		getPort() const;
   int		getSock() const;
   std::string	getHost() const;
+  int		getTailleX() const;
+  int		getTailleY() const;
   void		initConnexion();
   void		doLoop();
   std::string		recup_firstPart(std::string &data);

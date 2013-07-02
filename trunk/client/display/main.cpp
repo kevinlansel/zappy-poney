@@ -12,7 +12,6 @@ int		main(int ac, char **av)
   std::string	host;
   int		port;
   int		team;
-  Windows	window(10, 10);
   Audio		music;
 
   host = "localhost";
@@ -25,9 +24,12 @@ int		main(int ac, char **av)
       else if ((std::string)av[i] == "-p")
 	port = atoi(av[i + 1]);
       i += 2;
+      Network	net(host, port, team);
+      net.initConnexion();
       music.PlaySound();
+      // recuperer les premieres infos du serveur
+      Windows	window(net.getTailleX(), net.getTailleY());
       window.CreateWindows();
+      // dans le create window, mettre le select etc.. dans la sfml loop
     }
-  Network	net(host, port, team);
-  //net.initConnexion();
 }
