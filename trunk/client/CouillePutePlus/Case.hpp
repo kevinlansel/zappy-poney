@@ -5,13 +5,14 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 11:11:59 2013 gery baudry
-// Last update Tue Jul  2 12:14:21 2013 gery baudry
+// Last update Tue Jul  2 13:01:20 2013 gery baudry
 //
 
 #ifndef			CASE__
 # define		CASE__
 
 #include		<SFML/Graphics.hpp>
+#include		<sstream>
 
 class			Case
 {
