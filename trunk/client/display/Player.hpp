@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Tue Jul  2 10:34:25 2013 gery baudry
-// Last update Tue Jul  2 11:42:53 2013 gery baudry
+// Last update Tue Jul  2 14:48:22 2013 gery baudry
 //
 
 #ifndef				PLAYER__
@@ -28,6 +28,7 @@ public:
   int				getMendiane() const;
   int				getPhiras() const;
   int				getThystame() const;
+  int				getLevel() const;
 
 public:
   void				setPosition(const sf::Vector2f &);
@@ -38,7 +39,7 @@ public:
   void				setMendiane(int);
   void				setPhiras(int);
   void				setThystame(int);
-
+  void				setLevel(int);
 
 private:
   sf::Vector2i			_pos;

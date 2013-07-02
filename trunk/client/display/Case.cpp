@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 11:12:44 2013 gery baudry
-// Last update Tue Jul  2 14:16:00 2013 gery baudry
+// Last update Tue Jul  2 14:44:53 2013 gery baudry
 //
 
 #include	"Case.hpp"
@@ -25,7 +25,7 @@ std::string			Case::doText()
 {
   std::stringstream		inv;
 
-  inv << "Inventaire de la case X =" << this->_pos.x << " Y =" << this->_pos.y << "\nNourriture = " << this->_nourriture << " \n" << "Linemate = " << this->_linemate << " \n" << "Deraumere = " << this->_deraumere << " \n" << "Sibur = " << this->_sibur << " \n" << "Mediane = " << this->_mendiane << " \n" << "Phiras = " << this->_phiras << " \n" << "Thystame = " << this->_thystame << " \n";
+  inv << "Inventaire de la case \nX = " << this->_pos.x << " Y = " << this->_pos.y << "\nNourriture = " << this->_nourriture << " \n" << "Linemate = " << this->_linemate << " \n" << "Deraumere = " << this->_deraumere << " \n" << "Sibur = " << this->_sibur << " \n" << "Mediane = " << this->_mendiane << " \n" << "Phiras = " << this->_phiras << " \n" << "Thystame = " << this->_thystame << " \n";
   return (inv.str());
 }
 
