@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 11:12:44 2013 gery baudry
-// Last update Tue Jul  2 10:39:15 2013 gery baudry
+// Last update Tue Jul  2 12:55:38 2013 gery baudry
 //
 
 #include	"Case.hpp"
@@ -19,6 +19,14 @@ Case::Case(int nourriture, int linemate, int deraumere, int sibur, int mendiane,
 
 Case::~Case()
 {
+}
+
+std::string			Case::doText()
+{
+  // std::string		inv;
+
+  // inv << "Inventaire de la case \n" << "Nourriture = " << this->_nourriture << " \n" << "Limenate = " << this->_limenate << " \n" << "Deraumere = " << this->_deraumere << " \n" << "Sibur = " << this->_sibur << " \n" << this->_mendiane << " \n" << "Phiras = " << this->_phiras << " \n" << "Thystame = " << this->_thystame << " \n";
+  // return (inv);
 }
 
 //

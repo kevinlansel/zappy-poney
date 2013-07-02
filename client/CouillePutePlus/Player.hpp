@@ -1,27 +1,25 @@
 //
-// Case.hpp for zappy in /home/peelou/SVN/zappy-poney/client/CouillePutePlus
+// Player.hpp for zappy in /home/peelou/SVN/zappy-poney/client/CouillePutePlus
 // 
 // Made by gery baudry
 // Login   <baudry_g@epitech.net>
 // 
-// Started on  Mon Jul  1 11:11:59 2013 gery baudry
-// Last update Tue Jul  2 12:14:21 2013 gery baudry
+// Started on  Tue Jul  2 10:34:25 2013 gery baudry
+// Last update Tue Jul  2 11:42:53 2013 gery baudry
 //
 
-#ifndef			CASE__
-# define		CASE__
+#ifndef				PLAYER__
+# define			PLAYER__
 
-#include		<SFML/Graphics.hpp>
+#include			<SFML/Graphics.hpp>
 
-class			Case
+class				Player
 {
 public:
-  Case(int, int, int, int, int, int, int);
-  ~Case();
-  std::string			doText();
+  Player();
+  ~Player();
 
 public:
-  sf::RectangleShape		getRectangle() const;
   sf::Vector2f			getPosition() const;
   int				getNourriture() const;
   int				getLinemate() const;
@@ -43,8 +41,7 @@ public:
 
 
 private:
-  sf::RectangleShape		rectangle;
-  sf::Vector2f			_pos;
+  sf::Vector2i			_pos;
   int				_nourriture;
   int				_linemate;
   int				_deraumere;
@@ -52,6 +49,7 @@ private:
   int				_mendiane;
   int				_phiras;
   int				_thystame;
+  int				_level;
 };
 
 #endif
