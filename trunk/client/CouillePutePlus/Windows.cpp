@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:01:06 2013 Maxime Wojciak
-// Last update Tue Jul  2 14:03:09 2013 Maxime Wojciak
+// Last update Tue Jul  2 14:07:00 2013 Maxime Wojciak
 //
 
 #include	<iostream>
@@ -29,6 +29,7 @@ Windows::~Windows() {
 
 void		Windows::CreateWindows()
 {
+  // On Construit la classe Personnage avec en parametre le chemin de l'image.
   Personnage		perso("../ressources/pictures/noctali.png");
   Souris		souris;
   sf::Vector2i		position;
@@ -45,6 +46,7 @@ void		Windows::CreateWindows()
 	}
       this->window.clear();
       DrawMap();
+      // On Draw le Pokemon.
       this->window.draw(perso.loadPokemon());
       position = souris.CheckSouris(this->window, this->map, this->_x, this->_y);
       this->window.display();
