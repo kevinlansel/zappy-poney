@@ -26,7 +26,7 @@ int		main(int ac, char **av)
 	port = atoi(av[i + 1]);
       i += 2;
       music.PlaySound();
-      window.CreateWindow();
+      window.CreateWindows();
     }
   Network	net(host, port, team);
   //net.initConnexion();

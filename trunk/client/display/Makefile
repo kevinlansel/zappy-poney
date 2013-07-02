@@ -16,7 +16,8 @@ SRC=		Audio.cpp	\
 		Souris.cpp	\
 		Texture.cpp	\
 		Windows.cpp	\
-		Network.hpp
+		Network.cpp	\
+		get_next_line.cpp
 
 OBJ=		$(SRC:.cpp=.o)
 
