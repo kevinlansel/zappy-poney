@@ -1,0 +1,52 @@
+Bien le bonjour
+
+Pour la sfml en C++
+Merci de télécharger la lib à cette endroit :
+      sudo apt-get install libsfml-dev
+
+Plusieurs modules qui sont normalement installé sur vos machines mais bon ...
+	  sudo apt-get install libglu1-mesa-dev
+
+Mettre en place les class {
+
+       Aquali	    -- A Faire
+       Evoli	    -- A Faire
+       Givrali	    -- A Faire
+       Mentali	    -- A Faire
+       Noctali	    -- A Faire
+       Phylalli	    -- A Faire
+       Pyroli	    -- A Faire
+       Voltali	    -- A Faire
+       Windows			|x|
+       Map	    -- A Faire
+       Music			|x|
+       Oeuf	    -- A Faire
+
+Et voir après en fonction des besoin.
+Merci de Modifier le README en consequant on s'y retrouvera plus facilement.
+
+
+
+- Connexion server :
+	  - fail = quitte
+	  - si réussi, le serveur enverra la size {x,y} de la map et le {x,y} du perso
+- initialisation de la SFML
+- instancie une liste 2D d'objet (les cases) où il y a les ressources, le nombre de player, l'objet rectangle pour la sfml et un booléen pour savoir si c'est visible ou non
+- initialise les valeurs du player
+
+SFML loop
+{
+    - Objet IA qui check quoi faire
+    - send le msg retourné par l'IA
+    - attend la réponse du serveur et l'interprète => mis à jour des données dans la liste 2D par exemple
+    - draw grâce à la liste 2D (et au booléen de visibilité pour savoir quelle couleur mettre)
+}
+
+Classe à faire (au minimum) :
+- Player (pour les données du client)
+- IA (avec toutes les méthodes d'algo)
+- "Case" (nom à redéfinir) avec le nombre de chaque ressource par case + le nombre d'autre player + le rectangle de la sfml + un booléen pour savoir si c'est visible ou non
+
+Idée de classe en plus :
+- Classe pour tout ce qui est dialogue client/serveur
+- Encapsulation de la SFML
