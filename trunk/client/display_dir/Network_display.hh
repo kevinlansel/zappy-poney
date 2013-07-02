@@ -19,7 +19,7 @@
 
 class		Network
 {
-public:
+private:
   int		_port;
   int		_team;
   int		_kill;
@@ -28,6 +28,7 @@ public:
   std::string	_tailleX;
   std::string	_tailleY;
 
+public:
   Network(std::string &, int, int);
   virtual ~Network();
   int			getPort() const;
@@ -35,7 +36,7 @@ public:
   std::string		getHost() const;
   void			initConnexion();
   std::string		recup_firstPart(std::string &data);
-  void			checkData();
+  void			checkData(std::string &data);
   std::vector<std::string>	recup_sizeMap(std::string &data);
   std::string			askForTimeUnit(std::string &data);
   std::vector<std::string>	recup_mapContent(std::string &data);
