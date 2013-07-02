@@ -5,12 +5,12 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Tue Jul  2 10:35:58 2013 gery baudry
-// Last update Tue Jul  2 10:39:14 2013 gery baudry
+// Last update Tue Jul  2 14:52:14 2013 gery baudry
 //
 
 #include		"Player.hpp"
 
-Player::Player()
+Player::Player(sf::Vector2i pos, int nourriture, int linemate, int deraumere, int sibur, int mendiane, int phiras, int thystame, int level) : _pos(pos), _nourriture(nourriture), _linemate(linemate), _deraumere(deraumere), _sibur(sibur), _mendiane(mendiane), _phiras(phiras), _thystame(thystame), _level(level)
 {
 }
 
@@ -62,6 +62,11 @@ int				Player::getThystame() const
   return (this->_thystame);
 }
 
+int				Player::getLevel() const
+{
+  return (this->_level);
+}
+
 //
 //		Setter
 //
@@ -105,4 +110,9 @@ void				Player::setPhiras(int val)
 void				Player::setThystame(int val)
 {
   this->_thystame = val;
+}
+
+void				Player::setLevel(int val)
+{
+  this->_level = val;
 }

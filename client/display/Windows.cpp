@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:01:06 2013 Maxime Wojciak
-// Last update Tue Jul  2 14:16:55 2013 Maxime Wojciak
+// Last update Tue Jul  2 14:54:05 2013 gery baudry
 //
 
 #include	<iostream>
@@ -29,7 +29,7 @@ Windows::~Windows() {
 
 void		Windows::CreateWindows()
 {
- Personnage		perso("../ressources/pictures/noctali.png");
+  Personnage		perso("../ressources/pictures/noctali.png");
   Souris		souris;
   sf::Vector2i		position;
 
