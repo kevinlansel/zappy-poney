@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:01:06 2013 Maxime Wojciak
-// Last update Tue Jul  2 11:52:50 2013 gery baudry
+// Last update Tue Jul  2 12:45:07 2013 Maxime Wojciak
 //
 
 #include	<iostream>
@@ -13,6 +13,7 @@
 #include	<SFML/Audio.hpp>
 #include	<SFML/Graphics.hpp>
 #include	<vector>
+#include	"Personnage.hpp"
 #include	"Windows.hpp"
 #include	"Texture.hpp"
 #include	"Case.hpp"
@@ -28,6 +29,7 @@ Windows::~Windows() {
 
 void		Windows::CreateWindows()
 {
+  Personnage		perso("../ressources/pictures/noctali.png");
   Souris		souris;
   sf::Vector2i		position;
 
@@ -41,6 +43,7 @@ void		Windows::CreateWindows()
 	      this->window.close();
 	    }
 	}
+      this-window.draw(perso.getPokemon());
       this->window.clear();
       DrawMap();
       position = souris.CheckSouris(this->window);
