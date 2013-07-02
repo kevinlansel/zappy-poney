@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Tue Jul  2 11:38:12 2013 Maxime Wojciak
-// Last update Tue Jul  2 12:32:11 2013 Maxime Wojciak
+// Last update Tue Jul  2 14:03:29 2013 Maxime Wojciak
 //
 
 #ifndef		PERSONNAGE__
@@ -20,7 +20,7 @@ public:
   ~Personnage();
 
 public:
-  sf::Sprite	getPokemon();
+  sf::Sprite	loadPokemon();
 
 private:
   sf::Texture	pokemon;
