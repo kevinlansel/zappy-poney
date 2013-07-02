@@ -79,9 +79,21 @@ std::string		Network::recup_firstPart(std::string &data)
   return param;
 }
 
-void			Network::checkData()
+void			Network::checkData(std::string &data)
 {
+  std::string		word;
 
+  word = recup_firstPart(data);
+  if (word == "msz")
+    recup_sizeMap(data);
+  else if (word == "bct")
+    recup_mapContent(data);
+  else if (word == "tna")
+    recup_teamName(data);
+  else if (word == "sgt")
+    askForTimeUnit(data);
+  else
+    std::cout << "Unknown Command" << std::endl;
 }
 
 std::vector<std::string>	Network::recup_sizeMap(std::string &data)
@@ -107,7 +119,7 @@ std::vector<std::string>	Network::recup_sizeMap(std::string &data)
       this->_tailleX = coordX;
       this->_tailleY = coordY;
     }
-  std::cout << "X: " << coordX << "\tY: " << coordY << std::endl;
+  //  std::cout << "X: " << coordX << "\tY: " << coordY << std::endl;
   list.push_back(coordX);
   list.push_back(coordY);
   return list;
