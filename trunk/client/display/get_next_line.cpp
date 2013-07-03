@@ -27,7 +27,7 @@ std::string		gnl::get_next_line()
   while (this->_buffer.find("\n") == std::string::npos)
     {
       if ((i = read(this->_fd, buffer, 1024)) > 0)
-	{
+	{  
 	  buffer[i] = '\0';
 	  this->_buffer += buffer;
 	}
