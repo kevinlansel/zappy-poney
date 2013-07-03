@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:01:06 2013 Maxime Wojciak
-// Last update Wed Jul  3 10:35:21 2013 gery baudry
+// Last update Wed Jul  3 12:51:38 2013 gery baudry
 //
 
 #include	<iostream>
@@ -31,7 +31,7 @@ void		Windows::CreateWindows()
 {
   //Personnage		perso("../ressources/pictures/noctali.png");
   Souris		souris;
-  sf::Vector2i		position;
+  sf::Text		text;
 
   while (this->window.isOpen())
     {
@@ -46,7 +46,8 @@ void		Windows::CreateWindows()
       this->window.clear();
       DrawMap();
       //this->window.draw(perso.loadPokemon());
-      position = souris.CheckSouris(this->window, this->map, this->_x, this->_y);
+      text = souris.CheckSouris(this->window, this->map, this->_x, this->_y);
+      this->window.draw(text);
       this->window.display();
     }
 }
