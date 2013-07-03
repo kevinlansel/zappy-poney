@@ -5,7 +5,7 @@
 ## Login   <duez_a@epitech.net>
 ## 
 ## Started on  Mon Feb  4 12:48:16 2013 guillaume duez
-## Last update Wed Jul  3 12:38:13 2013 guillaume duez
+## Last update Wed Jul  3 14:53:07 2013 guillaume duez
 ##
 
 SERV	=	serveur
@@ -28,6 +28,7 @@ SRC_SERV=	action.c			\
 		expulse.c			\
 		init.c				\
 		init_map.c			\
+		level_up.c			\
 		main.c				\
 		map_utils.c			\
 		msg.c				\
