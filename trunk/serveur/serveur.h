@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Wed Jul  3 11:16:16 2013 florian dewulf
+** Last update Wed Jul  3 12:39:54 2013 guillaume duez
 */
 
 #ifndef			__SERVEUR_H__
@@ -149,7 +149,6 @@ typedef struct		s_protocol
   void			(*func)(char **, int, t_map **, t_client *);
 }			t_protocol;
 
-
 void			avance(t_msg *msg, t_client *client, t_map **map);
 
 void			begin_incant(int, t_client *, int, int);
@@ -197,6 +196,9 @@ t_msg			*into_order_task(t_msg *first, t_msg *new);
 void			loop_answer(char *, t_client *, t_map **);
 
 char			**my_str_to_wordtab(char *str, char c);
+
+void			new_inventory(t_client *client);
+void			new_map(t_client *client, t_opt *opt, t_map **map);
 
 void			parse_args(int, char **);
 t_conf			*parseconf(t_map **);

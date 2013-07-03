@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Tue Jun 25 18:57:11 2013 florian dewulf
-** Last update Tue Jun 25 22:17:04 2013 florian dewulf
+** Last update Wed Jul  3 12:34:47 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -28,7 +28,7 @@ void		egg_drop_by(int id_egg, int id, t_client *cl)
     tmp = tmp->prev;
   while (tmp && tmp->end != 1)
     {
-      if (tmp->graphic == 1)
+      if (tmp->type == 1)
 	write(tmp->fd, str, strlen(str));
       tmp = tmp->nt;
     }
@@ -49,7 +49,7 @@ void		egg_open(int id_egg, t_client *cl)
     tmp = tmp->prev;
   while (tmp && tmp->end != 1)
     {
-      if (tmp->graphic == 1)
+      if (tmp->type == 1)
 	write(tmp->fd, str, strlen(str));
       tmp = tmp->nt;
     }
@@ -70,7 +70,7 @@ void		egg_connect(int id_egg, t_client *cl)
     tmp = tmp->prev;
   while (tmp && tmp->end != 1)
     {
-      if (tmp->graphic == 1)
+      if (tmp->type == 1)
 	write(tmp->fd, str, strlen(str));
       tmp = tmp->nt;
     }
@@ -91,7 +91,7 @@ void		egg_dead(int id_egg, t_client *cl)
     tmp = tmp->prev;
   while (tmp && tmp->end != 1)
     {
-      if (tmp->graphic == 1)
+      if (tmp->type == 1)
 	write(tmp->fd, str, strlen(str));
       tmp = tmp->nt;
     }
@@ -112,7 +112,7 @@ void		egg_drop(int id_client, t_client *cl)
     tmp = tmp->prev;
   while (tmp && tmp->end != 1)
     {
-      if (tmp->graphic == 1)
+      if (tmp->type == 1)
 	write(tmp->fd, str, strlen(str));
       tmp = tmp->nt;
     }

@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Wed Jul  3 11:02:42 2013 florian dewulf
-** Last update Wed Jul  3 11:55:24 2013 florian dewulf
+** Last update Wed Jul  3 12:51:57 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -26,7 +26,10 @@ t_client	*create_client(int fd, t_client *client, t_opt *opt, t_map **map)
   t_client	*new;
 
   if (client == NULL)
-    client = new_client(fd, 1);
+    {
+      client = new_client(fd, 1);
+      new = client;
+    }
   else
     {
       new = new_client(fd, 0);
