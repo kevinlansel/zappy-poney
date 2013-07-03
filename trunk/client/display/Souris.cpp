@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 15:58:05 2013 gery baudry
-// Last update Wed Jul  3 14:50:36 2013 gery baudry
+// Last update Wed Jul  3 15:09:40 2013 gery baudry
 //
 
 
@@ -39,7 +39,7 @@ sf::Text			Souris::CheckSouris(sf::RenderWindow &window, std::vector<Case> &map,
 		{
 		  std::cout << it->doText() << std::endl;
 		  this->text = sf::Text(it->doText(), this->font, 20);
-		  this->text.move(sf::Vector2f(1100, 50));
+		  this->text.move(sf::Vector2f(1150, 50));
 		  this->text.setColor(sf::Color(100, 340, 12));
 		  break;
 		}
