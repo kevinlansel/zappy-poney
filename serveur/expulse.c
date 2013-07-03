@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Tue Jun 25 14:18:23 2013 guillaume duez
-** Last update Mon Jul  1 15:29:31 2013 guillaume duez
+** Last update Wed Jul  3 11:15:08 2013 florian dewulf
 */
 
 #include	"serveur.h"
@@ -73,12 +73,13 @@ void            expulse(t_msg *msg, t_client *client, t_map **map)
 	{
 	  msg->cmd = str;
 	  msg->client = client;
-	  if (client && client->graphic != 1 && check_co(client, hurt, map) == 1)
+	  if (client && client->graphic == CLIENT && check_co(client, hurt, map) == 1)
 	    send_mess(msg);
 	  client = client->nt;
 	}
     }
   msg->client = hurt;
   (!client) ? sub_food(msg, hurt, "ko\n") : sub_food(msg, hurt, "ok\n");
+  player_expulse(hurt->id, hurt);
   client = hurt;
 }

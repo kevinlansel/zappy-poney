@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Mon Jul  1 16:09:24 2013 florian dewulf
+** Last update Wed Jul  3 11:16:16 2013 florian dewulf
 */
 
 #ifndef			__SERVEUR_H__
@@ -44,6 +44,13 @@ typedef enum		e_ressource
     THYSTAME,
     MAX
   }			e_object;
+
+typedef enum		e_co
+  {
+    CLIENT,
+    GRAPHIC,
+    WAIT_CO
+  }			e_type_co;
 
 typedef struct		s_conf
 {
@@ -91,8 +98,7 @@ typedef	struct		s_map
 
 typedef struct		s_client
 {
-  char			init;
-  char			graphic;
+  char			type;
   int			fd;
   int			end;
   int			id;
