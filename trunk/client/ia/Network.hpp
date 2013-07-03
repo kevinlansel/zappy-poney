@@ -10,6 +10,8 @@
 #include	<cstring>
 #include	<cstdio>
 
+#include	"get_next_line.hpp"
+
 class		Network
 {
 private:
@@ -22,7 +24,7 @@ public:
   Network(const std::string &, int, const std::string &);
   virtual ~Network();
   void		initConnexion();
-  void		doLoop();
+  std::string	communicate(std::string &);
 };
 
 #endif

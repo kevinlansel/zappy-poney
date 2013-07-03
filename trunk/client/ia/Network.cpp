@@ -33,7 +33,7 @@ void		Network::initConnexion()
   connect(this->_sock, (struct sockaddr *)&s_in, sizeof(s_in));
 }
 
-void			Network::doLoop()
+std::string		Network::communicate(std::string &data)
 {
   fd_set		fd_read;
   char			buff[4096];
@@ -44,8 +44,9 @@ void			Network::doLoop()
   int			y;
   gnl gl(this->_sock);
   int			cpt = 0;
+  std::string		data2;
 
-  while (cpt < 2)
+  while (1)
     {
       FD_ZERO(&fd_read);
       FD_SET(this->_sock, &fd_read);
@@ -53,22 +54,19 @@ void			Network::doLoop()
 	req = gl.get_next_line();
       else if ((a = select(this->_sock + 1, &fd_read, NULL, NULL, NULL)) != -1)
         {
+	  if (data != NULL)
+	    {
+	      data2 = data + "\n";
+	      write(this->_sock, data2.c_str(), data2.size());
+	    }
 	  if (FD_ISSET(this->_sock, &fd_read))
 	    {
 	      req = gl.get_next_line();
-	      if (req == "BIENVENUE")
-		write(this->_sock, "GRAPHIC\n", 8);
-	      else if (recup_firstPart(req) == "msz")
-		{
-		  list = recup_sizeMap(req);
-		  x = list.front();
-		  y = list.back();
-		}
+	      return req;
 	    }
 	}
-      std::cout << req << std::endl;
-      cpt++;
     }
+  return NULL;
 }
 
 Network::~Network()
