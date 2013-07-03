@@ -18,14 +18,14 @@ class		Network
 private:
   std::string	_host;
   int		_port;
-  int		_team;
+  std::string	_team;
   int		_sock;
   int		_kill;
   int		_tailleX;
   int		_tailleY;
 
 public:
-  Network(std::string &, int, int);
+  Network(const std::string &, int, const std::string &);
   virtual ~Network();
   int		getPort() const;
   int		getSock() const;
