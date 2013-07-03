@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 11:11:59 2013 gery baudry
-// Last update Tue Jul  2 13:01:20 2013 gery baudry
+// Last update Wed Jul  3 14:37:35 2013 gery baudry
 //
 
 #ifndef			CASE__
@@ -17,7 +17,7 @@
 class			Case
 {
 public:
-  Case(int, int, int, int, int, int, int);
+  Case(sf::Vector2f, int, int, int, int, int, int, int);
   ~Case();
   std::string			doText();
 

@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 15:58:05 2013 gery baudry
-// Last update Wed Jul  3 12:51:10 2013 gery baudry
+// Last update Wed Jul  3 14:50:36 2013 gery baudry
 //
 
 
@@ -22,26 +22,25 @@ Souris::~Souris()
 {
 }
 
-sf::Text			Souris::CheckSouris(sf::RenderWindow &window, std::vector<Case> &map, int x, int y)
+sf::Text			Souris::CheckSouris(sf::RenderWindow &window, std::vector<Case> &map, int x, int y, sf::Vector2f taille)
 {
   sf::Vector2<int>		_pos;
-  sf::Text		text;
 
   if (sf::Mouse::isButtonPressed(sf::Mouse::Left) == true && this->_toto == false)
     {
       setPosition(window);
       this->_position = getPosition();
-      if ((this->_position.x <= (x * 50)) && (this->_position.y <= (y * 50)))
+      if ((this->_position.x <= (x * taille.x)) && (this->_position.y <= (y * taille.y)))
 	{
 	  for (std::vector<Case>::iterator it = map.begin(); it != map.end(); ++it)
 	    {
 	      _pos = sf::Vector2<int>(it->getPosition());
-	      if ((this->_position.x > _pos.x && !(this->_position.x > (_pos.x + 50)) && this->_position.y > _pos.y && !(this->_position.y > (_pos.y + 50))))
+	      if ((this->_position.x > _pos.x && !(this->_position.x > (_pos.x + taille.x)) && this->_position.y > _pos.y && !(this->_position.y > (_pos.y + taille.y))))
 		{
 		  std::cout << it->doText() << std::endl;
-		  text = sf::Text(it->doText(), this->font, 20);
-		  text.move(sf::Vector2f(500, 100));
-		  text.setColor(sf::Color(100, 340, 12));
+		  this->text = sf::Text(it->doText(), this->font, 20);
+		  this->text.move(sf::Vector2f(1100, 50));
+		  this->text.setColor(sf::Color(100, 340, 12));
 		  break;
 		}
 	    }
@@ -49,8 +48,11 @@ sf::Text			Souris::CheckSouris(sf::RenderWindow &window, std::vector<Case> &map,
       this->_toto = true;
     }
   else if (sf::Mouse::isButtonPressed(sf::Mouse::Left) == false && this->_toto == true)
-    this->_toto = false;
-  return (text);
+    {
+      this->_toto = false;
+      this->text = sf::Text();
+    }
+  return (this->text);
 }
 
 
