@@ -30,11 +30,9 @@ int		main(int ac, char **av)
     }
   Network	net(host, port, team);
   net.initConnexion();
-  net.doLoop();
   music.PlaySound();
-  // recuperer les premieres infos du serveur
+  net.doLoop();
   Windows	window(net.getTailleX(), net.getTailleY());
-  std::cout << net.getTailleX() << std::endl;
   window.CreateWindows();
-  // dans le create window, mettre le select etc.. dans la sfml loop
+  
 }
