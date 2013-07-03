@@ -56,8 +56,9 @@ void		Network::doLoop()
   int			x;
   int			y;
   gnl gl(this->_sock);
+  int			cpt = 0;
 
-  while (1)
+  while (cpt < 2)
     {
       FD_ZERO(&fd_read);
       FD_SET(this->_sock, &fd_read);
@@ -75,8 +76,9 @@ void		Network::doLoop()
 		  list = recup_sizeMap(req);
 		  x = list.front();
 		  y = list.back();
-		  Windows(x, y);
+		  //Windows(x, y);
 		}
+	      cpt++;
 	    }
 	}
       //std::cout << req << std::endl;

@@ -29,6 +29,7 @@ int		main(int ac, char **av)
       i += 2;
       Network	net(host, port, team);
       net.initConnexion();
+      net.doLoop();
       music.PlaySound();
       // recuperer les premieres infos du serveur
       Windows	window(net.getTailleX(), net.getTailleY());
