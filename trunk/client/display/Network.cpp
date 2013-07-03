@@ -96,7 +96,10 @@ void			Network::doLoop()
       FD_ZERO(&fd_read);
       FD_SET(this->_sock, &fd_read);
       if (gl.getbuffer() != "")
-	req = gl.get_next_line();
+	{
+	  req = gl.get_next_line();
+	  this->_carte.push_back(recup_mapContent(req));
+	}
       else if ((a = select(this->_sock + 1, &fd_read, NULL, NULL, NULL)) != -1)
         {
 	  if (FD_ISSET(this->_sock, &fd_read))
@@ -104,11 +107,8 @@ void			Network::doLoop()
 	      req = gl.get_next_line();
 	      if (recup_firstPart(req) == "sgt")
 		this->_sgt = askForTimeUnit(req);
-	      else
-		this->_carte.push_back(req);
 	    }
 	}
-      std::cout << req << std::endl;
       cpt++;
     }
 }
@@ -189,19 +189,35 @@ std::vector<std::string>	Network::recup_mapContent(std::string &data)
   int				idMax;
   std::vector<std::string>	s2;
   int				i = 4;
-  std::string			ress;
+  int				cpt = 0;
+  std::string			ress = "";
 
+  std::cout << data << std::endl;
   while (i < data.size())
     {
       if (data[i] == ' ')
 	{
-	  s2.push_back(ress);
-	  ress = "";
+	  if (cpt == 2)
+	    {
+	      s2.push_back(ress);
+	      ress = "";
+	    }
+	  else
+	    cpt++;
 	}
       else
-	ress += data[i];
+	{
+	  if (cpt == 2)
+	    {
+	      //	      std::cout << data[i];
+	      ress += data[i];
+	    }
+	}
       i++;
     }
+  for (std::vector<std::string>::iterator it = s2.begin(); it != s2.end(); ++it)
+    std::cout << *it;
+  std::cout << std::endl;
   return (s2);
 }
 

@@ -24,7 +24,7 @@ private:
   int		_tailleX;
   int		_tailleY;
   std::string	_sgt;
-  std::vector<std::string>	_carte;
+  std::vector<std::vector<std::string> >	_carte;
 
 public:
   Network(const std::string &, int, const std::string &);
