@@ -5,7 +5,7 @@
 // Login   <lansel_k@epitech.net>
 // 
 // Started on  Thu Jun 27 17:17:04 2013 kevin lansel
-// Last update Wed Jul  3 12:55:25 2013 kevin lansel
+// Last update Wed Jul  3 13:48:41 2013 kevin lansel
 //
 
 #include	<vector>
@@ -328,11 +328,11 @@ const std::string		Ia::voir()
 	tmp = "";
     }
   std::cout << "-------------------------" << std::endl;
-  need = what();
+  what();
   std::cout << "-------------------------" << std::endl;
   for (std::vector<std::string>::iterator it = vec.begin() ; it != vec.end() ; ++it)
     {
-      for (std::vector<std::string>::iterator ti = need.begin() ; ti != need.end() ; ++ti)
+      for (std::vector<std::string>::iterator ti = this->_need.begin() ; ti != this->_need.end() ; ++ti)
 	{
 	  if ((*it).find((*ti)) >= 0 && (*it).find((*ti)) <= (*ti).length())
 	    std::cout << i << std::endl;
