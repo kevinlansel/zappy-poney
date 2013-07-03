@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 11:12:44 2013 gery baudry
-// Last update Wed Jul  3 14:56:00 2013 gery baudry
+// Last update Wed Jul  3 15:10:52 2013 gery baudry
 //
 
 #include	<iostream>
@@ -13,7 +13,6 @@
 
 Case::Case(sf::Vector2f taille, int nourriture, int linemate, int deraumere, int sibur, int mendiane, int phiras, int thystame) : rectangle(taille), _nourriture(nourriture), _linemate(linemate), _deraumere(deraumere), _sibur(sibur), _mendiane(mendiane), _phiras(phiras), _thystame(thystame)
 {
-  std::cout << taille.x << " " << taille.y << std::endl;
   this->rectangle.setFillColor(sf::Color(0, 204, 204));
   this->rectangle.setOutlineThickness(1);
   this->rectangle.setOutlineColor(sf::Color(150, 50, 250));
