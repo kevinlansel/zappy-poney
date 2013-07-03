@@ -5,10 +5,10 @@
 ## Login   <wojcia_m@epitech.net>
 ## 
 ## Started on  Thu Jun 27 17:33:04 2013 Maxime Wojciak
-## Last update Tue Jul  2 14:16:31 2013 Maxime Wojciak
+## Last update Wed Jul  3 10:29:35 2013 gery baudry
 ##
 
-NAME=		client
+NAME=		Display
 
 SRC=		Audio.cpp	\
 		Case.cpp	\

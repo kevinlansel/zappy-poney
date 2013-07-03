@@ -5,6 +5,8 @@
 #include	"Windows.hpp"
 #include	"Audio.hpp"
 #include	"Network.hpp"
+#include	<cstdlib>
+#include	<ctime>
 
 int		main(int ac, char **av)
 {
@@ -14,6 +16,7 @@ int		main(int ac, char **av)
   int		team;
   Audio		music;
 
+  srand(time(NULL));
   host = "localhost";
   while (i < ac)
     {
@@ -29,6 +32,7 @@ int		main(int ac, char **av)
       music.PlaySound();
       // recuperer les premieres infos du serveur
       Windows	window(net.getTailleX(), net.getTailleY());
+      std::cout << net.getTailleX() << std::endl;
       window.CreateWindows();
       // dans le create window, mettre le select etc.. dans la sfml loop
     }

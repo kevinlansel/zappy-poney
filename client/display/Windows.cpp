@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:01:06 2013 Maxime Wojciak
-// Last update Tue Jul  2 14:54:05 2013 gery baudry
+// Last update Wed Jul  3 10:35:21 2013 gery baudry
 //
 
 #include	<iostream>
@@ -29,7 +29,7 @@ Windows::~Windows() {
 
 void		Windows::CreateWindows()
 {
-  Personnage		perso("../ressources/pictures/noctali.png");
+  //Personnage		perso("../ressources/pictures/noctali.png");
   Souris		souris;
   sf::Vector2i		position;
 
@@ -45,7 +45,7 @@ void		Windows::CreateWindows()
 	}
       this->window.clear();
       DrawMap();
-      this->window.draw(perso.loadPokemon());
+      //this->window.draw(perso.loadPokemon());
       position = souris.CheckSouris(this->window, this->map, this->_x, this->_y);
       this->window.display();
     }
@@ -55,13 +55,20 @@ void		Windows::DrawMap()
 {
   int		x = 0;
   int		y = 0;
+  int		a = rand()%7;
+  int		b = rand()%7;
+  int		c = rand()%7;
+  int		d = rand()%7;
+  int		e = rand()%7;
+  int		f = rand()%7;
+  int		g = rand()%7;
 
   while (y <= ((this->_y - 1) * 50))
     {
       x = 0;
       while (x <= ((this->_x - 1) * 50))
 	{
-	  Case		macase(1, 2 , 3, 4 ,5, 6, 7);
+	  Case		macase(a, b, c, d, e, f, g);
 	  macase.setPosition(sf::Vector2f(x, y));
 	  this->map.push_back(macase);
 	  x += 50;
