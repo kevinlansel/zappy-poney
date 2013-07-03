@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:08:13 2013 guillaume duez
-** Last update Mon Jul  1 15:59:34 2013 guillaume duez
+** Last update Wed Jul  3 15:42:15 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -14,7 +14,7 @@
 
 static char	str[NB_FUNC][LEN] = { "avance", "droite", "gauche", "voir",
 				      "inventaire", "prend", "pose",
-				      "broadcast", "expulse"};
+				      "broadcast", "expulse", "incantation"};
 
 static void	init_tab_func(void (*tab_func[NB_FUNC])(t_msg *, t_client *, t_map **))
 {
@@ -27,11 +27,13 @@ static void	init_tab_func(void (*tab_func[NB_FUNC])(t_msg *, t_client *, t_map *
   tab_func[6] = &pose_objet;
   tab_func[7] = &broadcast;
   tab_func[8] = &expulse;
+  tab_func[9] = &level_up;
 }
 
-static t_msg	*check_and_call(t_client *client, t_map **map)
+static t_msg	*check_and_call(t_client *client, t_map **map,
+				void (*tab_func[NB_FUNC])
+				(t_msg *, t_client *, t_map **))
 {
-  void		(*tab_func[NB_FUNC])(t_msg *, t_client *, t_map **);
   t_msg		*msg;
   int		bool;
   char		*tmp;
@@ -39,7 +41,6 @@ static t_msg	*check_and_call(t_client *client, t_map **map)
 
   i = -1;
   bool = 0;
-  init_tab_func(tab_func);
   if ((msg = get_mess(client)) != NULL)
     {
       while (++i < NB_FUNC)
@@ -63,8 +64,10 @@ static t_msg	*check_and_call(t_client *client, t_map **map)
 t_msg		*do_action(t_client *client, t_map **map, t_msg *msg)
 {
   t_msg		*new;
+  void		(*tab_func[NB_FUNC])(t_msg *, t_client *, t_map **);
 
-  new = check_and_call(client, map);
+  init_tab_func(tab_func);
+  new = check_and_call(client, map, tab_func);
   if (new != NULL && new->bool == 1)
     msg = into_order_task(msg, new);
   else if (msg != NULL && new == NULL)

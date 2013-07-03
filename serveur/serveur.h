@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Wed Jul  3 12:39:54 2013 guillaume duez
+** Last update Wed Jul  3 15:54:11 2013 guillaume duez
 */
 
 #ifndef			__SERVEUR_H__
@@ -19,7 +19,7 @@
 #include		<netinet/in.h>
 #include		<limits.h>
 
-#define			NB_FUNC		9
+#define			NB_FUNC		10
 #define			LEN		12
 #define			OPT_INT		5
 #define			SIZE_PTR_FUNC	14
@@ -119,6 +119,7 @@ typedef	struct		s_connect
   struct sockaddr_in	s_in;
   struct sockaddr_in	s_in_client;
   socklen_t		s_in_size;
+  struct timeval        *tv;
   int			fd;
   int			port;
 }			t_connect;
@@ -193,6 +194,7 @@ void			inventaire(t_msg *mess, t_client *client, t_map **map);
 void			init_map(t_map **map, t_conf *config);
 t_msg			*into_order_task(t_msg *first, t_msg *new);
 
+void			level_up(t_msg *msg, t_client *client, t_map **map);
 void			loop_answer(char *, t_client *, t_map **);
 
 char			**my_str_to_wordtab(char *str, char c);

@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 17:52:10 2013 guillaume duez
-** Last update Mon Jul  1 15:45:14 2013 guillaume duez
+** Last update Wed Jul  3 15:58:47 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -80,7 +80,7 @@ static void		open_serv(t_connect *co, t_client *client, t_opt *opt, t_map **map)
   while (error != -1)
     {
       set_fd(&fd_read, client, &max, co->fd);
-      if ((error = select(max + 1, &fd_read, NULL, NULL, NULL)) != -1)
+      if ((error = select(max + 1, &fd_read, NULL, NULL, co->tv)) != -1)
         {
           if (FD_ISSET(co->fd, &fd_read))
 	    client = create_client(xaccept(co->fd, co->s_in_client, co->s_in_size),
@@ -106,6 +106,7 @@ void		run_server(t_opt *opt)
 
   connect = xmalloc(sizeof(t_connect));
   connect->s_in_size = sizeof(connect->s_in_client);
+  connect->tv = xmalloc(sizeof(struct timeval));
   connect->pe = getprotobyname("TCP");
   if (!connect->pe)
     return;
@@ -119,6 +120,8 @@ void		run_server(t_opt *opt)
   map = create_map(opt);
   create_link_x(map);
   create_link_y(map);
+  connect->tv->tv_usec = 600;
+  connect->tv->tv_sec = 0;
   if (!opt)
     printf("problem with args\n");
   else
