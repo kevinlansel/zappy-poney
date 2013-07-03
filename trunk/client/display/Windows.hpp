@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:00:59 2013 Maxime Wojciak
-// Last update Tue Jul  2 11:46:22 2013 gery baudry
+// Last update Wed Jul  3 14:50:49 2013 gery baudry
 //
 
 #ifndef		WINDOWS__
@@ -32,7 +32,7 @@ private:
   std::vector<Case>		map;
   int				_x;
   int				_y;
-
+  sf::Vector2f			taille;
 };
 
 #endif		/* WINDOWS__ */

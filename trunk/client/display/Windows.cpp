@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:01:06 2013 Maxime Wojciak
-// Last update Wed Jul  3 12:51:38 2013 gery baudry
+// Last update Wed Jul  3 14:55:39 2013 gery baudry
 //
 
 #include	<iostream>
@@ -19,8 +19,9 @@
 #include	"Case.hpp"
 #include	"Souris.hpp"
 
-Windows::Windows(int x, int y) : window(sf::VideoMode(800, 600), "Client Zappy"), _x(x), _y(y)
+Windows::Windows(int x, int y) : window(sf::VideoMode(1280, 1024), "Client Zappy", sf::Style::Fullscreen), _x(x), _y(y)
 {
+  this->taille = sf::Vector2f((1100 / this->_x), (960 / this->_y));
 }
 
 Windows::~Windows() {
@@ -46,7 +47,7 @@ void		Windows::CreateWindows()
       this->window.clear();
       DrawMap();
       //this->window.draw(perso.loadPokemon());
-      text = souris.CheckSouris(this->window, this->map, this->_x, this->_y);
+      text = souris.CheckSouris(this->window, this->map, this->_x, this->_y, this->taille);
       this->window.draw(text);
       this->window.display();
     }
@@ -56,25 +57,25 @@ void		Windows::DrawMap()
 {
   int		x = 0;
   int		y = 0;
-  int		a = rand()%7;
-  int		b = rand()%7;
-  int		c = rand()%7;
-  int		d = rand()%7;
-  int		e = rand()%7;
-  int		f = rand()%7;
-  int		g = rand()%7;
 
-  while (y <= ((this->_y - 1) * 50))
+  while (y <= ((this->_y - 1) * this->taille.y))
     {
       x = 0;
-      while (x <= ((this->_x - 1) * 50))
+      while (x <= ((this->_x - 1) * this->taille.x))
 	{
-	  Case		macase(a, b, c, d, e, f, g);
+	  int		a = rand()%7;
+	  int		b = rand()%7;
+	  int		c = rand()%7;
+	  int		d = rand()%7;
+	  int		e = rand()%7;
+	  int		f = rand()%7;
+	  int		g = rand()%7;
+	  Case		macase(taille, a, b, c, d, e, f, g);
 	  macase.setPosition(sf::Vector2f(x, y));
 	  this->map.push_back(macase);
-	  x += 50;
+	  x += this->taille.x;
 	}
-	y += 50;
+      y += this->taille.y;
     }
   for (std::vector<Case>::iterator it = this->map.begin(); it != this->map.end(); ++it)
     this->window.draw(it->getRectangle());

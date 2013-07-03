@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 15:59:10 2013 gery baudry
-// Last update Wed Jul  3 12:49:49 2013 gery baudry
+// Last update Wed Jul  3 14:51:26 2013 gery baudry
 //
 
 #ifndef		SOURIS__
@@ -23,12 +23,13 @@ public:
 public:
   sf::Vector2<int>	getPosition() const;
   void			setPosition(sf::RenderWindow &);
-  sf::Text		CheckSouris(sf::RenderWindow &, std::vector<Case> &, int, int);
+  sf::Text		CheckSouris(sf::RenderWindow &, std::vector<Case> &, int, int, sf::Vector2f);
 
 public:
   sf::Vector2<int>	_position;
   bool			_toto;
   sf::Font		font;
+  sf::Text		text;
 };
 
 #endif
