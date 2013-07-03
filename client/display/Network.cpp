@@ -46,7 +46,7 @@ void		Network::initConnexion()
   connect(this->_sock, (struct sockaddr *)&s_in, sizeof(s_in));
 }
 
-void		Network::doLoop()
+void			Network::doLoop()
 {
   fd_set		fd_read;
   char			buff[4096];
@@ -76,9 +76,39 @@ void		Network::doLoop()
 		  list = recup_sizeMap(req);
 		  x = list.front();
 		  y = list.back();
+		  if (x == 0 || y == 0)
+		    {
+		      std::cout << "Taille de la map incorrecte:\nTaille en X: " << x << "\nTaille en Y: " << y << std::endl;
+		      close(this->_sock);
+		      exit(-1);
+		    }
 		}
 	    }
 	}
+      std::cout << req << std::endl;
+      cpt++;
+    }
+  cpt = 0;
+  req = "";
+  std::cout << "-----------------------" << std::endl;
+  while (cpt < x * y + 1)
+    {
+      FD_ZERO(&fd_read);
+      FD_SET(this->_sock, &fd_read);
+      if (gl.getbuffer() != "")
+	req = gl.get_next_line();
+      else if ((a = select(this->_sock + 1, &fd_read, NULL, NULL, NULL)) != -1)
+        {
+	  if (FD_ISSET(this->_sock, &fd_read))
+	    {
+	      req = gl.get_next_line();
+	      if (recup_firstPart(req) == "sgt")
+		this->_sgt = askForTimeUnit(req);
+	      else
+		this->_carte.push_back(req);
+	    }
+	}
+      std::cout << req << std::endl;
       cpt++;
     }
 }
