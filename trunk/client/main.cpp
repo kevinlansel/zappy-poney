@@ -1,3 +1,12 @@
+//
+// main.cpp for zappy main princ in /home/peelou/SVN/zappy-poney/client
+// 
+// Made by gery baudry
+// Login   <baudry_g@epitech.net>
+// 
+// Started on  Wed Jul  3 10:28:42 2013 gery baudry
+// Last update Wed Jul  3 10:29:00 2013 gery baudry
+//
 #include	<unistd.h>
 #include	<string>
 #include	<iostream>
