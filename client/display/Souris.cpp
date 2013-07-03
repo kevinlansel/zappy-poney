@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 15:58:05 2013 gery baudry
-// Last update Tue Jul  2 14:46:13 2013 gery baudry
+// Last update Wed Jul  3 12:51:10 2013 gery baudry
 //
 
 
@@ -13,19 +13,19 @@
 #include	"Souris.hpp"
 #include	"Windows.hpp"
 
-Souris::Souris() : _toto(false)
+Souris::Souris() : _position(0,0), _toto(false)
 {
+  this->font.loadFromFile("../ressources/fonts/Sansation_Bold.ttf");
 }
 
 Souris::~Souris()
 {
 }
 
-sf::Vector2i			Souris::CheckSouris(sf::RenderWindow &window, std::vector<Case> &map, int x, int y)
+sf::Text			Souris::CheckSouris(sf::RenderWindow &window, std::vector<Case> &map, int x, int y)
 {
-  sf::Vector2f		_pos;
-  sf::Font	font;
-  font.loadFromFile("../ressources/fonts/Sansation_Bold.ttf");
+  sf::Vector2<int>		_pos;
+  sf::Text		text;
 
   if (sf::Mouse::isButtonPressed(sf::Mouse::Left) == true && this->_toto == false)
     {
@@ -35,31 +35,35 @@ sf::Vector2i			Souris::CheckSouris(sf::RenderWindow &window, std::vector<Case> &
 	{
 	  for (std::vector<Case>::iterator it = map.begin(); it != map.end(); ++it)
 	    {
-	      _pos = it->getPosition();
-	      if (this->_position.x > _pos.x && this->_position.y > _pos.y)
+	      _pos = sf::Vector2<int>(it->getPosition());
+	      if ((this->_position.x > _pos.x && !(this->_position.x > (_pos.x + 50)) && this->_position.y > _pos.y && !(this->_position.y > (_pos.y + 50))))
 		{
-		  sf::Text text(it->doText(), font, 20);
+		  std::cout << it->doText() << std::endl;
+		  text = sf::Text(it->doText(), this->font, 20);
 		  text.move(sf::Vector2f(500, 100));
 		  text.setColor(sf::Color(100, 340, 12));
-		  window.draw(text);
+		  break;
 		}
 	    }
-	  std::cout << "pos X = " << this->_position.x << "pos Y = " << this->_position.y << std::endl;
 	}
       this->_toto = true;
     }
   else if (sf::Mouse::isButtonPressed(sf::Mouse::Left) == false && this->_toto == true)
     this->_toto = false;
-  return (this->_position);
+  return (text);
 }
 
 
-void		Souris::setPosition(sf::RenderWindow &window)
+void			Souris::setPosition(sf::RenderWindow &window)
 {
-  this->_position = sf::Mouse::getPosition(window);
+  sf::Vector2i			tmp;
+
+  tmp = sf::Mouse::getPosition(window);
+  this->_position.x = tmp.x;
+  this->_position.y = tmp.y;
 }
 
-sf::Vector2i		Souris::getPosition() const
+sf::Vector2<int>		Souris::getPosition() const
 {
   return (this->_position);
 }
