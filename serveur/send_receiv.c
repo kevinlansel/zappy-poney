@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:15:13 2013 guillaume duez
-** Last update Wed Jun 26 14:24:01 2013 florian dewulf
+** Last update Wed Jul  3 12:32:14 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -47,7 +47,7 @@ int		send_mess(t_msg *msg)
     return -1;
   if ((ret = send(msg->client->fd, msg->cmd ,strlen(msg->cmd) + 1, MSG_OOB) <= 0))
     {
-      printf("Unable to send message, for client :%s", msg->client->nick);
+      printf("Unable to send message, for client :%d", msg->client->id);
       close(msg->client->fd);
       return -1;
     }

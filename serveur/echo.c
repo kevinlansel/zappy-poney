@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Thu Jun 13 17:23:39 2013 florian dewulf
-** Last update Wed Jul  3 11:15:19 2013 florian dewulf
+** Last update Wed Jul  3 12:36:38 2013 guillaume duez
 */
 
 #include	<math.h>
@@ -25,7 +25,7 @@ void		broadcast(t_msg *msg, t_client *client, t_map **map)
   msg->time = get_time() + (7 / client->time);
   while (begin && begin->end != 1)
     {
-      if (begin != client && begin->graphic == CLIENT)
+      if (begin != client && begin->type == CLIENT)
 	{
 	  k = calcul_K(client, begin);
 	  snd_msg_broadcast(msg->comand + 9, k, begin->fd);
