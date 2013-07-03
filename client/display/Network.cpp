@@ -38,12 +38,15 @@ void		Network::initConnexion()
   struct sockaddr_in	s_in;
   struct protoent	*pe;
 
+  std::cout << "init conect 1" << std::endl;
   pe = getprotobyname("TCP");
   s_in.sin_family = AF_INET;
   s_in.sin_port = htons(this->_port);
   s_in.sin_addr.s_addr = inet_addr(this->_host.c_str());
+  std::cout << "init conect 2" << std::endl;
   this->_sock = socket(AF_INET, SOCK_STREAM, pe->p_proto);
   connect(this->_sock, (struct sockaddr *)&s_in, sizeof(s_in));
+  std::cout << "init conect 3" << std::endl;
 }
 
 void		Network::doLoop()
@@ -60,15 +63,20 @@ void		Network::doLoop()
 
   while (cpt < 2)
     {
+      std::cout << "do loop 1" << std::endl;
       FD_ZERO(&fd_read);
       FD_SET(this->_sock, &fd_read);
+      std::cout << "do loop 2" << std::endl;
       if (gl.getbuffer() != "")
 	req = gl.get_next_line();
       else if ((a = select(this->_sock + 1, &fd_read, NULL, NULL, NULL)) != -1)
         {
+	  std::cout << "do loop 4" << std::endl;
           if (FD_ISSET(this->_sock, &fd_read))
 	    {
+	      std::cout << "do loop 5" << std::endl;
 	      req = gl.get_next_line();
+	      std::cout << req << std::endl;
 	      if (req == "BIENVENUE")
 		write(this->_sock, "GRAPHIC\n", 8);
 	      else if (recup_firstPart(req) == "msz")
@@ -81,7 +89,7 @@ void		Network::doLoop()
 	      cpt++;
 	    }
 	}
-      //std::cout << req << std::endl;
+      std::cout << req << std::endl;
     }
 }
 
