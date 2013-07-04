@@ -43,6 +43,7 @@ public:
   int		getPort() const;
   int		getSock() const;
   std::string	getHost() const;
+  std::string	getTeam() const;
   int		getTailleX() const;
   int		getTailleY() const;
   std::vector<std::vector<int> >	getCarte() const;
