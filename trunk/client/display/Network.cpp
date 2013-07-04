@@ -69,7 +69,6 @@ void		Network::initConnexion()
 void			Network::doLoop()
 {
   fd_set		fd_read;
-  char			buff[4096];
   int			a;
   std::string		req = "";
   std::vector<int>	list;
@@ -136,7 +135,7 @@ void			Network::doLoop()
 
 std::string		Network::recup_firstPart(std::string &data)
 {
-  int			i = 0;
+  unsigned int		i = 0;
   std::string		param = "";
   bool			trouve = false;
 
@@ -172,7 +171,7 @@ void			Network::checkData(std::string &data)
 
 std::vector<int>	Network::recup_sizeMap(std::string &data)
 {
-  int			i = 4;
+  unsigned int		i = 4;
   std::string		coordX = "";
   std::string		coordY = "";
   std::vector<int>	list;
@@ -206,10 +205,9 @@ std::vector<int>	Network::recup_sizeMap(std::string &data)
 
 std::vector<int>		Network::recup_mapContent(std::string &data)
 {
-  int				idMax;
   std::vector<int>		s2;
-  int				i = 0;
-  int				cpt = 0;
+  unsigned int			i = 0;
+  unsigned int			cpt = 0;
   int				ressource;
   std::string			ress = "";
 
@@ -247,12 +245,12 @@ std::vector<int>		Network::recup_caseContent(int y, int x)
   std::string			chaine;
   std::string			ress = "";
   std::vector<int>		list;
-  char				*data;
+  char				data[1024];
   std::string			data2;
-  int				i = 0;
+  unsigned int			i = 0;
   std::ostringstream		posy;
   std::ostringstream		posx;
-  int				cpt = 0;
+  unsigned int			cpt = 0;
   int				ressource;
 
   posy << y;
@@ -293,7 +291,7 @@ std::vector<int>		Network::recup_caseContent(int y, int x)
 std::string		Network::recup_teamName(std::string &data)
 {
   std::string		team = "";
-  int			i = 4;
+  unsigned int		i = 4;
 
   while (i < data.size())
     {
@@ -304,14 +302,15 @@ std::string		Network::recup_teamName(std::string &data)
 	}
       i++;
     }
+  return team;
 }
 
 std::vector<std::string>	Network::recup_playerPosition(int idPlayer)
 {
   std::string		chaine;
-  char			*data;
+  char			data[2048];
   std::string		data2;
-  int			i = 7;
+  unsigned int		i = 7;
   std::vector<std::string>	list;
   std::string		ress = "";
   std::ostringstream	idp;
@@ -338,9 +337,9 @@ std::vector<std::string>	Network::recup_playerPosition(int idPlayer)
 std::string		Network::recup_playerLevel(int idPlayer)
 {
   std::string		chaine;
-  char			*data;
+  char			data[2048];
   std::string		data2;
-  int			i = 7;
+  unsigned int		i = 7;
   std::string		ress = "";
   std::ostringstream	idp;
 
@@ -360,9 +359,9 @@ std::string		Network::recup_playerLevel(int idPlayer)
 std::vector<std::string>	Network::recup_playerInventaire(int idPlayer)
 {
   std::string		chaine;
-  char			*data;
+  char			data[2048];
   std::string		data2;
-  int			i = 7;
+  unsigned int		i = 7;
   std::vector<std::string>	list;
   std::string		ress = "";
   std::ostringstream	idp;
@@ -388,7 +387,7 @@ std::vector<std::string>	Network::recup_playerInventaire(int idPlayer)
 
 std::string		Network::askForTimeUnit(std::string &data)
 {
-  int			i = 4;
+  unsigned int		i = 4;
   std::string		chaine = "";
 
   while (i < data.size())
