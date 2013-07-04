@@ -193,7 +193,6 @@ std::vector<int>	Network::recup_sizeMap(std::string &data)
       this->_tailleX = x;
       this->_tailleY = y;
     }
-  //  std::cout << "X: " << coordX << "\tY: " << coordY << std::endl;
   list.push_back(x);
   list.push_back(y);
   return list;
@@ -202,7 +201,7 @@ std::vector<int>	Network::recup_sizeMap(std::string &data)
 std::vector<int>	Network::recup_mapContent(std::string &data)
 {
   int				idMax;
-  std::vector<int>	s2;
+  std::vector<int>		s2;
   int				i = 0;
   int				cpt = 0;
   int				ressource;
@@ -210,7 +209,7 @@ std::vector<int>	Network::recup_mapContent(std::string &data)
 
   while (i <= data.size())
     {
-      if (data[i] != ' ')
+      if (data[i] != ' ' && data[i] != '\0')
 	{
 	  if (cpt == 3)
 	    ress += data[i];
