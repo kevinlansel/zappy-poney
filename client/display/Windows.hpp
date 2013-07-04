@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:00:59 2013 Maxime Wojciak
-// Last update Wed Jul  3 14:50:49 2013 gery baudry
+// Last update Thu Jul  4 12:02:14 2013 gery baudry
 //
 
 #ifndef		WINDOWS__
@@ -13,12 +13,13 @@
 
 #include	<SFML/Graphics.hpp>
 #include	<SFML/Audio.hpp>
+#include	"Network.hpp"
 #include	"Case.hpp"
 #include	"Texte.hpp"
 
 class		Windows {
 public:
-  Windows(int, int);
+  Windows(int, int, const Network &);
   ~Windows();
 
 public:
@@ -27,12 +28,13 @@ public:
   std::vector<Case>	getVector() const;
 
 private:
-  sf::Event			event;
-  sf::RenderWindow		window;
-  std::vector<Case>		map;
-  int				_x;
-  int				_y;
-  sf::Vector2f			taille;
+  sf::Event		event;
+  sf::RenderWindow	window;
+  std::vector<Case>	map;
+  int			_x;
+  int			_y;
+  sf::Vector2f		taille;
+  Network		_net;
 };
 
-#endif		/* WINDOWS__ */
+#endif			/* WINDOWS__ */

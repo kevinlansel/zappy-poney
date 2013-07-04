@@ -1,3 +1,13 @@
+//
+// Network.cpp for zappy in /home/peelou/SVN/zappy-poney/client/display
+// 
+// Made by gery baudry
+// Login   <baudry_g@epitech.net>
+// 
+// Started on  Thu Jul  4 12:01:21 2013 gery baudry
+// Last update Thu Jul  4 12:01:40 2013 gery baudry
+//
+
 #include	"Network.hpp"
 
 Network::Network(const std::string &host, int port, const std::string &team):
@@ -31,6 +41,11 @@ int		Network::getTailleX() const
 int		Network::getTailleY() const
 {
   return (this->_tailleY);
+}
+
+std::vector<std::vector<int> >	Network::getCarte() const
+{
+  return (this->_carte);
 }
 
 void		Network::initConnexion()

@@ -1,6 +1,17 @@
-#ifndef		__NETWORK_HPP__
-#define		__NETWORK_HPP__
+//
+// Network.hpp for zappy in /home/peelou/SVN/zappy-poney/client/display
+// 
+// Made by gery baudry
+// Login   <baudry_g@epitech.net>
+// 
+// Started on  Thu Jul  4 12:01:16 2013 gery baudry
+// Last update Thu Jul  4 12:01:41 2013 gery baudry
+//
 
+#ifndef		__NETWORK_HPP__
+# define	__NETWORK_HPP__
+
+#include	<sstream>
 #include	<sys/types.h>
 #include	<sys/socket.h>
 #include	<arpa/inet.h>
@@ -9,8 +20,8 @@
 #include	<cstdlib>
 #include	<cstring>
 #include	<cstdio>
+#include	<vector>
 
-#include	"Windows.hpp"
 #include	"get_next_line.hpp"
 
 class		Network
@@ -34,6 +45,7 @@ public:
   std::string	getHost() const;
   int		getTailleX() const;
   int		getTailleY() const;
+  std::vector<std::vector<int> >	getCarte() const;
   void		initConnexion();
   void		doLoop();
   std::string		recup_firstPart(std::string &data);
