@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu Jul  4 12:01:21 2013 gery baudry
-// Last update Thu Jul  4 12:01:40 2013 gery baudry
+// Last update Thu Jul  4 12:09:26 2013 gery baudry
 //
 
 #include	"Network.hpp"
@@ -100,12 +100,12 @@ void			Network::doLoop()
 		}
 	    }
 	}
-      std::cout << req << std::endl;
+      // std::cout << req << std::endl;
       cpt++;
     }
   cpt = 0;
   req = "";
-  std::cout << "-----------------------" << std::endl;
+  // std::cout << "-----------------------" << std::endl;
   while (cpt < x * y + 1)
     {
       FD_ZERO(&fd_read);
@@ -207,7 +207,7 @@ std::vector<int>	Network::recup_mapContent(std::string &data)
   int				cpt = 0;
   int				ressource;
   std::string			ress = "";
-  
+
   while (i < data.size())
     {
       if (data[i] == ' ')
@@ -229,9 +229,9 @@ std::vector<int>	Network::recup_mapContent(std::string &data)
 	}
       i++;
     }
-  for (std::vector<int>::iterator it = s2.begin(); it != s2.end(); ++it)
-    std::cout << *it;
-  std::cout << std::endl;
+  // for (std::vector<int>::iterator it = s2.begin(); it != s2.end(); ++it)
+  //   std::cout << *it;
+  // std::cout << std::endl;
   return (s2);
 }
 
