@@ -5,16 +5,17 @@
 ## Login   <duez_a@epitech.net>
 ## 
 ## Started on  Mon Feb  4 12:48:16 2013 guillaume duez
-## Last update Wed Jul  3 14:53:07 2013 guillaume duez
+## Last update Thu Jul  4 22:09:12 2013 florian dewulf
 ##
 
 SERV	=	serveur
 
 SRC_SERV=	action.c			\
+		calculator.c			\
 		cmd.c				\
 		client.c			\
 		client_utils.c			\
-		calculator.c			\
+		connexion.c			\
 		dialog_client/check_msg_srv.c	\
 		dialog_client/egg.c		\
 		dialog_client/level.c		\

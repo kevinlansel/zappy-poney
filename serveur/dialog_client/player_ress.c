@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Tue Jun 25 14:30:32 2013 florian dewulf
-** Last update Wed Jul  3 12:36:15 2013 guillaume duez
+** Last update Wed Jul  3 12:57:18 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -28,7 +28,7 @@ void		drop_ress(int id, int ressource, t_client *cl)
     tmp = tmp->prev;
   while (tmp && tmp->end != 1)
     {
-      if (tmp->type == 1)
+      if (tmp->type == GRAPHIC)
 	write(tmp->fd, str, strlen(str));
       tmp = tmp->nt;
     }
@@ -49,7 +49,7 @@ void		take_ress(int id, int ressource, t_client *cl)
     tmp = tmp->prev;
   while (tmp && tmp->end != 1)
     {
-      if (tmp->type == 1)
+      if (tmp->type == GRAPHIC)
 	write(tmp->fd, str, strlen(str));
       tmp = tmp->nt;
     }

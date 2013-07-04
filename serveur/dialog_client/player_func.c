@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Wed Jun 19 13:19:33 2013 florian dewulf
-** Last update Wed Jun 26 14:10:19 2013 florian dewulf
+** Last update Fri Jul  5 01:05:28 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -14,8 +14,52 @@
 #include	<unistd.h>
 #include	"../serveur.h"
 
+static char	**gen_team(t_client *begin)
+{
+  char		**team;
+  t_client	*tmp;
+  int		i;
+
+  team = NULL;
+  tmp = begin;
+  while (tmp && tmp->end != 1)
+    {
+      i = 0;
+      while (team && team[i] && strcmp(tmp->team, team[i]) != 0)
+	i++;
+      if (team == NULL || (team && team[i] == NULL))
+	{
+	  team = realloc(team, (strlen_tab(team) + 2) * sizeof(char *));
+	  team[i] = tmp->team;
+	  team[i + 1] = NULL;
+	}
+      tmp = tmp->nt;
+    }
+  return (team);
+}
+
 void		getteam(char **arg, int fd, t_map **map, t_client *begin)
 {
+  char		**team;
+  char		*str;
+  int		size;
+  int		i;
+
+  i = 0;
+  (void)(arg);
+  (void)(map);
+  team = gen_team(begin);
+  while (team && team[i])
+    {
+      size = snprintf(NULL, 0, "tna %s\n", team[i]);
+      str = xmalloc((size + 1) * sizeof(char));
+      snprintf(str, size, "tna %s\n", team[i]);
+      write(fd, str, strlen(str));
+      free(str);
+      i++;
+    }
+  if (team)
+    free(team);
 }
 
 void		getposplayer(char **arg, int fd, t_map **map, t_client *begin)

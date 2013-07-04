@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun 24 16:01:55 2013 guillaume duez
-** Last update Wed Jul  3 10:36:18 2013 florian dewulf
+** Last update Fri Jul  5 00:39:00 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -18,10 +18,7 @@ int		strlen_tab(char **str)
 
   i = 0;
   while (str && str[i])
-    {
-      printf("%s\n", str[i]);
-      i++;
-    }
+    i++;
   return i;
 }
 
