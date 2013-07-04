@@ -5,7 +5,7 @@
 ## Login   <wojcia_m@epitech.net>
 ## 
 ## Started on  Thu Jun 27 17:33:04 2013 Maxime Wojciak
-## Last update Thu Jul  4 15:47:17 2013 gery baudry
+## Last update Thu Jul  4 16:34:59 2013 gery baudry
 ##
 
 NAME=		Display
@@ -25,7 +25,7 @@ OBJ=		$(SRC:.cpp=.o)
 
 CC=		g++
 
-#CXXFLAGS=	-W -Wall -Wextra
+CXXFLAGS=	-W -Wall -Wextra
 
 $(NAME):	$(OBJ)
 		$(CC) -o $(NAME) $(OBJ) -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system -ggdb3
