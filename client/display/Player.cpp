@@ -5,12 +5,12 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Tue Jul  2 10:35:58 2013 gery baudry
-// Last update Tue Jul  2 14:52:14 2013 gery baudry
+// Last update Thu Jul  4 16:18:40 2013 gery baudry
 //
 
 #include		"Player.hpp"
 
-Player::Player(sf::Vector2i pos, int nourriture, int linemate, int deraumere, int sibur, int mendiane, int phiras, int thystame, int level) : _pos(pos), _nourriture(nourriture), _linemate(linemate), _deraumere(deraumere), _sibur(sibur), _mendiane(mendiane), _phiras(phiras), _thystame(thystame), _level(level)
+Player::Player(sf::Vector2i pos, int nourriture, int linemate, int deraumere, int sibur, int mendiane, int phiras, int thystame, int level) : _pos(pos), _nourriture(nourriture), _linemate(linemate), _deraumere(deraumere), _sibur(sibur), _mendiane(mendiane), _phiras(phiras), _thystame(thystame), _level(level), _image(level)
 {
 }
 
@@ -18,11 +18,12 @@ Player::~Player()
 {
 }
 
+
 //
 //			Getter
 //
 
-sf::Vector2f			Player::getPosition() const
+sf::Vector2i			Player::getPosition() const
 {
   return (this->_pos);
 }
@@ -67,14 +68,18 @@ int				Player::getLevel() const
   return (this->_level);
 }
 
+Personnage			Player::getImage() const
+{
+  return (this->_image);
+}
+
 //
 //		Setter
 //
 
-void				Player::setPosition(const sf::Vector2f &pos)
+void				Player::setPosition(const sf::Vector2i &pos)
 {
   this->_pos = pos;
-  this->rectangle.move(pos);
 }
 
 void				Player::setNourriture(int val)
@@ -115,4 +120,9 @@ void				Player::setThystame(int val)
 void				Player::setLevel(int val)
 {
   this->_level = val;
+}
+
+void				Player::setImage(int val)
+{
+  this->_image = Personnage(val);
 }

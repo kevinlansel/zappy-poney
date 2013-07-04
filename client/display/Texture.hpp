@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Fri Jun 28 16:47:27 2013 Maxime Wojciak
-// Last update Fri Jun 28 17:45:17 2013 Maxime Wojciak
+// Last update Thu Jul  4 16:31:52 2013 gery baudry
 //
 
 #ifndef		TEXTURE__
@@ -17,7 +17,7 @@
 class	Textur {
 public:
   Textur();
-  ~Textur();
+  virtual	~Textur();
 
 public:
   void	setTextur(const std::string &);

@@ -5,20 +5,21 @@
 ## Login   <wojcia_m@epitech.net>
 ## 
 ## Started on  Thu Jun 27 17:33:04 2013 Maxime Wojciak
-## Last update Wed Jul  3 10:29:35 2013 gery baudry
+## Last update Thu Jul  4 15:47:17 2013 gery baudry
 ##
 
 NAME=		Display
 
-SRC=		Audio.cpp	\
-		Case.cpp	\
-		main.cpp	\
-		Personnage.cpp	\
-		Souris.cpp	\
-		Texture.cpp	\
-		Windows.cpp	\
-		Network.cpp	\
-		get_next_line.cpp
+SRC=		Audio.cpp		\
+		Case.cpp		\
+		get_next_line.cpp	\
+		main.cpp		\
+		Network.cpp		\
+		Personnage.cpp		\
+		Player.cpp		\
+		Souris.cpp		\
+		Texture.cpp		\
+		Windows.cpp
 
 OBJ=		$(SRC:.cpp=.o)
 

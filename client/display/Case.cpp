@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 11:12:44 2013 gery baudry
-// Last update Thu Jul  4 14:37:23 2013 gery baudry
+// Last update Thu Jul  4 16:27:43 2013 gery baudry
 //
 
 #include	<iostream>
@@ -13,7 +13,10 @@
 
 Case::Case(sf::Vector2f taille, std::vector<std::vector<int> > ressources, int i) : rectangle(taille), _nourriture(ressources[i][0]), _linemate(ressources[i][1]), _deraumere(ressources[i][2]), _sibur(ressources[i][3]), _mendiane(ressources[i][4]), _phiras(ressources[i][5]), _thystame(ressources[i][6])
 {
-  this->rectangle.setFillColor(sf::Color(0, 204, 204));
+  if (this->_nourriture == 0 && this->_linemate == 0 && this->_deraumere == 0 && this->_sibur == 0 && this->_mendiane == 0 && this->_phiras == 0 && this->_thystame == 0)
+    this->rectangle.setFillColor(sf::Color(0, 204, 204));
+  else
+    this->rectangle.setFillColor(sf::Color(0, 204, 0));
   this->rectangle.setOutlineThickness(1);
   this->rectangle.setOutlineColor(sf::Color(150, 50, 250));
 }
@@ -22,11 +25,11 @@ Case::~Case()
 {
 }
 
-std::string			Case::doText()
+std::string			Case::doText(sf::Vector2<int> souris)
 {
   std::stringstream		inv;
 
-  inv << "Inventaire de la case \nX = " << this->_pos.x << " Y = " << this->_pos.y << "\nNourriture = " << this->_nourriture << " \n" << "Linemate = " << this->_linemate << " \n" << "Deraumere = " << this->_deraumere << " \n" << "Sibur = " << this->_sibur << " \n" << "Mediane = " << this->_mendiane << " \n" << "Phiras = " << this->_phiras << " \n" << "Thystame = " << this->_thystame << " \n";
+  inv << "Inventaire de la case \nX = " << souris.x << " Y = " << souris.y << "\nNourriture = " << this->_nourriture << " \n" << "Linemate = " << this->_linemate << " \n" << "Deraumere = " << this->_deraumere << " \n" << "Sibur = " << this->_sibur << " \n" << "Mediane = " << this->_mendiane << " \n" << "Phiras = " << this->_phiras << " \n" << "Thystame = " << this->_thystame << " \n";
   return (inv.str());
 }
 

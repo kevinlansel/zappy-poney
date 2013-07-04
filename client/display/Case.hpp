@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 11:11:59 2013 gery baudry
-// Last update Thu Jul  4 11:52:51 2013 gery baudry
+// Last update Thu Jul  4 16:33:31 2013 gery baudry
 //
 
 #ifndef			CASE__
@@ -19,8 +19,8 @@ class			Case
 {
 public:
   Case(sf::Vector2f, std::vector<std::vector<int> >, int);
-  ~Case();
-  std::string			doText();
+  virtual			~Case();
+  std::string			doText(sf::Vector2<int>);
 
 public:
   sf::RectangleShape		getRectangle() const;

@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:01:06 2013 Maxime Wojciak
-// Last update Thu Jul  4 14:38:11 2013 gery baudry
+// Last update Thu Jul  4 16:19:24 2013 gery baudry
 //
 
 #include	<iostream>
@@ -14,6 +14,7 @@
 #include	<SFML/Graphics.hpp>
 #include	<vector>
 #include	"Personnage.hpp"
+#include	"Player.hpp"
 #include	"Windows.hpp"
 #include	"Texture.hpp"
 #include	"Case.hpp"
@@ -31,6 +32,7 @@ Windows::~Windows() {
 void		Windows::CreateWindows()
 {
   //Personnage		perso("../ressources/pictures/noctali.png");
+  Player		player(sf::Vector2i(89, 68), 2, 2, 1, 4, 3, 1, 4, 1);
   Souris		souris;
   sf::Text		text;
 
@@ -46,6 +48,8 @@ void		Windows::CreateWindows()
 	}
       this->window.clear();
       DrawMap();
+      player.setImage(8);
+      this->window.draw(player.getImage().loadPokemon());
       //this->window.draw(perso.loadPokemon());
       text = souris.CheckSouris(this->window, this->map, this->_x, this->_y, this->taille);
       this->window.draw(text);

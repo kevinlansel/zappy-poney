@@ -5,22 +5,23 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Tue Jul  2 10:34:25 2013 gery baudry
-// Last update Tue Jul  2 14:48:22 2013 gery baudry
+// Last update Thu Jul  4 16:33:56 2013 gery baudry
 //
 
 #ifndef				PLAYER__
 # define			PLAYER__
 
 #include			<SFML/Graphics.hpp>
+#include			"Personnage.hpp"
 
 class				Player
 {
 public:
-  Player();
-  ~Player();
+  Player(sf::Vector2i, int, int, int, int, int, int, int, int);
+  virtual			~Player();
 
 public:
-  sf::Vector2f			getPosition() const;
+  sf::Vector2i			getPosition() const;
   int				getNourriture() const;
   int				getLinemate() const;
   int				getDeraumere() const;
@@ -29,9 +30,10 @@ public:
   int				getPhiras() const;
   int				getThystame() const;
   int				getLevel() const;
+  Personnage			getImage() const;
 
 public:
-  void				setPosition(const sf::Vector2f &);
+  void				setPosition(const sf::Vector2i &);
   void				setNourriture(int);
   void				setLinemate(int);
   void				setDeraumere(int);
@@ -40,6 +42,7 @@ public:
   void				setPhiras(int);
   void				setThystame(int);
   void				setLevel(int);
+  void				setImage(int);
 
 private:
   sf::Vector2i			_pos;
@@ -51,6 +54,7 @@ private:
   int				_phiras;
   int				_thystame;
   int				_level;
+  Personnage			_image;
 };
 
 #endif

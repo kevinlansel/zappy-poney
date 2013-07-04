@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Fri Jun 28 14:47:20 2013 Maxime Wojciak
-// Last update Fri Jun 28 15:58:22 2013 Maxime Wojciak
+// Last update Thu Jul  4 16:33:49 2013 gery baudry
 //
 
 #ifndef	        AUDIO__
@@ -17,8 +17,8 @@
 class Audio {
 public:
   Audio();
-  ~Audio();
-  void	PlaySound();
+  virtual		~Audio();
+  void			PlaySound();
 private:
   sf::Music		music;
 };
