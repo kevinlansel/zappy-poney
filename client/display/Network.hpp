@@ -24,7 +24,7 @@ private:
   int		_tailleX;
   int		_tailleY;
   std::string	_sgt;
-  std::vector<std::vector<std::string> >	_carte;
+  std::vector<std::vector<int> >	_carte;
 
 public:
   Network(const std::string &, int, const std::string &);
@@ -39,7 +39,7 @@ public:
   std::string		recup_firstPart(std::string &data);
   void			checkData(std::string &data);
   std::vector<int>	recup_sizeMap(std::string &data);
-  std::vector<std::string>	recup_mapContent(std::string &data);
+  std::vector<int>	recup_mapContent(std::string &data);
   std::vector<std::string>	recup_caseContent(int y, int x);
   std::string		recup_teamName(std::string &data);
   std::vector<std::string>	recup_playerPosition(int idPlayer);

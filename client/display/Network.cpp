@@ -184,22 +184,24 @@ std::vector<int>	Network::recup_sizeMap(std::string &data)
   return list;
 }
 
-std::vector<std::string>	Network::recup_mapContent(std::string &data)
+std::vector<int>	Network::recup_mapContent(std::string &data)
 {
   int				idMax;
-  std::vector<std::string>	s2;
+  std::vector<int>	s2;
   int				i = 4;
   int				cpt = 0;
+  int				ressource;
   std::string			ress = "";
-
-  std::cout << data << std::endl;
+  
   while (i < data.size())
     {
       if (data[i] == ' ')
 	{
 	  if (cpt == 2)
 	    {
-	      s2.push_back(ress);
+	      std::istringstream ss(ress);
+	      ss >> ressource;
+	      s2.push_back(ressource);
 	      ress = "";
 	    }
 	  else
@@ -208,14 +210,11 @@ std::vector<std::string>	Network::recup_mapContent(std::string &data)
       else
 	{
 	  if (cpt == 2)
-	    {
-	      //	      std::cout << data[i];
-	      ress += data[i];
-	    }
+	    ress += data[i];
 	}
       i++;
     }
-  for (std::vector<std::string>::iterator it = s2.begin(); it != s2.end(); ++it)
+  for (std::vector<int>::iterator it = s2.begin(); it != s2.end(); ++it)
     std::cout << *it;
   std::cout << std::endl;
   return (s2);
