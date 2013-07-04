@@ -126,6 +126,7 @@ void			Network::doLoop()
 	}
       cpt++;
     }
+  this->_carte.erase(this->_carte.begin());
 }
 
 std::string		Network::recup_firstPart(std::string &data)
@@ -218,10 +219,13 @@ std::vector<int>	Network::recup_mapContent(std::string &data)
 	{
 	  if (cpt == 3)
 	    {
-	      std::istringstream ss(ress);
-	      ss >> ressource;
-	      s2.push_back(ressource);
-	      ress = "";
+	      if (ress != "")
+		{
+		  std::istringstream ss(ress);
+		  ss >> ressource;
+		  s2.push_back(ressource);
+		  ress = "";
+		}
 	    }
 	  else
 	    cpt++;
@@ -231,6 +235,7 @@ std::vector<int>	Network::recup_mapContent(std::string &data)
   for (std::vector<int>::iterator it = s2.begin(); it != s2.end(); ++it)
     std::cout << *it;
   std::cout << std::endl;
+  std::cout << "----------------" << std::endl;
   return (s2);
 }
 
