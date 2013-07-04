@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Wed Jun 19 13:19:33 2013 florian dewulf
-** Last update Fri Jul  5 01:05:28 2013 florian dewulf
+** Last update Fri Jul  5 01:16:50 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -22,6 +22,8 @@ static char	**gen_team(t_client *begin)
 
   team = NULL;
   tmp = begin;
+  while (tmp && tmp->prev)
+    tmp = tmp->prev;
   while (tmp && tmp->end != 1)
     {
       i = 0;
