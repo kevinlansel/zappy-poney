@@ -204,7 +204,7 @@ std::vector<int>	Network::recup_sizeMap(std::string &data)
   return list;
 }
 
-std::vector<int>	Network::recup_mapContent(std::string &data)
+std::vector<int>		Network::recup_mapContent(std::string &data)
 {
   int				idMax;
   std::vector<int>		s2;
@@ -240,18 +240,20 @@ std::vector<int>	Network::recup_mapContent(std::string &data)
   return (s2);
 }
 
-std::vector<std::string>	Network::recup_caseContent(int y, int x)
+std::vector<int>		Network::recup_caseContent(int y, int x)
 {
   std::string			posX;
   std::string			posY;
   std::string			chaine;
   std::string			ress = "";
-  std::vector<std::string>	list;
+  std::vector<int>		list;
   char				*data;
   std::string			data2;
-  int				i = 4;
+  int				i = 0;
   std::ostringstream		posy;
   std::ostringstream		posx;
+  int				cpt = 0;
+  int				ressource;
 
   posy << y;
   posx << x;
@@ -261,15 +263,28 @@ std::vector<std::string>	Network::recup_caseContent(int y, int x)
   write(this->_sock, chaine.c_str(), chaine.size());
   read(this->_sock, data, 1024);
   data2 = (std::string)data;
-  while (i < data2.size())
+  while (i <= data2.size() && data2[i] != '\n')
     {
-      if (data2[i] == ' ' || i+1 == data2.size())
+      if (data2[i] != ' ' && data[i] != '\0')
 	{
-	  list.push_back(ress);
-	  ress = "";
+	  if (cpt == 3)
+	    ress += data[i];
 	}
       else
-	ress += data2[i];
+	{
+	  if (cpt == 3)
+	    {
+	      if (ress != "")
+		{
+		  std::istringstream ss(ress);
+		  ss >> ressource;
+		  list.push_back(ressource);
+		  ress = "";
+		}
+	    }
+	  else
+	    cpt++;
+	}
       i++;
     }
   return (list);
