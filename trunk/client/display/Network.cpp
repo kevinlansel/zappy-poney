@@ -43,6 +43,11 @@ int		Network::getTailleY() const
   return (this->_tailleY);
 }
 
+std::string	Network::getTeam() const
+{
+  return (this->_team);
+}
+
 std::vector<std::vector<int> >	Network::getCarte() const
 {
   return (this->_carte);
