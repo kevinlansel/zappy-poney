@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:00:59 2013 Maxime Wojciak
-// Last update Thu Jul  4 12:02:14 2013 gery baudry
+// Last update Thu Jul  4 16:31:33 2013 gery baudry
 //
 
 #ifndef		WINDOWS__
@@ -20,7 +20,7 @@
 class		Windows {
 public:
   Windows(int, int, const Network &);
-  ~Windows();
+  virtual		~Windows();
 
 public:
   void			CreateWindows();

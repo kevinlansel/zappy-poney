@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jun 28 17:41:23 2013 gery baudry
-// Last update Fri Jun 28 17:49:48 2013 gery baudry
+// Last update Thu Jul  4 16:33:23 2013 gery baudry
 //
 
 #ifndef		FONT__
@@ -17,7 +17,7 @@ class		Font
 {
 public:
   Font(sf::Text, int);
-  ~Font();
+  virtual	 ~Font();
 
 public:
   sf::Font	_Font;

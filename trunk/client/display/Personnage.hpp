@@ -5,25 +5,27 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Tue Jul  2 11:38:12 2013 Maxime Wojciak
-// Last update Tue Jul  2 14:03:29 2013 Maxime Wojciak
+// Last update Thu Jul  4 16:32:57 2013 gery baudry
 //
 
-#ifndef		PERSONNAGE__
-#define		PERSONNAGE__
+#ifndef			PERSONNAGE__
+# define		PERSONNAGE__
 
-#include	<iostream>
-#include	<SFML/Graphics.hpp>
+#include		<iostream>
+#include		<SFML/Graphics.hpp>
 
-class	Personnage {
+class			Personnage {
 public:
-  Personnage(const std::string &);
-  ~Personnage();
+  Personnage(int);
+  virtual		~Personnage();
 
 public:
-  sf::Sprite	loadPokemon();
+  sf::Sprite		loadPokemon();
+  void			setImage();
 
 private:
-  sf::Texture	pokemon;
+  int			_level;
+  sf::Texture		pokemon;
 };
 
 #endif		/* !PERSONNAGE__ */

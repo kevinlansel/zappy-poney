@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 15:59:10 2013 gery baudry
-// Last update Wed Jul  3 14:51:26 2013 gery baudry
+// Last update Thu Jul  4 16:33:55 2013 gery baudry
 //
 
 #ifndef		SOURIS__
@@ -18,7 +18,7 @@ class		Souris
 {
 public:
   Souris();
-  ~Souris();
+  virtual		~Souris();
 
 public:
   sf::Vector2<int>	getPosition() const;

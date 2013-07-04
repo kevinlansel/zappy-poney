@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Fri Jun 28 16:07:58 2013 Maxime Wojciak
-// Last update Fri Jun 28 16:30:46 2013 Maxime Wojciak
+// Last update Thu Jul  4 16:32:30 2013 gery baudry
 //
 
 #ifndef		TEXT__
@@ -16,7 +16,7 @@
 class	Texte {
 public:
   Texte();
-  ~Texte();
+  virtual	~Texte();
 
 public:
   sf::Text	setText(const std::string &, int);

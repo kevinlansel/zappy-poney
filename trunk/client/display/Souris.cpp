@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 15:58:05 2013 gery baudry
-// Last update Thu Jul  4 14:52:08 2013 gery baudry
+// Last update Thu Jul  4 16:28:39 2013 gery baudry
 //
 
 
@@ -37,7 +37,7 @@ sf::Text			Souris::CheckSouris(sf::RenderWindow &window, std::vector<Case> &map,
 	      _pos = sf::Vector2<int>(it->getPosition());
 	      if ((this->_position.x >= _pos.x && !(this->_position.x >= (_pos.x + taille.x)) && this->_position.y >= _pos.y && !(this->_position.y >= (_pos.y + taille.y))))
 		{
-		  this->text = sf::Text(it->doText(), this->font, 20);
+		  this->text = sf::Text(it->doText(this->_position), this->font, 20);
 		  this->text.move(sf::Vector2f(1110, 50));
 		  this->text.setColor(sf::Color(100, 340, 12));
 		  break;
