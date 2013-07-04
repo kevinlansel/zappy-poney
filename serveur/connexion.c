@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Thu Jun 27 10:38:25 2013 florian dewulf
-** Last update Fri Jul  5 00:25:00 2013 florian dewulf
+** Last update Fri Jul  5 01:17:46 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -19,6 +19,7 @@ static int	graphic_connect(t_client *cl, t_map **map)
   getmapsize(NULL, cl->fd, map, cl);
   gettime(NULL, cl->fd, NULL, cl);
   getcasemap(NULL, cl->fd, map, cl);
+  getteam(NULL, cl->fd, NULL, cl);
   return (1);
 }
 
@@ -84,7 +85,7 @@ void		connexion(t_client **cl, t_map **map, t_opt *opt)
 
   if ((msg = get_mess(*cl)) != NULL)
     {
-      if (strcmp(msg->comand, "GRAPHIC\n") == 0)
+      if (strcmp(msg->comand, "GRAPHIC") == 0)
 	graphic_connect(*cl, map);
       else if (ia_connect(msg->comand, cl, opt) == 1)
 	{

@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Wed Jun 26 13:00:58 2013 florian dewulf
-** Last update Mon Jul  1 15:52:24 2013 florian dewulf
+** Last update Fri Jul  5 01:10:28 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -109,6 +109,11 @@ void		parse_args(int ac, char **av)
       else
 	printf("unknow parameter :%s\n", av[i]);
       i += 2;
+    }
+  if (name_team == NULL)
+    {
+      printf("Error : argument -n not specified\n");
+      exit(EXIT_FAILURE);
     }
   run_server(check(val, name_team));
 }
