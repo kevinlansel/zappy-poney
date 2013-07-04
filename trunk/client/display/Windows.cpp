@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:01:06 2013 Maxime Wojciak
-// Last update Wed Jul  3 14:55:39 2013 gery baudry
+// Last update Thu Jul  4 11:58:18 2013 gery baudry
 //
 
 #include	<iostream>
@@ -19,7 +19,7 @@
 #include	"Case.hpp"
 #include	"Souris.hpp"
 
-Windows::Windows(int x, int y) : window(sf::VideoMode(1280, 1024), "Client Zappy", sf::Style::Fullscreen), _x(x), _y(y)
+Windows::Windows(int x, int y, const Network &net) : window(sf::VideoMode(1280, 1024), "Client Zappy", sf::Style::Fullscreen), _x(x), _y(y), _net(net)
 {
   this->taille = sf::Vector2f((1100 / this->_x), (960 / this->_y));
 }
@@ -57,23 +57,18 @@ void		Windows::DrawMap()
 {
   int		x = 0;
   int		y = 0;
+  int		i = 0;
 
   while (y <= ((this->_y - 1) * this->taille.y))
     {
       x = 0;
       while (x <= ((this->_x - 1) * this->taille.x))
 	{
-	  int		a = rand()%7;
-	  int		b = rand()%7;
-	  int		c = rand()%7;
-	  int		d = rand()%7;
-	  int		e = rand()%7;
-	  int		f = rand()%7;
-	  int		g = rand()%7;
-	  Case		macase(taille, a, b, c, d, e, f, g);
+	  Case		macase(taille, this->_net.getCarte(), i);
 	  macase.setPosition(sf::Vector2f(x, y));
 	  this->map.push_back(macase);
 	  x += this->taille.x;
+	  i += 1;
 	}
       y += this->taille.y;
     }

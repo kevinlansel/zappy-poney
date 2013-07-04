@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 11:11:59 2013 gery baudry
-// Last update Wed Jul  3 14:37:35 2013 gery baudry
+// Last update Thu Jul  4 11:52:51 2013 gery baudry
 //
 
 #ifndef			CASE__
@@ -13,11 +13,12 @@
 
 #include		<SFML/Graphics.hpp>
 #include		<sstream>
+#include		<vector>
 
 class			Case
 {
 public:
-  Case(sf::Vector2f, int, int, int, int, int, int, int);
+  Case(sf::Vector2f, std::vector<std::vector<int> >, int);
   ~Case();
   std::string			doText();
 

@@ -32,7 +32,6 @@ int		main(int ac, char **av)
   net.initConnexion();
   music.PlaySound();
   net.doLoop();
-  Windows	window(net.getTailleX(), net.getTailleY());
+  Windows	window(net.getTailleX(), net.getTailleY(), net);
   window.CreateWindows();
-  
 }
