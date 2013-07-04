@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu Jul  4 12:01:21 2013 gery baudry
-// Last update Thu Jul  4 12:42:55 2013 gery baudry
+// Last update Thu Jul  4 14:37:50 2013 gery baudry
 //
 
 #include	"Network.hpp"
@@ -232,10 +232,6 @@ std::vector<int>	Network::recup_mapContent(std::string &data)
 	}
       i++;
     }
-  for (std::vector<int>::iterator it = s2.begin(); it != s2.end(); ++it)
-    std::cout << *it;
-  std::cout << std::endl;
-  std::cout << "----------------" << std::endl;
   return (s2);
 }
 
