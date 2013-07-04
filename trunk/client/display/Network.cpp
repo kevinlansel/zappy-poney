@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu Jul  4 12:01:21 2013 gery baudry
-// Last update Thu Jul  4 12:09:26 2013 gery baudry
+// Last update Thu Jul  4 12:42:55 2013 gery baudry
 //
 
 #include	"Network.hpp"
@@ -203,16 +203,21 @@ std::vector<int>	Network::recup_mapContent(std::string &data)
 {
   int				idMax;
   std::vector<int>	s2;
-  int				i = 4;
+  int				i = 0;
   int				cpt = 0;
   int				ressource;
   std::string			ress = "";
 
-  while (i < data.size())
+  while (i <= data.size())
     {
-      if (data[i] == ' ')
+      if (data[i] != ' ')
 	{
-	  if (cpt == 2)
+	  if (cpt == 3)
+	    ress += data[i];
+	}
+      else
+	{
+	  if (cpt == 3)
 	    {
 	      std::istringstream ss(ress);
 	      ss >> ressource;
@@ -222,16 +227,11 @@ std::vector<int>	Network::recup_mapContent(std::string &data)
 	  else
 	    cpt++;
 	}
-      else
-	{
-	  if (cpt == 2)
-	    ress += data[i];
-	}
       i++;
     }
-  // for (std::vector<int>::iterator it = s2.begin(); it != s2.end(); ++it)
-  //   std::cout << *it;
-  // std::cout << std::endl;
+  for (std::vector<int>::iterator it = s2.begin(); it != s2.end(); ++it)
+    std::cout << *it;
+  std::cout << std::endl;
   return (s2);
 }
 
