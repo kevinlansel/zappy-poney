@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:08:13 2013 guillaume duez
-** Last update Wed Jul  3 15:42:15 2013 guillaume duez
+** Last update Thu Jul  4 22:08:43 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -53,7 +53,7 @@ static t_msg	*check_and_call(t_client *client, t_map **map,
 	    }
 	}
     }
-  if (i == NB_FUNC)
+  if (msg && i == NB_FUNC)
     loop_answer(msg->comand, client, map);
   bool = ((msg && bool == 0) ? 0 : (msg ? 1 : -1));
   if (bool != -1)
@@ -61,16 +61,25 @@ static t_msg	*check_and_call(t_client *client, t_map **map,
   return msg;
 }
 
-t_msg		*do_action(t_client *client, t_map **map, t_msg *msg)
+t_msg		*do_action(t_client **client, t_map **map,
+			   t_msg *msg, t_opt *opt)
 {
   t_msg		*new;
   void		(*tab_func[NB_FUNC])(t_msg *, t_client *, t_map **);
 
-  init_tab_func(tab_func);
-  new = check_and_call(client, map, tab_func);
-  if (new != NULL && new->bool == 1)
-    msg = into_order_task(msg, new);
-  else if (msg != NULL && new == NULL)
-    msg = remove_msg(msg, client);
+  if (*client && (*client)->type == WAIT_CO)
+    {
+      connexion(client, map, opt);
+      return (msg);
+    }
+  else
+    {
+      init_tab_func(tab_func);
+      new = check_and_call(*client, map, tab_func);
+      if (new != NULL && new->bool == 1)
+	msg = into_order_task(msg, new);
+      else if (msg != NULL && new == NULL)
+	msg = remove_msg(msg, *client);
+    }
   return msg;
 }

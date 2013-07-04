@@ -5,9 +5,10 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Wed Jul  3 11:02:42 2013 florian dewulf
-** Last update Wed Jul  3 12:51:57 2013 guillaume duez
+** Last update Thu Jul  4 23:27:31 2013 florian dewulf
 */
 
+#include	<unistd.h>
 #include	"serveur.h"
 
 static t_client	*new_client(int fd, int end)
@@ -18,10 +19,11 @@ static t_client	*new_client(int fd, int end)
   new->id = give_id();
   new->fd = fd;
   new->end = end;
+  new->type = WAIT_CO;
   return (new);
 }
 
-t_client	*create_client(int fd, t_client *client, t_opt *opt, t_map **map)
+t_client	*create_cl(int fd, t_client *client, t_opt *opt, t_map **map)
 {
   t_client	*new;
 
@@ -41,6 +43,26 @@ t_client	*create_client(int fd, t_client *client, t_opt *opt, t_map **map)
       new->time_eat = get_time();
       new_map(new, opt, map);
       new->time = opt->time_world;
+      write(fd, "BIENVENUE\n", 10);
     }
   return ((new->prev = NULL) ? new : new);
+}
+
+t_client	*delete_client(t_client *to_del)
+{
+  t_client	*prev;
+  t_client	*next;
+
+  prev = to_del->prev;
+  next = to_del->nt;
+  if (prev)
+    prev->nt = next;
+  if (next)
+    next->prev = prev;
+  free(to_del->team);
+  free(to_del);
+  if (prev)
+    return (prev);
+  else
+    return (next);
 }

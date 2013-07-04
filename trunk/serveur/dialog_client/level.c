@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Tue Jun 25 21:22:00 2013 florian dewulf
-** Last update Wed Jul  3 12:35:23 2013 guillaume duez
+** Last update Wed Jul  3 12:56:34 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -60,7 +60,7 @@ void		begin_incant(int level, t_client *cl, int x, int y)
   str = add_enter(str);
   while (tmp && tmp->end != 1)
     {
-      if (tmp->type == 1)
+      if (tmp->type == GRAPHIC)
 	write(tmp->fd, str, strlen(str));
       tmp = tmp->nt;
     }
@@ -81,7 +81,7 @@ void		end_incant(int state, t_client *cl)
     tmp = tmp->prev;
   while (tmp && tmp->end != 1)
     {
-      if (tmp->type == 1)
+      if (tmp->type == GRAPHIC)
 	write(tmp->fd, str, strlen(str));
       tmp = tmp->nt;
     }

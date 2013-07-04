@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Wed Jul  3 15:54:11 2013 guillaume duez
+** Last update Fri Jul  5 00:24:06 2013 florian dewulf
 */
 
 #ifndef			__SERVEUR_H__
@@ -49,7 +49,8 @@ typedef enum		e_co
   {
     CLIENT,
     GRAPHIC,
-    WAIT_CO
+    WAIT_CO,
+    EGG
   }			e_type_co;
 
 typedef struct		s_conf
@@ -102,6 +103,7 @@ typedef struct		s_client
   int			fd;
   int			end;
   int			id;
+  char			*team;
   int			ress[MAX];
   t_map			*map;
   int			time;
@@ -157,13 +159,15 @@ void			broadcast(t_msg *, t_client *, t_map **);
 
 int			calcul_K(t_client *, t_client *);
 int			cmp_nb_arg(int, char *, int);
-t_client		*create_client(int, t_client *, t_opt *, t_map **);
+void			connexion(t_client **, t_map **, t_opt *);
+t_client		*create_cl(int, t_client *, t_opt *, t_map **);
 void			create_link_x(t_map **map);
 void			create_link_y(t_map **map);
 t_client		*client_reset(t_client *client);
 
+t_client		*delete_client(t_client *);
 void			drop_ress(int, int, t_client *);
-t_msg			*do_action(t_client *client, t_map **map, t_msg *msg);
+t_msg			*do_action(t_client **, t_map **, t_msg *, t_opt *);
 void			droite(t_msg *msg, t_client *client, t_map **map);
 
 void			egg_connect(int, t_client *);

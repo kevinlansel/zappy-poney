@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Tue Jun 25 16:57:52 2013 florian dewulf
-** Last update Wed Jul  3 12:35:52 2013 guillaume duez
+** Last update Wed Jul  3 12:56:54 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -28,7 +28,7 @@ void		player_expulse(int id, t_client *cl)
     tmp = tmp->prev;
   while (tmp && tmp->end != 1)
     {
-      if (tmp->type == 1)
+      if (tmp->type == GRAPHIC)
 	write(tmp->fd, str, strlen(str));
       tmp = tmp->nt;
     }
@@ -49,7 +49,7 @@ void		player_message(int id, char *str, t_client *cl)
     tmp = tmp->prev;
   while (tmp && tmp->end != 1)
     {
-      if (tmp->type == 1)
+      if (tmp->type == GRAPHIC)
 	write(tmp->fd, string, strlen(string));
       tmp = tmp->nt;
     }
@@ -70,7 +70,7 @@ void		player_dead(int id, t_client *cl)
     tmp = tmp->prev;
   while (tmp && tmp->end != 1)
     {
-      if (tmp->type == 1)
+      if (tmp->type == GRAPHIC)
 	write(tmp->fd, str, strlen(str));
       tmp = tmp->nt;
     }
