@@ -36,7 +36,7 @@ private:
   int					_tailleY;
   std::string				_sgt;
   std::vector<std::vector<int> >	_carte;
-  std::vector<int>			_playerInfos;
+  std::vector<std::string>		_playerInfos;
 
 public:
   Network(const std::string &, int, const std::string &);
@@ -48,7 +48,7 @@ public:
   int					getTailleX() const;
   int					getTailleY() const;
   std::vector<std::vector<int> >	getCarte() const;
-  std::vector<int>			getPlayerInfos() const;
+  std::vector<std::string>		getPlayerInfos() const;
   void					initConnexion();
   void					doLoop();
   std::string				recup_firstPart(std::string &data);

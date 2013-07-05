@@ -48,7 +48,7 @@ std::string	Network::getTeam() const
   return (this->_team);
 }
 
-std::vector<int>	Network::getPlayerInfos() const
+std::vector<std::string>	Network::getPlayerInfos() const
 {
   return (this->_playerInfos);
 }
@@ -320,8 +320,7 @@ void			Network::recup_playerInfos(std::string &data)
   //"pnw #n X Y O L N\n"
   unsigned int		i = 5;
   std::string		s = "";
-  std::vector<int>	tmp;
-  int			val;
+  std::vector<std::string>	tmp;
 
   while (i < data.size())
     {
@@ -332,9 +331,7 @@ void			Network::recup_playerInfos(std::string &data)
 	}
       if (data[i] == ' ' || data[i] == '\n' || i == data.size())
 	{
-	  std::istringstream ss(s);
-	  ss >> val;
-	  tmp.push_back(val);
+	  tmp.push_back(s);
 	  s = "";
 	  i++;
 	}
@@ -351,7 +348,6 @@ void			Network::recup_playerPosition(int idPlayer)
   std::string		s = "";
   std::ostringstream	idp;
   unsigned int		j = 1;
-  int			val;
   unsigned int		cpt = 0;
 
   idp << idPlayer;
@@ -370,9 +366,7 @@ void			Network::recup_playerPosition(int idPlayer)
 	    }
 	  if (data2[i] == ' ' || data2[i] == '\n' || i == data2.size())
 	    {
-	      std::istringstream ss(s);
-	      ss >> val;
-	      this->_playerInfos[j] = val;
+	      this->_playerInfos[j] = s;
 	      s = "";
 	      i++;
 	      j++;
@@ -396,7 +390,6 @@ void			Network::recup_playerLevel(int idPlayer)
   std::ostringstream	idp;
   unsigned int		i = 5;
   unsigned int		cpt = 0;
-  int			val;
   bool			trouve = false;
 
   idp << idPlayer;
@@ -415,9 +408,7 @@ void			Network::recup_playerLevel(int idPlayer)
 	    }
 	  if (data2[i] == ' ' || data2[i] == '\n' || i == data2.size())
 	    {
-	      std::istringstream ss(s);
-	      ss >> val;
-	      this->_playerInfos[3] = val;
+	      this->_playerInfos[3] = s;
 	      s = "";
 	      trouve = true;
 	      i++;
@@ -441,7 +432,6 @@ void			Network::recup_playerInventaire(int idPlayer)
   unsigned int		cpt = 0;
   std::string		s = "";
   std::ostringstream	idp;
-  int			val;
   
   idp << idPlayer;
   chaine = "pin #" + idp.str() + "\n";
@@ -459,9 +449,7 @@ void			Network::recup_playerInventaire(int idPlayer)
 	    }
 	  if (data2[i] == ' ' || data2[i] == '\n' || i == data2.size())
 	    {
-	      std::istringstream ss(s);
-	      ss >> val;
-	      this->_playerInfos.push_back(val);
+	      this->_playerInfos.push_back(s);
 	      s = "";
 	      i++;
 	    }
