@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:01:06 2013 Maxime Wojciak
-// Last update Fri Jul  5 11:49:33 2013 gery baudry
+// Last update Fri Jul  5 13:41:18 2013 gery baudry
 //
 
 #include	<iostream>
@@ -36,7 +36,15 @@ void		Windows::CreateWindows()
   Souris		souris;
   sf::Text		text;
   sf::Text		text2;
+  std::vector<std::string>	test;
 
+  test = this->_net.getPlayerInfos();
+  for (std::vector<std::string>::iterator it = test.begin(); it != test.end(); ++it)
+    {
+      std::cout << *it;
+      std::cout << "tot";
+    }
+  std::cout << std::endl;
   while (this->window.isOpen())
     {
       while (this->window.pollEvent(this->event))

@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 15:58:05 2013 gery baudry
-// Last update Fri Jul  5 11:55:26 2013 gery baudry
+// Last update Fri Jul  5 13:33:32 2013 gery baudry
 //
 
 
@@ -45,7 +45,6 @@ void			Souris::CheckSouris(sf::RenderWindow &window, std::vector<Case> &map, int
 		  this->textcase.setColor(sf::Color(100, 85, 12));
 		  break;
 		}
-	      std::cout << posplayer.x << posplayer.y << std::endl;
 	      if ((this->_position.x >= posplayer.x && !(this->_position.x >= (posplayer.x + taille.x)) && this->_position.y >= posplayer.y && !(this->_position.y >= (posplayer.y + taille.y))))
 		{
 		  this->textplayer = sf::Text(player.doTextPlayer(this->_position), this->font, 20);
