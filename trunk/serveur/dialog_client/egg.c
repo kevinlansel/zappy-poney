@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Tue Jun 25 18:57:11 2013 florian dewulf
-** Last update Wed Jul  3 12:55:58 2013 florian dewulf
+** Last update Fri Jul  5 14:30:13 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -16,12 +16,13 @@
 
 void		egg_drop_by(int id_egg, int id, t_client *cl)
 {
-  t_client	*tmp;
   int		size;
   char		*str;
+  t_client	*tmp;
 
   tmp = cl;
-  size = snprintf(NULL, 0, "enw %d %d %d %d\n", id_egg, id, cl->map->x, cl->map->y);
+  size = snprintf(NULL, 0, "enw %d %d %d %d\n", id_egg, id, cl->map->x,
+		  cl->map->y);
   str = xmalloc((size + 1) * sizeof(char));
   snprintf(str, size, "enw %d %d %d %d\n", id_egg, id, cl->map->x, cl->map->y);
   while (tmp->prev)

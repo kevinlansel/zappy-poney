@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Thu Jun 27 10:38:25 2013 florian dewulf
-** Last update Fri Jul  5 11:11:29 2013 florian dewulf
+** Last update Fri Jul  5 14:41:35 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -14,13 +14,25 @@
 #include	<unistd.h>
 #include	"serveur.h"
 
-static int	graphic_connect(t_client *cl, t_map **map, t_opt *opt)
+static void	graphic_connect(t_client *cl, t_map **map, t_opt *opt)
 {
+  t_client	*tmp;
+
+  tmp = cl;
+  while (tmp && tmp->prev)
+    tmp = tmp->prev;
   getmapsize(NULL, cl->fd, map, cl);
   gettime(NULL, cl->fd, NULL, cl);
   getcasemap(NULL, cl->fd, map, cl);
   getteam(opt->name_team, cl->fd, NULL, cl);
-  return (1);
+  while (tmp && tmp->end != 1)
+    {
+      if (tmp->type == CLIENT)
+	connexion_player(NULL, cl->fd, NULL, tmp);
+      else if (tmp->type == EGG)
+	connec_egg(cl->fd, tmp);
+      tmp = tmp->nt;
+    }
 }
 
 static t_client	*transform_egg_to_client(t_client *egg, t_client **cl)
@@ -28,6 +40,7 @@ static t_client	*transform_egg_to_client(t_client *egg, t_client **cl)
   egg->fd = (*cl)->fd;
   egg->id = (*cl)->id;
   egg->type = CLIENT;
+  egg->level = 1;
   *cl = delete_client(*cl);
   return (egg);
 }

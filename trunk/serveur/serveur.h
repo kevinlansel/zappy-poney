@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Fri Jul  5 10:54:51 2013 florian dewulf
+** Last update Fri Jul  5 14:42:33 2013 florian dewulf
 */
 
 #ifndef			__SERVEUR_H__
@@ -159,7 +159,9 @@ void			broadcast(t_msg *, t_client *, t_map **);
 
 int			calcul_K(t_client *, t_client *);
 int			cmp_nb_arg(int, char *, int);
+void			connec_egg(int, t_client *);
 void			connexion(t_client **, t_map **, t_opt *);
+void			connexion_player(char **, int, t_map **, t_client *);
 t_client		*create_cl(int, t_client *, t_opt *, t_map **);
 void			create_link_x(t_map **map);
 void			create_link_y(t_map **map);
