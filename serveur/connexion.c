@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Thu Jun 27 10:38:25 2013 florian dewulf
-** Last update Fri Jul  5 01:17:46 2013 florian dewulf
+** Last update Fri Jul  5 11:11:29 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -14,12 +14,12 @@
 #include	<unistd.h>
 #include	"serveur.h"
 
-static int	graphic_connect(t_client *cl, t_map **map)
+static int	graphic_connect(t_client *cl, t_map **map, t_opt *opt)
 {
   getmapsize(NULL, cl->fd, map, cl);
   gettime(NULL, cl->fd, NULL, cl);
   getcasemap(NULL, cl->fd, map, cl);
-  getteam(NULL, cl->fd, NULL, cl);
+  getteam(opt->name_team, cl->fd, NULL, cl);
   return (1);
 }
 
@@ -85,8 +85,8 @@ void		connexion(t_client **cl, t_map **map, t_opt *opt)
 
   if ((msg = get_mess(*cl)) != NULL)
     {
-      if (strcmp(msg->comand, "GRAPHIC") == 0)
-	graphic_connect(*cl, map);
+      if (strcmp(msg->comand, "GRAPHIC\n") == 0)
+	graphic_connect(*cl, map, opt);
       else if (ia_connect(msg->comand, cl, opt) == 1)
 	{
 	  size = snprintf(NULL, 0, "%d %d\n", map[0][0].x_world, map[0][0].y_world);

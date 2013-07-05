@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Tue Jun 18 11:00:16 2013 florian dewulf
-** Last update Thu Jun 27 10:20:31 2013 florian dewulf
+** Last update Fri Jul  5 10:52:58 2013 florian dewulf
 */
 
 #include		<string.h>
@@ -52,7 +52,8 @@ static t_protocol	*init_proto()
   return (proto);
 }
 
-void			loop_answer(char *cmd, t_client *cl, t_map **map)
+void			loop_answer(char *cmd, t_client *cl, t_map **map,
+				    t_opt *opt)
 {
   t_protocol		*pr;
   int			i;
@@ -64,8 +65,13 @@ void			loop_answer(char *cmd, t_client *cl, t_map **map)
       if (strncmp(pr[i].cmd, cmd, strlen(pr[i].cmd)) == 0)
 	{
 	  if (cmp_nb_arg(pr[i].nb_arg, cmd, strlen(pr[i].cmd)))
-	    pr[i].func(to_tab(cmd, strlen(pr[i].cmd), pr[i].nb_arg),
-		       cl->fd, map, reroll(cl));
+	    {
+	      if (strcmp(pr[i].cmd, "tna\n") == 0)
+		pr[i].func(opt->name_team, cl->fd, map, reroll(cl));
+	      else
+		pr[i].func(to_tab(cmd, strlen(pr[i].cmd), pr[i].nb_arg),
+			   cl->fd, map, reroll(cl));
+	    }
 	  else
 	    write(cl->fd, "sbp\n", 4);
 	  i = SIZE_PROTOCOL;
