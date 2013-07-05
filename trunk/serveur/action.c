@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:08:13 2013 guillaume duez
-** Last update Thu Jul  4 22:08:43 2013 florian dewulf
+** Last update Fri Jul  5 10:53:41 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -32,7 +32,8 @@ static void	init_tab_func(void (*tab_func[NB_FUNC])(t_msg *, t_client *, t_map *
 
 static t_msg	*check_and_call(t_client *client, t_map **map,
 				void (*tab_func[NB_FUNC])
-				(t_msg *, t_client *, t_map **))
+				(t_msg *, t_client *, t_map **),
+				t_opt *opt)
 {
   t_msg		*msg;
   int		bool;
@@ -54,7 +55,7 @@ static t_msg	*check_and_call(t_client *client, t_map **map,
 	}
     }
   if (msg && i == NB_FUNC)
-    loop_answer(msg->comand, client, map);
+    loop_answer(msg->comand, client, map, opt);
   bool = ((msg && bool == 0) ? 0 : (msg ? 1 : -1));
   if (bool != -1)
     msg->bool = bool;
@@ -75,7 +76,7 @@ t_msg		*do_action(t_client **client, t_map **map,
   else
     {
       init_tab_func(tab_func);
-      new = check_and_call(*client, map, tab_func);
+      new = check_and_call(*client, map, tab_func, opt);
       if (new != NULL && new->bool == 1)
 	msg = into_order_task(msg, new);
       else if (msg != NULL && new == NULL)

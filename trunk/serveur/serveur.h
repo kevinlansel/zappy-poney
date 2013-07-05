@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Fri Jul  5 00:24:06 2013 florian dewulf
+** Last update Fri Jul  5 10:54:51 2013 florian dewulf
 */
 
 #ifndef			__SERVEUR_H__
@@ -199,7 +199,7 @@ void			init_map(t_map **map, t_conf *config);
 t_msg			*into_order_task(t_msg *first, t_msg *new);
 
 void			level_up(t_msg *msg, t_client *client, t_map **map);
-void			loop_answer(char *, t_client *, t_map **);
+void			loop_answer(char *, t_client *, t_map **, t_opt *);
 
 char			**my_str_to_wordtab(char *str, char c);
 
