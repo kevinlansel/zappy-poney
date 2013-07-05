@@ -134,6 +134,11 @@ void			Network::doLoop()
       cpt++;
     }
   this->_carte.erase(this->_carte.begin());
+  while (1)
+    {
+       req = gl.get_next_line();
+       std::cout << req << std::endl;
+    }
 }
 
 std::string		Network::recup_firstPart(std::string &data)
@@ -171,7 +176,7 @@ void			Network::checkData(std::string &data)
   else if (word == "pnw")
     recup_playerInfos(data);
   else
-    std::cout << "Unknown Command" << std::endl;
+    std::cout << "le check n'a rien donne" << std::endl;
 }
 
 std::vector<int>	Network::recup_sizeMap(std::string &data)
