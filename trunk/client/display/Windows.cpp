@@ -42,6 +42,7 @@ void		Windows::CreateWindows()
   gnl				gl(this->_net.getSock());
   int				a;
   std::string			req = "";
+  
   test = this->_net.getPlayerInfos();
   for (std::vector<std::string>::iterator it = test.begin(); it != test.end(); ++it)
     {
@@ -58,18 +59,21 @@ void		Windows::CreateWindows()
 	      std::cout << "Client exiting. Bye !" << std::endl;
 	      this->window.close();
 	    }
-	  FD_ZERO(&fd_read);
-	  FD_SET(this->_net.getSock(), &fd_read);
-	  if (gl.getbuffer() != "")
-	    req = gl.get_next_line();
-	  else if ((a = select(this->_net.getSock() + 1, &fd_read, NULL, NULL, NULL)) != -1)
+	  else
 	    {
-	      if (FD_ISSET(this->_net.getSock(), &fd_read))
-		{
-		  req = gl.get_next_line();
-		  //		  std::cout << req << std::endl;
-		  this->_net.checkData(req);
-		}
+	      FD_ZERO(&fd_read);
+	      FD_SET(this->_net.getSock(), &fd_read);
+	      if (gl.getbuffer() != "")
+	  	req = gl.get_next_line();
+	      else if ((a = select(this->_net.getSock() + 1, &fd_read, NULL, NULL, NULL)) != -1)
+	  	{
+	  	  if (FD_ISSET(this->_net.getSock(), &fd_read))
+	  	    {
+	  	      req = gl.get_next_line();
+	  	      //		  std::cout << req << std::endl;
+	  	      this->_net.checkData(req);
+	  	    }
+	  	}
 	    }
 	}
       this->window.clear();
