@@ -5,17 +5,27 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Tue Jul  2 10:35:58 2013 gery baudry
-// Last update Thu Jul  4 16:18:40 2013 gery baudry
+// Last update Fri Jul  5 11:18:10 2013 gery baudry
 //
 
 #include		"Player.hpp"
+#include		<sstream>
 
-Player::Player(sf::Vector2i pos, int nourriture, int linemate, int deraumere, int sibur, int mendiane, int phiras, int thystame, int level) : _pos(pos), _nourriture(nourriture), _linemate(linemate), _deraumere(deraumere), _sibur(sibur), _mendiane(mendiane), _phiras(phiras), _thystame(thystame), _level(level), _image(level)
+Player::Player(sf::Vector2i pos, int nourriture, int linemate, int deraumere, int sibur, int mendiane, int phiras, int thystame, int level, std::string team) : _pos(pos), _nourriture(nourriture), _linemate(linemate), _deraumere(deraumere), _sibur(sibur), _mendiane(mendiane), _phiras(phiras), _thystame(thystame), _level(level), _image(level), _teamname(team)
 {
 }
 
 Player::~Player()
 {
+}
+
+std::string			Player::doTextPlayer(sf::Vector2<int> souris)
+{
+  std::stringstream		inv;
+
+  inv << "Inventaire du player \nX = " << souris.x << " Y = " << souris.y << "\nNourriture = " << this->_nourriture << " \nLinemate = " << this->_linemate << " \nDeraumere = " << this->_deraumere << " \nSibur = " << this->_sibur << " \nMediane = " << this->_mendiane << " \nPhiras = " << this->_phiras << " \nThystame = " << this->_thystame << " \nLevel = " << this->_level << " \nTeam Name =" << this->_teamname;
+  std::cout << inv.str() << std::endl;
+  return (inv.str());
 }
 
 
@@ -73,6 +83,11 @@ Personnage			Player::getImage() const
   return (this->_image);
 }
 
+std::string			Player::getTeamname() const
+{
+  return (this->_teamname);
+}
+
 //
 //		Setter
 //
@@ -125,4 +140,9 @@ void				Player::setLevel(int val)
 void				Player::setImage(int val)
 {
   this->_image = Personnage(val);
+}
+
+void				Player::setTeamname(std::string team)
+{
+  this->_teamname = team;
 }

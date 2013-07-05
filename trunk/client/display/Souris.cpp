@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 15:58:05 2013 gery baudry
-// Last update Fri Jul  5 10:18:07 2013 gery baudry
+// Last update Fri Jul  5 11:55:26 2013 gery baudry
 //
 
 
@@ -22,14 +22,17 @@ Souris::~Souris()
 {
 }
 
-sf::Text			Souris::CheckSouris(sf::RenderWindow &window, std::vector<Case> &map, int x, int y, sf::Vector2f taille)
+void			Souris::CheckSouris(sf::RenderWindow &window, std::vector<Case> &map, int x, int y, sf::Vector2f taille, Player player)
 {
   sf::Vector2<int>		_pos;
+  sf::Vector2i			posplayer;
 
   if (sf::Mouse::isButtonPressed(sf::Mouse::Left) == true && this->_check == false)
     {
       setPosition(window);
       this->_position = getPosition();
+      posplayer = player.getPosition();
+      // Ajouter check position du player pour affichage d'info suppl !
       if ((this->_position.x <= (x * taille.x)) && (this->_position.y <= (y * taille.y)))
 	{
 	  for (std::vector<Case>::iterator it = map.begin(); it != map.end(); ++it)
@@ -37,10 +40,17 @@ sf::Text			Souris::CheckSouris(sf::RenderWindow &window, std::vector<Case> &map,
 	      _pos = sf::Vector2<int>(it->getPosition());
 	      if ((this->_position.x >= _pos.x && !(this->_position.x >= (_pos.x + taille.x)) && this->_position.y >= _pos.y && !(this->_position.y >= (_pos.y + taille.y))))
 		{
-		  this->text = sf::Text(it->doText(this->_position), this->font, 20);
-		  this->text.move(sf::Vector2f(1110, 50));
-		  this->text.setColor(sf::Color(100, 85, 12));
+		  this->textcase = sf::Text(it->doTextCase(this->_position), this->font, 20);
+		  this->textcase.move(sf::Vector2f(1110, 10));
+		  this->textcase.setColor(sf::Color(100, 85, 12));
 		  break;
+		}
+	      std::cout << posplayer.x << posplayer.y << std::endl;
+	      if ((this->_position.x >= posplayer.x && !(this->_position.x >= (posplayer.x + taille.x)) && this->_position.y >= posplayer.y && !(this->_position.y >= (posplayer.y + taille.y))))
+		{
+		  this->textplayer = sf::Text(player.doTextPlayer(this->_position), this->font, 20);
+		  this->textplayer.move(sf::Vector2f(1110, 210));
+		  this->textplayer.setColor(sf::Color(102, 0, 0));
 		}
 	    }
 	}
@@ -49,9 +59,9 @@ sf::Text			Souris::CheckSouris(sf::RenderWindow &window, std::vector<Case> &map,
   else if (sf::Mouse::isButtonPressed(sf::Mouse::Left) == false && this->_check == true)
     {
       this->_check = false;
-      this->text = sf::Text();
+      this->textcase = sf::Text();
+      this->textplayer = sf::Text();
     }
-  return (this->text);
 }
 
 
@@ -67,4 +77,14 @@ void			Souris::setPosition(sf::RenderWindow &window)
 sf::Vector2<int>		Souris::getPosition() const
 {
   return (this->_position);
+}
+
+sf::Text			Souris::getTextcase() const
+{
+  return (this->textcase);
+}
+
+sf::Text			Souris::getTextplayer() const
+{
+  return (this->textplayer);
 }
