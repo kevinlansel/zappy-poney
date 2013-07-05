@@ -36,6 +36,7 @@ private:
   int					_tailleY;
   std::string				_sgt;
   std::vector<std::vector<int> >	_carte;
+  std::vector<int>			_playerInfos;
 
 public:
   Network(const std::string &, int, const std::string &);
@@ -47,6 +48,7 @@ public:
   int					getTailleX() const;
   int					getTailleY() const;
   std::vector<std::vector<int> >	getCarte() const;
+  std::vector<int>			getPlayerInfos() const;
   void					initConnexion();
   void					doLoop();
   std::string				recup_firstPart(std::string &data);
@@ -55,9 +57,10 @@ public:
   std::vector<int>			recup_mapContent(std::string &data);
   std::vector<int>			recup_caseContent(int y, int x);
   std::string				recup_teamName(std::string &data);
-  std::vector<std::string>		recup_playerPosition(int idPlayer);
-  std::string				recup_playerLevel(int idPlayer);
-  std::vector<std::string>		recup_playerInventaire(int idPlayer);
+  void					recup_playerInfos(std::string &data);
+  void					recup_playerPosition(int idPlayer);
+  void					recup_playerLevel(int idPlayer);
+  void					recup_playerInventaire(int idPlayer);
   std::string				askForTimeUnit(std::string &data);
   void					setTimeUnit(int timeValue);
 };
