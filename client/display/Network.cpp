@@ -48,6 +48,11 @@ std::string	Network::getTeam() const
   return (this->_team);
 }
 
+std::vector<int>	Network::getPlayerInfos() const
+{
+  return (this->_playerInfos);
+}
+
 std::vector<std::vector<int> >	Network::getCarte() const
 {
   return (this->_carte);
@@ -104,12 +109,10 @@ void			Network::doLoop()
 		}
 	    }
 	}
-      // std::cout << req << std::endl;
       cpt++;
     }
   cpt = 0;
   req = "";
-  // std::cout << "-----------------------" << std::endl;
   while (cpt < x * y + 1)
     {
       FD_ZERO(&fd_read);
@@ -161,10 +164,12 @@ void			Network::checkData(std::string &data)
     recup_sizeMap(data);
   else if (word == "bct")
     recup_mapContent(data);
-  else if (word == "tna")
-    recup_teamName(data);
+  /*else if (word == "tna")
+    recup_teamName(data);*/
   else if (word == "sgt")
     askForTimeUnit(data);
+  else if (word == "pnw")
+    recup_playerInfos(data);
   else
     std::cout << "Unknown Command" << std::endl;
 }
@@ -305,84 +310,164 @@ std::string		Network::recup_teamName(std::string &data)
   return team;
 }
 
-std::vector<std::string>	Network::recup_playerPosition(int idPlayer)
+void			Network::recup_playerInfos(std::string &data)
+{
+  //"pnw #n X Y O L N\n"
+  unsigned int		i = 5;
+  std::string		s = "";
+  std::vector<int>	tmp;
+  int			val;
+
+  while (i < data.size())
+    {
+      while (data[i] != ' ' && i < data.size() && data[i] != '\n')
+	{
+	  s += data[i];
+	  i++;
+	}
+      if (data[i] == ' ' || data[i] == '\n' || i == data.size())
+	{
+	  std::istringstream ss(s);
+	  ss >> val;
+	  tmp.push_back(val);
+	  s = "";
+	  i++;
+	}
+    }
+  this->_playerInfos = tmp;
+}
+
+void			Network::recup_playerPosition(int idPlayer)
 {
   std::string		chaine;
   char			data[2048];
   std::string		data2;
-  unsigned int		i = 7;
-  std::vector<std::string>	list;
-  std::string		ress = "";
+  unsigned int		i = 5;
+  std::string		s = "";
   std::ostringstream	idp;
+  unsigned int		j = 1;
+  int			val;
+  unsigned int		cpt = 0;
 
   idp << idPlayer;
   chaine = "ppo #" + idp.str() + "\n";
   write(this->_sock, chaine.c_str(), chaine.size());
   read(this->_sock, data, 2048);
   data2 = (std::string)data;
-  while (i < data2.size() && data2[i] != '\n')
+  while (i < data2.size())
     {
-      if (data2[i] == ' ')
+      if (cpt == 1)
 	{
-	  list.push_back(ress);
-	  ress = "";
+	  while (data2[i] != ' ' && i < data2.size() && data2[i] != '\n')
+	    {
+	      s += data2[i];
+	      i++;
+	    }
+	  if (data2[i] == ' ' || data2[i] == '\n' || i == data2.size())
+	    {
+	      std::istringstream ss(s);
+	      ss >> val;
+	      this->_playerInfos[j] = val;
+	      s = "";
+	      i++;
+	      j++;
+	    }
 	}
       else
-	ress += data2[i];
-      i++;
+	{
+	  if (data2[i] == ' ')
+	    cpt++;
+	  i++;
+	}
     }
-  return list;
 }
 
-std::string		Network::recup_playerLevel(int idPlayer)
+void			Network::recup_playerLevel(int idPlayer)
 {
   std::string		chaine;
   char			data[2048];
   std::string		data2;
-  unsigned int		i = 7;
-  std::string		ress = "";
+  std::string		s = "";
   std::ostringstream	idp;
+  unsigned int		i = 5;
+  unsigned int		cpt = 0;
+  int			val;
+  bool			trouve = false;
 
   idp << idPlayer;
   chaine = "plv #" + idp.str() + "\n";
   write(this->_sock, chaine.c_str(), chaine.size());
   read(this->_sock, data, 2048);
   data2 = (std::string)data;
-  while (i < data2.size() && data2[i] != '\n')
+  while (i < data2.size() && trouve == false)
     {
-      ress += data2[i];
-      i++;
+      if (cpt == 1)
+	{
+	  while (data2[i] != ' ' && i < data2.size() && data2[i] != '\n')
+	    {
+	      s += data2[i];
+	      i++;
+	    }
+	  if (data2[i] == ' ' || data2[i] == '\n' || i == data2.size())
+	    {
+	      std::istringstream ss(s);
+	      ss >> val;
+	      this->_playerInfos[3] = val;
+	      s = "";
+	      trouve = true;
+	      i++;
+	    }
+	}
+      else
+	{
+	  if (data2[i] == ' ')
+	    cpt++;
+	  i++;
+	}
     }
-  return ress;
 }
 
-std::vector<std::string>	Network::recup_playerInventaire(int idPlayer)
+void			Network::recup_playerInventaire(int idPlayer)
 {
   std::string		chaine;
   char			data[2048];
   std::string		data2;
-  unsigned int		i = 7;
-  std::vector<std::string>	list;
-  std::string		ress = "";
+  unsigned int		i = 5;
+  unsigned int		cpt = 0;
+  std::string		s = "";
   std::ostringstream	idp;
-
+  int			val;
+  
   idp << idPlayer;
   chaine = "pin #" + idp.str() + "\n";
   write(this->_sock, chaine.c_str(), chaine.size());
   read(this->_sock, data, 2048);
   data2 = (std::string)data;
-  while (i < data2.size() && data2[i] != '\n')
+  while (i < data2.size())
     {
-      if (data2[i] == ' ')
+      if (cpt == 3)
 	{
-	  list.push_back(ress);
-	  ress = "";
+	  while (data2[i] != ' ' && i < data2.size() && data2[i] != '\n')
+	    {
+	      s += data2[i];
+	      i++;
+	    }
+	  if (data2[i] == ' ' || data2[i] == '\n' || i == data2.size())
+	    {
+	      std::istringstream ss(s);
+	      ss >> val;
+	      this->_playerInfos.push_back(val);
+	      s = "";
+	      i++;
+	    }
 	}
       else
-	ress += data2[i];
-      i++;
+	{
+	  if (data2[i] == ' ')
+	    cpt++;
+	  i++;
+	}
     }
-  return list;
 }
 
 std::string		Network::askForTimeUnit(std::string &data)
