@@ -161,15 +161,27 @@ void			Network::checkData(std::string &data)
 
   word = recup_firstPart(data);
   if (word == "msz")
-    recup_sizeMap(data);
+    {
+      std::cout << "msz" << std::endl;
+      recup_sizeMap(data);
+    }
   else if (word == "bct")
-    recup_mapContent(data);
+    {
+      std::cout << "bct" << std::endl;
+      recup_mapContent(data);
+    }
   /*else if (word == "tna")
     recup_teamName(data);*/
   else if (word == "sgt")
-    askForTimeUnit(data);
+    {
+      std::cout << "sgt" << std::endl;
+      askForTimeUnit(data);
+    }
   else if (word == "pnw")
-    recup_playerInfos(data);
+    {
+      std::cout << "pnw" << std::endl;
+      recup_playerInfos(data);
+    }
   else
     std::cout << "le check n'a rien donne" << std::endl;
 }

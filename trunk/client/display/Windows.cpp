@@ -67,7 +67,7 @@ void		Windows::CreateWindows()
 	      if (FD_ISSET(this->_net.getSock(), &fd_read))
 		{
 		  req = gl.get_next_line();
-		  std::cout << req << std::endl;
+		  //		  std::cout << req << std::endl;
 		  this->_net.checkData(req);
 		}
 	    }
