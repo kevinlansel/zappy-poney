@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Wed Jun 19 13:19:33 2013 florian dewulf
-** Last update Fri Jul  5 11:09:42 2013 florian dewulf
+** Last update Fri Jul  5 13:19:34 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -13,6 +13,25 @@
 #include	<string.h>
 #include	<unistd.h>
 #include	"../serveur.h"
+
+void		connexion_player(char **arg, int fd,
+				 t_map **map, t_client *begin)
+{
+  int		size;
+  char		*str;
+
+  (void)arg;
+  (void)map;
+  size = snprintf(NULL, 0, "pnw %d %d %d %d %d %s\n",
+		  begin->id, begin->map->x, begin->map->y,
+		  begin->direct + 1, begin->level, begin->team);
+  str = xmalloc((size + 1) * sizeof(char));
+  snprintf(str, size, "pnw %d %d %d %d %d %s\n",
+	   begin->id, begin->map->x, begin->map->y,
+	   begin->direct + 1, begin->level, begin->team);
+  write(fd, str, strlen(str));
+  free(str);
+}
 
 void		getteam(char **arg, int fd, t_map **map, t_client *begin)
 {

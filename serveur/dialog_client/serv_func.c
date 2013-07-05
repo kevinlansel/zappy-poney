@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Wed Jun 19 14:10:39 2013 florian dewulf
-** Last update Wed Jun 26 14:27:00 2013 florian dewulf
+** Last update Fri Jul  5 14:40:41 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -46,6 +46,20 @@ void		settime(char **arg, int fd, t_map **map, t_client *cl)
   size = snprintf(NULL, 0, "sgt %d\n", new_time);
   str = xmalloc((size + 1) * sizeof(char));
   snprintf(str, size, "sgt %d\n", new_time);
+  write(fd, str, strlen(str));
+  free(str);
+}
+
+void		connec_egg(int fd, t_client *egg)
+{
+  int		size;
+  char		*str;
+
+  size = snprintf(NULL, 0, "enw %d %d %d %d\n",
+		  egg->id, egg->level, egg->map->x, egg->map->y);
+  str = xmalloc((size + 1) * sizeof(char));
+  snprintf(str, size, "enw %d %d %d %d\n",
+	   egg->id, egg->level, egg->map->x, egg->map->y);
   write(fd, str, strlen(str));
   free(str);
 }
