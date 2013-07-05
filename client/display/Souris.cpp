@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 15:58:05 2013 gery baudry
-// Last update Thu Jul  4 16:37:48 2013 gery baudry
+// Last update Fri Jul  5 10:18:07 2013 gery baudry
 //
 
 
@@ -13,7 +13,7 @@
 #include	"Souris.hpp"
 #include	"Windows.hpp"
 
-Souris::Souris() : _position(0,0), _toto(false)
+Souris::Souris() : _position(0,0), _check(false)
 {
   this->font.loadFromFile("../ressources/fonts/Sansation_Bold.ttf");
 }
@@ -26,7 +26,7 @@ sf::Text			Souris::CheckSouris(sf::RenderWindow &window, std::vector<Case> &map,
 {
   sf::Vector2<int>		_pos;
 
-  if (sf::Mouse::isButtonPressed(sf::Mouse::Left) == true && this->_toto == false)
+  if (sf::Mouse::isButtonPressed(sf::Mouse::Left) == true && this->_check == false)
     {
       setPosition(window);
       this->_position = getPosition();
@@ -44,11 +44,11 @@ sf::Text			Souris::CheckSouris(sf::RenderWindow &window, std::vector<Case> &map,
 		}
 	    }
 	}
-      this->_toto = true;
+      this->_check = true;
     }
-  else if (sf::Mouse::isButtonPressed(sf::Mouse::Left) == false && this->_toto == true)
+  else if (sf::Mouse::isButtonPressed(sf::Mouse::Left) == false && this->_check == true)
     {
-      this->_toto = false;
+      this->_check = false;
       this->text = sf::Text();
     }
   return (this->text);

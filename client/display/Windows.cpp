@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:01:06 2013 Maxime Wojciak
-// Last update Thu Jul  4 16:19:24 2013 gery baudry
+// Last update Thu Jul  4 16:47:58 2013 gery baudry
 //
 
 #include	<iostream>
@@ -48,7 +48,7 @@ void		Windows::CreateWindows()
 	}
       this->window.clear();
       DrawMap();
-      player.setImage(8);
+      player.setImage(4);
       this->window.draw(player.getImage().loadPokemon());
       //this->window.draw(perso.loadPokemon());
       text = souris.CheckSouris(this->window, this->map, this->_x, this->_y, this->taille);
