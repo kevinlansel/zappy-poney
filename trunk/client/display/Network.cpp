@@ -183,7 +183,7 @@ void			Network::checkData(std::string &data)
       recup_playerInfos(data);
     }
   else
-    std::cout << "le check n'a rien donne" << std::endl;
+    std::cout << word << std::endl;
 }
 
 std::vector<int>	Network::recup_sizeMap(std::string &data)
