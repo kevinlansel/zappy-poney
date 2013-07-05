@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:01:06 2013 Maxime Wojciak
-// Last update Fri Jul  5 13:41:18 2013 gery baudry
+// Last update Fri Jul  5 13:56:12 2013 gery baudry
 //
 
 #include	<iostream>
@@ -15,6 +15,7 @@
 #include	<vector>
 #include	"Personnage.hpp"
 #include	"Player.hpp"
+#include	"Network.hpp"
 #include	"Windows.hpp"
 #include	"Texture.hpp"
 #include	"Case.hpp"
@@ -37,7 +38,10 @@ void		Windows::CreateWindows()
   sf::Text		text;
   sf::Text		text2;
   std::vector<std::string>	test;
-
+  fd_set			fd_read;
+  gnl				gl(this->_net.getSock());
+  int				a;
+  std::string			req = "";
   test = this->_net.getPlayerInfos();
   for (std::vector<std::string>::iterator it = test.begin(); it != test.end(); ++it)
     {
@@ -53,6 +57,19 @@ void		Windows::CreateWindows()
 	    {
 	      std::cout << "Client exiting. Bye !" << std::endl;
 	      this->window.close();
+	    }
+	  FD_ZERO(&fd_read);
+	  FD_SET(this->_net.getSock(), &fd_read);
+	  if (gl.getbuffer() != "")
+	    req = gl.get_next_line();
+	  else if ((a = select(this->_net.getSock() + 1, &fd_read, NULL, NULL, NULL)) != -1)
+	    {
+	      if (FD_ISSET(this->_net.getSock(), &fd_read))
+		{
+		  req = gl.get_next_line();
+		  std::cout << req << std::endl;
+		  this->_net.checkData(req);
+		}
 	    }
 	}
       this->window.clear();
