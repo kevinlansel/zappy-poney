@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:01:06 2013 Maxime Wojciak
-// Last update Thu Jul  4 16:47:58 2013 gery baudry
+// Last update Fri Jul  5 11:49:33 2013 gery baudry
 //
 
 #include	<iostream>
@@ -32,9 +32,10 @@ Windows::~Windows() {
 void		Windows::CreateWindows()
 {
   //Personnage		perso("../ressources/pictures/noctali.png");
-  Player		player(sf::Vector2i(89, 68), 2, 2, 1, 4, 3, 1, 4, 1);
+  Player		player(sf::Vector2i(89, 68), 2, 2, 1, 4, 3, 1, 4, 1, "toto");
   Souris		souris;
   sf::Text		text;
+  sf::Text		text2;
 
   while (this->window.isOpen())
     {
@@ -51,8 +52,11 @@ void		Windows::CreateWindows()
       player.setImage(4);
       this->window.draw(player.getImage().loadPokemon());
       //this->window.draw(perso.loadPokemon());
-      text = souris.CheckSouris(this->window, this->map, this->_x, this->_y, this->taille);
+      souris.CheckSouris(this->window, this->map, this->_x, this->_y, this->taille, player);
+      text = souris.getTextcase();
+      text2 = souris.getTextplayer();
       this->window.draw(text);
+      this->window.draw(text2);
       this->window.display();
     }
 }

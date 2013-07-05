@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 11:12:44 2013 gery baudry
-// Last update Thu Jul  4 16:27:43 2013 gery baudry
+// Last update Fri Jul  5 11:14:08 2013 gery baudry
 //
 
 #include	<iostream>
@@ -25,7 +25,7 @@ Case::~Case()
 {
 }
 
-std::string			Case::doText(sf::Vector2<int> souris)
+std::string			Case::doTextCase(sf::Vector2<int> souris)
 {
   std::stringstream		inv;
 

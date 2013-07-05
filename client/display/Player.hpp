@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Tue Jul  2 10:34:25 2013 gery baudry
-// Last update Thu Jul  4 16:33:56 2013 gery baudry
+// Last update Fri Jul  5 11:13:08 2013 gery baudry
 //
 
 #ifndef				PLAYER__
@@ -17,8 +17,9 @@
 class				Player
 {
 public:
-  Player(sf::Vector2i, int, int, int, int, int, int, int, int);
+  Player(sf::Vector2i, int, int, int, int, int, int, int, int, std::string);
   virtual			~Player();
+  std::string			doTextPlayer(sf::Vector2<int>);
 
 public:
   sf::Vector2i			getPosition() const;
@@ -31,6 +32,7 @@ public:
   int				getThystame() const;
   int				getLevel() const;
   Personnage			getImage() const;
+  std::string			getTeamname() const;
 
 public:
   void				setPosition(const sf::Vector2i &);
@@ -43,6 +45,7 @@ public:
   void				setThystame(int);
   void				setLevel(int);
   void				setImage(int);
+  void				setTeamname(std::string);
 
 private:
   sf::Vector2i			_pos;
@@ -55,6 +58,7 @@ private:
   int				_thystame;
   int				_level;
   Personnage			_image;
+  std::string			_teamname;
 };
 
 #endif
