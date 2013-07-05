@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu Jul  4 12:01:21 2013 gery baudry
-// Last update Thu Jul  4 14:37:50 2013 gery baudry
+// Last update Fri Jul  5 13:55:45 2013 gery baudry
 //
 
 #include	"Network.hpp"
@@ -118,27 +118,22 @@ void			Network::doLoop()
       FD_ZERO(&fd_read);
       FD_SET(this->_sock, &fd_read);
       if (gl.getbuffer() != "")
-	{
-	  req = gl.get_next_line();
-	  this->_carte.push_back(recup_mapContent(req));
-	}
+  	{
+  	  req = gl.get_next_line();
+  	  this->_carte.push_back(recup_mapContent(req));
+  	}
       else if ((a = select(this->_sock + 1, &fd_read, NULL, NULL, NULL)) != -1)
         {
-	  if (FD_ISSET(this->_sock, &fd_read))
-	    {
-	      req = gl.get_next_line();
-	      if (recup_firstPart(req) == "sgt")
-		this->_sgt = askForTimeUnit(req);
-	    }
-	}
+  	  if (FD_ISSET(this->_sock, &fd_read))
+  	    {
+  	      req = gl.get_next_line();
+  	      if (recup_firstPart(req) == "sgt")
+  		this->_sgt = askForTimeUnit(req);
+  	    }
+  	}
       cpt++;
     }
   this->_carte.erase(this->_carte.begin());
-  while (1)
-    {
-       req = gl.get_next_line();
-       std::cout << req << std::endl;
-    }
 }
 
 std::string		Network::recup_firstPart(std::string &data)
