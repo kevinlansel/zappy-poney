@@ -154,40 +154,136 @@ std::string		Network::recup_firstPart(std::string &data)
   return param;
 }
 
-void			Network::checkData(std::string &data)
+std::vector<std::string>			Network::checkData2(std::string &data)
 {
   std::string		word;
+  std::vector<std::string>	list;
+
+  word = recup_firstPart(data);
+  if (word == "tna")
+   {
+      std::cout << "tna" << std::endl;
+      return recup_teamName(data);
+    }
+  else if (word == "sgt")
+    {
+      std::cout << "sgt" << std::endl;
+      return askForTimeUnit(data);
+    }
+  else if (word == "pnw")
+    {
+      std::cout << "pnw" << std::endl;
+      return recup_playerInfos(data);
+    }
+  else if (word == "pex")
+    {
+      std::cout << "pex" << std::endl;
+      return playerExpulse(data);
+    }
+  else if (word == "pbc")
+    {
+      std::cout << "pbc" << std::endl;
+      return playerBroadcast(data);
+    }
+  else if (word == "pic")
+    {
+      std::cout << "pic" << std::endl;
+      return launchIncantation(data);
+    }
+  else if (word == "pie")
+    {
+      std::cout << "pie" << std::endl;
+      return endOfIncantation(data);
+    }
+  else if (word == "pfk")
+    {
+      std::cout << "pfk" << std::endl;
+      return putAnEgg(data);
+    }
+  else if (word == "pdr")
+    {
+      std::cout << "pdr" << std::endl;
+      return dropARessource(data);
+    }
+  else if (word == "pgt")
+    {
+      std::cout << "pgt" << std::endl;
+      return takeARessource(data);
+    }
+  else if (word == "pdi")
+    {
+      std::cout << "pdi" << std::endl;
+      return hungryDead(data);
+    }
+  else if (word == "enw")
+    {
+      std::cout << "enw" << std::endl;
+      return eggPutByPlayer(data);
+    }
+  else if (word == "eht")
+    {
+      std::cout << "eht" << std::endl;
+      return eggHatched(data);
+    }
+  else if (word == "ebo")
+    {
+      std::cout << "ebo" << std::endl;
+      return playerConnectedForEgg(data);
+    }
+  else if (word == "edi")
+    {
+      std::cout << "edi" << std::endl;
+      return eggDied(data);
+    }
+  else if (word == "seg")
+    {
+      std::cout << "seg" << std::endl;
+      return endOfGame(data);
+    }
+  else if (word == "smg")
+    {
+      std::cout << "smg" << std::endl;
+      return serverMessage(data);
+    }
+  return list;
+}
+
+void			Network::checkData3(std::string &data)
+{
+  std::string		word;
+  
+  word = recup_firstPart(data);
+  if (word == "suc")
+    {
+      std::cout << "suc" << std::endl;
+      unknownCommand();
+    }
+  else if (word == "sbp")
+    {
+      std::cout << "spb" << std::endl;
+      wrongParameters();
+    }
+}
+
+std::vector<int>			Network::checkData(std::string &data)
+{
+  std::string		word;
+  std::vector<int>	list;
 
   word = recup_firstPart(data);
   if (word == "msz")
     {
       std::cout << "msz" << std::endl;
-      recup_sizeMap(data);
+      return recup_sizeMap(data);
     }
   else if (word == "bct")
     {
       std::cout << "bct" << std::endl;
-      recup_mapContent(data);
+      return recup_mapContent(data);
     }
-  else if (word == "tna")
-    {
-      std::cout << "tna" << std::endl;
-      recup_teamName(data);
-    }
-  else if (word == "sgt")
-    {
-      std::cout << "sgt" << std::endl;
-      askForTimeUnit(data);
-    }
-  else if (word == "pnw")
-    {
-      std::cout << "pnw" << std::endl;
-      recup_playerInfos(data);
-    }
-  else
-    std::cout << word << std::endl;
+  return list;
 }
-
+  
 std::vector<int>	Network::recup_sizeMap(std::string &data)
 {
   unsigned int		i = 4;
@@ -257,17 +353,19 @@ std::vector<int>		Network::recup_mapContent(std::string &data)
   return (s2);
 }
 
-std::string	Network::playerExpulse(std::string &data)
+std::vector<std::string>	Network::playerExpulse(std::string &data)
 {
   unsigned int		i = 5;
   std::string	res = "";
+  std::vector<std::string>	list;
   
   while (i < data.size() && data[i] != '\n')
     {
       res += data[i];
       i++;
     }
-  return res;
+  list.push_back(res);
+  return list;
 }
 
 std::vector<std::string>	Network::playerBroadcast(std::string &data)
@@ -353,56 +451,82 @@ std::vector<std::string>	Network::endOfIncantation(std::string &data)
   return list;
 }
 
-std::string		Network::putAnEgg(std::string &data)
+std::vector<std::string>		Network::putAnEgg(std::string &data)
 {
   unsigned int		i = 5;
-  std::string	res = "";  
+  std::string	res = "";
+  std::vector<std::string>	list;
 
   while (i < data.size())
     {
       res += data[i];
       i++;
     }
-  return res;
+  list.push_back(res);
+  return list;
 }
 
-std::string		Network::dropARessource(std::string &data)
+std::vector<std::string>		Network::dropARessource(std::string &data)
 {
   unsigned int	i = 5;
   std::string	res = "";  
+  std::vector<std::string>	list;
 
   while (i < data.size())
     {
       res += data[i];
       i++;
     }
-  return res;
+  i++;
+  list.push_back(res);
+  res = "";
+  while (i < data.size())
+    {
+      res += data[i];
+      i++;
+    }
+  list.push_back(res);
+  res = "";
+  return list;
 }
 
-std::string		Network::takeARessource(std::string &data)
+std::vector<std::string>		Network::takeARessource(std::string &data)
 {
   unsigned int	i = 5;
   std::string	res = "";  
+  std::vector<std::string>	list;
 
   while (i < data.size())
     {
       res += data[i];
       i++;
     }
-  return res;
+  i++;
+  list.push_back(res);
+  res = "";
+  while (i < data.size())
+    {
+      res += data[i];
+      i++;
+    }
+  list.push_back(res);
+  res = "";
+  return list;
 }
 
-std::string		Network::hungryDead(std::string &data)
+std::vector<std::string>		Network::hungryDead(std::string &data)
 {
   unsigned int	i = 5;
-  std::string	res = "";  
+  std::string	res = "";
+  std::vector<std::string>	list;
 
   while (i < data.size())
     {
       res += data[i];
       i++;
     }
-  return res;
+  list.push_back(res);
+  return list;
 }
 
 std::vector<std::string>		Network::eggPutByPlayer(std::string &data)
@@ -441,43 +565,49 @@ std::vector<std::string>		Network::eggPutByPlayer(std::string &data)
   return list;
 }
   
-std::string		Network::eggHatched(std::string &data)
+std::vector<std::string>		Network::eggHatched(std::string &data)
 {
   unsigned int	i = 5;
-  std::string	res = "";  
+  std::string	res = "";
+  std::vector<std::string>	list;
 
   while (i < data.size())
     {
       res += data[i];
       i++;
     }
-  return res;
+  list.push_back(res);
+  return list;
 }
 
-std::string		Network::playerConnectedForEgg(std::string &data)
+std::vector<std::string>		Network::playerConnectedForEgg(std::string &data)
 {
   unsigned int	i = 5;
-  std::string	res = "";  
+  std::string	res = "";
+  std::vector<std::string>	list;
 
   while (i < data.size())
     {
       res += data[i];
       i++;
     }
-  return res;
+  list.push_back(res);
+  return list;
 }
 
-std::string		Network::eggDied(std::string &data)
+std::vector<std::string>		Network::eggDied(std::string &data)
 {
   unsigned int	i = 5;
-  std::string	res = "";  
+  std::string	res = "";
+  std::vector<std::string>	list;
 
   while (i < data.size())
     {
       res += data[i];
       i++;
     }
-  return res;
+  list.push_back(res);
+  return list;
 }
 
 std::vector<int>		Network::recup_caseContent(int y, int x)
@@ -530,10 +660,11 @@ std::vector<int>		Network::recup_caseContent(int y, int x)
   return (list);
 }
 
-std::string		Network::recup_teamName(std::string &data)
+std::vector<std::string>	Network::recup_teamName(std::string &data)
 {
   std::string		team = "";
   unsigned int		i = 4;
+  std::vector<std::string>	list;
 
   while (i < data.size())
     {
@@ -544,12 +675,12 @@ std::string		Network::recup_teamName(std::string &data)
 	}
       i++;
     }
-  return team;
+  list.push_back(team);
+  return list;
 }
 
-void			Network::recup_playerInfos(std::string &data)
+std::vector<std::string>	Network::recup_playerInfos(std::string &data)
 {
-  //"pnw #n X Y O L N\n"
   unsigned int		i = 5;
   std::string		s = "";
   std::vector<std::string>	tmp;
@@ -569,9 +700,10 @@ void			Network::recup_playerInfos(std::string &data)
 	}
     }
   this->_playerInfos = tmp;
+  return tmp;
 }
 
-void			Network::recup_playerPosition(int idPlayer)
+void	Network::recup_playerPosition(int idPlayer)
 {
   std::string		chaine;
   char			data[2048];
@@ -613,7 +745,7 @@ void			Network::recup_playerPosition(int idPlayer)
     }
 }
 
-void			Network::recup_playerLevel(int idPlayer)
+void	Network::recup_playerLevel(int idPlayer)
 {
   std::string		chaine;
   char			data[2048];
@@ -655,7 +787,7 @@ void			Network::recup_playerLevel(int idPlayer)
     }
 }
 
-void			Network::recup_playerInventaire(int idPlayer)
+void       Network::recup_playerInventaire(int idPlayer)
 {
   std::string		chaine;
   char			data[2048];
@@ -695,17 +827,19 @@ void			Network::recup_playerInventaire(int idPlayer)
     }
 }
 
-std::string		Network::askForTimeUnit(std::string &data)
+std::vector<std::string>	Network::askForTimeUnit(std::string &data)
 {
   unsigned int		i = 4;
   std::string		chaine = "";
+  std::vector<std::string>	list;
 
   while (i < data.size())
     {
       chaine += data[i];
       i++;
     }
-  return chaine;
+  list.push_back(chaine);
+  return list;
 }
 
 void			Network::setTimeUnit(int timeValue)
@@ -718,30 +852,34 @@ void			Network::setTimeUnit(int timeValue)
   write(this->_sock, chaine.c_str(), chaine.size());
 }
 
-std::string		Network::endOfGame(std::string &data)
-{
-  unsigned int	i = 5;
- std::string	res = "";  
-
-  while (i < data.size())
-    {
-      res += data[i];
-      i++;
-    }
-  return res;
-}
-
-std::string		Network::serverMessage(std::string &data)
+std::vector<std::string>	Network::endOfGame(std::string &data)
 {
   unsigned int	i = 5;
   std::string	res = "";  
+  std::vector<std::string>	list;
 
   while (i < data.size())
     {
       res += data[i];
       i++;
     }
-  return res;
+  list.push_back(res);
+  return list;
+}
+
+std::vector<std::string>		Network::serverMessage(std::string &data)
+{
+  unsigned int	i = 5;
+  std::string	res = "";  
+  std::vector<std::string>	list;
+
+  while (i < data.size())
+    {
+      res += data[i];
+      i++;
+    }
+  list.push_back(res);
+  return list;
 }
 
 void		Network::unknownCommand()
