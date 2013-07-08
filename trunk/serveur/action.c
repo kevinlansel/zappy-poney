@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:08:13 2013 guillaume duez
-** Last update Mon Jul  8 15:41:05 2013 guillaume duez
+** Last update Mon Jul  8 16:09:22 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -14,7 +14,8 @@
 
 static char	str[NB_FUNC][LEN] = { "avance", "droite", "gauche", "voir",
 				      "inventaire", "prend", "pose",
-				      "broadcast", "expulse", "incantation"};
+				      "broadcast", "expulse", "incantation",
+				      "fork"};
 
 static void	init_tab_func(void (*tab_func[NB_FUNC])(t_msg *, t_client *, t_map **))
 {
@@ -28,6 +29,7 @@ static void	init_tab_func(void (*tab_func[NB_FUNC])(t_msg *, t_client *, t_map *
   tab_func[7] = &broadcast;
   tab_func[8] = &expulse;
   tab_func[9] = &level_up;
+  tab_func[10] = &fork_egg;
 }
 
 static t_msg	*check_and_call(t_client *client, t_map **map,
