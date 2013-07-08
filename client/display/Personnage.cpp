@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Tue Jul  2 11:38:16 2013 Maxime Wojciak
-// Last update Thu Jul  4 16:14:37 2013 gery baudry
+// Last update Mon Jul  8 11:51:25 2013 gery baudry
 //
 
 #include "Personnage.hpp"
@@ -20,10 +20,13 @@ Personnage::Personnage(int level) : _level(level)
 Personnage::~Personnage() {
 }
 
-sf::Sprite		Personnage::loadPokemon() {
+sf::Sprite		Personnage::loadPokemon(const sf::Vector2i &pos) {
   sf::Vector2f	scale;
   sf::Sprite sprite(this->pokemon);
+  sf::Vector2f	thepos;
+  thepos = sf::Vector2f(pos.x, pos.y);
   scale = sf::Vector2f(0.4, 0.4);
+  sprite.move(thepos);
   sprite.setScale(scale);
   return sprite;
 }
