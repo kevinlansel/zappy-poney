@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:15:13 2013 guillaume duez
-** Last update Wed Jul  3 12:32:14 2013 guillaume duez
+** Last update Mon Jul  8 14:53:52 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -52,6 +52,20 @@ int		send_mess(t_msg *msg)
       return -1;
     }
   return 0;
+}
+
+t_msg		*create_mess(t_client *client, char *str)
+{
+  t_msg		*msg;
+
+  msg = xmalloc(sizeof(t_msg));
+  if (msg != NULL)
+    {
+      msg->cmd = xmalloc(strlen(str));
+      msg->cmd = strcpy(msg->cmd, str);
+    }
+  msg->client = client;
+  return msg;
 }
 
 t_msg		*get_mess(t_client *client)

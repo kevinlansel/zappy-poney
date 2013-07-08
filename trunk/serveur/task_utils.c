@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun  3 15:13:05 2013 guillaume duez
-** Last update Wed Jun 26 14:22:36 2013 florian dewulf
+** Last update Mon Jul  8 13:51:43 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -17,11 +17,12 @@ t_msg		*exec_task(t_msg *task)
 {
   while (task && task->end != 1 && task->time < get_time())
     {
-      if (send_mess(task) == -1)
+      if (strcmp(task->comand, "elevation") == 0 && up_level(task) == 1)
 	{
-	  //find and suppres  client of the task
-	  printf("TO DO\n");
+	  
 	}
+      if (send_mess(task) == -1)
+	printf("unable to send_mess\n");
       task = task->nt;
       free(task->prev);
     }
