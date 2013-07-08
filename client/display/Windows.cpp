@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:01:06 2013 Maxime Wojciak
-// Last update Fri Jul  5 13:56:12 2013 gery baudry
+// Last update Mon Jul  8 11:35:11 2013 gery baudry
 //
 
 #include	<iostream>
@@ -45,14 +45,14 @@ void		Windows::CreateWindows(gnl &gl)
 
   tv.tv_sec = 5;
   tv.tv_usec = 0;
-  
+
   test = this->_net.getPlayerInfos();
-  for (std::vector<std::string>::iterator it = test.begin(); it != test.end(); ++it)
-    {
-      std::cout << *it;
-      std::cout << "tot";
-    }
-  std::cout << std::endl;
+  // for (std::vector<std::string>::iterator it = test.begin(); it != test.end(); ++it)
+  //   {
+  //     std::cout << *it;
+  //     std::cout << "tot";
+  //   }
+  // std::cout << std::endl;
   while (this->window.isOpen())
     {
       while (this->window.pollEvent(this->event))
