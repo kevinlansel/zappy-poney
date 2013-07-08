@@ -71,7 +71,7 @@ void		Network::initConnexion()
   connect(this->_sock, (struct sockaddr *)&s_in, sizeof(s_in));
 }
 
-void			Network::doLoop()
+void			Network::doLoop(gnl &gl)
 {
   fd_set		fd_read;
   int			a;
@@ -79,7 +79,6 @@ void			Network::doLoop()
   std::vector<int>	list;
   int			x;
   int			y;
-  gnl gl(this->_sock);
   int			cpt = 0;
 
   while (cpt < 2)

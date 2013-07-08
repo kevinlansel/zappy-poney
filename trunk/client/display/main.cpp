@@ -15,8 +15,8 @@ int		main(int ac, char **av)
   int		port;
   std::string	team;
   Audio		music;
-
   srand(time(NULL));
+
   host = "localhost";
   while (i < ac)
     {
@@ -30,8 +30,9 @@ int		main(int ac, char **av)
     }
   Network	net(host, port, team);
   net.initConnexion();
+  gnl gl(net.getSock());
   music.PlaySound();
-  net.doLoop();
+  net.doLoop(gl);
   Windows	window(net.getTailleX(), net.getTailleY(), net);
-  window.CreateWindows();
+  window.CreateWindows(gl);
 }

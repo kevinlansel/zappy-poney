@@ -23,7 +23,7 @@ public:
   virtual		~Windows();
 
 public:
-  void			CreateWindows();
+  void			CreateWindows(gnl &);
   void			DrawMap();
   std::vector<Case>	getVector() const;
 

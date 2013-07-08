@@ -30,7 +30,7 @@ Windows::~Windows() {
 
 }
 
-void		Windows::CreateWindows()
+void		Windows::CreateWindows(gnl &gl)
 {
   //Personnage		perso("../ressources/pictures/noctali.png");
   Player		player(sf::Vector2i(89, 68), 2, 2, 1, 4, 3, 1, 4, 1, "toto");
@@ -39,7 +39,6 @@ void		Windows::CreateWindows()
   sf::Text		text2;
   std::vector<std::string>	test;
   fd_set			fd_read;
-  gnl				gl(this->_net.getSock());
   int				a;
   std::string			req = "";
   struct timeval tv;
@@ -66,7 +65,10 @@ void		Windows::CreateWindows()
 	  FD_ZERO(&fd_read);
 	  FD_SET(this->_net.getSock(), &fd_read);
 	  if (gl.getbuffer() != "")
-	    req = gl.get_next_line();
+	    {
+	      req = gl.get_next_line();
+	      std::cout << req << std::endl;
+	    }
 	  else if ((a = select(this->_net.getSock() + 1, &fd_read, NULL, NULL, &tv)) != -1)
 	    {
 	      if (FD_ISSET(this->_net.getSock(), &fd_read))
