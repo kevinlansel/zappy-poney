@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Mon Jul  8 15:42:15 2013 guillaume duez
+** Last update Mon Jul  8 16:10:10 2013 guillaume duez
 */
 
 #ifndef			__SERVEUR_H__
@@ -19,7 +19,7 @@
 #include		<netinet/in.h>
 #include		<limits.h>
 
-#define			NB_FUNC		10
+#define			NB_FUNC		11
 #define			LEN		12
 #define			OPT_INT		5
 #define			SIZE_PTR_FUNC	14
@@ -183,6 +183,8 @@ void			end_incant(int, t_client *);
 t_client		*end_client(t_client *client);
 t_msg			*exec_task(t_msg *task);
 void			expulse(t_msg *msg, t_client *client, t_map **map);
+
+void			fork_egg(t_msg *msg, t_client *client, t_map **map);
 
 void			gauche(t_msg *msg, t_client *client, t_map **map);
 void			getcase(char **, int, t_map **, t_client *);
