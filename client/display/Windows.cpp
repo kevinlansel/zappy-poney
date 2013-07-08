@@ -69,6 +69,8 @@ void		Windows::CreateWindows(gnl &gl)
 	      req = gl.get_next_line();
 	      //	      std::cout << req << std::endl;
 	      this->_net.checkData(req);
+	      this->_net.checkData2(req);
+	      this->_net.checkData3(req);
 	    }
 	  else if ((a = select(this->_net.getSock() + 1, &fd_read, NULL, NULL, &tv)) != -1)
 	    {
@@ -77,6 +79,8 @@ void		Windows::CreateWindows(gnl &gl)
 		  req = gl.get_next_line();
 		  //std::cout << req << std::endl;
 		  this->_net.checkData(req);
+		  this->_net.checkData2(req);
+		  this->_net.checkData3(req);
 		}
 	    }
 	}
