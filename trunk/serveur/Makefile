@@ -5,7 +5,7 @@
 ## Login   <duez_a@epitech.net>
 ## 
 ## Started on  Mon Feb  4 12:48:16 2013 guillaume duez
-## Last update Thu Jul  4 22:09:12 2013 florian dewulf
+## Last update Mon Jul  8 16:06:22 2013 guillaume duez
 ##
 
 SERV	=	serveur
@@ -27,6 +27,7 @@ SRC_SERV=	action.c			\
 		dialog_client/utils_protocol.c	\
 		echo.c				\
 		expulse.c			\
+		fork.c				\
 		init.c				\
 		init_map.c			\
 		level_up.c			\

@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:08:13 2013 guillaume duez
-** Last update Mon Jul  8 14:55:36 2013 guillaume duez
+** Last update Mon Jul  8 15:41:05 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -42,7 +42,7 @@ static t_msg	*check_and_call(t_client *client, t_map **map,
 
   i = -1;
   bool = 0;
-  if ((msg = get_mess(client)) != NULL)
+  if ((msg = get_mess(client, opt)) != NULL)
     {
       while (++i < NB_FUNC)
 	{
