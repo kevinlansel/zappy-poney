@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 17:52:10 2013 guillaume duez
-** Last update Thu Jul  4 16:57:20 2013 florian dewulf
+** Last update Mon Jul  8 15:04:57 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -54,11 +54,12 @@ static t_map		**create_map(t_opt *opt)
 }
 
 static void     set_fd(fd_set *listen_select,
-                       t_client *client, int *max, int fd)
+                       t_client *client, int *max, t_connect *co)
 {
   FD_ZERO(listen_select);
-  FD_SET(fd, listen_select);
-  *max = fd;
+  FD_SET(co->fd, listen_select);
+  *max = co->fd;
+  co->tv->tv_usec = 20000;
   while (client && client->end != 1)
     {
       if (client->type != EGG)
@@ -82,7 +83,7 @@ static void		open_serv(t_connect *co, t_client *client, t_opt *opt, t_map **map)
   error = ((msg = ((msg) ? NULL : NULL)) ? 0 : 0);
   while (error != -1)
     {
-      set_fd(&fd_read, client, &max, co->fd);
+      set_fd(&fd_read, client, &max, co);
       if ((error = select(max + 1, &fd_read, NULL, NULL, co->tv)) != -1)
         {
           if (FD_ISSET(co->fd, &fd_read))
@@ -123,8 +124,6 @@ void		run_server(t_opt *opt)
   map = create_map(opt);
   create_link_x(map);
   create_link_y(map);
-  connect->tv->tv_usec = 600;
-  connect->tv->tv_sec = 0;
   if (!opt)
     printf("problem with args\n");
   else
