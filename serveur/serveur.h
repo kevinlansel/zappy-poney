@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Fri Jul  5 14:42:33 2013 florian dewulf
+** Last update Mon Jul  8 14:54:33 2013 guillaume duez
 */
 
 #ifndef			__SERVEUR_H__
@@ -134,6 +134,7 @@ typedef struct		s_msg
   double		time;
   t_client		*client;
   int			end;
+  int			*level;
   struct s_msg		*nt;
   struct s_msg		*prev;
 }			t_msg;
@@ -165,6 +166,7 @@ void			connexion_player(char **, int, t_map **, t_client *);
 t_client		*create_cl(int, t_client *, t_opt *, t_map **);
 void			create_link_x(t_map **map);
 void			create_link_y(t_map **map);
+t_msg			*create_mess(t_client *client, char *msg);
 t_client		*client_reset(t_client *client);
 
 t_client		*delete_client(t_client *);
@@ -229,6 +231,8 @@ int			strlen_tab(char **str);
 
 void			take_ress(int, int, t_client *);
 char			**to_tab(char *, int, int);
+
+int			up_level(t_msg *msg);
 
 void			voir(t_msg *mess, t_client *client, t_map **map);
 
