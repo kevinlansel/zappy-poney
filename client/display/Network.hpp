@@ -50,7 +50,7 @@ public:
   std::vector<std::vector<int> >	getCarte() const;
   std::vector<std::string>		getPlayerInfos() const;
   void					initConnexion();
-  void					doLoop();
+  void					doLoop(gnl &);
   std::string				recup_firstPart(std::string &data);
   void					checkData(std::string &data);
   std::vector<int>			recup_sizeMap(std::string &data);
