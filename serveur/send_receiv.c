@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:15:13 2013 guillaume duez
-** Last update Mon Jul  8 14:53:52 2013 guillaume duez
+** Last update Mon Jul  8 15:43:03 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -68,7 +68,7 @@ t_msg		*create_mess(t_client *client, char *str)
   return msg;
 }
 
-t_msg		*get_mess(t_client *client)
+t_msg		*get_mess(t_client *client, t_opt *opt)
 {
   t_msg		*msg;
   int		size;
@@ -85,11 +85,8 @@ t_msg		*get_mess(t_client *client)
       msg->bool = 1;
       return msg;
     }
-  else
-    {
-      printf("The client has leave with fd :%d\n", client->fd);
-      client = end_client(client);
-      client = client_reset(client);
-    }
+  printf("The client has leave with fd :%d\n", client->fd);
+  client = end_client(client);
+  client = client_reset(client);
   return (NULL);
 }

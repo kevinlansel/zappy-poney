@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Mon Jul  8 14:54:33 2013 guillaume duez
+** Last update Mon Jul  8 15:42:15 2013 guillaume duez
 */
 
 #ifndef			__SERVEUR_H__
@@ -187,7 +187,7 @@ void			expulse(t_msg *msg, t_client *client, t_map **map);
 void			gauche(t_msg *msg, t_client *client, t_map **map);
 void			getcase(char **, int, t_map **, t_client *);
 void			getcasemap(char **, int, t_map **, t_client *);
-t_msg			*get_mess(t_client *client);
+t_msg			*get_mess(t_client *client, t_opt *opt);
 void			getinvplayer(char **, int, t_map **, t_client *);
 void			getlevelplayer(char **, int, t_map **, t_client *);
 void			getmapsize(char **, int, t_map **, t_client *);
