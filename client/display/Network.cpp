@@ -169,8 +169,11 @@ void			Network::checkData(std::string &data)
       std::cout << "bct" << std::endl;
       recup_mapContent(data);
     }
-  /*else if (word == "tna")
-    recup_teamName(data);*/
+  else if (word == "tna")
+    {
+      std::cout << "tna" << std::endl;
+      recup_teamName(data);
+    }
   else if (word == "sgt")
     {
       std::cout << "sgt" << std::endl;
