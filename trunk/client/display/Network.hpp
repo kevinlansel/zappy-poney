@@ -63,6 +63,22 @@ public:
   void					recup_playerInventaire(int idPlayer);
   std::string				askForTimeUnit(std::string &data);
   void					setTimeUnit(int timeValue);
+  std::string				playerExpulse(std::string &data);
+  std::vector<std::string>		playerBroadcast(std::string &data);
+  std::vector<std::string>		launchIncantation(std::string &data);
+  std::vector<std::string>		endOfIncantation(std::string &data);
+  std::string				putAnEgg(std::string &data);
+  std::string				dropARessource(std::string &data);
+  std::string				takeARessource(std::string &data);
+  std::string				hungryDead(std::string &data);
+  std::vector<std::string>		eggPutByPlayer(std::string &data);
+  std::string				eggHatched(std::string &data);
+  std::string				playerConnectedForEgg(std::string &data);
+  std::string				eggDied(std::string &data);
+  std::string				endOfGame(std::string &data);
+  std::string				serverMessage(std::string &data);
+  void					unknownCommand();
+  void					wrongParameters();
 };
 
 #endif

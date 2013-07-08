@@ -257,6 +257,229 @@ std::vector<int>		Network::recup_mapContent(std::string &data)
   return (s2);
 }
 
+std::string	Network::playerExpulse(std::string &data)
+{
+  unsigned int		i = 5;
+  std::string	res = "";
+  
+  while (i < data.size() && data[i] != '\n')
+    {
+      res += data[i];
+      i++;
+    }
+  return res;
+}
+
+std::vector<std::string>	Network::playerBroadcast(std::string &data)
+{
+  unsigned int		i = 5;
+  std::vector<std::string>	list;
+  std::string	res = "";
+
+  while (data[i] != ' ')
+    {
+      res += data[i];
+      i++;
+    }
+  list.push_back(res);
+  res = "";
+  i++;
+  while (data[i] != '\n' && i < data.size())
+    {
+      res += data[i];
+      i++;
+    }
+  list.push_back(res);
+  return list;
+}
+
+std::vector<std::string>	Network::launchIncantation(std::string &data)
+{
+  unsigned int		i = 4;
+  std::string		res = "";
+  std::vector<std::string>	list;
+  unsigned int		cpt = 0;
+
+  while (cpt < 3)
+    {
+      while (data[i] != ' ')
+	{
+	  res += data[i];
+	  i++;
+	}
+      list.push_back(res);
+      res = "";
+      i++;
+      cpt++;
+    }
+  while (i < data.size() && data[i] != '\n')
+    {
+      if (data[i] == '#')
+	{
+	  i++;
+	  while (data[i] != ' ' && data[i] != '\n')
+	    {
+	      res += data[i];
+	      i++;
+	    }
+	  list.push_back(res);
+	  res = "";
+	}
+      else
+	i++;
+    }
+  return list;
+}
+
+std::vector<std::string>	Network::endOfIncantation(std::string &data)
+{
+  std::string		res = "";
+  std::vector<std::string>	list;
+  unsigned int		i = 4;
+  unsigned int		cpt = 0;
+
+  while (cpt < 3)
+    {
+      while (data[i] != ' ' && data[i] != '\n' && i < data.size())
+	{
+	  res += data[i];
+	  i++;
+	}
+      list.push_back(res);
+      res = "";
+      i++;
+      cpt++;
+    }
+  return list;
+}
+
+std::string		Network::putAnEgg(std::string &data)
+{
+  unsigned int		i = 5;
+  std::string	res = "";  
+
+  while (i < data.size())
+    {
+      res += data[i];
+      i++;
+    }
+  return res;
+}
+
+std::string		Network::dropARessource(std::string &data)
+{
+  unsigned int	i = 5;
+  std::string	res = "";  
+
+  while (i < data.size())
+    {
+      res += data[i];
+      i++;
+    }
+  return res;
+}
+
+std::string		Network::takeARessource(std::string &data)
+{
+  unsigned int	i = 5;
+  std::string	res = "";  
+
+  while (i < data.size())
+    {
+      res += data[i];
+      i++;
+    }
+  return res;
+}
+
+std::string		Network::hungryDead(std::string &data)
+{
+  unsigned int	i = 5;
+  std::string	res = "";  
+
+  while (i < data.size())
+    {
+      res += data[i];
+      i++;
+    }
+  return res;
+}
+
+std::vector<std::string>		Network::eggPutByPlayer(std::string &data)
+{
+  unsigned int		i = 4;
+  std::string		res = "";
+  std::vector<std::string>	list;
+  unsigned int		cpt = 0;
+
+  while (cpt < 2)
+    {
+      if (data[i] == '#')
+	{
+	  while (data[i] != ' ')
+	    {
+	      res += data[i];
+	      i++;
+	    }
+	  list.push_back(res);
+	  res = "";
+	  i++;
+	  cpt++;
+	}
+    }
+  while (i < data.size() && data[i] != '\n')
+    {
+      while (data[i] != ' ' && data[i] != '\n')
+	{
+	  res += data[i];
+	  i++;
+	}
+      list.push_back(res);
+      res = "";
+      i++;
+    }
+  return list;
+}
+  
+std::string		Network::eggHatched(std::string &data)
+{
+  unsigned int	i = 5;
+  std::string	res = "";  
+
+  while (i < data.size())
+    {
+      res += data[i];
+      i++;
+    }
+  return res;
+}
+
+std::string		Network::playerConnectedForEgg(std::string &data)
+{
+  unsigned int	i = 5;
+  std::string	res = "";  
+
+  while (i < data.size())
+    {
+      res += data[i];
+      i++;
+    }
+  return res;
+}
+
+std::string		Network::eggDied(std::string &data)
+{
+  unsigned int	i = 5;
+  std::string	res = "";  
+
+  while (i < data.size())
+    {
+      res += data[i];
+      i++;
+    }
+  return res;
+}
+
 std::vector<int>		Network::recup_caseContent(int y, int x)
 {
   std::string			posX;
@@ -493,6 +716,42 @@ void			Network::setTimeUnit(int timeValue)
   tv << timeValue;
   chaine = "sst " + tv.str() + "\n";
   write(this->_sock, chaine.c_str(), chaine.size());
+}
+
+std::string		Network::endOfGame(std::string &data)
+{
+  unsigned int	i = 5;
+ std::string	res = "";  
+
+  while (i < data.size())
+    {
+      res += data[i];
+      i++;
+    }
+  return res;
+}
+
+std::string		Network::serverMessage(std::string &data)
+{
+  unsigned int	i = 5;
+  std::string	res = "";  
+
+  while (i < data.size())
+    {
+      res += data[i];
+      i++;
+    }
+  return res;
+}
+
+void		Network::unknownCommand()
+{
+  std::cout << "Unknown Command" << std::endl;
+}
+
+void		Network::wrongParameters()
+{
+  std::cout << "Wrong Parameters" << std::endl;
 }
 
 Network::~Network()
