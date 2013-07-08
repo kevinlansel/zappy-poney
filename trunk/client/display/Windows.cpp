@@ -67,14 +67,15 @@ void		Windows::CreateWindows(gnl &gl)
 	  if (gl.getbuffer() != "")
 	    {
 	      req = gl.get_next_line();
-	      std::cout << req << std::endl;
+	      //	      std::cout << req << std::endl;
+	      this->_net.checkData(req);
 	    }
 	  else if ((a = select(this->_net.getSock() + 1, &fd_read, NULL, NULL, &tv)) != -1)
 	    {
 	      if (FD_ISSET(this->_net.getSock(), &fd_read))
 		{
 		  req = gl.get_next_line();
-		  std::cout << req << std::endl;
+		  //std::cout << req << std::endl;
 		  this->_net.checkData(req);
 		}
 	    }
