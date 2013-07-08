@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Tue Jul  2 11:38:12 2013 Maxime Wojciak
-// Last update Thu Jul  4 16:32:57 2013 gery baudry
+// Last update Mon Jul  8 11:48:08 2013 gery baudry
 //
 
 #ifndef			PERSONNAGE__
@@ -20,7 +20,7 @@ public:
   virtual		~Personnage();
 
 public:
-  sf::Sprite		loadPokemon();
+  sf::Sprite		loadPokemon(const sf::Vector2i &);
   void			setImage();
 
 private:

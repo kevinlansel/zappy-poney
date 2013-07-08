@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Tue Jul  2 10:35:58 2013 gery baudry
-// Last update Mon Jul  8 11:32:45 2013 gery baudry
+// Last update Mon Jul  8 11:42:16 2013 gery baudry
 //
 
 #include		"Player.hpp"

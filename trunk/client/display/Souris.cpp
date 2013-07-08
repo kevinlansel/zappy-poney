@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 15:58:05 2013 gery baudry
-// Last update Mon Jul  8 11:32:02 2013 gery baudry
+// Last update Mon Jul  8 11:54:16 2013 gery baudry
 //
 
 
@@ -40,7 +40,7 @@ void			Souris::CheckSouris(sf::RenderWindow &window, std::vector<Case> &map, int
 	      _pos = sf::Vector2<int>(it->getPosition());
 	      if ((this->_position.x >= _pos.x && !(this->_position.x >= (_pos.x + taille.x)) && this->_position.y >= _pos.y && !(this->_position.y >= (_pos.y + taille.y))))
 		{
-		  this->textcase = sf::Text(it->doTextCase(this->_position), this->font, 20);
+		  this->textcase = sf::Text(it->doTextCase(this->_position), this->font, 15);
 		  this->textcase.move(sf::Vector2f(1110, 10));
 		  this->textcase.setColor(sf::Color(100, 85, 12));
 		  break;
@@ -48,8 +48,8 @@ void			Souris::CheckSouris(sf::RenderWindow &window, std::vector<Case> &map, int
 	      std::cout << posplayer.x << std::endl;
 	      if ((this->_position.x >= posplayer.x && !(this->_position.x >= (posplayer.x + taille.x)) && this->_position.y >= posplayer.y && !(this->_position.y >= (posplayer.y + taille.y))))
 		{
-		  this->textplayer = sf::Text(player.doTextPlayer(this->_position), this->font, 20);
-		  this->textplayer.move(sf::Vector2f(1110, 210));
+		  this->textplayer = sf::Text(player.doTextPlayer(this->_position), this->font, 15);
+		  this->textplayer.move(sf::Vector2f(1130, 210));
 		  this->textplayer.setColor(sf::Color(102, 0, 0));
 		}
 	    }
