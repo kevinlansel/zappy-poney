@@ -127,10 +127,3 @@ std::vector<Case>		Windows::getVector() const
 {
   return (this->map);
 }
-
-// sf::Texture texture;
-// if (!texture.loadFromFile("../ressources/pictures/noctali.png"))
-//     return EXIT_FAILURE;
-// sf::Sprite sprite(texture);
-// this->window.draw(sprite);
-// this->window.draw(text);
