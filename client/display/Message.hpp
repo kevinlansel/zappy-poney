@@ -5,13 +5,15 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon Jul  8 15:02:08 2013 Maxime Wojciak
-// Last update Tue Jul  9 15:24:24 2013 gery baudry
+// Last update Tue Jul  9 15:46:46 2013 Maxime Wojciak
 //
 
 #ifndef				MESSAGE__
 #define				MESSAGE__
 
 #include			<SFML/Graphics.hpp>
+#include			<SFML/Audio.hpp>
+#include			<SFML/Window.hpp>
 #include			<vector>
 #include			<iostream>
 #include			"Case.hpp"
@@ -19,7 +21,7 @@
 class				Message
 {
 public:
-  Message();
+  Message(std::vector<Case>);
   ~Message();
 
 public:
