@@ -43,7 +43,7 @@ void		Windows::CreateWindows(gnl &gl)
   std::string			req = "";
   struct timeval tv;
 
-  tv.tv_sec = 5;
+  tv.tv_sec = 3;
   tv.tv_usec = 0;
 
   test = this->_net.getPlayerInfos();
