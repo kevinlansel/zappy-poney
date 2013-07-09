@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun 24 16:01:55 2013 guillaume duez
-** Last update Fri Jul  5 00:39:00 2013 florian dewulf
+** Last update Tue Jul  9 15:32:55 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -42,6 +42,7 @@ void		pose_objet(t_msg *msg, t_client *client, t_map **map)
 	printf("let : %s\n", tab[i]);
 	drop_ress(client->id, i, client);
 	sub_food(msg, client, "ok\n");
+	drop_ress(client->id, i, client);
 	return;
       }
   sub_food(msg, client, "ko\n");
@@ -69,6 +70,7 @@ void		prend_objet(t_msg *msg, t_client *client, t_map **map)
 	take_ress(client->id, i, client);
 	sub_food(msg, client, "ok\n");
 	printf("add : %s\n", tab[i]);
+	take_ress(client->id, i, client);
 	return;
       }
   sub_food(msg, client, "ko\n");

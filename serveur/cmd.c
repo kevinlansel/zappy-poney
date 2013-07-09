@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Tue May 28 16:48:58 2013 guillaume duez
-** Last update Wed Jul  3 10:15:51 2013 florian dewulf
+** Last update Tue Jul  9 15:12:28 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -34,6 +34,7 @@ void		avance(t_msg *msg, t_client *client, t_map **map)
 	&map[client->map->y - 1][client->map->x] : &map[client->map->y_world - 1][client->map->x];
     }
   client->direct = type;
+  giveposition(client, reroll(client));
   printf("position x : %d , position y : %d\n",  client->map->x, client->map->y);
 }
 
@@ -51,6 +52,7 @@ void		droite(t_msg *msg, t_client *client, t_map **map)
 	client->direct = EST;
       else if (client->direct == EST)
 	client->direct = SUD;
+      giveposition(client, reroll(client));
     }
 }
 
@@ -68,6 +70,7 @@ void		gauche(t_msg *msg, t_client *client, t_map **map)
 	client->direct = OUEST;
       else if (client->direct == OUEST)
 	client->direct = SUD;
+      giveposition(client, reroll(client));
     }
 }
 
@@ -76,10 +79,10 @@ void		inventaire(t_msg *mess, t_client *client, t_map **map)
   static char	tab[7][12] = { "nourriture ", ", linemate ", ", deraumere ", ", sibur ",
 			       ", mendiane ", ", phiras ", ", thystame" };
 
-  int	i;
-  char	*msg;
-  int	len;
-  char *str;
+  int		i;
+  char		*msg;
+  int		len;
+  char		*str;
 
   str = xmalloc(10);
   i = 0;
