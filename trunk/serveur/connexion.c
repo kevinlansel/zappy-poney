@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Thu Jun 27 10:38:25 2013 florian dewulf
-** Last update Mon Jul  8 15:42:40 2013 guillaume duez
+** Last update Tue Jul  9 13:48:38 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -77,7 +77,7 @@ static int	ia_connect(char *name_team, t_client **cl, t_opt *opt)
     *cl = transform_egg_to_client(tmp, cl);
   if (opt->nb_player[i] >= 1)
     {
-      size = snprintf(NULL, 0, "%d\n", opt->nb_player[i]);
+      size = snprintf(NULL, 0, "%d\n", opt->nb_player[i]) + 1;
       str = xmalloc((size + 1) * sizeof(char));
       snprintf(str, size, "%d\n", opt->nb_player[i]);
       write((*cl)->fd, str, strlen(str));
