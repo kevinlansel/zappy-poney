@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 11:11:59 2013 gery baudry
-// Last update Fri Jul  5 11:14:59 2013 gery baudry
+// Last update Tue Jul  9 10:27:52 2013 gery baudry
 //
 
 #ifndef			CASE__
@@ -42,7 +42,7 @@ public:
   void				setMendiane(int);
   void				setPhiras(int);
   void				setThystame(int);
-
+  void				setCasecolor(sf::Color val);
 
 private:
   sf::RectangleShape		rectangle;
@@ -54,6 +54,8 @@ private:
   int				_mendiane;
   int				_phiras;
   int				_thystame;
+  sf::Color			_casevide;
+  sf::Color			_casepleine;
 };
 
 #endif
