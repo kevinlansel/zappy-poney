@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Tue Jun 25 16:57:52 2013 florian dewulf
-** Last update Wed Jul  3 12:56:54 2013 florian dewulf
+** Last update Tue Jul  9 13:52:29 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -21,7 +21,7 @@ void		player_expulse(int id, t_client *cl)
   char		*str;
 
   tmp = cl;
-  size = snprintf(NULL, 0, "pex %d\n", id);
+  size = snprintf(NULL, 0, "pex %d\n", id) + 1;
   str = xmalloc((size + 1) * sizeof(char));
   snprintf(str, size, "pex %d\n", id);
   while (tmp->prev)
@@ -42,7 +42,7 @@ void		player_message(int id, char *str, t_client *cl)
   char		*string;
 
   tmp = cl;
-  size = snprintf(NULL, 0, "pbc %d %s\n", id, str);
+  size = snprintf(NULL, 0, "pbc %d %s\n", id, str) + 1;
   string = xmalloc((size + 1) * sizeof(char));
   snprintf(string, size, "pbc %d %s\n", id, str);
   while (tmp->prev)
@@ -63,7 +63,7 @@ void		player_dead(int id, t_client *cl)
   char		*str;
 
   tmp = cl;
-  size = snprintf(NULL, 0, "pdi %d\n", id);
+  size = snprintf(NULL, 0, "pdi %d\n", id) + 1;
   str = xmalloc((size + 1) * sizeof(char));
   snprintf(str, size, "pdi %d\n", id);
   while (tmp->prev)

@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Wed Jun 19 13:19:33 2013 florian dewulf
-** Last update Fri Jul  5 13:19:34 2013 florian dewulf
+** Last update Tue Jul  9 13:53:22 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -24,7 +24,7 @@ void		connexion_player(char **arg, int fd,
   (void)map;
   size = snprintf(NULL, 0, "pnw %d %d %d %d %d %s\n",
 		  begin->id, begin->map->x, begin->map->y,
-		  begin->direct + 1, begin->level, begin->team);
+		  begin->direct + 1, begin->level, begin->team) + 1;
   str = xmalloc((size + 1) * sizeof(char));
   snprintf(str, size, "pnw %d %d %d %d %d %s\n",
 	   begin->id, begin->map->x, begin->map->y,
@@ -44,7 +44,7 @@ void		getteam(char **arg, int fd, t_map **map, t_client *begin)
   (void)(begin);
   while (arg && arg[i])
     {
-      size = snprintf(NULL, 0, "tna %s\n", arg[i]);
+      size = snprintf(NULL, 0, "tna %s\n", arg[i]) + 1;
       str = xmalloc((size + 1) * sizeof(char));
       snprintf(str, size, "tna %s\n", arg[i]);
       write(fd, str, strlen(str));
@@ -71,10 +71,10 @@ void		getposplayer(char **arg, int fd, t_map **map, t_client *begin)
       return;
     }
   size = snprintf(NULL, 0, "ppo %d %d %d %d\n",
-		  id, cl->map->x, cl->map->y, cl->direct);
+		  id, cl->map->x, cl->map->y, cl->direct) + 1;
   str = xmalloc((size + 1) * sizeof(char));
   snprintf(str, size, "ppo %d %d %d %d\n",
-	   id, cl->map->x, cl->map->y, cl->direct);
+	   id, cl->map->x, cl->map->y, cl->direct) + 1;
   write(fd, str, strlen(str));
   free(str);
 }
@@ -96,9 +96,9 @@ void		getlevelplayer(char **arg, int fd, t_map **map, t_client *begin)
       write(fd, "sbp\n", 4);
       return;
     }
-  size = snprintf(NULL, 0, "plv %d %d\n", id, cl->level);
+  size = snprintf(NULL, 0, "plv %d %d\n", id, cl->level) + 1;
   str = xmalloc((size + 1) * sizeof(char));
-  snprintf(str, size, "plv %d %d\n", id, cl->level);
+  snprintf(str, size, "plv %d %d\n", id, cl->level) + 1;
   write(fd, str, strlen(str));
   free(str);
 }
@@ -122,7 +122,8 @@ void		getinvplayer(char **arg, int fd, t_map **map, t_client *begin)
     }
   size = snprintf(NULL, 0, "pin %d %d %d %d %d %d %d %d %d %d\n",
 		  id, c->map->x, c->map->y, c->ress[0], c->ress[1],
-		  c->ress[2], c->ress[3], c->ress[4], c->ress[5], c->ress[6]);
+		  c->ress[2], c->ress[3], c->ress[4],
+		  c->ress[5], c->ress[6]) + 1;
   str = xmalloc((size + 1) * sizeof(char));
   snprintf(str, size, "pin %d %d %d %d %d %d %d %d %d %d\n",
 	   id, c->map->x, c->map->y, c->ress[0], c->ress[1],

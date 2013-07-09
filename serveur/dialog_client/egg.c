@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Tue Jun 25 18:57:11 2013 florian dewulf
-** Last update Fri Jul  5 14:30:13 2013 florian dewulf
+** Last update Tue Jul  9 13:51:33 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -22,7 +22,7 @@ void		egg_drop_by(int id_egg, int id, t_client *cl)
 
   tmp = cl;
   size = snprintf(NULL, 0, "enw %d %d %d %d\n", id_egg, id, cl->map->x,
-		  cl->map->y);
+		  cl->map->y) + 1;
   str = xmalloc((size + 1) * sizeof(char));
   snprintf(str, size, "enw %d %d %d %d\n", id_egg, id, cl->map->x, cl->map->y);
   while (tmp->prev)
@@ -43,7 +43,7 @@ void		egg_open(int id_egg, t_client *cl)
   char		*str;
 
   tmp = cl;
-  size = snprintf(NULL, 0, "eht %d\n", id_egg);
+  size = snprintf(NULL, 0, "eht %d\n", id_egg) + 1;
   str = xmalloc((size + 1) * sizeof(char));
   snprintf(str, size, "eht %d\n", id_egg);
   while (tmp->prev)
@@ -64,7 +64,7 @@ void		egg_connect(int id_egg, t_client *cl)
   char		*str;
 
   tmp = cl;
-  size = snprintf(NULL, 0, "ebo %d\n", id_egg);
+  size = snprintf(NULL, 0, "ebo %d\n", id_egg) + 1;
   str = xmalloc((size + 1) * sizeof(char));
   snprintf(str, size, "ebo %d\n", id_egg);
   while (tmp->prev)
@@ -85,7 +85,7 @@ void		egg_dead(int id_egg, t_client *cl)
   char		*str;
 
   tmp = cl;
-  size = snprintf(NULL, 0, "edi %d\n", id_egg);
+  size = snprintf(NULL, 0, "edi %d\n", id_egg) + 1;
   str = xmalloc((size + 1) * sizeof(char));
   snprintf(str, size, "edi %d\n", id_egg);
   while (tmp->prev)
@@ -106,7 +106,7 @@ void		egg_drop(int id_client, t_client *cl)
   char		*str;
 
   tmp = cl;
-  size = snprintf(NULL, 0, "pfk %d\n", id_client);
+  size = snprintf(NULL, 0, "pfk %d\n", id_client) + 1;
   str = xmalloc((size + 1) * sizeof(char));
   snprintf(str, size, "pfk %d\n", id_client);
   while (tmp->prev)

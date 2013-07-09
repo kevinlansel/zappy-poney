@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Tue Jun 25 21:22:00 2013 florian dewulf
-** Last update Wed Jul  3 12:56:34 2013 florian dewulf
+** Last update Tue Jul  9 13:51:55 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -19,7 +19,7 @@ static char	*add_id(int id, char *str)
   char		*tmp;
   int		size;
 
-  size = snprintf(NULL, 0, "%s %d", str, id);
+  size = snprintf(NULL, 0, "%s %d", str, id) + 1;
   tmp = xmalloc((size + 1) * sizeof(char));
   snprintf(tmp, size, "%s %d", str, id);
   free(str);
@@ -31,7 +31,7 @@ static char	*add_enter(char *str)
   char		*tmp;
   int		size;
 
-  size = snprintf(NULL, 0, "%s\n", str);
+  size = snprintf(NULL, 0, "%s\n", str) + 1;
   tmp = xmalloc((size + 1) * sizeof(char));
   snprintf(tmp, size, "%s\n", str);
   free(str);
@@ -46,7 +46,7 @@ void		begin_incant(int level, t_client *cl, int x, int y)
   char		*str;
 
   tm = cl;
-  size = snprintf(NULL, 0, "pic %d %d %d %d", x, y, level, cl->id);
+  size = snprintf(NULL, 0, "pic %d %d %d %d", x, y, level, cl->id) + 1;
   str = xmalloc((size + 1) * sizeof(char));
   snprintf(str, size, "pic %d %d %d %d", x, y, level, cl->id);
   while (tm->prev)
@@ -74,7 +74,7 @@ void		end_incant(int state, t_client *cl)
   char		*str;
 
   tmp = cl;
-  size = snprintf(NULL, 0, "pie %d %d %d", cl->map->x, cl->map->y, state);
+  size = snprintf(NULL, 0, "pie %d %d %d", cl->map->x, cl->map->y, state) + 1;
   str = xmalloc((size + 1) * sizeof(char));
   snprintf(str, size, "pie %d %d %d", cl->map->x, cl->map->y, state);
   while (tmp->prev)
