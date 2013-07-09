@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Thu Jun 27 10:38:25 2013 florian dewulf
-** Last update Tue Jul  9 13:48:38 2013 guillaume duez
+** Last update Tue Jul  9 13:50:37 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -102,7 +102,7 @@ void		connexion(t_client **cl, t_map **map, t_opt *opt)
 	graphic_connect(*cl, map, opt);
       else if (ia_connect(msg->comand, cl, opt) == 1)
 	{
-	  size = snprintf(NULL, 0, "%d %d\n", map[0][0].x_world, map[0][0].y_world);
+	  size = snprintf(NULL, 0, "%d %d\n", map[0][0].x_world, map[0][0].y_world) + 1;
 	  str = xmalloc((size + 1) * sizeof(char));
 	  snprintf(str, size, "%d %d\n", map[0][0].x_world, map[0][0].y_world);
 	  write((*cl)->fd, str, strlen(str));

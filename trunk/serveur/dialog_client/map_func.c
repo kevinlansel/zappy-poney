@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Tue Jun 18 14:50:20 2013 florian dewulf
-** Last update Tue Jul  9 13:48:01 2013 guillaume duez
+** Last update Tue Jul  9 13:52:13 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -20,7 +20,7 @@ void		getmapsize(char **arg, int fd, t_map **map, t_client *cl)
 
   (void)arg;
   (void)cl;
-  size = snprintf(NULL, 0, "msz %d %d\n", map[0][0].x_world, map[0][0].y_world);
+  size = snprintf(NULL, 0, "msz %d %d\n", map[0][0].x_world, map[0][0].y_world) + 1;
   str = xmalloc((size + 1) * sizeof(char));
   snprintf(str, size, "msz %d %d\n", map[0][0].x_world, map[0][0].y_world);
   write(fd, str, strlen(str));
@@ -40,7 +40,7 @@ void		getcase(char **arg, int fd, t_map **m, t_client *cl)
   size = snprintf(NULL, 0, "bct %d %d %d %d %d %d %d %d %d\n",
 		  x, y, m[y][x].ress[0], m[y][x].ress[1], m[y][x].ress[2],
 		  m[y][x].ress[3], m[y][x].ress[4], m[y][x].ress[5],
-		  m[y][x].ress[6]);
+		  m[y][x].ress[6]) + 1;
   str = xmalloc((size + 1) * sizeof(char));
   snprintf(str, size, "bct %d %d %d %d %d %d %d %d %d\n",
 		  x, y, m[y][x].ress[0], m[y][x].ress[1], m[y][x].ress[2],
@@ -67,7 +67,7 @@ void		getcasemap(char **arg, int fd, t_map **m, t_client *cl)
 	  size = snprintf(NULL, 0, "bct %d %d %d %d %d %d %d %d %d\n",
 			  x, y, m[y][x].ress[0], m[y][x].ress[1],
 			  m[y][x].ress[2], m[y][x].ress[3], m[y][x].ress[4],
-			  m[y][x].ress[5], m[y][x].ress[6]);
+			  m[y][x].ress[5], m[y][x].ress[6]) + 1;
 	  str = xmalloc((size + 1) * sizeof(char));
 	  snprintf(str, size, "bct %d %d %d %d %d %d %d %d %d\n",
 			  x, y, m[y][x].ress[0], m[y][x].ress[1],
