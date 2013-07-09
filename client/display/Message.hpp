@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon Jul  8 15:02:08 2013 Maxime Wojciak
-// Last update Mon Jul  8 17:30:57 2013 Maxime Wojciak
+// Last update Tue Jul  9 14:29:33 2013 Maxime Wojciak
 //
 
 #ifndef		MESSAGE__
@@ -41,6 +41,7 @@ public:
 private:
   sf::Text	text;
   sf::Font	font;
+  sf::Music	sound;
 };
 
 #endif		/* !MESSAGE__ */
