@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon Jul  8 15:02:02 2013 Maxime Wojciak
-// Last update Tue Jul  9 15:04:12 2013 Maxime Wojciak
+// Last update Tue Jul  9 15:06:03 2013 Maxime Wojciak
 //
 
 #include	"Message.hpp"
@@ -37,7 +37,7 @@ void	Message::setPbc(std::string broadcast, std::string _player) {
 
 void	Message::setPic(int _x, int _y, int _level, std::string _player) {
   if (_x && _y && _level && _player) {
-    sf::Vector2f rec = Case.getRectangle();
+    sf::RectangleShape rec = Case.getRectangle();
     rec.setFillColor(204, 0, 0);    // Change color de la case en x et y
     std::string text = "Incantation de joueur " + _player + " au level " + _level.str() + " sur la case " + _x.str() ", " + _y.str();
     this->text(text, this->font, 15);
@@ -51,7 +51,7 @@ void	Message::setPie(int _x, int _y, int _level, int _r) {
   if (_x && _y && _level && _r) {
     if (_r == 1)	// Incantation réussie.
       {
-	sf::Vector2f rec = Case.getRectangle();
+	sf::RectangleShape rec = Case.getRectangle();
 	rec.setFillColor(0, 204, 204);    // Change color de la case en x et y
 	std::string text = "L'incantation de level " + _level.str() + "sur la case " + _x.str() + ", " + _y.str() " à réussi";
 	this->text(text, this->font, 15);

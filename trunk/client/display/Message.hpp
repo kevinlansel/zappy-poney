@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon Jul  8 15:02:08 2013 Maxime Wojciak
-// Last update Tue Jul  9 14:29:33 2013 Maxime Wojciak
+// Last update Tue Jul  9 15:06:24 2013 Maxime Wojciak
 //
 
 #ifndef		MESSAGE__
@@ -13,6 +13,7 @@
 
 #include	<SFML/Graphics.hpp>
 #include	<iostream>
+#include	"Case.hpp"
 
 class	Message {
 public:
