@@ -5,12 +5,12 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon Jul  8 15:02:02 2013 Maxime Wojciak
-// Last update Tue Jul  9 15:06:03 2013 Maxime Wojciak
+// Last update Tue Jul  9 15:23:06 2013 gery baudry
 //
 
 #include	"Message.hpp"
 
-Message::Message() {
+Message::Message(std::vector<Case> map), _map(map) {
   this->font.loadFromFile("../ressources/fonts/Sansation_Bold.ttf");
 }
 
@@ -21,7 +21,7 @@ void	Message::setPex(/*joueur dans la liste*/) {
   /*if (joueur dans la liste && joueur existe) */
   std::string text = "Le joueur " + _player + " à été expulser";
   this->text(text, this->font, 15);
-  this->text.move(sf::Vector2f(/*position*/));
+  this->text.move(sf::Vector2f(1110, 900));
   // delete(joueur dans la liste);
 }
 
@@ -29,52 +29,75 @@ void	Message::setPbc(std::string broadcast, std::string _player) {
   if (broadcast && _player) {
     std::string text = "Le joueur " + _player + " effectue un broadcast " + _broadcast;
     this->text(text, this->font, 15);
-    this->text.move(sf::Vector2f(/*position*/));
-  }
-  else
-    setSbp();
-}
-
-void	Message::setPic(int _x, int _y, int _level, std::string _player) {
-  if (_x && _y && _level && _player) {
-    sf::RectangleShape rec = Case.getRectangle();
-    rec.setFillColor(204, 0, 0);    // Change color de la case en x et y
-    std::string text = "Incantation de joueur " + _player + " au level " + _level.str() + " sur la case " + _x.str() ", " + _y.str();
-    this->text(text, this->font, 15);
-    this->text.move(sf::Vector2f(sf::Vector2f(1110, 900)));
-  }
-  else
-    setSbp();
-}
-
-void	Message::setPie(int _x, int _y, int _level, int _r) {
-  if (_x && _y && _level && _r) {
-    if (_r == 1)	// Incantation réussie.
-      {
-	sf::RectangleShape rec = Case.getRectangle();
-	rec.setFillColor(0, 204, 204);    // Change color de la case en x et y
-	std::string text = "L'incantation de level " + _level.str() + "sur la case " + _x.str() + ", " + _y.str() " à réussi";
-	this->text(text, this->font, 15);
-	this->text.move(sf::Vector2f(1110, 900));
-	this->sound.loadFromFile("../ressources/audio/bloup.mp3");
-      }
-  }
-  setSbp();
-}
-
-void	Message::setPfk(int _x, int _y) {
-  if (_x && _y) {
-    Oeuf	oeuf;						// Pond un oeuf
-    // Change color Case
-    this->sound.loadFromFile("../ressources/audio/bloup.mp3");	// Son
-    //this-case += Oeuf +1;
-    // +1 Oeuf attribut de la case
-    std::string text = "Un oeuf à été pondu sur la case " + _x.str() + ", " + _y.str();
-    this->text(text, this->font, 15);
     this->text.move(sf::Vector2f(1110, 900));
   }
   else
     setSbp();
+}
+
+std::vector<Case>	Message::setPic(int _x, int _y, int _level, std::string _player) {
+  if (_x && _y && _level && _player)
+    {
+      for (std::vector<Case>::iterator it = this->_map.begin(); it != this->_map.end(); it++)
+	{
+	  sf::Vector2f tmp(it->getPosition());
+	  if (tmp.x <= _x && tmp.y <= _y)
+	    sf::RectangleShape rec = it->getRectangle();
+	}
+      rec.setColorcase(sf::Color(201, 0, 0));    // Change color de la case en x et y
+      std::string text = "Incantation de joueur " + _player + " au level " + _level.str() + " sur la case " + _x.str() ", " + _y.str();
+      this->text(text, this->font, 15);
+      this->text.move(sf::Vector2f(1110, 900));
+    }
+  else
+    setSbp();
+  return (this->_map);
+}
+
+std::vector<Case>	Message::setPie(int _x, int _y, int _level, int _r) {
+  if (_x && _y && _level && _r) 
+    {
+      if (_r == 1)	// Incantation réussie.
+	{
+	  for (std::vector<Case>::iterator it = this->_map.begin(); it != this->_map.end(); it++)
+	    {
+	      sf::Vector2f tmp(it->getPosition());
+	      if (tmp.x <= _x && tmp.y <= _y)
+		sf::RectangleShape rec = it->getRectangle();
+	    }
+	  rec.setColorcase(sf::Color(201, 0, 0));    // Change color de la case en x et y
+	  std::string text = "L'incantation de level " + _level.str() + "sur la case " + _x.str() + ", " + _y.str() " à réussi";
+	  this->text(text, this->font, 15);
+	  this->text.move(sf::Vector2f(1110, 900));
+	  this->sound.loadFromFile("../ressources/audio/bloup.mp3");
+      }
+    }
+  else
+    setSbp();
+  return (this->_map);
+}
+
+std::vector<Case>	Message::setPfk(int _x, int _y) {
+  if (_x && _y)
+    {
+      Oeuf	oeuf;						// Pond un oeuf
+      for (std::vector<Case>::iterator it = this->_map.begin(); it != this->_map.end(); it++)
+	{
+	  sf::Vector2f tmp(it->getPosition());
+	  if (tmp.x <= _x && tmp.y <= _y)
+	    sf::RectangleShape rec = it->getRectangle();
+	}
+      rec.setColorcase(sf::Color(325, 0, 0));    // Change color de la case en x et y
+      this->sound.loadFromFile("../ressources/audio/bloup.mp3");	// Son
+      //this-case += Oeuf +1;
+      // +1 Oeuf attribut de la case
+      std::string text = "Un oeuf à été pondu sur la case " + _x.str() + ", " + _y.str();
+      this->text(text, this->font, 15);
+      this->text.move(sf::Vector2f(1110, 900));
+    }
+  else
+    setSbp();
+  return (this->_map);
 }
 
 void	Message::setPdr(int _n, int _i) {

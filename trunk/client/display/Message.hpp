@@ -5,44 +5,48 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon Jul  8 15:02:08 2013 Maxime Wojciak
-// Last update Tue Jul  9 15:06:24 2013 Maxime Wojciak
+// Last update Tue Jul  9 15:24:24 2013 gery baudry
 //
 
-#ifndef		MESSAGE__
-#define		MESSAGE__
+#ifndef				MESSAGE__
+#define				MESSAGE__
 
-#include	<SFML/Graphics.hpp>
-#include	<iostream>
-#include	"Case.hpp"
+#include			<SFML/Graphics.hpp>
+#include			<vector>
+#include			<iostream>
+#include			"Case.hpp"
 
-class	Message {
+class				Message
+{
 public:
   Message();
   ~Message();
 
 public:
-  void		setPex(/*liste de joueur*/);
-  void		setPbc(std::string, std::string);
-  void		setPic(int, int,int, std::string);
-  void		setPie(int, int, int, int);
-  void		setPfk(int, int);
-  void		setPdr(int, int);
-  void		setPgt(int, int);
-  void		setPdi(int);
-  void		setEnw(int, int, int, int);
-  void		setEht(int);
-  void		setEbo(int);
-  void		setEdi(int);
-  void		setSgt(int);
-  void		setSeg(std::string);
-  void		setSmg(std::string);
-  void		setPnw(int, int, int, int, int, std::string);
-  void		setSuc();
-  void		setSbp();
+  void				setPex(/*liste de joueur*/);
+  void				setPbc(std::string, std::string);
+  std::vector<Case>		setPic(int, int,int, std::string);
+  std::vector<Case>		setPie(int, int, int, int);
+  std::vector<Case>		setPfk(int, int);
+  void				setPdr(int, int);
+  void				setPgt(int, int);
+  void				setPdi(int);
+  void				setEnw(int, int, int, int);
+  void				setEht(int);
+  void				setEbo(int);
+  void				setEdi(int);
+  void				setSgt(int);
+  void				setSeg(std::string);
+  void				setSmg(std::string);
+  void				setPnw(int, int, int, int, int, std::string);
+  void				setSuc();
+  void				setSbp();
+
 private:
-  sf::Text	text;
-  sf::Font	font;
-  sf::Music	sound;
+  sf::Text			text;
+  sf::Font			font;
+  sf::Music			sound;
+  std::vector<Case>		_map;
 };
 
 #endif		/* !MESSAGE__ */
