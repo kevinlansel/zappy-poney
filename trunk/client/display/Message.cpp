@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon Jul  8 15:02:02 2013 Maxime Wojciak
-// Last update Mon Jul  8 18:02:22 2013 Maxime Wojciak
+// Last update Tue Jul  9 14:27:29 2013 Maxime Wojciak
 //
 
 #include	"Message.hpp"
@@ -19,13 +19,17 @@ Message::~Message() {
 
 void	Message::setPex(/*joueur dans la liste*/) {
   /*if (joueur dans la liste && joueur existe) */
-  std::cout << "Joueur expulser (Supression du joueur)" << std::endl;
+  std::string text = "Le joueur " + _player + " à été expulser";
+  this->text(text, this->font, 15);
+  this->text.move(sf::Vector2f(/*position*/));
   // delete(joueur dans la liste);
 }
 
 void	Message::setPbc(std::string broadcast, std::string _player) {
   if (broadcast && _player) {
-    std::cout << "Le joueur X effectue un broadcast" << broadcast << std::endl;
+    std::string text = "Le joueur " + _player + " effectue un broadcast " + _broadcast;
+    this->text(text, this->font, 15);
+    this->text.move(sf::Vector2f(/*position*/));
   }
   else
     setSbp();
@@ -35,6 +39,9 @@ void	Message::setPic(int _x, int _y, int _level, std::string _player) {
   if (_x && _y && _level && _player) {
     // Change color de la case en x et y
     std::cout << "Incantation du joueur" << _player << std::endl;
+    std::string text = "Incantation de joueur " + _player + " sur la case " + _x ", " + _y;
+    this->text(text, this->font, 15);
+    this->text.move(sf::Vector2f(/*position*/));
   }
   else
     setSbp();
@@ -42,11 +49,13 @@ void	Message::setPic(int _x, int _y, int _level, std::string _player) {
 
 void	Message::setPie(int _x, int _y, int _level, int _r) {
   if (_x && _y && _level && _r) {
-    if (_r == 1)
+    if (_r == 1)	// Incantation réussie.
       {
-	// Incantation réussie.
 	// Change Color(défaut) de la case _x, _y
-	// ../ressources/audio/bloup.mp3
+	std::string text = "L'incantation de level " + _level + "sur la case " + _x + ", " + _y " à réussi";
+	this->text(text, this->font, 15);
+	this->text.move(sf::Vector2f(/*position*/));
+	this->sound.loadFromFile("../ressources/audio/bloup.mp3");
       }
   }
   setSbp();
@@ -54,10 +63,14 @@ void	Message::setPie(int _x, int _y, int _level, int _r) {
 
 void	Message::setPfk(int _x, int _y) {
   if (_x && _y) {
-    // Pond un oeuf
+    Oeuf	oeuf;						// Pond un oeuf
     // Change color Case
-    // Son
+    this->sound.loadFromFile("../ressources/audio/bloup.mp3");	// Son
+    //this-case += Oeuf +1;
     // +1 Oeuf attribut de la case
+    std::string text = "Un oeuf à été pondu sur la case " + _x + ", " + _y;
+    this->text(text, this->font, 15);
+    this->text.move(sf::Vector2f(/*position*/));
   }
   else
     setSbp();
@@ -65,9 +78,14 @@ void	Message::setPfk(int _x, int _y) {
 
 void	Message::setPdr(int _n, int _i) {
   if (_n && _i) {
-  // numero de joueur _n jette ressource numero de ressource _i
-  // -1 ressource _i --> player _n
-  // +1 ressource _i --> player _n
+    /* for (this->player) {
+       this->PlayerRessource -1;
+       this->CaseRessource +1;
+       }*/
+    std::string text = "Le joueur " + _n + " jette la ressource " + _i + " sur la case";
+    this->text(text, this->font, 15);
+    this->text.move(sf::Vector2f(/*position*/));
+    // Joueur jette une ressource sur la case
   }
   else
     setSbp();
@@ -75,9 +93,14 @@ void	Message::setPdr(int _n, int _i) {
 
 void	Message::setPgt(int _n, int _i) {
   if (_n && _i) {
-    // numero de joueur _n jette ressource numero de ressource _i
-    // +1 ressource _i --> player _n
-    // -1 ressource _i --> player _n
+    /* for (this->player) {
+      this->PlayerRessource +1;
+      this->CaseRessource -1;
+      }*/
+    std::string text = "Le joueur " + _n + " prend la ressource " + _i + " de la case";
+    this->text(text, this->font, 15);
+    this->text.move(sf::Vector2f(/*position*/));
+    // Joueur prend une ressource de la case
   }
   else
     setSbp();
@@ -89,7 +112,7 @@ void	Message::setPdi(int _n) {
     this->text(text, this->font, 15);
     this->text.move(sf::Vector2f(/*position*/));
     // delete joueur _n de la liste;
-  }
+-  }
   else
     setSbp();
 }
