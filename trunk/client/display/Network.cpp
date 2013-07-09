@@ -163,87 +163,87 @@ std::vector<std::string>			Network::checkData2(std::string &data)
   if (word == "tna")
    {
       std::cout << "tna" << std::endl;
-      return recup_teamName(data);
+      list = recup_teamName(data);
     }
   else if (word == "sgt")
     {
       std::cout << "sgt" << std::endl;
-      return askForTimeUnit(data);
+      list = askForTimeUnit(data);
     }
   else if (word == "pnw")
     {
       std::cout << "pnw" << std::endl;
-      return recup_playerInfos(data);
+      list = recup_playerInfos(data);
     }
   else if (word == "pex")
     {
       std::cout << "pex" << std::endl;
-      return playerExpulse(data);
+      list = playerExpulse(data);
     }
   else if (word == "pbc")
     {
       std::cout << "pbc" << std::endl;
-      return playerBroadcast(data);
+      list = playerBroadcast(data);
     }
   else if (word == "pic")
     {
       std::cout << "pic" << std::endl;
-      return launchIncantation(data);
+      list = launchIncantation(data);
     }
   else if (word == "pie")
     {
       std::cout << "pie" << std::endl;
-      return endOfIncantation(data);
+      list = endOfIncantation(data);
     }
   else if (word == "pfk")
     {
       std::cout << "pfk" << std::endl;
-      return putAnEgg(data);
+      list = putAnEgg(data);
     }
   else if (word == "pdr")
     {
       std::cout << "pdr" << std::endl;
-      return dropARessource(data);
+      list = dropARessource(data);
     }
   else if (word == "pgt")
     {
       std::cout << "pgt" << std::endl;
-      return takeARessource(data);
+      list = takeARessource(data);
     }
   else if (word == "pdi")
     {
       std::cout << "pdi" << std::endl;
-      return hungryDead(data);
+      list = hungryDead(data);
     }
   else if (word == "enw")
     {
       std::cout << "enw" << std::endl;
-      return eggPutByPlayer(data);
+      list = eggPutByPlayer(data);
     }
   else if (word == "eht")
     {
       std::cout << "eht" << std::endl;
-      return eggHatched(data);
+      list = eggHatched(data);
     }
   else if (word == "ebo")
     {
       std::cout << "ebo" << std::endl;
-      return playerConnectedForEgg(data);
+      list = playerConnectedForEgg(data);
     }
   else if (word == "edi")
     {
       std::cout << "edi" << std::endl;
-      return eggDied(data);
+      list = eggDied(data);
     }
   else if (word == "seg")
     {
       std::cout << "seg" << std::endl;
-      return endOfGame(data);
+      list = endOfGame(data);
     }
   else if (word == "smg")
     {
       std::cout << "smg" << std::endl;
-      return serverMessage(data);
+      list = serverMessage(data);
     }
   return list;
 }
@@ -274,12 +274,12 @@ std::vector<int>			Network::checkData(std::string &data)
   if (word == "msz")
     {
       std::cout << "msz" << std::endl;
-      return recup_sizeMap(data);
+      list = recup_sizeMap(data);
     }
   else if (word == "bct")
     {
       std::cout << "bct" << std::endl;
-      return recup_mapContent(data);
+      list = recup_mapContent(data);
     }
   return list;
 }
