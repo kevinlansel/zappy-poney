@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon Jul  8 15:02:02 2013 Maxime Wojciak
-// Last update Tue Jul  9 15:23:06 2013 gery baudry
+// Last update Tue Jul  9 15:28:00 2013 gery baudry
 //
 
 #include	"Message.hpp"
@@ -55,7 +55,7 @@ std::vector<Case>	Message::setPic(int _x, int _y, int _level, std::string _playe
 }
 
 std::vector<Case>	Message::setPie(int _x, int _y, int _level, int _r) {
-  if (_x && _y && _level && _r) 
+  if (_x && _y && _level && _r)
     {
       if (_r == 1)	// Incantation réussie.
 	{
