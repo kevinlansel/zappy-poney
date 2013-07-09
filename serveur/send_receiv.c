@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:15:13 2013 guillaume duez
-** Last update Mon Jul  8 15:43:03 2013 guillaume duez
+** Last update Tue Jul  9 13:44:55 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -85,6 +85,7 @@ t_msg		*get_mess(t_client *client, t_opt *opt)
       msg->bool = 1;
       return msg;
     }
+  
   printf("The client has leave with fd :%d\n", client->fd);
   client = end_client(client);
   client = client_reset(client);
