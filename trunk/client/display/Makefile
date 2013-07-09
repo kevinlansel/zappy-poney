@@ -5,7 +5,7 @@
 ## Login   <wojcia_m@epitech.net>
 ## 
 ## Started on  Thu Jun 27 17:33:04 2013 Maxime Wojciak
-## Last update Tue Jul  9 15:28:21 2013 gery baudry
+## Last update Tue Jul  9 15:57:37 2013 Maxime Wojciak
 ##
 
 NAME=		Display
@@ -20,7 +20,8 @@ SRC=		Audio.cpp		\
 		Souris.cpp		\
 		Texture.cpp		\
 		Windows.cpp		\
-		Message.cpp
+		Message.cpp		\
+		pouet.cpp
 
 OBJ=		$(SRC:.cpp=.o)
 
