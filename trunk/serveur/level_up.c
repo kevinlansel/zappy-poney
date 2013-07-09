@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Wed Jul  3 14:39:06 2013 guillaume duez
-** Last update Mon Jul  8 14:52:57 2013 guillaume duez
+** Last update Tue Jul  9 15:56:21 2013 guillaume duez
 */
 
 #include	<string.h>
@@ -66,20 +66,26 @@ int		check_ress(int level, t_map *map, t_client *client)
 
   i = 0;
   tmp = client;
-  client = client_reset(client);
-  if (check_nbr_client(level, client, map, 0) == 1 && level < LEVEL)
+  if (check_nbr_client(level, client_reset(client), map, 0) == 1)
     {
-      while (i < MAX)
+      while (level < LEVEL && i < MAX)
 	{
-	  if (ress[level][i] < map->ress[i])
-	      return -1;
+	  if (map->ress[i] < ress[level][i])
+	    i = MAX;
 	  i++;
 	}
-      if (i == MAX)
-	return 1;
+    }
+  if (i == MAX)
+    {
+      i = 0;
+      while (i < MAX)
+	{
+	  map->ress[i] -= ress[level][i];
+	  i++;
+	}
     }
   client = tmp;
-  return -1;
+  return (i == MAX ? 1 : -1);
 }
 
 void		level_up(t_msg *msg, t_client *client, t_map **map)
