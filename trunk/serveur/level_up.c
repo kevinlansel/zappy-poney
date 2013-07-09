@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Wed Jul  3 14:39:06 2013 guillaume duez
-** Last update Tue Jul  9 15:56:21 2013 guillaume duez
+** Last update Tue Jul  9 16:14:31 2013 florian dewulf
 */
 
 #include	<string.h>
@@ -13,7 +13,7 @@
 #include	<stdlib.h>
 #include	"serveur.h"
 
-#define		LEVEL	8
+#define		LVL	8
 
 char		*get_mess_level_up(int level)
 {
@@ -28,7 +28,7 @@ char		*get_mess_level_up(int level)
 
 int		check_nbr_client(int level, t_client *client, t_map *map, int opt)
 {
-  static int	player_need[LEVEL] = {1, 2, 2, 4, 4, 6, 6};
+  static int	player_need[LVL] = {1, 2, 2, 4, 4, 6, 6};
   int		i;
 
   i = 0;
@@ -58,31 +58,25 @@ int		check_nbr_client(int level, t_client *client, t_map *map, int opt)
 int		check_ress(int level, t_map *map, t_client *client)
 {
   t_client	*tmp;
-  static int	ress[LEVEL][MAX] = { { 1, 0, 0, 0, 0, 0 }, { 1, 1, 1, 0, 0, 0 },
-				     { 2, 0, 1, 0, 2, 0 }, { 1, 1, 2, 0, 1, 0 },
-				     { 1, 2, 1, 3, 0, 0 }, { 1, 2, 3, 0, 1, 0 },
-				     { 2, 2, 2, 2, 2, 1 }};
+  static int	ress[LVL][MAX] = { { 1, 0, 0, 0, 0, 0 }, { 1, 1, 1, 0, 0, 0 },
+				   { 2, 0, 1, 0, 2, 0 }, { 1, 1, 2, 0, 1, 0 },
+				   { 1, 2, 1, 3, 0, 0 }, { 1, 2, 3, 0, 1, 0 },
+				   { 2, 2, 2, 2, 2, 1 }};
   int		i;
 
-  i = 0;
+  i = -1;
   tmp = client;
   if (check_nbr_client(level, client_reset(client), map, 0) == 1)
     {
-      while (level < LEVEL && i < MAX)
-	{
-	  if (map->ress[i] < ress[level][i])
-	    i = MAX;
-	  i++;
-	}
+      while (level < LVL && ++i < MAX)
+	if (map->ress[i] < ress[level][i])
+	  i = MAX;
     }
   if (i == MAX)
     {
-      i = 0;
-      while (i < MAX)
-	{
-	  map->ress[i] -= ress[level][i];
-	  i++;
-	}
+      i = -1;
+      while (++i < MAX)
+	map->ress[i] -= ress[level][i];
     }
   client = tmp;
   return (i == MAX ? 1 : -1);
@@ -96,6 +90,7 @@ void		level_up(t_msg *msg, t_client *client, t_map **map)
       sub_food(msg, client, "elevation en cours\n");
       send_mess(msg);
       msg->time = get_time_client(client, 300);
+      begin_incant(client->level, client, client->map->x, client->map->y);
     }
   else
       sub_food(msg, client, "ko\n");
@@ -103,7 +98,7 @@ void		level_up(t_msg *msg, t_client *client, t_map **map)
 
 int		up_level(t_msg *msg)
 {
-  t_client		*client;
+  t_client	*client;
 
   client = msg->client;
   if (msg && msg->client)
@@ -113,9 +108,11 @@ int		up_level(t_msg *msg)
 	  msg->client = client_reset(msg->client);
 	  check_nbr_client(msg->client->level, msg->client, msg->client->map, 1);
 	  msg->client = client;
+	  end_incant(1, client);
 	  return 1;
 	}
     }
+  end_incant(0, client);
   return -1;
 }
 
