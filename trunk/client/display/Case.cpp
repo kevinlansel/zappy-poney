@@ -5,18 +5,18 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 11:12:44 2013 gery baudry
-// Last update Fri Jul  5 11:14:08 2013 gery baudry
+// Last update Tue Jul  9 10:27:53 2013 gery baudry
 //
 
 #include	<iostream>
 #include	"Case.hpp"
 
-Case::Case(sf::Vector2f taille, std::vector<std::vector<int> > ressources, int i) : rectangle(taille), _nourriture(ressources[i][0]), _linemate(ressources[i][1]), _deraumere(ressources[i][2]), _sibur(ressources[i][3]), _mendiane(ressources[i][4]), _phiras(ressources[i][5]), _thystame(ressources[i][6])
+Case::Case(sf::Vector2f taille, std::vector<std::vector<int> > ressources, int i) : rectangle(taille), _nourriture(ressources[i][0]), _linemate(ressources[i][1]), _deraumere(ressources[i][2]), _sibur(ressources[i][3]), _mendiane(ressources[i][4]), _phiras(ressources[i][5]), _thystame(ressources[i][6]), _casevide(0, 204, 204), _casepleine(0, 204, 0)
 {
   if (this->_nourriture == 0 && this->_linemate == 0 && this->_deraumere == 0 && this->_sibur == 0 && this->_mendiane == 0 && this->_phiras == 0 && this->_thystame == 0)
-    this->rectangle.setFillColor(sf::Color(0, 204, 204));
+    this->rectangle.setFillColor(_casevide);
   else
-    this->rectangle.setFillColor(sf::Color(0, 204, 0));
+    this->rectangle.setFillColor(_casepleine);
   this->rectangle.setOutlineThickness(1);
   this->rectangle.setOutlineColor(sf::Color(150, 50, 250));
 }
@@ -125,4 +125,9 @@ void				Case::setPhiras(int val)
 void				Case::setThystame(int val)
 {
   this->_thystame = val;
+}
+
+void				Case::setCasecolor(sf::Color val)
+{
+  this->rectangle.setFillColor(val);
 }
