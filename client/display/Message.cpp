@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon Jul  8 15:02:02 2013 Maxime Wojciak
-// Last update Wed Jul 10 09:51:36 2013 gery baudry
+// Last update Wed Jul 10 11:39:44 2013 Maxime Wojciak
 //
 
 #include	"Message.hpp"
@@ -230,7 +230,7 @@ void	Message::setPbc(std::string broadcast, std::string _player) {
   void	Message::setPnw(int _n, int _x, int _y, int _O, int _L, std::string _N) {
     if (_n && _x && _y && _O && _L && _N != "") {
       sf::Vector2i	pos(_x, _y);
-      Player		player(pos, _n, 0, 0, 0, 0, 0, 0, 0, _O, _L, _N);
+      Player		player(pos, _n, 10, 0, 0, 0, 0, 0, 0, _O, _L, _N);
       this->listeplayer.push_back(player);
       std::string _text = tonton(_n) + " case x: " + tonton(_x) + ", y: " + tonton(_y) + " Orientation: " + tonton(_O) + " Level: " + tonton(_L) + " Equipe: " + _N;
       this->text = sf::Text(_text, this->font, 15);
