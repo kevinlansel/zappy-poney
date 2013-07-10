@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon Jul  8 15:02:02 2013 Maxime Wojciak
-// Last update Wed Jul 10 09:27:53 2013 gery baudry
+// Last update Wed Jul 10 09:51:36 2013 gery baudry
 //
 
 #include	"Message.hpp"
@@ -19,12 +19,18 @@ Message::Message(std::vector<Case> map): _map(map) {
 Message::~Message() {
 }
 
-void	Message::setPex(/*joueur dans la liste*/) {
-  /*if (joueur dans la liste && joueur existe) */
-  std::string texte = "Le joueur toto à été expulser";
-  this->text = sf::Text(texte, this->font, 15);
-  this->text.move(sf::Vector2f(1110, 900));
-  // delete(joueur dans la liste);
+void	Message::setPex(int _n) {
+  if (_n) {
+    for (std::vector<Player>::iterator it = this->listeplayer.begin(); it != this->listeplayer.end(); ++it)
+      {
+	if (it->getId() == _n)
+	  this->listeplayer.erase(it);
+      }
+    std::string texte = "Le joueur toto à été expulser";
+    this->text = sf::Text(texte, this->font, 15);
+    this->text.move(sf::Vector2f(1110, 900));
+    // delete(joueur dans la liste);
+  }
 }
 
 void	Message::setPbc(std::string broadcast, std::string _player) {
@@ -37,26 +43,23 @@ void	Message::setPbc(std::string broadcast, std::string _player) {
     setSbp();
 }
 
-std::vector<Case>	Message::setPic(int _x, int _y, int _level, std::string _player) {
-  if (_x && _y && _level && _player != "")
-    {
-      for (std::vector<Case>::iterator it = this->_map.begin(); it != this->_map.end(); it++)
-	{
-	  sf::Vector2f tmp(it->getPosition());
-	  if (tmp.x <= _x && tmp.y <= _y)
-	    {
-	      //sf::RectangleShape rec = it->getRectangle();
-	      it->setCasecolor(sf::Color(201, 0, 0));    // Change color de la case en x et y
-	    }
-	}
-      std::string text = "Incantation de joueur " + _player + " au level " + tonton(_level) + " sur la case " + tonton(_x) + "-" + tonton(_y);
-      this->text = sf::Text(text, this->font, 15);
-      this->text.move(sf::Vector2f(1110, 900));
-    }
-  else
-    setSbp();
-  return (this->_map);
-}
+  std::vector<Case>	Message::setPic(int _x, int _y, int _level, std::string _player) {
+    if (_x && _y && _level && _player != "")
+      {
+	for (std::vector<Case>::iterator it = this->_map.begin(); it != this->_map.end(); it++)
+	  {
+	    sf::Vector2f tmp(it->getPosition());
+	    if (tmp.x <= _x && tmp.y <= _y)
+	      it->setCasecolor(sf::Color(201, 0, 0));
+	  }
+	std::string text = "Incantation de joueur " + _player + " au level " + tonton(_level) + " sur la case " + tonton(_x) + "-" + tonton(_y);
+	this->text = sf::Text(text, this->font, 15);
+	this->text.move(sf::Vector2f(1110, 900));
+      }
+    else
+      setSbp();
+    return (this->_map);
+  }
 
   std::vector<Case>	Message::setPie(int _x, int _y, int _level, int _r) {
     if (_x && _y && _level && _r)
@@ -67,7 +70,7 @@ std::vector<Case>	Message::setPic(int _x, int _y, int _level, std::string _playe
 	      {
 		sf::Vector2f tmp(it->getPosition());
 		if (tmp.x <= _x && tmp.y <= _y)
-		  it->setCasecolor(sf::Color(201, 0, 0));    // Change color de la case en x et y
+		  it->setCasecolor(sf::Color(201, 0, 0));
 	      }
 	    std::string text = "L'incantation de level " + tonton(_level) + "sur la case " + tonton(_x) + ", " + tonton(_y) + " à réussi";
 	    this->text = sf::Text(text, this->font, 15);
@@ -80,164 +83,169 @@ std::vector<Case>	Message::setPic(int _x, int _y, int _level, std::string _playe
     return (this->_map);
   }
 
-std::vector<Case>	Message::setPfk(int _x, int _y) {
-  if (_x && _y)
-    {
-      //Oeuf	oeuf;						// Pond un oeuf
-      for (std::vector<Case>::iterator it = this->_map.begin(); it != this->_map.end(); it++)
+  std::vector<Case>	Message::setPfk(int _x, int _y) {
+    if (_x && _y)
+      {
+	//Oeuf	oeuf;						// Pond un oeuf
+	for (std::vector<Case>::iterator it = this->_map.begin(); it != this->_map.end(); it++)
+	  {
+	    sf::Vector2f tmp(it->getPosition());
+	    if (tmp.x <= _x && tmp.y <= _y)
+	      it->setCasecolor(sf::Color(255, 0, 0));    // Change color de la case en x et y
+	  }
+	this->sound.openFromFile("../ressources/audio/bloup.mp3");	// Son
+	//this-case += Oeuf +1;
+	// +1 Oeuf attribut de la case
+	std::string text = "Un oeuf à été pondu sur la case " + tonton(_x) + ", " + tonton(_y);
+	this->text = sf::Text(text, this->font, 15);
+	this->text.move(sf::Vector2f(1110, 900));
+      }
+    else
+      setSbp();
+    return (this->_map);
+  }
+
+  void	Message::setPdr(int _n, int _i) {
+    if (_n && _i) {
+      /* for (this->player) {
+	 this->PlayerRessource -1;
+	 this->CaseRessource +1;
+	 }*/
+      std::string text = "Le joueur " + tonton(_n) + " jette la ressource " + tonton(_i) + " sur la case";
+      this->text = sf::Text(text, this->font, 15);
+      this->text.move(sf::Vector2f(1110, 900));
+      // Joueur jette une ressource sur la case
+    }
+    else
+      setSbp();
+  }
+
+  void	Message::setPgt(int _n, int _i) {
+    if (_n && _i) {
+      /* for (this->player) {
+	 this->PlayerRessource +1;
+	 this->CaseRessource -1;
+	 }*/
+      std::string text = "Le joueur " + tonton(_n) + " prend la ressource " + tonton(_i) + " de la case";
+      this->text = sf::Text(text, this->font, 15);
+      this->text.move(sf::Vector2f(1110, 900));
+      // Joueur prend une ressource de la case
+    }
+    else
+      setSbp();
+  }
+
+  void	Message::setPdi(int _n) {
+    if (_n) {
+      for (std::vector<Player>::iterator it = this->listeplayer.begin(); it != this->listeplayer.end(); ++it)
 	{
-	  sf::Vector2f tmp(it->getPosition());
-	  if (tmp.x <= _x && tmp.y <= _y)
-	    it->setCasecolor(sf::Color(255, 0, 0));    // Change color de la case en x et y
+	  if (it->getId() == _n)
+	    this->listeplayer.erase(it);
 	}
-      this->sound.openFromFile("../ressources/audio/bloup.mp3");	// Son
-      //this-case += Oeuf +1;
-      // +1 Oeuf attribut de la case
-      std::string text = "Un oeuf à été pondu sur la case " + tonton(_x) + ", " + tonton(_y);
+      std::string text = "Le joueur " + tonton(_n) + " est mort de faim";
+      this->text = sf::Text(text, this->font, 15);
+      this->text.move(sf::Vector2f(1110, 900));
+      // delete joueur _n de la liste;
+    }
+    else
+      setSbp();
+  }
+
+  void	Message::setEnw(int _n, int _e, int _x, int _y) {
+    if (_n && _e && _x && _y) {
+      std::string textOeuf = "L'oeuf " + tonton(_e) + " est présent sur la case " + tonton(_x) + ", " + tonton(_y);
+      std::string textPlay = "Le joueur " + tonton(_n) + " est présent sur la case " + tonton(_x) + ", " + tonton(_y);
+      this->text = sf::Text(textOeuf, this->font, 15);
+      this->text = sf::Text(textPlay, this->font, 15);
+      this->text.move(sf::Vector2f(1110, 900));
+    }
+    else
+      setSbp();
+  }
+
+  void	Message::setEht(int _e) {
+    if (_e) {
+      std::string text = "L'oeuf " + tonton(_e) + " à eclot";
+      this->text = sf::Text(text, this->font, 15);
+      this->text.move(sf::Vector2f(1110, 900));
+      this->sound.openFromFile("../ressources/audio/bloup.mp3");
+    }
+    else
+      setSbp();
+  }
+
+  void	Message::setEbo(int _e) {
+    if (_e) {
+      std::string text = "Un joueur c'est connecté pour l'oeuf " + tonton(_e);
+      this->text = sf::Text(text, this->font, 15);
+      this->text.move(sf::Vector2f(1110, 900));
+      // delete _e oeuf
+    }
+    else
+      setSbp();
+  }
+
+  void	Message::setEdi(int _e) {
+    if (_e) {
+      std::string text = "L'oeuf " + tonton(_e) + " est mort de faim";
+      this->text = sf::Text(text, this->font, 15);
+      this->text.move(sf::Vector2f(1110, 900));
+      // delete oeuf _e
+    }
+    else
+      setSbp();
+  }
+
+  void	Message::setSgt(int _T) {
+    if (_T) {
+      std::string text = "Unité de temps du serveur: " + tonton(_T);
       this->text = sf::Text(text, this->font, 15);
       this->text.move(sf::Vector2f(1110, 900));
     }
-  else
-    setSbp();
-  return (this->_map);
-}
-
-void	Message::setPdr(int _n, int _i) {
-  if (_n && _i) {
-    /* for (this->player) {
-       this->PlayerRessource -1;
-       this->CaseRessource +1;
-       }*/
-    std::string text = "Le joueur " + tonton(_n) + " jette la ressource " + tonton(_i) + " sur la case";
-    this->text = sf::Text(text, this->font, 15);
-    this->text.move(sf::Vector2f(1110, 900));
-    // Joueur jette une ressource sur la case
+    else
+      setSbp();
   }
-  else
-    setSbp();
-}
 
-void	Message::setPgt(int _n, int _i) {
-  if (_n && _i) {
-    /* for (this->player) {
-       this->PlayerRessource +1;
-       this->CaseRessource -1;
-       }*/
-    std::string text = "Le joueur " + tonton(_n) + " prend la ressource " + tonton(_i) + " de la case";
-    this->text = sf::Text(text, this->font, 15);
-    this->text.move(sf::Vector2f(1110, 900));
-    // Joueur prend une ressource de la case
+  void	Message::setSeg(std::string _N) {
+    if (_N != "") {
+      std::string text = "Fin du jeu, L'équipe " + _N + " remporte la partie";
+      this->text = sf::Text(text, this->font, 15);
+      this->text.move(sf::Vector2f(1110, 900));
+      // delete equipe _N de la liste
+    }
+    else
+      setSbp();
   }
-  else
-    setSbp();
-}
 
-void	Message::setPdi(int _n) {
-  if (_n) {
-    std::string text = "Le joueur " + tonton(_n) + " est mort de faim";
-    this->text = sf::Text(text, this->font, 15);
-    this->text.move(sf::Vector2f(1110, 900));
-    // delete joueur _n de la liste;
+  void	Message::setSmg(std::string _M) {
+    if (_M != "") {
+      std::string text = "Serveur: " + _M;
+      this->text = sf::Text(text, this->font, 15);
+      this->text.move(sf::Vector2f(1110, 900));
+    }
+    else
+      setSbp();
   }
-  else
-    setSbp();
-}
 
-void	Message::setEnw(int _n, int _e, int _x, int _y) {
-  if (_n && _e && _x && _y) {
-    std::string textOeuf = "L'oeuf " + tonton(_e) + " est présent sur la case " + tonton(_x) + ", " + tonton(_y);
-    std::string textPlay = "Le joueur " + tonton(_n) + " est présent sur la case " + tonton(_x) + ", " + tonton(_y);
-    this->text = sf::Text(textOeuf, this->font, 15);
-    this->text = sf::Text(textPlay, this->font, 15);
+  void	Message::setPnw(int _n, int _x, int _y, int _O, int _L, std::string _N) {
+    if (_n && _x && _y && _O && _L && _N != "") {
+      sf::Vector2i	pos(_x, _y);
+      Player		player(pos, _n, 0, 0, 0, 0, 0, 0, 0, _O, _L, _N);
+      this->listeplayer.push_back(player);
+      std::string _text = tonton(_n) + " case x: " + tonton(_x) + ", y: " + tonton(_y) + " Orientation: " + tonton(_O) + " Level: " + tonton(_L) + " Equipe: " + _N;
+      this->text = sf::Text(_text, this->font, 15);
+      this->text.move(sf::Vector2f(1110, 900));
+    }
+    else
+      setSbp();
+  }
+
+  void	Message::setSuc() {
+    this->text = sf::Text("Bad Command", this->font, 15);
     this->text.move(sf::Vector2f(1110, 900));
   }
-  else
-    setSbp();
-}
 
-void	Message::setEht(int _e) {
-  if (_e) {
-    std::string text = "L'oeuf " + tonton(_e) + " à eclot";
-    this->text = sf::Text(text, this->font, 15);
-    this->text.move(sf::Vector2f(1110, 900));
-    this->sound.openFromFile("../ressources/audio/bloup.mp3");
-  }
-  else
-    setSbp();
-}
-
-void	Message::setEbo(int _e) {
-  if (_e) {
-    std::string text = "Un joueur c'est connecté pour l'oeuf " + tonton(_e);
-    this->text = sf::Text(text, this->font, 15);
-    this->text.move(sf::Vector2f(1110, 900));
-    // delete _e oeuf
-  }
-  else
-    setSbp();
-}
-
-void	Message::setEdi(int _e) {
-  if (_e) {
-    std::string text = "L'oeuf " + tonton(_e) + " est mort de faim";
-    this->text = sf::Text(text, this->font, 15);
-    this->text.move(sf::Vector2f(1110, 900));
-    // delete oeuf _e
-  }
-  else
-    setSbp();
-}
-
-void	Message::setSgt(int _T) {
-  if (_T) {
-    std::string text = "Unité de temps du serveur: " + tonton(_T);
-    this->text = sf::Text(text, this->font, 15);
+  void	Message::setSbp() {
+    this->text = sf::Text("Bad Parameter", this->font, 15);
     this->text.move(sf::Vector2f(1110, 900));
   }
-  else
-    setSbp();
-}
-
-void	Message::setSeg(std::string _N) {
-  if (_N != "") {
-    std::string text = "Fin du jeu, L'équipe " + _N + " remporte la partie";
-    this->text = sf::Text(text, this->font, 15);
-    this->text.move(sf::Vector2f(1110, 900));
-    // delete equipe _N de la liste
-  }
-  else
-    setSbp();
-}
-
-void	Message::setSmg(std::string _M) {
-  if (_M != "") {
-    std::string text = "Serveur: " + _M;
-    this->text = sf::Text(text, this->font, 15);
-    this->text.move(sf::Vector2f(1110, 900));
-  }
-  else
-    setSbp();
-}
-
-void	Message::setPnw(int _n, int _x, int _y, int _O, int _L, std::string _N) {
-  if (_n && _x && _y && _O && _L && _N != "") {
-    sf::Vector2i	pos(_x, _y);
-    Player		player(pos, _n, 0, 0, 0, 0, 0, 0, 0, _O, _L, _N);
-    this->listeplayer.push_back(player);
-    std::string _text = tonton(_n) + " case x: " + tonton(_x) + ", y: " + tonton(_y) + " Orientation: " + tonton(_O) + " Level: " + tonton(_L) + " Equipe: " + _N;
-    this->text = sf::Text(_text, this->font, 15);
-    this->text.move(sf::Vector2f(1110, 900));
-  }
-  else
-    setSbp();
-}
-
-void	Message::setSuc() {
-  this->text = sf::Text("Bad Command", this->font, 15);
-  this->text.move(sf::Vector2f(1110, 900));
-}
-
-void	Message::setSbp() {
-  this->text = sf::Text("Bad Parameter", this->font, 15);
-  this->text.move(sf::Vector2f(1110, 900));
-}
