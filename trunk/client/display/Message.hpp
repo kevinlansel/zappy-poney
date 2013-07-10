@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon Jul  8 15:02:08 2013 Maxime Wojciak
-// Last update Wed Jul 10 09:26:58 2013 gery baudry
+// Last update Wed Jul 10 09:44:47 2013 gery baudry
 //
 
 #ifndef				MESSAGE__
@@ -26,7 +26,7 @@ public:
   ~Message();
 
 public:
-  void				setPex(/*liste de joueur*/);
+  void				setPex(int);
   void				setPbc(std::string, std::string);
   std::vector<Case>		setPic(int, int,int, std::string);
   std::vector<Case>		setPie(int, int, int, int);
