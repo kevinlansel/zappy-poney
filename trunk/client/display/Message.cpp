@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon Jul  8 15:02:02 2013 Maxime Wojciak
-// Last update Tue Jul  9 16:26:25 2013 Maxime Wojciak
+// Last update Wed Jul 10 09:27:53 2013 gery baudry
 //
 
 #include	"Message.hpp"
@@ -46,7 +46,7 @@ std::vector<Case>	Message::setPic(int _x, int _y, int _level, std::string _playe
 	  if (tmp.x <= _x && tmp.y <= _y)
 	    {
 	      //sf::RectangleShape rec = it->getRectangle();
-	      it->getRectangle().setColorcase(sf::Color(201, 0, 0));    // Change color de la case en x et y
+	      it->setCasecolor(sf::Color(201, 0, 0));    // Change color de la case en x et y
 	    }
 	}
       std::string text = "Incantation de joueur " + _player + " au level " + tonton(_level) + " sur la case " + tonton(_x) + "-" + tonton(_y);
@@ -67,9 +67,8 @@ std::vector<Case>	Message::setPic(int _x, int _y, int _level, std::string _playe
 	      {
 		sf::Vector2f tmp(it->getPosition());
 		if (tmp.x <= _x && tmp.y <= _y)
-		  sf::RectangleShape rec = it->getRectangle();
+		  it->setCasecolor(sf::Color(201, 0, 0));    // Change color de la case en x et y
 	      }
-	    rec.setColorcase(sf::Color(201, 0, 0));    // Change color de la case en x et y
 	    std::string text = "L'incantation de level " + tonton(_level) + "sur la case " + tonton(_x) + ", " + tonton(_y) + " à réussi";
 	    this->text = sf::Text(text, this->font, 15);
 	    this->text.move(sf::Vector2f(1110, 900));
@@ -89,9 +88,8 @@ std::vector<Case>	Message::setPfk(int _x, int _y) {
 	{
 	  sf::Vector2f tmp(it->getPosition());
 	  if (tmp.x <= _x && tmp.y <= _y)
-	    sf::RectangleShape rec = it->getRectangle();
+	    it->setCasecolor(sf::Color(255, 0, 0));    // Change color de la case en x et y
 	}
-      rec.setColorcase(sf::Color(255, 0, 0));    // Change color de la case en x et y
       this->sound.openFromFile("../ressources/audio/bloup.mp3");	// Son
       //this-case += Oeuf +1;
       // +1 Oeuf attribut de la case
@@ -223,8 +221,11 @@ void	Message::setSmg(std::string _M) {
 
 void	Message::setPnw(int _n, int _x, int _y, int _O, int _L, std::string _N) {
   if (_n && _x && _y && _O && _L && _N != "") {
+    sf::Vector2i	pos(_x, _y);
+    Player		player(pos, _n, 0, 0, 0, 0, 0, 0, 0, _O, _L, _N);
+    this->listeplayer.push_back(player);
     std::string _text = tonton(_n) + " case x: " + tonton(_x) + ", y: " + tonton(_y) + " Orientation: " + tonton(_O) + " Level: " + tonton(_L) + " Equipe: " + _N;
-    this->text = sf::Text(text, this->font, 15);
+    this->text = sf::Text(_text, this->font, 15);
     this->text.move(sf::Vector2f(1110, 900));
   }
   else

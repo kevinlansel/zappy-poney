@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:01:06 2013 Maxime Wojciak
-// Last update Tue Jul  9 13:40:05 2013 gery baudry
+// Last update Wed Jul 10 09:26:33 2013 gery baudry
 //
 
 #include	<iostream>
@@ -32,8 +32,8 @@ Windows::~Windows() {
 
 void		Windows::CreateWindows(gnl &gl)
 {
-  Player		player(sf::Vector2i(212, 100), 2, 2, 1, 4, 3, 1, 4, 1, "toto");
-  Player		player2(sf::Vector2i(112, 100), 2, 2, 1, 4, 3, 1, 4, 1, "toto");
+  Player		player(sf::Vector2i(212, 100), 9, 2, 2, 1, 4, 3, 1, 4, 12, 1, "toto");
+  Player		player2(sf::Vector2i(112, 100), 9, 2, 2, 1, 4, 3, 1, 4, 12, 1, "toto");
   Souris		souris;
   sf::Text		text;
   sf::Text		text2;

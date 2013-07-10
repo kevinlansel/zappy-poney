@@ -5,13 +5,13 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Tue Jul  2 10:35:58 2013 gery baudry
-// Last update Mon Jul  8 11:42:16 2013 gery baudry
+// Last update Wed Jul 10 09:25:29 2013 gery baudry
 //
 
 #include		"Player.hpp"
 #include		<sstream>
 
-Player::Player(sf::Vector2i pos, int nourriture, int linemate, int deraumere, int sibur, int mendiane, int phiras, int thystame, int level, std::string team) : _pos(pos), _nourriture(nourriture), _linemate(linemate), _deraumere(deraumere), _sibur(sibur), _mendiane(mendiane), _phiras(phiras), _thystame(thystame), _level(level), _image(level), _teamname(team)
+Player::Player(sf::Vector2i pos, int id, int nourriture, int linemate, int deraumere, int sibur, int mendiane, int phiras, int thystame, int orientation, int level, std::string team) : _pos(pos), _id(id), _nourriture(nourriture), _linemate(linemate), _deraumere(deraumere), _sibur(sibur), _mendiane(mendiane), _phiras(phiras), _thystame(thystame), _orientation(orientation), _level(level), _image(level), _teamname(team)
 {
 }
 
@@ -88,6 +88,16 @@ std::string			Player::getTeamname() const
   return (this->_teamname);
 }
 
+int				Player::getOrientation() const
+{
+  return (this->_orientation);
+}
+
+int				Player::getId() const
+{
+  return (this->_id);
+}
+
 //
 //		Setter
 //
@@ -145,4 +155,9 @@ void				Player::setImage(int val)
 void				Player::setTeamname(std::string team)
 {
   this->_teamname = team;
+}
+
+void				Player::setOrientation(int val)
+{
+  this->_orientation = val;
 }
