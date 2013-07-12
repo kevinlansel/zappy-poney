@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Wed Jul  3 14:39:06 2013 guillaume duez
-** Last update Fri Jul 12 13:59:23 2013 guillaume duez
+** Last update Fri Jul 12 15:20:30 2013 guillaume duez
 */
 
 #include	<string.h>
@@ -67,7 +67,7 @@ static int	check_ress(int level, t_map *map,
 
   i = -1;
   tmp = client;
-  if (check_nbr_client(level, client_reset(client), map, opt) == 1)
+  if (check_nbr_client(level, client_reset(client), map, 0) == 1)
     {
       while (level < LVL && ++i < MAX)
 	if (map->ress[i] < ress[level][i])
@@ -107,6 +107,7 @@ int		up_level(t_msg *msg)
       if (check_ress(msg->client->level - 1, msg->client->map, msg->client, 1) == 1)
 	{
 	  msg->client = client_reset(msg->client);
+	  check_nbr_client(msg->client->level - 1, msg->client, msg->client->map, 1);
 	  msg->client = client;
 	  end_incant(1, client);
 	  return 1;
