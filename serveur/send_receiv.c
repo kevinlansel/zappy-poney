@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:15:13 2013 guillaume duez
-** Last update Fri Jul 12 10:25:56 2013 florian dewulf
+** Last update Fri Jul 12 15:21:21 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -91,6 +91,7 @@ t_msg		*get_mess(t_client *client, t_opt *opt)
       opt->nb_player[size] += 1;
   player_dead(client->id, client);
   printf("The client has leave with fd :%d\n", client->fd);
+  close(client->fd);
   client = end_client(client);
   client = client_reset(client);
   return (NULL);
