@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Wed Jul  3 14:39:06 2013 guillaume duez
-** Last update Tue Jul  9 16:14:31 2013 florian dewulf
+** Last update Fri Jul 12 13:59:23 2013 guillaume duez
 */
 
 #include	<string.h>
@@ -15,7 +15,7 @@
 
 #define		LVL	8
 
-char		*get_mess_level_up(int level)
+static char	*get_mess_level_up(int level)
 {
   int		size;
   char		*str;
@@ -26,7 +26,7 @@ char		*get_mess_level_up(int level)
   return str;
 }
 
-int		check_nbr_client(int level, t_client *client, t_map *map, int opt)
+static int	check_nbr_client(int level, t_client *client, t_map *map, int opt)
 {
   static int	player_need[LVL] = {1, 2, 2, 4, 4, 6, 6};
   int		i;
@@ -55,7 +55,8 @@ int		check_nbr_client(int level, t_client *client, t_map *map, int opt)
   return -1;
 }
 
-int		check_ress(int level, t_map *map, t_client *client)
+static int	check_ress(int level, t_map *map,
+				   t_client *client, int opt)
 {
   t_client	*tmp;
   static int	ress[LVL][MAX] = { { 1, 0, 0, 0, 0, 0 }, { 1, 1, 1, 0, 0, 0 },
@@ -66,13 +67,13 @@ int		check_ress(int level, t_map *map, t_client *client)
 
   i = -1;
   tmp = client;
-  if (check_nbr_client(level, client_reset(client), map, 0) == 1)
+  if (check_nbr_client(level, client_reset(client), map, opt) == 1)
     {
       while (level < LVL && ++i < MAX)
 	if (map->ress[i] < ress[level][i])
 	  i = MAX;
     }
-  if (i == MAX)
+  if (i == MAX && opt == 1)
     {
       i = -1;
       while (++i < MAX)
@@ -85,7 +86,7 @@ int		check_ress(int level, t_map *map, t_client *client)
 void		level_up(t_msg *msg, t_client *client, t_map **map)
 {
   if (map && client &&
-      check_ress(client->level - 1, client->map, client) == 1)
+      check_ress(client->level - 1, client->map, client, 0) == 1)
     {
       sub_food(msg, client, "elevation en cours\n");
       send_mess(msg);
@@ -103,10 +104,9 @@ int		up_level(t_msg *msg)
   client = msg->client;
   if (msg && msg->client)
     {
-      if (check_ress(msg->client->level - 1, msg->client->map, msg->client) == 1)
+      if (check_ress(msg->client->level - 1, msg->client->map, msg->client, 1) == 1)
 	{
 	  msg->client = client_reset(msg->client);
-	  check_nbr_client(msg->client->level, msg->client, msg->client->map, 1);
 	  msg->client = client;
 	  end_incant(1, client);
 	  return 1;

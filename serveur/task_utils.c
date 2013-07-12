@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun  3 15:13:05 2013 guillaume duez
-** Last update Fri Jul 12 13:47:37 2013 florian dewulf
+** Last update Fri Jul 12 14:02:33 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -19,10 +19,8 @@ t_msg		*exec_task(t_msg *task)
   while (task && task->end != 1 && task->time < get_time())
     {
       if (strcmp(task->comand, "elevation") == 0 && up_level(task) == 1)
-	{
-	  ;
-	}
-      if (send_mess(task) == -1)
+	up_level(task);
+      else if (send_mess(task) == -1)
 	printf("unable to send_mess\n");
       task = task->nt;
       free(task->prev);
@@ -92,7 +90,7 @@ void		sub_food(t_msg *msg, t_client *client, const char *str)
   time_elipse = time_elipse / (1. / client->time);
   client->ress[NOURRITURE] = client->ress[NOURRITURE] - time_elipse;
   client->time_eat = current;
-  if (client->ress[NOURRITURE] > 0)
+  if (client->ress[NOURRITURE] > 0 && client->type != EGG)
     msg->cmd = strdup(str);
   else if (client->type == CLIENT)
     {
