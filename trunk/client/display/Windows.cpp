@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:01:06 2013 Maxime Wojciak
-// Last update Wed Jul 10 09:46:49 2013 gery baudry
+// Last update Fri Jul 12 16:09:36 2013 gery baudry
 //
 
 #include	<iostream>
@@ -88,7 +88,7 @@ void		Windows::CreateWindows(gnl &gl)
       player2.setImage(6);
       this->window.draw(player.getImage().loadPokemon(player.getPosition()));
       this->window.draw(player2.getImage().loadPokemon(player2.getPosition()));
-      souris.CheckSouris(this->window, this->map, this->_x, this->_y, this->taille, player2);
+      souris.CheckSouris(this->window, this->_mem->getMap(), this->_x, this->_y, this->taille, player2);
       text = souris.getTextcase();
       text2 = souris.getTextplayer();
       this->window.draw(text);
@@ -112,17 +112,17 @@ void		Windows::DrawMap()
 	{
 	  Case		macase(taille, ress, i);
 	  macase.setPosition(sf::Vector2f(x, y));
-	  this->map.push_back(macase);
+	  this->_mem->getMap().push_back(macase);
 	  x += this->taille.x;
 	  i += 1;
 	}
       y += this->taille.y;
     }
-  for (std::vector<Case>::iterator it = this->map.begin(); it != this->map.end(); ++it)
+  for (std::vector<Case>::iterator it = this->_mem->getMap().begin(); it != this->_mem->getMap().end(); ++it)
     this->window.draw(it->getRectangle());
 }
 
-std::vector<Case>		Windows::getVector() const
-{
-  return (this->map);
-}
+// std::vector<Case>		Windows::getVector() const
+// {
+//   return (this->map);
+// }

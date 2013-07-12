@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 15:58:05 2013 gery baudry
-// Last update Mon Jul  8 18:03:06 2013 Maxime Wojciak
+// Last update Fri Jul 12 16:20:07 2013 gery baudry
 //
 
 
@@ -22,7 +22,7 @@ Souris::~Souris()
 {
 }
 
-void			Souris::CheckSouris(sf::RenderWindow &window, std::vector<Case> &map, int x, int y, sf::Vector2f taille, Player player)
+void			Souris::CheckSouris(sf::RenderWindow &window, std::vector<Case> map, int x, int y, sf::Vector2f taille, Player player)
 {
   sf::Vector2<int>		_pos;
   sf::Vector2i			posplayer;

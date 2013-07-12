@@ -1,18 +1,19 @@
-//
+ //
 // Message.cpp for Message in /home/haz3/projet/zappy-poney/client/display
 // 
 // Made by Maxime Wojciak
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon Jul  8 15:02:02 2013 Maxime Wojciak
-// Last update Wed Jul 10 11:39:44 2013 Maxime Wojciak
+// Last update Fri Jul 12 16:28:28 2013 gery baudry
 //
 
 #include	"Message.hpp"
 
 std::string	tonton(int);
 
-Message::Message(std::vector<Case> map): _map(map) {
+Message::Message(Memory *mem): _mem(mem)
+{
   this->font.loadFromFile("../ressources/fonts/Sansation_Bold.ttf");
 }
 
@@ -21,10 +22,10 @@ Message::~Message() {
 
 void	Message::setPex(int _n) {
   if (_n) {
-    for (std::vector<Player>::iterator it = this->listeplayer.begin(); it != this->listeplayer.end(); ++it)
+    for (std::vector<Player>::iterator it = this->_mem->getPliste().begin(); it != this->_mem->getPliste().end(); ++it)
       {
 	if (it->getId() == _n)
-	  this->listeplayer.erase(it);
+	  this->_mem->getPliste().erase(it);
       }
     std::string texte = "Le joueur toto à été expulser";
     this->text = sf::Text(texte, this->font, 15);
@@ -46,7 +47,7 @@ void	Message::setPbc(std::string broadcast, std::string _player) {
   std::vector<Case>	Message::setPic(int _x, int _y, int _level, std::string _player) {
     if (_x && _y && _level && _player != "")
       {
-	for (std::vector<Case>::iterator it = this->_map.begin(); it != this->_map.end(); it++)
+	for (std::vector<Case>::iterator it = this->_mem->getMap().begin(); it != this->_mem->getMap().end(); it++)
 	  {
 	    sf::Vector2f tmp(it->getPosition());
 	    if (tmp.x <= _x && tmp.y <= _y)
@@ -58,7 +59,7 @@ void	Message::setPbc(std::string broadcast, std::string _player) {
       }
     else
       setSbp();
-    return (this->_map);
+    return (this->_mem->getMap());
   }
 
   std::vector<Case>	Message::setPie(int _x, int _y, int _level, int _r) {
@@ -66,7 +67,7 @@ void	Message::setPbc(std::string broadcast, std::string _player) {
       {
 	if (_r == 1)	// Incantation réussie.
 	  {
-	    for (std::vector<Case>::iterator it = this->_map.begin(); it != this->_map.end(); it++)
+	    for (std::vector<Case>::iterator it = this->_mem->getMap().begin(); it != this->_mem->getMap().end(); it++)
 	      {
 		sf::Vector2f tmp(it->getPosition());
 		if (tmp.x <= _x && tmp.y <= _y)
@@ -80,14 +81,14 @@ void	Message::setPbc(std::string broadcast, std::string _player) {
       }
     else
       setSbp();
-    return (this->_map);
+    return (this->_mem->getMap());
   }
 
   std::vector<Case>	Message::setPfk(int _x, int _y) {
     if (_x && _y)
       {
 	//Oeuf	oeuf;						// Pond un oeuf
-	for (std::vector<Case>::iterator it = this->_map.begin(); it != this->_map.end(); it++)
+	for (std::vector<Case>::iterator it = this->_mem->getMap().begin(); it != this->_mem->getMap().end(); it++)
 	  {
 	    sf::Vector2f tmp(it->getPosition());
 	    if (tmp.x <= _x && tmp.y <= _y)
@@ -102,7 +103,7 @@ void	Message::setPbc(std::string broadcast, std::string _player) {
       }
     else
       setSbp();
-    return (this->_map);
+    return (this->_mem->getMap());
   }
 
   void	Message::setPdr(int _n, int _i) {
@@ -137,10 +138,10 @@ void	Message::setPbc(std::string broadcast, std::string _player) {
 
   void	Message::setPdi(int _n) {
     if (_n) {
-      for (std::vector<Player>::iterator it = this->listeplayer.begin(); it != this->listeplayer.end(); ++it)
+      for (std::vector<Player>::iterator it = this->_mem->getPliste().begin(); it != this->_mem->getPliste().end(); ++it)
 	{
 	  if (it->getId() == _n)
-	    this->listeplayer.erase(it);
+	    this->_mem->getPliste().erase(it);
 	}
       std::string text = "Le joueur " + tonton(_n) + " est mort de faim";
       this->text = sf::Text(text, this->font, 15);
@@ -231,7 +232,7 @@ void	Message::setPbc(std::string broadcast, std::string _player) {
     if (_n && _x && _y && _O && _L && _N != "") {
       sf::Vector2i	pos(_x, _y);
       Player		player(pos, _n, 10, 0, 0, 0, 0, 0, 0, _O, _L, _N);
-      this->listeplayer.push_back(player);
+      this->_mem->getPliste().push_back(player);
       std::string _text = tonton(_n) + " case x: " + tonton(_x) + ", y: " + tonton(_y) + " Orientation: " + tonton(_O) + " Level: " + tonton(_L) + " Equipe: " + _N;
       this->text = sf::Text(_text, this->font, 15);
       this->text.move(sf::Vector2f(1110, 900));

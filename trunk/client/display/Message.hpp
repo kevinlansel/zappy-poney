@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon Jul  8 15:02:08 2013 Maxime Wojciak
-// Last update Wed Jul 10 09:44:47 2013 gery baudry
+// Last update Fri Jul 12 16:27:00 2013 gery baudry
 //
 
 #ifndef				MESSAGE__
@@ -18,11 +18,12 @@
 #include			<iostream>
 #include			"Case.hpp"
 #include			"Player.hpp"
+#include			"Memory.hpp"
 
 class				Message
 {
 public:
-  Message(std::vector<Case>);
+  Message(Memory *);
   ~Message();
 
 public:
@@ -49,8 +50,7 @@ private:
   sf::Text			text;
   sf::Font			font;
   sf::Music			sound;
-  std::vector<Case>		_map;
-  std::vector<Player>		listeplayer;
+  Memory			*_mem;
 };
 
 #endif		/* !MESSAGE__ */
