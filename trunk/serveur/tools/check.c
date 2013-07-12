@@ -5,13 +5,13 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Fri Jul 12 11:05:03 2013 florian dewulf
-** Last update Fri Jul 12 13:40:53 2013 florian dewulf
+** Last update Fri Jul 12 16:52:04 2013 florian dewulf
 */
 
 #include	<string.h>
 #include	"../serveur.h"
 
-int		check_endgame(t_opt *opt, t_client *client)
+int		check_endgame(t_client *client)
 {
   char		*str;
   t_client	*tmp;

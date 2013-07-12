@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Wed Jul  3 14:39:06 2013 guillaume duez
-** Last update Fri Jul 12 15:20:30 2013 guillaume duez
+** Last update Fri Jul 12 17:13:57 2013 florian dewulf
 */
 
 #include	<string.h>
@@ -83,8 +83,9 @@ static int	check_ress(int level, t_map *map,
   return (i == MAX ? 1 : -1);
 }
 
-void		level_up(t_msg *msg, t_client *client, t_map **map)
+void		level_up(t_msg *msg, t_client *client, t_map **map, t_opt *opt)
 {
+  (void)opt;
   if (map && client &&
       check_ress(client->level - 1, client->map, client, 0) == 1)
     {

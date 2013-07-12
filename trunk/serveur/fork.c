@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jul  8 15:37:27 2013 guillaume duez
-** Last update Thu Jul 11 14:20:29 2013 guillaume duez
+** Last update Fri Jul 12 16:47:47 2013 florian dewulf
 */
 
 #include	"serveur.h"
@@ -18,11 +18,12 @@ int		give_id_egg()
   return (ret);
 }
 
-void		fork_egg(t_msg *msg, t_client *client, t_map **map)
+void		fork_egg(t_msg *msg, t_client *client, t_map **map, t_opt *opt)
 {
   t_client      *new;
 
   (void) map;
+  (void)opt;
   sub_food(msg, client, "ok\n");
   msg->time = get_time_client(client, 42);
   new = xmalloc(sizeof(t_client));

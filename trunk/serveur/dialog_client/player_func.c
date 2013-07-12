@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Wed Jun 19 13:19:33 2013 florian dewulf
-** Last update Fri Jul 12 10:20:09 2013 florian dewulf
+** Last update Fri Jul 12 16:29:47 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -121,12 +121,12 @@ void		getinvplayer(char **arg, int fd, t_map **map, t_client *begin)
       return;
     }
   size = snprintf(NULL, 0, "pin %d %d %d %d %d %d %d %d %d %d\n",
-		  id, c->map->x, c->map->y, c->ress[0], c->ress[1],
+		  id, c->map->x, c->map->y, c->ress[0] / 126, c->ress[1],
 		  c->ress[2], c->ress[3], c->ress[4],
 		  c->ress[5], c->ress[6]) + 1;
   str = xmalloc((size + 1) * sizeof(char));
   snprintf(str, size, "pin %d %d %d %d %d %d %d %d %d %d\n",
-	   id, c->map->x, c->map->y, c->ress[0], c->ress[1],
+	   id, c->map->x, c->map->y, c->ress[0] / 126, c->ress[1],
 	   c->ress[2], c->ress[3], c->ress[4], c->ress[5], c->ress[6]);
   write(fd, str, strlen(str));
   free(str);

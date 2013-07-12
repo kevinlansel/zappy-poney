@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Fri Jul 12 13:45:51 2013 florian dewulf
+** Last update Fri Jul 12 17:10:41 2013 florian dewulf
 */
 
 #ifndef			__SERVEUR_H__
@@ -19,7 +19,7 @@
 #include		<netinet/in.h>
 #include		<limits.h>
 
-#define			NB_FUNC		11
+#define			NB_FUNC		12
 #define			LEN		12
 #define			OPT_INT		5
 #define			SIZE_PTR_FUNC	14
@@ -154,15 +154,16 @@ typedef struct		s_protocol
   void			(*func)(char **, int, t_map **, t_client *);
 }			t_protocol;
 
-void			avance(t_msg *msg, t_client *client, t_map **map);
+void			avance(t_msg *, t_client *, t_map **, t_opt *);
 
 void			begin_incant(int, t_client *, int, int);
-void			broadcast(t_msg *, t_client *, t_map **);
+void			broadcast(t_msg *, t_client *, t_map **, t_opt *);
 
 int			calcul_K(t_client *, t_client *);
-int			check_endgame(t_opt *, t_client *);
+int			check_endgame(t_client *);
 int			cmp_nb_arg(int, char *, int);
 void			connec_egg(int, t_client *);
+void			connecnb(t_msg *, t_client *, t_map **, t_opt *);
 void			connexion(t_client **, t_map **, t_opt *);
 void			connexion_player(char **, int, t_map **, t_client *);
 t_client		*create_cl(int, t_client *, t_opt *, t_map **);
@@ -174,7 +175,7 @@ t_client		*client_reset(t_client *client);
 t_client		*delete_client(t_client *);
 void			drop_ress(int, int, t_client *);
 t_msg			*do_action(t_client **, t_map **, t_msg *, t_opt *);
-void			droite(t_msg *msg, t_client *client, t_map **map);
+void			droite(t_msg *, t_client *, t_map **, t_opt *);
 
 void			egg_connect(int, t_client *);
 void			egg_dead(int, t_client *);
@@ -186,11 +187,11 @@ t_client		*end_client(t_client *client);
 void			end_game(t_client *, char *);
 t_msg			*exec_task(t_msg *task);
 void			epur_client(t_client **);
-void			expulse(t_msg *msg, t_client *client, t_map **map);
+void			expulse(t_msg *, t_client *, t_map **, t_opt *);
 
-void			fork_egg(t_msg *msg, t_client *client, t_map **map);
+void			fork_egg(t_msg *, t_client *, t_map **, t_opt *);
 
-void			gauche(t_msg *msg, t_client *client, t_map **map);
+void			gauche(t_msg *, t_client *, t_map **, t_opt *);
 void			getcase(char **, int, t_map **, t_client *);
 void			getcasemap(char **, int, t_map **, t_client *);
 t_msg			*get_mess(t_client *client, t_opt *opt);
@@ -207,11 +208,11 @@ void			giveinventaire(int, t_client *);
 void			givelvl(t_client *, t_client *);
 void			giveposition(t_client *, t_client *);
 
-void			inventaire(t_msg *mess, t_client *client, t_map **map);
+void			inventaire(t_msg *, t_client *, t_map **, t_opt *);
 void			init_map(t_map **map, t_conf *config);
 t_msg			*into_order_task(t_msg *first, t_msg *new);
 
-void			level_up(t_msg *msg, t_client *client, t_map **map);
+void			level_up(t_msg *, t_client *, t_map **, t_opt *);
 void			loop_answer(char *, t_client *, t_map **, t_opt *);
 
 char			**my_str_to_wordtab(char *str, char c);
@@ -224,8 +225,8 @@ t_conf			*parseconf(t_map **);
 void			player_dead(int, t_client *);
 void			player_expulse(int, t_client *);
 void			player_message(int, char *, t_client *);
-void			prend_objet(t_msg *msg, t_client *client, t_map **map);
-void			pose_objet(t_msg *msg, t_client *client, t_map **map);
+void			prend_objet(t_msg *, t_client *, t_map **, t_opt *);
+void			pose_objet(t_msg *, t_client *, t_map **, t_opt *);
 
 t_client		*reroll(t_client *);
 void			run_server(t_opt *opt);
@@ -243,7 +244,7 @@ char			**to_tab(char *, int, int);
 
 int			up_level(t_msg *msg);
 
-void			voir(t_msg *mess, t_client *client, t_map **map);
+void			voir(t_msg *, t_client *, t_map **, t_opt *);
 
 void			*xmalloc(size_t size);
 void			xlisten(int fd);
