@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Fri Jul 12 13:17:41 2013 florian dewulf
+** Last update Fri Jul 12 13:45:51 2013 florian dewulf
 */
 
 #ifndef			__SERVEUR_H__
@@ -183,7 +183,9 @@ void			egg_drop_by(int, int, t_client *);
 void			egg_open(int, t_client *);
 void			end_incant(int, t_client *);
 t_client		*end_client(t_client *client);
+void			end_game(t_client *, char *);
 t_msg			*exec_task(t_msg *task);
+void			epur_client(t_client **);
 void			expulse(t_msg *msg, t_client *client, t_map **map);
 
 void			fork_egg(t_msg *msg, t_client *client, t_map **map);
