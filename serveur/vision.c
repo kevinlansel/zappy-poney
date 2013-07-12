@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun  3 18:42:55 2013 guillaume duez
-** Last update Wed Jun 26 14:22:21 2013 florian dewulf
+** Last update Fri Jul 12 17:15:27 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -34,7 +34,7 @@ static char	*get_object(char *str, int i, int nb)
   return (str);
 }
 
-char		*get_object_case(t_map *map)
+static char	*get_object_case(t_map *map)
 {
   int		i;
   char		*str;
@@ -50,12 +50,12 @@ char		*get_object_case(t_map *map)
   return (str);
 }
 
-char		**get_line(t_map *map, int len, e_direct dir)
+static char	**get_line(t_map *map, int len, e_direct dir)
 {
-  int	i;
-  t_map	*move;
-  char	**str;
-  char	*tmp;
+  int		i;
+  t_map		*move;
+  char		**str;
+  char		*tmp;
 
   str = xmalloc(sizeof(char *) * len + 8);
   i = 0;
@@ -79,7 +79,7 @@ char		**get_line(t_map *map, int len, e_direct dir)
 }
 
 
-char		*transform(char **str, char *final)
+static char	*transform(char **str, char *final)
 {
   int		i;
   int		len;
@@ -107,17 +107,16 @@ char		*transform(char **str, char *final)
   return final;
 }
 
-void            voir(t_msg *msg, t_client *client, t_map **map)
+void            voir(t_msg *msg, t_client *client, t_map **map, t_opt *opt)
 {
   int		level;
-  t_map		*tmp;
+  t_map		*t;
   char		*fin;
   int		len;
 
-  len = 1;
-  tmp = client->map;
-  level = client->level + 1;
-  fin = NULL;
+  (void)opt;
+  t = (len = 1) ? client->map : client->map;
+  level = (fin = NULL) ? client->level + 1 : client->level + 1;
   while (level > 0 && map)
     {
       fin = transform(get_line(client->map, len, client->direct), fin);
@@ -129,11 +128,9 @@ void            voir(t_msg *msg, t_client *client, t_map **map)
 	client->map = client->map->left->down;
       else if (client->direct == EST)
 	client->map = client->map->right->up;
-      level--;
-      len += 2;
+      len += (level -= 1) ? 2 : 2;
     }
-  client->map = tmp;
-  fin = realloc(fin, strlen(fin) + (3 * sizeof(char)));
+  client->map = (fin = realloc(fin, strlen(fin) + (3 * sizeof(char)))) ? t : t;
   snprintf(fin + strlen(fin), strlen(fin) + 3,  "}\n");
   sub_food(msg, client, fin);
   msg->time = get_time_client(client, 7);

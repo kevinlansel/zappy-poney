@@ -5,18 +5,19 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Thu Jun 13 17:23:39 2013 florian dewulf
-** Last update Wed Jul  3 12:36:38 2013 guillaume duez
+** Last update Fri Jul 12 16:44:05 2013 florian dewulf
 */
 
 #include	<math.h>
 #include	"serveur.h"
 
-void		broadcast(t_msg *msg, t_client *client, t_map **map)
+void		broadcast(t_msg *msg, t_client *client, t_map **map, t_opt *o)
 {
   t_client	*begin;
   int		k;
   char		*tmp;
 
+  (void)o;
   (void)(map);
   begin = client;
   while (begin->prev != NULL)

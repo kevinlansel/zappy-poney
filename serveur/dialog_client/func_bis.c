@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Tue Jul  9 14:54:23 2013 florian dewulf
-** Last update Fri Jul 12 10:19:47 2013 florian dewulf
+** Last update Fri Jul 12 16:30:30 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -39,14 +39,14 @@ void		giveinventaire(int fd, t_client *cl)
   char		*str;
 
   size = snprintf(NULL, 0, "pin %d %d %d %d %d %d %d %d %d %d\n",
-		  cl->id, cl->map->x, cl->map->y, cl->ress[0], cl->ress[1],
-		  cl->ress[2], cl->ress[3], cl->ress[4], cl->ress[5],
-		  cl->ress[6]) + 1;
+		  cl->id, cl->map->x, cl->map->y, cl->ress[0] / 126,
+		  cl->ress[1], cl->ress[2], cl->ress[3], cl->ress[4],
+		  cl->ress[5], cl->ress[6]) + 1;
   str = xmalloc((size + 1) * sizeof(char));
   snprintf(str, size, "pin %d %d %d %d %d %d %d %d %d %d\n",
-		  cl->id, cl->map->x, cl->map->y, cl->ress[0], cl->ress[1],
-		  cl->ress[2], cl->ress[3], cl->ress[4], cl->ress[5],
-		  cl->ress[6]);
+	   cl->id, cl->map->x, cl->map->y, cl->ress[0] / 126,
+	   cl->ress[1], cl->ress[2], cl->ress[3], cl->ress[4],
+	   cl->ress[5], cl->ress[6]);
   write(fd, str, strlen(str));
   free(str);
 }

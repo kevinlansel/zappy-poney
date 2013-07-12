@@ -102,7 +102,7 @@ static void		open_serv(t_connect *co, t_client *client, t_opt *opt, t_map **map)
       msg = exec_task(msg);
       epur_client(&client);
       client = client_reset(client);
-      //if (check_endgame(opt, client))
+      //if (check_endgame(client))
       //error = -1;
     }
 }

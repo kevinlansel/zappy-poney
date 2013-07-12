@@ -5,13 +5,13 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Tue Jun 25 14:18:23 2013 guillaume duez
-** Last update Wed Jul  3 12:36:56 2013 guillaume duez
+** Last update Fri Jul 12 16:46:15 2013 florian dewulf
 */
 
 #include	"serveur.h"
 #include	<stdio.h>
 
-t_client	*get_client(t_client *client)
+static t_client	*get_client(t_client *client)
 {
   t_client *hurt;
 
@@ -27,7 +27,7 @@ t_client	*get_client(t_client *client)
   return NULL;
 }
 
-int		check_co(t_client *client, t_client *hurt, t_map **map)
+static int	check_co(t_client *client, t_client *hurt, t_map **map)
 {
   e_direct	type;
   int		x;
@@ -55,15 +55,15 @@ int		check_co(t_client *client, t_client *hurt, t_map **map)
   return 1;
 }
 
-void            expulse(t_msg *msg, t_client *client, t_map **map)
+void            expulse(t_msg *msg, t_client *client, t_map **map, t_opt *opt)
 {
   t_client	*hurt;
   int		size;
   char		*str;
 
+  (void)opt;
   msg->time = get_time_client(client, 7);
-  hurt = client;
-  client = get_client(client);
+  client = (hurt = client) ? get_client(client) : get_client(client);
   if (client && map)
     {
       size = snprintf(NULL, 0, "deplacement: %d\n", calcul_K(hurt, client));

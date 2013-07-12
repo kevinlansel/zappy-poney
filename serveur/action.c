@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:08:13 2013 guillaume duez
-** Last update Mon Jul  8 16:09:22 2013 guillaume duez
+** Last update Fri Jul 12 17:11:03 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -15,9 +15,10 @@
 static char	str[NB_FUNC][LEN] = { "avance", "droite", "gauche", "voir",
 				      "inventaire", "prend", "pose",
 				      "broadcast", "expulse", "incantation",
-				      "fork"};
+				      "fork", "connect_nbr"};
 
-static void	init_tab_func(void (*tab_func[NB_FUNC])(t_msg *, t_client *, t_map **))
+static void	init_tab_func(void (*tab_func[NB_FUNC])(t_msg *, t_client *,
+							t_map **, t_opt *))
 {
   tab_func[0] = &avance;
   tab_func[1] = &droite;
@@ -30,11 +31,12 @@ static void	init_tab_func(void (*tab_func[NB_FUNC])(t_msg *, t_client *, t_map *
   tab_func[8] = &expulse;
   tab_func[9] = &level_up;
   tab_func[10] = &fork_egg;
+  tab_func[11] = &connecnb;
 }
 
 static t_msg	*check_and_call(t_client *client, t_map **map,
 				void (*tab_func[NB_FUNC])
-				(t_msg *, t_client *, t_map **),
+				(t_msg *, t_client *, t_map **, t_opt *),
 				t_opt *opt)
 {
   t_msg		*msg;
@@ -51,7 +53,7 @@ static t_msg	*check_and_call(t_client *client, t_map **map,
 	  tmp = my_str_to_wordtab(msg->comand, ' ')[0];
 	  if (tmp  && strcmp(tmp, str[i]) == 0)
 	    {
-	      tab_func[i](msg, client, map);
+	      tab_func[i](msg, client, map, opt);
 	      bool = 1;
 	    }
 	}
@@ -68,7 +70,7 @@ t_msg		*do_action(t_client **client, t_map **map,
 			   t_msg *msg, t_opt *opt)
 {
   t_msg		*new;
-  void		(*tab_func[NB_FUNC])(t_msg *, t_client *, t_map **);
+  void		(*tab_func[NB_FUNC])(t_msg *, t_client *, t_map **, t_opt *);
 
   if (*client && (*client)->type == WAIT_CO)
     {
