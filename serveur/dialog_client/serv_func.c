@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Wed Jun 19 14:10:39 2013 florian dewulf
-** Last update Tue Jul  9 13:54:05 2013 florian dewulf
+** Last update Fri Jul 12 11:50:51 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -61,5 +61,24 @@ void		connec_egg(int fd, t_client *egg)
   snprintf(str, size, "enw %d %d %d %d\n",
 	   egg->id, egg->level, egg->map->x, egg->map->y);
   write(fd, str, strlen(str));
+  free(str);
+}
+
+void		end_game(t_client *cl, char *team)
+{
+  int		size;
+  char		*str;
+  t_client	*tmp;
+
+  tmp = reroll(cl);
+  size = snprintf(NULL, 0, "seg %s\n", team) + 1;
+  str = xmalloc((size + 1) * sizeof(char));
+  snprintf(str, size, "seg %s\n", team);
+  while (tmp && tmp->end != 1)
+    {
+      if (tmp->type == GRAPHIC)
+	write(tmp->fd, str, strlen(str));
+      tmp = tmp->nt;
+    }
   free(str);
 }

@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Fri Jul 12 10:21:18 2013 florian dewulf
+** Last update Fri Jul 12 13:17:41 2013 florian dewulf
 */
 
 #ifndef			__SERVEUR_H__
@@ -50,7 +50,8 @@ typedef enum		e_co
     CLIENT,
     GRAPHIC,
     WAIT_CO,
-    EGG
+    EGG,
+    TO_DEL
   }			e_type_co;
 
 typedef struct		s_conf
@@ -159,6 +160,7 @@ void			begin_incant(int, t_client *, int, int);
 void			broadcast(t_msg *, t_client *, t_map **);
 
 int			calcul_K(t_client *, t_client *);
+int			check_endgame(t_opt *, t_client *);
 int			cmp_nb_arg(int, char *, int);
 void			connec_egg(int, t_client *);
 void			connexion(t_client **, t_map **, t_opt *);

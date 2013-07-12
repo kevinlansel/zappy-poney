@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun  3 15:13:05 2013 guillaume duez
-** Last update Fri Jul 12 10:53:57 2013 florian dewulf
+** Last update Fri Jul 12 13:16:22 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -92,14 +92,15 @@ void		sub_food(t_msg *msg, t_client *client, const char *str)
   client->ress[NOURRITURE] = client->ress[NOURRITURE] - time_elipse;
   client->time_eat = current;
   if (client->ress[NOURRITURE] > 0)
+    msg->cmd = strdup(str);
+  else if (client->type == CLIENT)
     {
-      msg->cmd = xmalloc((strlen(str) + 1) * sizeof(char));
-      strcpy(msg->cmd, str);
-    }
-  else
-    {
-      msg->cmd = xmalloc((strlen("mort\n") + 1) * sizeof(char));
-      strcpy(msg->cmd, "mort\n");
+      msg->cmd = strdup("mort\n");
       player_dead(client->id, client);
+    }
+  else if (client->type == EGG)
+    {
+      egg_dead(client->id, client);
+      client->type = TO_DEL;
     }
 }
