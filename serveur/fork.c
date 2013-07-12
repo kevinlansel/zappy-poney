@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jul  8 15:37:27 2013 guillaume duez
-** Last update Fri Jul 12 16:47:47 2013 florian dewulf
+** Last update Fri Jul 12 17:24:06 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -23,7 +23,7 @@ void		fork_egg(t_msg *msg, t_client *client, t_map **map, t_opt *opt)
   t_client      *new;
 
   (void) map;
-  (void)opt;
+  (void) opt;
   sub_food(msg, client, "ok\n");
   msg->time = get_time_client(client, 42);
   new = xmalloc(sizeof(t_client));
@@ -33,6 +33,8 @@ void		fork_egg(t_msg *msg, t_client *client, t_map **map, t_opt *opt)
   new->end = 0;
   new->nt = client->nt;
   new->type = EGG;
+  new->time = get_time();
+  new->time = get_time_client(new, 600);
   client->nt = new;
   egg_drop_by(new->id, client->id, client);
 }
