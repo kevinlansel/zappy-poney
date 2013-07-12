@@ -5,7 +5,7 @@
 ## Login   <duez_a@epitech.net>
 ## 
 ## Started on  Mon Feb  4 12:48:16 2013 guillaume duez
-## Last update Mon Jul  8 16:06:22 2013 guillaume duez
+## Last update Fri Jul 12 10:18:22 2013 florian dewulf
 ##
 
 SERV	=	serveur
@@ -25,6 +25,7 @@ SRC_SERV=	action.c			\
 		dialog_client/player_ress.c	\
 		dialog_client/serv_func.c	\
 		dialog_client/utils_protocol.c	\
+		dialog_client/func_bis.c	\
 		echo.c				\
 		expulse.c			\
 		fork.c				\
