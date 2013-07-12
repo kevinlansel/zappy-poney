@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:00:59 2013 Maxime Wojciak
-// Last update Thu Jul  4 16:31:33 2013 gery baudry
+// Last update Fri Jul 12 15:51:49 2013 gery baudry
 //
 
 #ifndef		WINDOWS__
@@ -16,6 +16,7 @@
 #include	"Network.hpp"
 #include	"Case.hpp"
 #include	"Texte.hpp"
+#include	"Memory.hpp"
 
 class		Windows {
 public:
@@ -25,16 +26,17 @@ public:
 public:
   void			CreateWindows(gnl &);
   void			DrawMap();
-  std::vector<Case>	getVector() const;
+  //  std::vector<Case>	getVector() const;
 
 private:
   sf::Event		event;
   sf::RenderWindow	window;
-  std::vector<Case>	map;
+  //std::vector<Case>	map;
   int			_x;
   int			_y;
   sf::Vector2f		taille;
   Network		_net;
+  Memory		*_mem;
 };
 
 #endif			/* WINDOWS__ */
