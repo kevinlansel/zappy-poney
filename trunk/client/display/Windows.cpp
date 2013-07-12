@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:01:06 2013 Maxime Wojciak
-// Last update Fri Jul 12 16:09:36 2013 gery baudry
+// Last update Fri Jul 12 17:48:01 2013 gery baudry
 //
 
 #include	<iostream>
@@ -21,7 +21,7 @@
 #include	"Case.hpp"
 #include	"Souris.hpp"
 
-Windows::Windows(int x, int y, const Network &net) : window(sf::VideoMode(1280, 1024), "Client Zappy", sf::Style::Fullscreen), _x(x), _y(y), _net(net)
+Windows::Windows(int x, int y, const Network &net) : window(sf::VideoMode(1280, 1024), "Client Zappy", sf::Style::Fullscreen), _x(x), _y(y), _net(net), _mem(new Memory)
 {
   this->taille = sf::Vector2f((1100 / this->_x), (960 / this->_y));
 }
@@ -112,14 +112,13 @@ void		Windows::DrawMap()
 	{
 	  Case		macase(taille, ress, i);
 	  macase.setPosition(sf::Vector2f(x, y));
-	  this->_mem->getMap().push_back(macase);
+	  this->_mem->pushCase(macase);
 	  x += this->taille.x;
 	  i += 1;
 	}
       y += this->taille.y;
     }
-  for (std::vector<Case>::iterator it = this->_mem->getMap().begin(); it != this->_mem->getMap().end(); ++it)
-    this->window.draw(it->getRectangle());
+  this->_mem->DrawRec(this->window);
 }
 
 // std::vector<Case>		Windows::getVector() const

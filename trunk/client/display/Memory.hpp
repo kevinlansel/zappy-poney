@@ -5,13 +5,14 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:35:32 2013 gery baudry
-// Last update Fri Jul 12 16:16:49 2013 gery baudry
+// Last update Fri Jul 12 17:45:58 2013 gery baudry
 //
 
 #ifndef				MEMORY___
 # define			MEMORY___
 
 #include			<vector>
+#include			<SFML/Graphics.hpp>
 #include			"Player.hpp"
 #include			"Case.hpp"
 
@@ -24,6 +25,8 @@ public:
 public:
   std::vector<Player>		getPliste() const;
   std::vector<Case>		getMap() const;
+  void				pushCase(const Case &);
+  void				DrawRec(sf::RenderWindow &);
 
 private:
   std::vector<Player>		_pliste;
