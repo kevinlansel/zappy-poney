@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 17:52:10 2013 guillaume duez
-** Last update Fri Jul 12 13:47:19 2013 florian dewulf
+** Last update Fri Jul 12 14:03:31 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -95,6 +95,8 @@ static void		open_serv(t_connect *co, t_client *client, t_opt *opt, t_map **map)
 		msg = do_action(&client, map, msg, opt);
               if (client && client->end != 1)
                 client = client->nt;
+	      if (client && client->type == EGG)
+		sub_food(NULL, client, NULL);
             }
         }
       msg = exec_task(msg);
