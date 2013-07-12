@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu Jul  4 12:01:21 2013 gery baudry
-// Last update Fri Jul  5 13:55:45 2013 gery baudry
+// Last update Fri Jul 12 14:47:20 2013 guillaume duez
 //
 
 #include	"Network.hpp"
@@ -154,96 +154,45 @@ std::string		Network::recup_firstPart(std::string &data)
   return param;
 }
 
+void            Network::init_ptr()
+{
+  this->ptr_func[0] = (&Network::recup_teamName);
+  this->ptr_func[1] = (&Network::askForTimeUnit);
+  this->ptr_func[2] = (&Network::recup_playerInfos);
+  this->ptr_func[3] = (&Network::playerExpulse);
+  this->ptr_func[4] = (&Network::playerBroadcast);
+  this->ptr_func[5] = (&Network::launchIncantation);
+  this->ptr_func[6] = (&Network::endOfIncantation);
+  this->ptr_func[7] = (&Network::putAnEgg);
+  this->ptr_func[8] = (&Network::dropARessource);
+  this->ptr_func[9] = (&Network::takeARessource);
+  this->ptr_func[10] = (&Network::hungryDead);
+  this->ptr_func[11] = (&Network::eggPutByPlayer);
+  this->ptr_func[12] = (&Network::eggHatched);
+  this->ptr_func[13] = (&Network::playerConnectedForEgg);
+  this->ptr_func[14] = (&Network::eggDied);
+  this->ptr_func[15] = (&Network::endOfGame);
+  this->ptr_func[16] = (&Network::serverMessage);
+}
+
 std::vector<std::string>			Network::checkData2(std::string &data)
 {
   std::string		word;
   std::vector<std::string>	list;
+  int           i;
+  static char   str[MAX][5] = { "tna", "sgt", "pnw", "pex",
+				"pbc", "pic", "pie", "pfk", "pdr",
+				"pgt", "pdi", "enw", "eht", "ebo",
+				"edi", "seg", "smg"};
 
   word = recup_firstPart(data);
-  if (word == "tna")
-   {
-      std::cout << "tna" << std::endl;
-      list = recup_teamName(data);
-    }
-  else if (word == "sgt")
+  init_ptr();
+  i = 0;
+  while (i < MAX)
     {
-      std::cout << "sgt" << std::endl;
-      list = askForTimeUnit(data);
-    }
-  else if (word == "pnw")
-    {
-      std::cout << "pnw" << std::endl;
-      list = recup_playerInfos(data);
-    }
-  else if (word == "pex")
-    {
-      std::cout << "pex" << std::endl;
-      list = playerExpulse(data);
-    }
-  else if (word == "pbc")
-    {
-      std::cout << "pbc" << std::endl;
-      list = playerBroadcast(data);
-    }
-  else if (word == "pic")
-    {
-      std::cout << "pic" << std::endl;
-      list = launchIncantation(data);
-    }
-  else if (word == "pie")
-    {
-      std::cout << "pie" << std::endl;
-      list = endOfIncantation(data);
-    }
-  else if (word == "pfk")
-    {
-      std::cout << "pfk" << std::endl;
-      list = putAnEgg(data);
-    }
-  else if (word == "pdr")
-    {
-      std::cout << "pdr" << std::endl;
-      list = dropARessource(data);
-    }
-  else if (word == "pgt")
-    {
-      std::cout << "pgt" << std::endl;
-      list = takeARessource(data);
-    }
-  else if (word == "pdi")
-    {
-      std::cout << "pdi" << std::endl;
-      list = hungryDead(data);
-    }
-  else if (word == "enw")
-    {
-      std::cout << "enw" << std::endl;
-      list = eggPutByPlayer(data);
-    }
-  else if (word == "eht")
-    {
-      std::cout << "eht" << std::endl;
-      list = eggHatched(data);
-    }
-  else if (word == "ebo")
-    {
-      std::cout << "ebo" << std::endl;
-      list = playerConnectedForEgg(data);
-    }
-  else if (word == "edi")
-    {
-      std::cout << "edi" << std::endl;
-      list = eggDied(data);
-    }
-  else if (word == "seg")
-    {
-      std::cout << "seg" << std::endl;
-      list = endOfGame(data);
-    }
-  else if (word == "smg")
-    {
-      std::cout << "smg" << std::endl;
-      list = serverMessage(data);
+      if (word.c_str() == str[i])
+        list = (this->*ptr_func[i]) (data);
+      i++;
     }
   return list;
 }
@@ -251,7 +200,7 @@ std::vector<std::string>			Network::checkData2(std::string &data)
 void			Network::checkData3(std::string &data)
 {
   std::string		word;
-  
+
   word = recup_firstPart(data);
   if (word == "suc")
     {

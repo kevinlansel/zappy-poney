@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu Jul  4 12:01:16 2013 gery baudry
-// Last update Thu Jul  4 12:01:41 2013 gery baudry
+// Last update Fri Jul 12 14:50:16 2013 guillaume duez
 //
 
 #ifndef					__NETWORK_HPP__
@@ -24,6 +24,8 @@
 
 #include				"get_next_line.hpp"
 
+#define		MAX	18
+
 class					Network
 {
 private:
@@ -37,6 +39,7 @@ private:
   std::vector<std::string>		_sgt;
   std::vector<std::vector<int> >	_carte;
   std::vector<std::string>		_playerInfos;
+  void (Network::*ptr_func[MAX])(std::string req);
 
 public:
   Network(const std::string &, int, const std::string &);
@@ -81,6 +84,7 @@ public:
   std::vector<std::string>		serverMessage(std::string &data);
   void					unknownCommand();
   void					wrongParameters();
+  void					init_ptr();
 };
 
 #endif
