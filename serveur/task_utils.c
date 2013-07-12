@@ -5,12 +5,13 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun  3 15:13:05 2013 guillaume duez
-** Last update Fri Jul 12 13:16:22 2013 florian dewulf
+** Last update Fri Jul 12 13:47:37 2013 florian dewulf
 */
 
 #include	<stdio.h>
 #include	<string.h>
 #include	<sys/timeb.h>
+#include	<unistd.h>
 #include	"serveur.h"
 
 t_msg		*exec_task(t_msg *task)
@@ -97,6 +98,8 @@ void		sub_food(t_msg *msg, t_client *client, const char *str)
     {
       msg->cmd = strdup("mort\n");
       player_dead(client->id, client);
+      close(client->fd);
+      client->type = TO_DEL;
     }
   else if (client->type == EGG)
     {

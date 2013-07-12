@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 17:52:10 2013 guillaume duez
-** Last update Fri Jul 12 13:16:57 2013 florian dewulf
+** Last update Fri Jul 12 13:47:19 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -100,8 +100,8 @@ static void		open_serv(t_connect *co, t_client *client, t_opt *opt, t_map **map)
       msg = exec_task(msg);
       epur_client(&client);
       client = client_reset(client);
-      if (check_endgame(opt, client))
-	error = -1;
+      //if (check_endgame(opt, client))
+      //error = -1;
     }
 }
 
