@@ -7,9 +7,10 @@
 # Login   <dewulf_f@epitech.net>
 # 
 # Started on  Mon Jun 10 18:25:16 2013 florian dewulf
-# Last update Tue Jun 11 17:18:00 2013 florian dewulf
+# Last update Sat Jun 22 19:22:09 2013 florian dewulf
 =end
 
+require 'rubygems'
 require 'Qt'
 
 class   QtApp < Qt::Widget
