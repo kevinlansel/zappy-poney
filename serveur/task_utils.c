@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun  3 15:13:05 2013 guillaume duez
-** Last update Mon Jul  8 13:51:43 2013 guillaume duez
+** Last update Fri Jul 12 10:53:57 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -19,7 +19,7 @@ t_msg		*exec_task(t_msg *task)
     {
       if (strcmp(task->comand, "elevation") == 0 && up_level(task) == 1)
 	{
-	  
+	  ;
 	}
       if (send_mess(task) == -1)
 	printf("unable to send_mess\n");
@@ -33,7 +33,7 @@ t_msg		*exec_task(t_msg *task)
 
 t_msg		*create_first()
 {
-  t_msg *new;
+  t_msg		*new;
 
   new =	xmalloc(sizeof(t_msg));
   new->time = get_time() * 2;
@@ -93,12 +93,13 @@ void		sub_food(t_msg *msg, t_client *client, const char *str)
   client->time_eat = current;
   if (client->ress[NOURRITURE] > 0)
     {
-      msg->cmd = xmalloc(strlen(str) + 1 * sizeof(char));
+      msg->cmd = xmalloc((strlen(str) + 1) * sizeof(char));
       strcpy(msg->cmd, str);
     }
   else
     {
-      msg->cmd = xmalloc(strlen("mort\n") + 1 * sizeof(char));
+      msg->cmd = xmalloc((strlen("mort\n") + 1) * sizeof(char));
       strcpy(msg->cmd, "mort\n");
+      player_dead(client->id, client);
     }
 }
