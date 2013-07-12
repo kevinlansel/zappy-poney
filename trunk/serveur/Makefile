@@ -5,7 +5,7 @@
 ## Login   <duez_a@epitech.net>
 ## 
 ## Started on  Mon Feb  4 12:48:16 2013 guillaume duez
-## Last update Fri Jul 12 10:18:22 2013 florian dewulf
+## Last update Fri Jul 12 11:48:12 2013 florian dewulf
 ##
 
 SERV	=	serveur
@@ -41,6 +41,7 @@ SRC_SERV=	action.c			\
 		take_let.c			\
 		task_time_client.c		\
 		task_utils.c			\
+		tools/check.c			\
 		tools/str_to_word.c		\
 		tools/tools_socket.c		\
 		tools/xmalloc.c			\
