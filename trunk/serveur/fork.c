@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jul  8 15:37:27 2013 guillaume duez
-** Last update Fri Jul 12 17:24:06 2013 guillaume duez
+** Last update Fri Jul 12 17:28:25 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -33,7 +33,8 @@ void		fork_egg(t_msg *msg, t_client *client, t_map **map, t_opt *opt)
   new->end = 0;
   new->nt = client->nt;
   new->type = EGG;
-  new->time = get_time();
+  new->time = client->time;
+  new->action = get_time_client(new, 600);
   new->time = get_time_client(new, 600);
   client->nt = new;
   egg_drop_by(new->id, client->id, client);
