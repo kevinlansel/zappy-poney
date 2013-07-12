@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Thu Jun 27 10:38:25 2013 florian dewulf
-** Last update Tue Jul  9 16:02:23 2013 florian dewulf
+** Last update Fri Jul 12 17:23:47 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -46,6 +46,7 @@ static t_client	*transform_egg_to_client(t_client *egg, t_client **cl)
   egg->id = (*cl)->id;
   egg->type = CLIENT;
   egg->level = 1;
+  egg->time = (*cl)->time;
   *cl = delete_client(*cl);
   return (egg);
 }
