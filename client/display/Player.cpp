@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Tue Jul  2 10:35:58 2013 gery baudry
-// Last update Fri Jul 12 15:21:48 2013 gery baudry
+// Last update Fri Jul 12 18:47:08 2013 gery baudry
 //
 
 #include		"Player.hpp"
@@ -109,37 +109,37 @@ void				Player::setPosition(const sf::Vector2i &pos)
 
 void				Player::setNourriture(int val)
 {
-  this->_nourriture = val;
+  this->_nourriture += val;
 }
 
 void				Player::setLinemate(int val)
 {
-  this->_linemate = val;
+  this->_linemate += val;
 }
 
 void				Player::setDeraumere(int val)
 {
-  this->_deraumere = val;
+  this->_deraumere += val;
 }
 
 void				Player::setSibur(int val)
 {
-  this->_sibur = val;
+  this->_sibur += val;
 }
 
 void				Player::setMendiane(int val)
 {
-  this->_mendiane = val;
+  this->_mendiane += val;
 }
 
 void				Player::setPhiras(int val)
 {
-  this->_phiras = val;
+  this->_phiras += val;
 }
 
 void				Player::setThystame(int val)
 {
-  this->_thystame = val;
+  this->_thystame += val;
 }
 
 void				Player::setLevel(int val)

@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 11:12:44 2013 gery baudry
-// Last update Tue Jul  9 10:27:53 2013 gery baudry
+// Last update Fri Jul 12 18:47:31 2013 gery baudry
 //
 
 #include	<iostream>
@@ -94,37 +94,37 @@ void				Case::setPosition(const sf::Vector2f &pos)
 
 void				Case::setNourriture(int val)
 {
-  this->_nourriture = val;
+  this->_nourriture += val;
 }
 
 void				Case::setLinemate(int val)
 {
-  this->_linemate = val;
+  this->_linemate += val;
 }
 
 void				Case::setDeraumere(int val)
 {
-  this->_deraumere = val;
+  this->_deraumere += val;
 }
 
 void				Case::setSibur(int val)
 {
-  this->_sibur = val;
+  this->_sibur += val;
 }
 
 void				Case::setMendiane(int val)
 {
-  this->_mendiane = val;
+  this->_mendiane += val;
 }
 
 void				Case::setPhiras(int val)
 {
-  this->_phiras = val;
+  this->_phiras += val;
 }
 
 void				Case::setThystame(int val)
 {
-  this->_thystame = val;
+  this->_thystame += val;
 }
 
 void				Case::setCasecolor(sf::Color val)
