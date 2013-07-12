@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Wed Jun 19 13:19:33 2013 florian dewulf
-** Last update Tue Jul  9 13:53:22 2013 florian dewulf
+** Last update Fri Jul 12 10:20:09 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -74,7 +74,7 @@ void		getposplayer(char **arg, int fd, t_map **map, t_client *begin)
 		  id, cl->map->x, cl->map->y, cl->direct) + 1;
   str = xmalloc((size + 1) * sizeof(char));
   snprintf(str, size, "ppo %d %d %d %d\n",
-	   id, cl->map->x, cl->map->y, cl->direct) + 1;
+	   id, cl->map->x, cl->map->y, cl->direct);
   write(fd, str, strlen(str));
   free(str);
 }
@@ -98,7 +98,7 @@ void		getlevelplayer(char **arg, int fd, t_map **map, t_client *begin)
     }
   size = snprintf(NULL, 0, "plv %d %d\n", id, cl->level) + 1;
   str = xmalloc((size + 1) * sizeof(char));
-  snprintf(str, size, "plv %d %d\n", id, cl->level) + 1;
+  snprintf(str, size, "plv %d %d\n", id, cl->level);
   write(fd, str, strlen(str));
   free(str);
 }

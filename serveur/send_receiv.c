@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:15:13 2013 guillaume duez
-** Last update Tue Jul  9 13:44:55 2013 guillaume duez
+** Last update Fri Jul 12 10:25:56 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -85,7 +85,11 @@ t_msg		*get_mess(t_client *client, t_opt *opt)
       msg->bool = 1;
       return msg;
     }
-  
+  size = -1;
+  while (opt && opt->name_team && opt->name_team[++size])
+    if (strcmp(client->team, opt->name_team[size]) == 0)
+      opt->nb_player[size] += 1;
+  player_dead(client->id, client);
   printf("The client has leave with fd :%d\n", client->fd);
   client = end_client(client);
   client = client_reset(client);

@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Mon Jul  8 16:10:10 2013 guillaume duez
+** Last update Fri Jul 12 10:21:18 2013 florian dewulf
 */
 
 #ifndef			__SERVEUR_H__
@@ -199,6 +199,9 @@ void			gettime(char **, int, t_map **, t_client *);
 double			get_time();
 double			get_time_client(t_client *client, int action);
 int			give_id();
+void			giveinventaire(int, t_client *);
+void			givelvl(t_client *, t_client *);
+void			giveposition(t_client *, t_client *);
 
 void			inventaire(t_msg *mess, t_client *client, t_map **map);
 void			init_map(t_map **map, t_conf *config);
