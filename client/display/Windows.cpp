@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:01:06 2013 Maxime Wojciak
-// Last update Fri Jul 12 17:48:01 2013 gery baudry
+// Last update Sat Jul 13 17:17:27 2013 gery baudry
 //
 
 #include	<iostream>
@@ -32,12 +32,7 @@ Windows::~Windows() {
 
 void		Windows::CreateWindows(gnl &gl)
 {
-  Player		player(sf::Vector2i(212, 100), 9, 2, 2, 1, 4, 3, 1, 4, 12, 1, "toto");
-  Player		player2(sf::Vector2i(112, 100), 9, 2, 2, 1, 4, 3, 1, 4, 12, 1, "toto");
-  Souris		souris;
-  sf::Text		text;
-  sf::Text		text2;
-  std::vector<std::string>	test;
+  Souris		souris(this->_mem);
   fd_set			fd_read;
   int				a;
   std::string			req = "";
@@ -46,13 +41,6 @@ void		Windows::CreateWindows(gnl &gl)
   tv.tv_sec = 0;
   tv.tv_usec = 50;
 
-  test = this->_net.getPlayerInfos();
-  // for (std::vector<std::string>::iterator it = test.begin(); it != test.end(); ++it)
-  //   {
-  //     std::cout << *it;
-  //     std::cout << "tot";
-  //   }
-  // std::cout << std::endl;
   while (this->window.isOpen())
     {
       while (this->window.pollEvent(this->event))
@@ -84,15 +72,7 @@ void		Windows::CreateWindows(gnl &gl)
 	}
       this->window.clear();
       DrawMap();
-      player.setImage(4);
-      player2.setImage(6);
-      this->window.draw(player.getImage().loadPokemon(player.getPosition()));
-      this->window.draw(player2.getImage().loadPokemon(player2.getPosition()));
-      souris.CheckSouris(this->window, this->_mem->getMap(), this->_x, this->_y, this->taille, player2);
-      text = souris.getTextcase();
-      text2 = souris.getTextplayer();
-      this->window.draw(text);
-      this->window.draw(text2);
+      souris.CheckSouris(this->window, this->_mem->getMap(), this->_x, this->_y, this->taille);
       this->window.display();
     }
 }

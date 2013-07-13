@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:35:32 2013 gery baudry
-// Last update Fri Jul 12 17:45:58 2013 gery baudry
+// Last update Sat Jul 13 16:52:15 2013 gery baudry
 //
 
 #ifndef				MEMORY___
@@ -15,6 +15,7 @@
 #include			<SFML/Graphics.hpp>
 #include			"Player.hpp"
 #include			"Case.hpp"
+#include			"Oeuf.hpp"
 
 class				Memory
 {
@@ -25,12 +26,14 @@ public:
 public:
   std::vector<Player>		getPliste() const;
   std::vector<Case>		getMap() const;
+  std::vector<Oeuf>		getOeuf() const;
   void				pushCase(const Case &);
   void				DrawRec(sf::RenderWindow &);
 
 private:
   std::vector<Player>		_pliste;
   std::vector<Case>		_map;
+  std::vector<Oeuf>		_oeuf;
 };
 
 #endif

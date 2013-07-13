@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 15:58:05 2013 gery baudry
-// Last update Fri Jul 12 16:20:07 2013 gery baudry
+// Last update Sat Jul 13 17:33:48 2013 gery baudry
 //
 
 
@@ -13,7 +13,7 @@
 #include	"Souris.hpp"
 #include	"Windows.hpp"
 
-Souris::Souris() : _position(0,0), _check(false)
+Souris::Souris(Memory *mem) : _position(0,0), _check(false), _mem(mem)
 {
   this->font.loadFromFile("../ressources/fonts/Sansation_Bold.ttf");
 }
@@ -22,7 +22,7 @@ Souris::~Souris()
 {
 }
 
-void			Souris::CheckSouris(sf::RenderWindow &window, std::vector<Case> map, int x, int y, sf::Vector2f taille, Player player)
+void			Souris::CheckSouris(sf::RenderWindow &window, std::vector<Case> map, int x, int y, sf::Vector2f taille)
 {
   sf::Vector2<int>		_pos;
   sf::Vector2i			posplayer;
@@ -31,7 +31,11 @@ void			Souris::CheckSouris(sf::RenderWindow &window, std::vector<Case> map, int 
     {
       setPosition(window);
       this->_position = getPosition();
-      posplayer = player.getPosition();
+      for (std::vector<Player>::iterator nit = this->_mem->getPliste().begin(); nit != this->_mem->getPliste().end(); ++nit)
+	{
+	  if (nit->getPosition().x == x && nit->getPosition().y == y)
+	    posplayer = nit->getPosition();
+	}
       // Ajouter check position du player pour affichage d'info suppl !
       if ((this->_position.x <= (x * taille.x)) && (this->_position.y <= (y * taille.y)))
 	{
@@ -48,9 +52,15 @@ void			Souris::CheckSouris(sf::RenderWindow &window, std::vector<Case> map, int 
 	      std::cout << posplayer.x << std::endl;
 	      if ((this->_position.x >= posplayer.x && !(this->_position.x >= (posplayer.x + taille.x)) && this->_position.y >= posplayer.y && !(this->_position.y >= (posplayer.y + taille.y))))
 		{
-		  this->textplayer = sf::Text(player.doTextPlayer(this->_position), this->font, 15);
-		  this->textplayer.move(sf::Vector2f(1130, 210));
-		  this->textplayer.setColor(sf::Color(102, 0, 0));
+		  for (std::vector<Player>::iterator nit = this->_mem->getPliste().begin(); nit != this->_mem->getPliste().end(); ++nit)
+		    {
+		      if (nit->getPosition().x == x && nit->getPosition().y == y)
+			{
+			  this->textplayer = sf::Text(nit->doTextPlayer(this->_position), this->font, 15);
+			  this->textplayer.move(sf::Vector2f(1130, 210));
+			  this->textplayer.setColor(sf::Color(102, 0, 0));
+			}
+		    }
 		}
 	    }
 	}
