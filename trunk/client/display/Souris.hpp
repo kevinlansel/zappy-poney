@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 15:59:10 2013 gery baudry
-// Last update Fri Jul 12 16:20:33 2013 gery baudry
+// Last update Sat Jul 13 17:19:47 2013 gery baudry
 //
 
 #ifndef		SOURIS__
@@ -18,19 +18,20 @@
 class		Souris
 {
 public:
-  Souris();
+  Souris(Memory *);
   virtual		~Souris();
 
 public:
   sf::Vector2<int>	getPosition() const;
   void			setPosition(sf::RenderWindow &);
-  void			CheckSouris(sf::RenderWindow &, std::vector<Case>, int, int, sf::Vector2f, Player);
+  void			CheckSouris(sf::RenderWindow &, std::vector<Case>, int, int, sf::Vector2f taille);
   sf::Text		getTextcase() const;
   sf::Text		getTextplayer() const;
 
 public:
   sf::Vector2<int>	_position;
   bool			_check;
+  Memory		*_mem;
   sf::Font		font;
   sf::Text		textcase;
   sf::Text		textplayer;

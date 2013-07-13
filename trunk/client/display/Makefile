@@ -5,7 +5,7 @@
 ## Login   <wojcia_m@epitech.net>
 ## 
 ## Started on  Thu Jun 27 17:33:04 2013 Maxime Wojciak
-## Last update Fri Jul 12 15:41:47 2013 gery baudry
+## Last update Sat Jul 13 16:56:54 2013 gery baudry
 ##
 
 NAME=		Display
@@ -19,6 +19,7 @@ SRC=		Audio.cpp		\
 		Network.cpp		\
 		Personnage.cpp		\
 		Player.cpp		\
+		Oeuf.cpp		\
 		Souris.cpp		\
 		Texture.cpp		\
 		Windows.cpp		\

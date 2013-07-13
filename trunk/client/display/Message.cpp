@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon Jul  8 15:02:02 2013 Maxime Wojciak
-// Last update Fri Jul 12 19:11:42 2013 gery baudry
+// Last update Sat Jul 13 17:14:19 2013 gery baudry
 //
 
 #include	"Message.hpp"
@@ -87,6 +87,8 @@ std::vector<Case>	Message::setPie(int _x, int _y, int _level, int _r) {
 std::vector<Case>	Message::setPfk(int _x, int _y) {
   if (_x && _y)
     {
+      Oeuf		_noeuf(1);
+      this->_mem->getOeuf().push_back(_noeuf);
       //Oeuf	oeuf;						// Pond un oeuf
       for (std::vector<Case>::iterator it = this->_mem->getMap().begin(); it != this->_mem->getMap().end(); it++)
 	{
@@ -251,10 +253,16 @@ void	Message::setEht(int _e) {
 
 void	Message::setEbo(int _e) {
   if (_e) {
-    std::string text = "Un joueur c'est connecté pour l'oeuf " + tonton(_e);
-    this->text = sf::Text(text, this->font, 15);
-    this->text.move(sf::Vector2f(1110, 900));
-    // delete _e oeuf
+    for (std::vector<Oeuf>::iterator it = this->_mem->getOeuf().begin(); it != this->_mem->getOeuf().end(); ++it)
+      {
+	if (it->getId() == _e)
+	  {
+	    std::string text = "Un joueur c'est connecté pour l'oeuf " + tonton(_e);
+	    this->text = sf::Text(text, this->font, 15);
+	    this->text.move(sf::Vector2f(1110, 900));
+	    // delete _e oeuf
+	  }
+      }
   }
   else
     setSbp();
@@ -262,10 +270,15 @@ void	Message::setEbo(int _e) {
 
 void	Message::setEdi(int _e) {
   if (_e) {
-    std::string text = "L'oeuf " + tonton(_e) + " est mort de faim";
-    this->text = sf::Text(text, this->font, 15);
-    this->text.move(sf::Vector2f(1110, 900));
-    // delete oeuf _e
+    for (std::vector<Oeuf>::iterator it = this->_mem->getOeuf().begin(); it != this->_mem->getOeuf().end(); ++it)
+      {
+	if (it->getId() == _e)
+	  {
+	    std::string text = "L'oeuf " + tonton(_e) + " est mort de faim";
+	    this->text = sf::Text(text, this->font, 15);
+	    this->text.move(sf::Vector2f(1110, 900));
+	  }
+      }
   }
   else
     setSbp();
