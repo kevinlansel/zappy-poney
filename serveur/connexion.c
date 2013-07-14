@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Thu Jun 27 10:38:25 2013 florian dewulf
-** Last update Fri Jul 12 17:23:47 2013 florian dewulf
+** Last update Sun Jul 14 18:20:23 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -42,6 +42,7 @@ static void	graphic_connect(t_client *cl, t_map **map, t_opt *opt)
 
 static t_client	*transform_egg_to_client(t_client *egg, t_client **cl)
 {
+  egg_connect(egg->id, reroll(egg));
   egg->fd = (*cl)->fd;
   egg->id = (*cl)->id;
   egg->type = CLIENT;

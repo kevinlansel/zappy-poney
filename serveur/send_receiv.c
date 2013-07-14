@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:15:13 2013 guillaume duez
-** Last update Fri Jul 12 15:21:21 2013 guillaume duez
+** Last update Sun Jul 14 16:32:06 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -86,7 +86,7 @@ t_msg		*get_mess(t_client *client, t_opt *opt)
       return msg;
     }
   size = -1;
-  while (opt && opt->name_team && opt->name_team[++size])
+  while (opt && opt->name_team && opt->name_team[++size] && client->team)
     if (strcmp(client->team, opt->name_team[size]) == 0)
       opt->nb_player[size] += 1;
   player_dead(client->id, client);
