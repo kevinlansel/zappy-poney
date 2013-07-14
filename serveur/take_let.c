@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun 24 16:01:55 2013 guillaume duez
-** Last update Fri Jul 12 16:51:16 2013 florian dewulf
+** Last update Sun Jul 14 14:42:19 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -61,10 +61,8 @@ void		prend_objet(t_msg *msg, t_client *cl, t_map **map, t_opt *o)
   i = -1;
   msg->time = get_time_client(cl, 7);
   tab_cmd = my_str_to_wordtab(msg->comand, ' ');
-  if (strlen_tab(tab_cmd) != 3)
-    return;
-  while (++i < MAX)
-    if (strcmp(tab[i], tab_cmd[2]) == 0 && cl->map->ress[i] > 0)
+  while (strlen_tab(tab_cmd) == 2 && ++i < MAX)
+    if (strcmp(tab[i], tab_cmd[1]) == 0 && cl->map->ress[i] > 0)
       {
 	cl->map->ress[i] -= 1;
 	cl->ress[i] += (i > 0 ? 1 : 126);

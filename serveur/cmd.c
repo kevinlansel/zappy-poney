@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Tue May 28 16:48:58 2013 guillaume duez
-** Last update Fri Jul 12 17:11:42 2013 florian dewulf
+** Last update Sun Jul 14 15:16:32 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -79,27 +79,22 @@ void		gauche(t_msg *msg, t_client *client, t_map **map, t_opt *opt)
 
 void		inventaire(t_msg *mess, t_client *cl, t_map **map, t_opt *opt)
 {
-  static char	tab[7][12] = { "nourriture ", ", linemate ", ", deraumere ", ", sibur ",
-			       ", mendiane ", ", phiras ", ", thystame" };
-  int		i;
+  static char	tab[7][12] = { "nourriture", " linemate", " deraumere",
+			       " sibur", " mendiane", " phiras", " thystame" };
   char		*msg;
   int		len;
-  char		*str;
 
   (void)opt;
-  str = xmalloc(10);
-  i = 0;
-  msg = xmalloc(256);
-  len = 0;
-  while (i < MAX && map)
-    {
-      sprintf(str, "%d", (int)cl->ress[i]);
-      strcpy(msg + len, tab[i]);
-      len += strlen(tab[i]);
-      strcpy(msg + len, str);
-      len += strlen(str);
-      i++;
-    }
+  (void)map;
+  len = snprintf(NULL, 0, "{%s %d,%s %d,%s %d,%s %d,%s %d,%s %d,%s %d}\n",
+		 tab[0], cl->ress[0] / 126, tab[1], cl->ress[1], tab[2],
+		 cl->ress[2], tab[3], cl->ress[3], tab[4], cl->ress[4],
+		 tab[5], cl->ress[5], tab[6], cl->ress[6]) + 1;
+  msg = xmalloc((len + 1) * sizeof(char));
+  snprintf(msg, len, "{%s %d,%s %d,%s %d,%s %d,%s %d,%s %d,%s %d}\n",
+	   tab[0], cl->ress[0] / 126, tab[1], cl->ress[1], tab[2],
+	   cl->ress[2], tab[3], cl->ress[3], tab[4], cl->ress[4],
+	   tab[5], cl->ress[5], tab[6], cl->ress[6]);
   mess->time = get_time_client(cl, 7);
   sub_food(mess, cl, msg);
 }
