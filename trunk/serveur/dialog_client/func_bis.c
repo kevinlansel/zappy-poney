@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Tue Jul  9 14:54:23 2013 florian dewulf
-** Last update Fri Jul 12 16:30:30 2013 florian dewulf
+** Last update Sun Jul 14 16:38:09 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -64,6 +64,31 @@ void		givelvl(t_client *cl, t_client *begin)
       if (begin->type == GRAPHIC)
 	write(begin->fd, str, strlen(str));
       begin = begin->nt;
+    }
+  free(str);
+}
+
+void		giveinvall(t_client *cl)
+{
+  t_client	*tmp;
+  char		*str;
+  int		size;
+
+  size = snprintf(NULL, 0, "pin %d %d %d %d %d %d %d %d %d %d\n",
+		  cl->id, cl->map->x, cl->map->y, cl->ress[0] / 126,
+		  cl->ress[1], cl->ress[2], cl->ress[3], cl->ress[4],
+		  cl->ress[5], cl->ress[6]) + 1;
+  str = xmalloc((size + 1) * sizeof(char));
+  snprintf(str, size, "pin %d %d %d %d %d %d %d %d %d %d\n",
+	   cl->id, cl->map->x, cl->map->y, cl->ress[0] / 126,
+	   cl->ress[1], cl->ress[2], cl->ress[3], cl->ress[4],
+	   cl->ress[5], cl->ress[6]);
+  tmp = reroll(cl);
+  while (tmp && tmp->end != 1)
+    {
+      if (tmp->type == GRAPHIC)
+	write(fd, str, strlen(str));
+      tmp = tmp->nt;
     }
   free(str);
 }

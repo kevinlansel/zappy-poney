@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Sun Jul 14 15:09:37 2013 florian dewulf
+** Last update Sun Jul 14 16:42:28 2013 florian dewulf
 */
 
 #ifndef			__SERVEUR_H__
@@ -203,7 +203,9 @@ void			getteam(char **, int, t_map **, t_client *);
 void			gettime(char **, int, t_map **, t_client *);
 double			get_time();
 double			get_time_client(t_client *client, int action);
+void			givecaseall(t_client *);
 int			give_id();
+void			giveinvall(t_client *);
 void			giveinventaire(int, t_client *);
 void			givelvl(t_client *, t_client *);
 void			giveposition(t_client *, t_client *);
