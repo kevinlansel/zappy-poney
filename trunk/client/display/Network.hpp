@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu Jul  4 12:01:16 2013 gery baudry
-// Last update Mon Jul 15 19:23:56 2013 gery baudry
+// Last update Mon Jul 15 19:54:16 2013 gery baudry
 //
 
 #ifndef					__NETWORK_HPP__
@@ -57,9 +57,9 @@ public:
   void					initConnexion();
   void					doLoop(gnl &);
   std::string				recup_firstPart(std::string &data);
-  std::vector<int>			checkData(std::string &data);
-  std::vector<std::string>		checkData2(std::string &data);
-  void					checkData3(std::string &data);
+  void			checkData(std::string &data, Message);
+  void		checkData2(std::string &data, Message);
+  void					checkData3(std::string &data, Message);
   std::vector<int>			recup_sizeMap(std::string &data);
   std::vector<int>			recup_mapContent(std::string &data);
   std::vector<int>			recup_caseContent(int y, int x);
@@ -70,18 +70,18 @@ public:
   void					recup_playerInventaire(int idPlayer);
   std::vector<std::string>		askForTimeUnit(std::string &data);
   void					setTimeUnit(int timeValue);
-  std::vector<std::string>		playerExpulse(std::string &data);
-  std::vector<std::string>		playerBroadcast(std::string &data);
-  std::vector<std::string>		launchIncantation(std::string &data);
-  std::vector<std::string>		endOfIncantation(std::string &data);
-  std::vector<std::string>		putAnEgg(std::string &data);
-  std::vector<std::string>		dropARessource(std::string &data);
-  std::vector<std::string>		takeARessource(std::string &data);
-  std::vector<std::string>		hungryDead(std::string &data);
-  std::vector<std::string>		eggPutByPlayer(std::string &data);
-  std::vector<std::string>		eggHatched(std::string &data);
-  std::vector<std::string>		playerConnectedForEgg(std::string &data);
-  std::vector<std::string>		eggDied(std::string &data);
+  void					playerExpulse(std::string &data);
+  void					playerBroadcast(std::string &data);
+  void					launchIncantation(std::string &data);
+  void					endOfIncantation(std::string &data);
+  void					putAnEgg(std::string &data);
+  void					dropARessource(std::string &data);
+  void					takeARessource(std::string &data);
+  void					hungryDead(std::string &data);
+  void					eggPutByPlayer(std::string &data);
+  void					eggHatched(std::string &data);
+  void					playerConnectedForEgg(std::string &data);
+  void					eggDied(std::string &data);
   std::vector<std::string>		endOfGame(std::string &data);
   std::vector<std::string>		serverMessage(std::string &data);
   void					unknownCommand();
