@@ -1,3 +1,13 @@
+//
+// Network.hpp for  in /home/lund/Projets/zappy-poney/client/ia
+// 
+// Made by florian dewulf
+// Login   <dewulf_f@epitech.net>
+// 
+// Started on  Mon Jul 15 17:11:03 2013 florian dewulf
+// Last update Mon Jul 15 17:54:48 2013 florian dewulf
+//
+
 #ifndef		__NETWORK_HPP__
 #define		__NETWORK_HPP__
 
@@ -25,6 +35,9 @@ public:
   virtual ~Network();
   void		initConnexion();
   std::string	communicate(std::string &);
+  int		getPort() const;
+  int		getSock() const;
+  std::string	getHost() const;
 };
 
 #endif
