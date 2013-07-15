@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:01:06 2013 Maxime Wojciak
-// Last update Sat Jul 13 17:17:27 2013 gery baudry
+// Last update Mon Jul 15 12:45:32 2013 gery baudry
 //
 
 #include	<iostream>
@@ -20,6 +20,7 @@
 #include	"Texture.hpp"
 #include	"Case.hpp"
 #include	"Souris.hpp"
+#include	"Message.hpp"
 
 Windows::Windows(int x, int y, const Network &net) : window(sf::VideoMode(1280, 1024), "Client Zappy", sf::Style::Fullscreen), _x(x), _y(y), _net(net), _mem(new Memory)
 {
@@ -99,6 +100,11 @@ void		Windows::DrawMap()
       y += this->taille.y;
     }
   this->_mem->DrawRec(this->window);
+}
+
+void				Windows::checkMess()
+{
+  if
 }
 
 // std::vector<Case>		Windows::getVector() const

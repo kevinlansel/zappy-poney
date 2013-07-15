@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu Jul  4 12:01:21 2013 gery baudry
-// Last update Fri Jul 12 14:47:20 2013 guillaume duez
+// Last update Mon Jul 15 13:16:36 2013 gery baudry
 //
 
 #include	"Network.hpp"
@@ -232,7 +232,7 @@ std::vector<int>			Network::checkData(std::string &data)
     }
   return list;
 }
-  
+
 std::vector<int>	Network::recup_sizeMap(std::string &data)
 {
   unsigned int		i = 4;
@@ -307,7 +307,7 @@ std::vector<std::string>	Network::playerExpulse(std::string &data)
   unsigned int		i = 5;
   std::string	res = "";
   std::vector<std::string>	list;
-  
+
   while (i < data.size() && data[i] != '\n')
     {
       res += data[i];
@@ -418,7 +418,7 @@ std::vector<std::string>		Network::putAnEgg(std::string &data)
 std::vector<std::string>		Network::dropARessource(std::string &data)
 {
   unsigned int	i = 5;
-  std::string	res = "";  
+  std::string	res = "";
   std::vector<std::string>	list;
 
   while (i < data.size())
@@ -442,7 +442,7 @@ std::vector<std::string>		Network::dropARessource(std::string &data)
 std::vector<std::string>		Network::takeARessource(std::string &data)
 {
   unsigned int	i = 5;
-  std::string	res = "";  
+  std::string	res = "";
   std::vector<std::string>	list;
 
   while (i < data.size())
@@ -513,7 +513,7 @@ std::vector<std::string>		Network::eggPutByPlayer(std::string &data)
     }
   return list;
 }
-  
+
 std::vector<std::string>		Network::eggHatched(std::string &data)
 {
   unsigned int	i = 5;
@@ -745,7 +745,7 @@ void       Network::recup_playerInventaire(int idPlayer)
   unsigned int		cpt = 0;
   std::string		s = "";
   std::ostringstream	idp;
-  
+
   idp << idPlayer;
   chaine = "pin #" + idp.str() + "\n";
   write(this->_sock, chaine.c_str(), chaine.size());
@@ -804,7 +804,7 @@ void			Network::setTimeUnit(int timeValue)
 std::vector<std::string>	Network::endOfGame(std::string &data)
 {
   unsigned int	i = 5;
-  std::string	res = "";  
+  std::string	res = "";
   std::vector<std::string>	list;
 
   while (i < data.size())
@@ -819,7 +819,7 @@ std::vector<std::string>	Network::endOfGame(std::string &data)
 std::vector<std::string>		Network::serverMessage(std::string &data)
 {
   unsigned int	i = 5;
-  std::string	res = "";  
+  std::string	res = "";
   std::vector<std::string>	list;
 
   while (i < data.size())

@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon Jul  8 15:02:02 2013 Maxime Wojciak
-// Last update Sat Jul 13 17:14:19 2013 gery baudry
+// Last update Mon Jul 15 12:46:31 2013 gery baudry
 //
 
 #include	"Message.hpp"
@@ -18,6 +18,11 @@ Message::Message(Memory *mem): _mem(mem)
 }
 
 Message::~Message() {
+}
+
+sf::Text		Message::getText() const
+{
+  return (this->text);
 }
 
 void	Message::setPex(int _n) {
