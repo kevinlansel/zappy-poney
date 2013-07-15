@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu Jul  4 12:01:21 2013 gery baudry
-// Last update Mon Jul 15 19:52:51 2013 gery baudry
+// Last update Mon Jul 15 20:22:59 2013 gery baudry
 //
 
 #include	"Network.hpp"
@@ -13,7 +13,7 @@
 int		tata(const std::string &noir);
 
 Network::Network(const std::string &host, int port, const std::string &team):
-  _host(host), _port(port), _team(team)
+  _host(host), _port(port), _team(team), _mem(new Memory), mess(this->_mem)
 {
   this->_kill = 0;
   this->_tailleX = 0;
@@ -179,7 +179,6 @@ void            Network::init_ptr()
 
 void			Network::checkData2(std::string &data, Message _mess)
 {
-  this->mess = _mess;
   std::string		word;
   int           i;
   static char   str[MAX][5] = { "tna", "sgt", "pnw", "pex",
@@ -201,7 +200,6 @@ void			Network::checkData2(std::string &data, Message _mess)
 void			Network::checkData3(std::string &data, Message _mess)
 {
   std::string		word;
-  this->mess = _mess;
   word = recup_firstPart(data);
   if (word == "suc")
     {
@@ -217,7 +215,6 @@ void			Network::checkData3(std::string &data, Message _mess)
 
 void			Network::checkData(std::string &data, Message _mess)
 {
-  this->mess = _mess;
   std::string		word;
 
   word = recup_firstPart(data);
