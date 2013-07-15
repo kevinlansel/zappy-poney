@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun 24 16:01:55 2013 guillaume duez
-** Last update Mon Jul 15 14:26:22 2013 florian dewulf
+** Last update Mon Jul 15 14:30:11 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -35,7 +35,7 @@ void		pose_objet(t_msg *msg, t_client *client, t_map **map, t_opt *o)
   msg->time = get_time_client(client, 7);
   tab_cmd = my_str_to_wordtab(msg->comand, ' ');
   while (strlen_tab(tab_cmd) == 2 && ++i < MAX)
-    if (strcmp(tab[i], tab_cmd[2]) == 0 && client->ress[i] > 0)
+    if (strcmp(tab[i], tab_cmd[1]) == 0 && client->ress[i] > 0)
       {
 	client->ress[i] -= (i > 0 ? 1 : 126);
 	client->map->ress[i] += 1;

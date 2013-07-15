@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun  3 15:13:05 2013 guillaume duez
-** Last update Fri Jul 12 14:02:33 2013 guillaume duez
+** Last update Mon Jul 15 14:57:34 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -18,9 +18,9 @@ t_msg		*exec_task(t_msg *task)
 {
   while (task && task->end != 1 && task->time < get_time())
     {
-      if (strcmp(task->comand, "elevation") == 0 && up_level(task) == 1)
+      if (strcmp(task->comand, "incantation") == 0 && up_level(task) == 1)
 	up_level(task);
-      else if (send_mess(task) == -1)
+      if (send_mess(task) == -1)
 	printf("unable to send_mess\n");
       task = task->nt;
       free(task->prev);
