@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon Jul  8 15:02:02 2013 Maxime Wojciak
-// Last update Mon Jul 15 12:46:31 2013 gery baudry
+// Last update Mon Jul 15 19:19:21 2013 gery baudry
 //
 
 #include	"Message.hpp"
@@ -15,25 +15,6 @@ std::string	tonton(int);
 Message::Message(Memory *mem): _mem(mem)
 {
   this->font.loadFromFile("../ressources/fonts/Sansation_Bold.ttf");
-  this->_map[0] = "pex";
-  this->_map[1] = "pbc";
-  this->_map[2] = "pic";
-  this->_map[3] = "pie";
-  this->_map[4] = "pfk";
-  this->_map[5] = "pdr";
-  this->_map[6] = "pgt";
-  this->_map[7] = "pdi";
-  this->_map[8] = "enw";
-  this->_map[9] = "eht";
-  this->_map[10] = "ebo";
-  this->_map[11] = "ebo";
-  this->_map[12] = "edi";
-  this->_map[13] = "sgt";
-  this->_map[14] = "seg";
-  this->_map[15] = "smg";
-  this->_map[16] = "pnw";
-  this->_map[17] = "suc";
-  this->_map[18] = "sbp";
 }
 
 Message::~Message() {
@@ -352,6 +333,16 @@ void	Message::setPnw(int _n, int _x, int _y, int _O, int _L, std::string _N) {
     setSbp();
 }
 
+void			Message::setPpo(int _x, int _y, int _O)
+{
+
+}
+
+void			Message::setPin(int _x, int _y, int _n, int _l, int _d, int _s, int _m, int _p, int _t)
+{
+
+}
+
 void	Message::setSuc() {
   this->text = sf::Text("Bad Command", this->font, 15);
   this->text.move(sf::Vector2f(1110, 900));
@@ -360,17 +351,4 @@ void	Message::setSuc() {
 void	Message::setSbp() {
   this->text = sf::Text("Bad Parameter", this->font, 15);
   this->text.move(sf::Vector2f(1110, 900));
-}
-
-int	Message::checkString(std::string &str)
-{
-  unsigned int	i = 0;
-  
-  while (i < 1)
-    {
-      if (this->_map[i] == str)
-	return i;
-      i++;
-    } 
-  return -1;
 }

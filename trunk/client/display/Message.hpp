@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon Jul  8 15:02:08 2013 Maxime Wojciak
-// Last update Mon Jul 15 12:45:59 2013 gery baudry
+// Last update Mon Jul 15 19:23:26 2013 gery baudry
 //
 
 #ifndef				MESSAGE__
@@ -45,17 +45,18 @@ public:
   void				setPnw(int, int, int, int, int, std::string);
   void				setSuc();
   void				setSbp();
-  int				checkString(std::string &);
+  void				setPpo(int, int, int);
+  void				setPlv(int);
+  void				setPin(int, int, int, int, int, int, int, int, int);
 
 public:
   sf::Text			getText() const;
-  
+
 private:
   sf::Text			text;
   sf::Font			font;
   sf::Music			sound;
   Memory			*_mem;
-  std::map<int, std::string>	_map;
 };
 
 #endif		/* !MESSAGE__ */

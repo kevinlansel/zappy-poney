@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu Jul  4 12:01:16 2013 gery baudry
-// Last update Fri Jul 12 14:50:16 2013 guillaume duez
+// Last update Mon Jul 15 19:23:56 2013 gery baudry
 //
 
 #ifndef					__NETWORK_HPP__
@@ -21,6 +21,7 @@
 #include				<cstring>
 #include				<cstdio>
 #include				<vector>
+#include	"Message.hpp"
 
 #include				"get_next_line.hpp"
 
@@ -40,6 +41,7 @@ private:
   std::vector<std::vector<int> >	_carte;
   std::vector<std::string>		_playerInfos;
   std::vector<std::string> (Network::*ptr_func[MAX])(std::string &req);
+  Message				mess;
 
 public:
   Network(const std::string &, int, const std::string &);

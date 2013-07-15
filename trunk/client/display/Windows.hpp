@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:00:59 2013 Maxime Wojciak
-// Last update Mon Jul 15 15:52:07 2013 gery baudry
+// Last update Mon Jul 15 19:19:59 2013 gery baudry
 //
 
 #ifndef		WINDOWS__
@@ -26,18 +26,17 @@ public:
 public:
   void			CreateWindows(gnl &);
   void			DrawMap();
-  //  std::vector<Case>	getVector() const;
-  void			checkMess();
+  void			checkMess(int);
 
 private:
   sf::Event		event;
   sf::RenderWindow	window;
-  //std::vector<Case>	map;
   int			_x;
   int			_y;
   sf::Vector2f		taille;
   Network		_net;
   Memory		*_mem;
+  Message		mess;
 };
 
 #endif			/* WINDOWS__ */
