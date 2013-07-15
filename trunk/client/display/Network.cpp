@@ -314,7 +314,7 @@ void	Network::playerExpulse(std::string &data)
       i++;
     }
   list.push_back(res);
-  this->mess.setPex(list[0]);
+  //  this->mess.setPex(list[0]);
 }
 
 void	Network::playerBroadcast(std::string &data)
@@ -544,7 +544,7 @@ void		Network::playerConnectedForEgg(std::string &data)
   this->mess.setEbo(tata(list[0]));
 }
 
-std::vector<std::string>		Network::eggDied(std::string &data)
+void		Network::eggDied(std::string &data)
 {
   unsigned int	i = 5;
   std::string	res = "";
@@ -609,7 +609,7 @@ std::vector<int>		Network::recup_caseContent(int y, int x)
   return (list);
 }
 
-std::vector<std::string>	Network::recup_teamName(std::string &data)
+void	Network::recup_teamName(std::string &data)
 {
   std::string		team = "";
   unsigned int		i = 4;
@@ -625,7 +625,6 @@ std::vector<std::string>	Network::recup_teamName(std::string &data)
       i++;
     }
   list.push_back(team);
-  return list;
 }
 
 void	Network::recup_playerInfos(std::string &data)
@@ -648,7 +647,7 @@ void	Network::recup_playerInfos(std::string &data)
 	  i++;
 	}
     }
-  this->mess.setPnw(tata(tmp[0]), tata(tmp[1]), tata(tmp[2]), tata(tmp[3]), tata(tmp[4]), tmp[5]);
+  //this->mess.setPnw(tata(tmp[0]), tata(tmp[1]), tata(tmp[2]), tata(tmp[3]), tata(tmp[4]), tmp[5]);
 }
 
 void	Network::recup_playerPosition(int idPlayer)
@@ -693,7 +692,7 @@ void	Network::recup_playerPosition(int idPlayer)
 	}
     }
   list = this->_playerInfos;
-  this->mess.setPpo(tata(list[0]), tata(list[1]), tata(list[2]));
+  //this->mess.setPpo(tata(list[0]), tata(list[1]), tata(list[2]));
 }
 
 void	Network::recup_playerLevel(int idPlayer)
@@ -736,7 +735,7 @@ void	Network::recup_playerLevel(int idPlayer)
 	  i++;
 	}
     }
-  this->mess.setPlv(this->_playerInfos[3]);
+  //  this->mess.setPlv(this->_playerInfos[3]);
 }
 
 void       Network::recup_playerInventaire(int idPlayer)
@@ -777,10 +776,10 @@ void       Network::recup_playerInventaire(int idPlayer)
 	  i++;
 	}
     }
-  this->mess.setPin(tata(list[0]), tata(list[1]), tata(list[2]), tata(list[3]), tata(list[4]), tata(list[5]), tata(list[6]), tata(list[7]), tata(list[8]));
+  this->mess.setPin(tata(this->_playerInfos[0]), tata(this->_playerInfos[1]), tata(this->_playerInfos[2]), tata(this->_playerInfos[3]), tata(this->_playerInfos[4]), tata(this->_playerInfos[5]), tata(this->_playerInfos[6]), tata(this->_playerInfos[7]), tata(this->_playerInfos[8]));
 }
 
-std::vector<std::string>	Network::askForTimeUnit(std::string &data)
+void	Network::askForTimeUnit(std::string &data)
 {
   unsigned int		i = 4;
   std::string		chaine = "";
@@ -792,7 +791,6 @@ std::vector<std::string>	Network::askForTimeUnit(std::string &data)
       i++;
     }
   list.push_back(chaine);
-  return list;
 }
 
 void			Network::setTimeUnit(int timeValue)
@@ -805,7 +803,7 @@ void			Network::setTimeUnit(int timeValue)
   write(this->_sock, chaine.c_str(), chaine.size());
 }
 
-std::vector<std::string>	Network::endOfGame(std::string &data)
+void	Network::endOfGame(std::string &data)
 {
   unsigned int	i = 5;
   std::string	res = "";
@@ -817,10 +815,9 @@ std::vector<std::string>	Network::endOfGame(std::string &data)
       i++;
     }
   list.push_back(res);
-  return list;
 }
 
-std::vector<std::string>		Network::serverMessage(std::string &data)
+void		Network::serverMessage(std::string &data)
 {
   unsigned int	i = 5;
   std::string	res = "";
