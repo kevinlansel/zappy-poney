@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:01:06 2013 Maxime Wojciak
-// Last update Mon Jul 15 19:20:53 2013 gery baudry
+// Last update Mon Jul 15 20:26:08 2013 gery baudry
 //
 
 #include	<iostream>
@@ -66,9 +66,9 @@ void		Windows::CreateWindows(gnl &gl)
 	      if (FD_ISSET(this->_net.getSock(), &fd_read))
 		{
 		  req = gl.get_next_line();
-		  this->_net.checkData(req, this->mess);
-		  this->_net.checkData2(req, this->mess);
-		  this->_net.checkData3(req, this->mess);
+		  this->_net.checkData(req);
+		  this->_net.checkData2(req);
+		  this->_net.checkData3(req);
 		}
 	    }
 	}
