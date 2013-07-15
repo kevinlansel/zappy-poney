@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:01:06 2013 Maxime Wojciak
-// Last update Mon Jul 15 12:45:32 2013 gery baudry
+// Last update Mon Jul 15 17:50:46 2013 gery baudry
 //
 
 #include	<iostream>
@@ -104,7 +104,98 @@ void		Windows::DrawMap()
 
 void				Windows::checkMess()
 {
-  if
+  int		i;
+  Message		mess;
+
+  switch (i)
+    {
+    case 0:
+      {
+	mess.setPex(int);
+	break;
+      }
+    case 1:
+      {
+	mess.setPbc(string, string);
+	break;
+      }
+    case 2:
+      {
+	mess.setPic(int, int, int, string);
+	break;
+      }
+    case 3:
+      {
+	mess.setPie(int, int, int, int);
+	break;
+      }
+    case 4:
+      {
+	mess.setPfk(int, int);
+	break;
+      }
+    case 5:
+      {
+	mess.setPdr(int, int);
+	break;
+      }
+    case 6:
+      {
+	mess.setPgt(int, int);
+	break;
+      }
+    case 7:
+      {
+	mess.setPdi(int);
+	break;
+      }
+    case 8:
+      {
+	mess.setEnw(int, int, int, int);
+	break;
+      }
+    case 9:
+      {
+	mess.setEht(int);
+	break;
+      }
+    case 10:
+      {
+	mess.setEbo(int);
+	break;
+      }
+    case 11:
+      {
+	mess.setEdi(int);
+	break;
+      }
+    case 12:
+      {
+	mess.setSgt(int);
+	break;
+      }
+    case 13:
+      {
+	mess.setSeg(string);
+	break;
+      }
+    case 14:
+      {
+	mess.setSmg(string);
+	break;
+      }
+    case 15:
+      {
+	mess.setPnw(int, int, int, int, int, string);
+	break;
+      }
+    case 15:
+      {
+	mess.setSuc();
+	break;
+      }
+    }
+  return (void);
 }
 
 // std::vector<Case>		Windows::getVector() const
