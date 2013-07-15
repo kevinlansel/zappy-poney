@@ -226,9 +226,9 @@ void			Network::checkData3(std::string &data)
       std::cout << "suc" << std::endl;
       unknownCommand();
     }
-  else if (word == "spb")
+  else if (word == "sbp")
     {
-      std::cout << "spb" << std::endl;
+      std::cout << "sbp" << std::endl;
       wrongParameters();
     }
 }
