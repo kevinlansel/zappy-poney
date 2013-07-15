@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon Jul  8 15:02:02 2013 Maxime Wojciak
-// Last update Mon Jul 15 20:11:54 2013 gery baudry
+// Last update Mon Jul 15 20:49:47 2013 gery baudry
 //
 
 #include	"Message.hpp"
@@ -17,7 +17,16 @@ Message::Message(Memory *mem): _mem(mem)
   this->font.loadFromFile("../ressources/fonts/Sansation_Bold.ttf");
 }
 
+Message::Message(const Message &d): _mem(d.getMem())
+{
+}
+
 Message::~Message() {
+}
+
+Memory			*Message::getMem() const
+{
+  return (this->_mem);
 }
 
 sf::Text		Message::getText() const

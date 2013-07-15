@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon Jul  8 15:02:08 2013 Maxime Wojciak
-// Last update Mon Jul 15 19:23:26 2013 gery baudry
+// Last update Mon Jul 15 20:50:47 2013 gery baudry
 //
 
 #ifndef				MESSAGE__
@@ -24,7 +24,9 @@ class				Message
 {
 public:
   Message(Memory *);
+  Message(const Message &);
   ~Message();
+  Memory			*getMem() const;
 
 public:
   void				setPex(int);
