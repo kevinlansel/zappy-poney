@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu Jul  4 12:01:21 2013 gery baudry
-// Last update Mon Jul 15 20:22:59 2013 gery baudry
+// Last update Mon Jul 15 20:25:49 2013 gery baudry
 //
 
 #include	"Network.hpp"
@@ -177,7 +177,7 @@ void            Network::init_ptr()
   this->ptr_func[16] = (&Network::serverMessage);
 }
 
-void			Network::checkData2(std::string &data, Message _mess)
+void			Network::checkData2(std::string &data)
 {
   std::string		word;
   int           i;
@@ -197,7 +197,7 @@ void			Network::checkData2(std::string &data, Message _mess)
     }
 }
 
-void			Network::checkData3(std::string &data, Message _mess)
+void			Network::checkData3(std::string &data)
 {
   std::string		word;
   word = recup_firstPart(data);
@@ -213,7 +213,7 @@ void			Network::checkData3(std::string &data, Message _mess)
     }
 }
 
-void			Network::checkData(std::string &data, Message _mess)
+void			Network::checkData(std::string &data)
 {
   std::string		word;
 
