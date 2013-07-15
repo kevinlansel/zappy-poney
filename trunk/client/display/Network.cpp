@@ -129,7 +129,7 @@ void			Network::doLoop(gnl &gl)
   	    {
   	      req = gl.get_next_line();
   	      if (recup_firstPart(req) == "sgt")
-  		this->_sgt = askForTimeUnit(req);
+  		askForTimeUnit(req);
   	    }
   	}
       cpt++;
