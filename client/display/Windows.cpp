@@ -44,21 +44,28 @@ void		Windows::CreateWindows(gnl &gl)
 
   while (this->window.isOpen())
     {
+      std::cout << "avant boucle" << std::endl;
       while (this->window.pollEvent(this->event))
         {
+	  std::cout << "debut boucle" << std::endl;
 	  if ((this->event.type == sf::Event::Closed) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)))
 	    {
 	      std::cout << "Client exiting. Bye !" << std::endl;
 	      this->window.close();
 	    }
+	  std::cout << "apres if" << std::endl;
 	  FD_ZERO(&fd_read);
 	  FD_SET(this->_net.getSock(), &fd_read);
+	  std::cout << "apres sock" << std::endl;
 	  if (gl.getbuffer() != "")
 	    {
 	      req = gl.get_next_line();
 	      this->_net.checkData(req);
+	      std::cout << "toto" << std::endl;
 	      this->_net.checkData2(req);
+	      std::cout << "toto2" << std::endl;
 	      this->_net.checkData3(req);
+	      std::cout << "toto3" << std::endl;
 	    }
 	  else if ((a = select(this->_net.getSock() + 1, &fd_read, NULL, NULL, &tv)) != -1)
 	    {
@@ -66,10 +73,14 @@ void		Windows::CreateWindows(gnl &gl)
 		{
 		  req = gl.get_next_line();
 		  this->_net.checkData(req);
+		  std::cout << "toto" << std::endl;
 		  this->_net.checkData2(req);
+		  std::cout << "toto2" << std::endl;
 		  this->_net.checkData3(req);
+		  std::cout << "toto3" << std::endl;
 		}
 	    }
+	  std::cout << "fin boucle" << std::endl;
 	}
       this->window.clear();
       DrawMap();

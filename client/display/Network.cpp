@@ -84,7 +84,13 @@ void		Network::initConnexion()
   s_in.sin_port = htons(this->_port);
   s_in.sin_addr.s_addr = inet_addr(this->_host.c_str());
   this->_sock = socket(AF_INET, SOCK_STREAM, pe->p_proto);
-  connect(this->_sock, (struct sockaddr *)&s_in, sizeof(s_in));
+  std::cout << this->_sock << std::endl;
+  if (connect(this->_sock, (struct sockaddr *)&s_in, sizeof(s_in)) == -1)
+    {
+      std::cerr << "Probleme lors de la connexion" << std::endl;
+      close(this->_sock);
+      exit(-1);
+    }
 }
 
 void			Network::doLoop(gnl &gl)
