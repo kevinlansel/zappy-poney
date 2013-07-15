@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Wed Jun 26 13:00:58 2013 florian dewulf
-** Last update Fri Jul  5 01:10:28 2013 florian dewulf
+** Last update Mon Jul 15 16:25:26 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -78,7 +78,7 @@ static char	**manage_team(char **team, char **av, int *off)
       nb = 0;
       while (tab && tab[nb])
 	nb++;
-      if ((tab = realloc(tab, nb + 2)) != NULL)
+      if ((tab = realloc(tab, (nb + 2) * sizeof(char *))) != NULL)
 	{
 	  tab[nb] = strdup(av[*off + count]);
 	  tab[nb + 1] = NULL;
