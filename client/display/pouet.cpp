@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Tue Jul  9 15:54:45 2013 Maxime Wojciak
-// Last update Mon Jul 15 17:34:15 2013 Maxime Wojciak
+// Last update Mon Jul 15 17:36:50 2013 Maxime Wojciak
 //
 
 #include	<string>
@@ -22,6 +22,6 @@ int		tata(const std::string &noir) {
   int			value;
 
   ss.str(noir);
-  value << ss;
+  ss >> value;
   return value;
 }
