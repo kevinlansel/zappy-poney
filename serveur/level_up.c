@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Wed Jul  3 14:39:06 2013 guillaume duez
-** Last update Fri Jul 12 17:13:57 2013 florian dewulf
+** Last update Mon Jul 15 15:31:42 2013 guillaume duez
 */
 
 #include	<string.h>
@@ -32,22 +32,22 @@ static int	check_nbr_client(int level, t_client *client, t_map *map, int opt)
   int		i;
 
   i = 0;
-  while (client)
+  while (client && client->end != 1)
     {
-       if (client->type == CLIENT && client->map == map
-	   && client->level - 1 == level)
-	 i++;
+      if (client->type == CLIENT && client->map == map
+	  && client->level - 1 == level)
+	i++;
       client = client->nt;
     }
   client = client_reset(client);
-  while (player_need[level] == i && opt == 1 && client)
+  while (player_need[level] == i && opt == 1 && client->end != 1)
     {
-        if (client->type == CLIENT && client->map == map
-	    && client->level - 1 == level)
-	  {
-	    client->level++;
-	    send_mess(create_mess(client, get_mess_level_up(client->level)));
-	  }
+      if (client->type == CLIENT && client->map == map
+	  && client->level - 1 == level)
+	{
+	  client->level++;
+	  send_mess(create_mess(client, get_mess_level_up(client->level)));
+	}
       client = client->nt;
     }
   if (player_need[level] == i)
@@ -65,19 +65,21 @@ static int	check_ress(int level, t_map *map,
 				   { 2, 2, 2, 2, 2, 1 }};
   int		i;
 
-  i = -1;
-  tmp = client;
+  tmp = (i = -1) ? client : client;
   if (check_nbr_client(level, client_reset(client), map, 0) == 1)
     {
-      while (level < LVL && ++i < MAX)
-	if (map->ress[i] < ress[level][i])
-	  i = MAX;
+      while (level < LVL && i < MAX)
+	{
+	  if (map->ress[i + 1] < ress[level][i])
+	    i = MAX;
+	  i++;
+	}
     }
   if (i == MAX && opt == 1)
     {
       i = -1;
       while (++i < MAX)
-	map->ress[i] -= ress[level][i];
+	map->ress[i + 1] -= ress[level][i];
     }
   client = tmp;
   return (i == MAX ? 1 : -1);
@@ -86,16 +88,16 @@ static int	check_ress(int level, t_map *map,
 void		level_up(t_msg *msg, t_client *client, t_map **map, t_opt *opt)
 {
   (void)opt;
+  sub_food(msg, client, "elevation en cours\n");
+  send_mess(msg);
   if (map && client &&
       check_ress(client->level - 1, client->map, client, 0) == 1)
     {
-      sub_food(msg, client, "elevation en cours\n");
-      send_mess(msg);
       msg->time = get_time_client(client, 300);
       begin_incant(client->level, client, client->map->x, client->map->y);
     }
   else
-      sub_food(msg, client, "ko\n");
+    sub_food(msg, msg->client, "elevation fail\n");
 }
 
 int		up_level(t_msg *msg)
@@ -103,10 +105,11 @@ int		up_level(t_msg *msg)
   t_client	*client;
 
   client = msg->client;
-  if (msg && msg->client)
+  if (msg && msg->client && strcmp(msg->cmd, "elevation fail\n") != 0)
     {
       if (check_ress(msg->client->level - 1, msg->client->map, msg->client, 1) == 1)
 	{
+	  sub_food(msg, msg->client, get_mess_level_up(msg->client->level));
 	  msg->client = client_reset(msg->client);
 	  check_nbr_client(msg->client->level - 1, msg->client, msg->client->map, 1);
 	  msg->client = client;
@@ -114,6 +117,8 @@ int		up_level(t_msg *msg)
 	  return 1;
 	}
     }
+  else
+    sub_food(msg, msg->client, get_mess_level_up(msg->client->level));
   end_incant(0, client);
   return -1;
 }

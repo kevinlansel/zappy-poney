@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Tue May 28 16:48:58 2013 guillaume duez
-** Last update Sun Jul 14 15:16:32 2013 florian dewulf
+** Last update Mon Jul 15 15:00:35 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -36,7 +36,7 @@ void		avance(t_msg *msg, t_client *client, t_map **map, t_opt *opt)
     }
   client->direct = type;
   giveposition(client, reroll(client));
-  printf("position x : %d , position y : %d\n",  client->map->x, client->map->y);
+  printf("position x : %d , position y : %d level : %d\n",  client->map->x, client->map->y, client->level);
 }
 
 void		droite(t_msg *msg, t_client *client, t_map **map, t_opt *opt)
