@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 17:52:10 2013 guillaume duez
-** Last update Fri Jul 12 14:03:31 2013 guillaume duez
+** Last update Mon Jul 15 16:26:30 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -60,6 +60,7 @@ static void     set_fd(fd_set *listen_select,
   FD_SET(co->fd, listen_select);
   *max = co->fd;
   co->tv->tv_usec = 20000;
+  co->tv->tv_sec = 0;
   while (client && client->end != 1)
     {
       if (client->type != EGG)

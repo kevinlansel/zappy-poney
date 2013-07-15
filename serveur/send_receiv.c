@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:15:13 2013 guillaume duez
-** Last update Sun Jul 14 16:32:06 2013 florian dewulf
+** Last update Mon Jul 15 16:29:35 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -61,7 +61,7 @@ t_msg		*create_mess(t_client *client, char *str)
   msg = xmalloc(sizeof(t_msg));
   if (msg != NULL)
     {
-      msg->cmd = xmalloc(strlen(str));
+      msg->cmd = xmalloc(strlen(str) + 1);
       msg->cmd = strcpy(msg->cmd, str);
     }
   msg->client = client;
