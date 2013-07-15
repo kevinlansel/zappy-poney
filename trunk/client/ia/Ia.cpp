@@ -5,7 +5,7 @@
 // Login   <lansel_k@epitech.net>
 // 
 // Started on  Thu Jun 27 17:17:04 2013 kevin lansel
-// Last update Fri Jul 12 14:30:37 2013 kevin lansel
+// Last update Mon Jul 15 16:21:36 2013 kevin lansel
 //
 
 #include	<vector>
@@ -132,7 +132,6 @@ std::vector<std::string>	Ia::getRessource(void) const
 
 emsg		Ia::maj_inv(void)
 {
-  //snd("inventaire");
   std::string			tmp;
   std::vector<std::string>	vec;
   std::string			rec;
@@ -140,7 +139,8 @@ emsg		Ia::maj_inv(void)
   std::stringstream		ss;
   int				i;
 
-  tmp = "{nourriture 35, linemate 0, deraumere 0, sibur 0, mendiane 0, phiras 0, thystame 0}";
+  //snd("inventaire");
+  tmp = "{nourriture 51, linemate 0, deraumere 0, sibur 0, mendiane 0, phiras 0, thystame 0}";
   if (tmp.find("{") == 0);
     tmp = tmp.substr(tmp.find("{") + 1, tmp.length());
     if (tmp.find("}") == tmp.length() - 1)
@@ -170,7 +170,7 @@ emsg		Ia::faim(void)
   int		t;
 
   t = this->_inv["nourriture"];
-  if (t < 20)
+  if (t < 50)
     return (OK);
   else
     return (KO);
@@ -182,11 +182,11 @@ emsg		Ia::move_rd(void) const
 
   rd = rand() % 3;
   if (rd == 0)
-    ; //return (snd("avance"));
+    ; //snd("avance");
   else if (rd == 1)
-    ; //return (snd("gauche"));
+    ; //snd("gauche");
   else
-    ; //return (snd("droite"));
+    ; //snd("droite");
   return (OK);
 }
 
@@ -314,9 +314,29 @@ emsg				Ia::check_inv(void)
     return (KO);
 }
 
-emsg				Ia::voir(void)
+static int	count_player(const std::vector<std::string> &see)
 {
-  std::string			see;
+  std::string	tmp;
+  std::string	cut;
+  int		p;
+
+  p = 0;
+  if (see.size() <= 0)
+    return (-1);
+  tmp = see[0];
+  while (tmp.find("joueur") != std::string::npos)
+    {
+      p += 1;
+      cut = tmp.substr(0, tmp.find("joueur"));
+      tmp = tmp.substr(tmp.find("joueur") + 6, tmp.length());
+      tmp = cut + tmp;
+    }
+  std::cout << "----" << tmp << "----" << std::endl;
+  return (p);
+}
+
+std::vector<std::string>	Ia::voir(void)
+{
   std::string			tmp;
   std::vector<std::string>	vec;
   std::vector<std::string>	need;
@@ -324,15 +344,13 @@ emsg				Ia::voir(void)
   int				i;
 
   i = 0;
-  ; //see = snd("voir");
-  tmp = "{linemate deraumere,,, thystame,, nourriture,,,,, thystame,,,,,}";
+  ; //tmp = snd("voir");
+  tmp = "{joueur joueur joueur linemate deraumere,,, thystame,, nourriture,,,,, thystame,,,,,}";
   if (tmp.find("{") == 0 && tmp.find("}") == tmp.length() - 1)
     {
       tmp = tmp.substr(tmp.find("{") + 1, tmp.length());
       tmp = tmp.substr(0, tmp.find("}"));
     }
-  else if ((tmp.find("{") == std::string::npos && tmp.find("}") != std::string::npos) || (tmp.find("{") != std::string::npos && tmp.find("}") == std::string::npos))
-    return (ERROR);
   while (tmp != "")
     {
       vec.push_back(tmp.substr(0, tmp.find(",")));
@@ -344,17 +362,18 @@ emsg				Ia::voir(void)
   std::cout << "-------------------------" << std::endl;
   what();
   std::cout << "-------------------------" << std::endl;
-  for (std::vector<std::string>::iterator it = vec.begin() ; it != vec.end() ; ++it)
+  /*for (std::vector<std::string>::iterator it = vec.begin() ; it != vec.end() ; ++it)
     {
       for (std::vector<std::string>::iterator ti = this->_ressource.begin() ; ti != this->_ressource.end() ; ++ti)
 	{
-	  if ((*it).find((*ti)) >= 0 && (*it).find((*ti)) <= (*ti).length())
-	    std::cout << i << std::endl;
+	  if ((*it).find((*ti)) != std::string::npos)
+	    std::cout << "-----------------------------------------------> " << i << std::endl;
 	}
       std::cout << "--[" << *it << "]--"<< std::endl;
       i++;
-    }
-  return (OK);
+    }*/
+  vide_case(vec);
+  return (vec);
 }
 
 emsg		Ia::msg_list(void) const
@@ -475,7 +494,7 @@ int		Ia::max_member(void)
 	  break;
 	}
     }
-  return (0);
+  return (-1);
 }
 
 emsg		Ia::make(void)
@@ -571,6 +590,19 @@ emsg		Ia::break_group(void)
   ; //return (snd("broadcast BREAK " + lvl));
 }
 
+emsg		Ia::incantation()
+{
+  std::string	msg;
+
+  ;//msg = snd("incantation");
+  return (UP);
+}
+
+emsg		Ia::level_up()
+{
+
+}
+
 emsg		Ia::brk(void)
 {
   this->_group = 0;
@@ -595,11 +627,61 @@ emsg		Ia::pose_objet(void)
 	  this->_inv[it->first] -= 1;
 	}
     }
+  return (INCANT);
 }
 
-emsg		Ia::check_case(void)
+emsg		Ia::check_group(void)
 {
+  if (this->_member == max_member())
+    return (OK);
+  else
+    return (KO);
+}
 
+emsg				Ia::vide_case(const std::vector<std::string> &see)
+{
+  std::string			tmp;
+  std::vector<std::string>	take;
+  std::string			word;
+
+  if (see.size() <= 0)
+    return (ERROR);
+  tmp = see[0];
+  while (tmp != "")
+    {
+      if (tmp.find(" ") != std::string::npos)
+	{
+	  take.push_back(tmp.substr(0, tmp.find(" ")));
+	  tmp = tmp.substr(tmp.find(" ") + 1, tmp.length());
+	}
+      else
+	{
+	  take.push_back(tmp.substr(0, tmp.length()));
+	  tmp = "";
+	}
+    }
+  for (std::vector<std::string>::iterator it = take.begin(); it != take.end(); ++it)
+    {
+      if (*it != "joueur")
+	{
+	  //snd("prend " + *it);
+	  std::cout << "prend " + *it << std::endl;
+	}
+    }
+  return (POSE);
+}
+
+emsg				Ia::check_inc(void)
+{
+  std::vector<std::string>	see;
+  int				p;
+
+  see = voir();
+  p = count_player(see);
+  if (p < max_member())
+    return (JOIN);
+  else
+    return (vide_case(see));
 }
 
 emsg		Ia::prendre_pierre(void)
@@ -612,11 +694,21 @@ emsg		Ia::prendre_nourriture(void) const
   ; // return (snd("prend nourriture"));
 }
 
-int				main()
+emsg		Ia::check_case(void)
+{
+  std::vector<std::string>	see;
+
+  see = this->voir();
+}
+
+
+int				main(int ac, char **av)
 {
   Ia				bot;
   std::map<std::string, int>	tmp;
 
+  if (ac < 4)
+    std::cout << "Usage : ./ia [host] [port] [team]" << std::endl;
   tmp = bot.getInv();
   for (std::map<std::string, int>::iterator it = tmp.begin() ; it != tmp.end() ; ++it)
     std::cout << it->first << " : " << it->second<< std::endl;
