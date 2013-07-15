@@ -5,10 +5,12 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu Jul  4 12:01:21 2013 gery baudry
-// Last update Mon Jul 15 19:27:15 2013 gery baudry
+// Last update Mon Jul 15 19:52:51 2013 gery baudry
 //
 
 #include	"Network.hpp"
+
+int		tata(const std::string &noir);
 
 Network::Network(const std::string &host, int port, const std::string &team):
   _host(host), _port(port), _team(team)
@@ -175,11 +177,10 @@ void            Network::init_ptr()
   this->ptr_func[16] = (&Network::serverMessage);
 }
 
-std::vector<std::string>			Network::checkData2(std::string &data, Message _mess)
+void			Network::checkData2(std::string &data, Message _mess)
 {
   this->mess = _mess;
   std::string		word;
-  std::vector<std::string>	list;
   int           i;
   static char   str[MAX][5] = { "tna", "sgt", "pnw", "pex",
 				"pbc", "pic", "pie", "pfk", "pdr",
@@ -192,10 +193,9 @@ std::vector<std::string>			Network::checkData2(std::string &data, Message _mess)
   while (i < MAX)
     {
       if (word.c_str() == str[i])
-        list = (this->*ptr_func[i]) (data);
+        (this->*ptr_func[i]) (data);
       i++;
     }
-  return list;
 }
 
 void			Network::checkData3(std::string &data, Message _mess)
@@ -215,24 +215,22 @@ void			Network::checkData3(std::string &data, Message _mess)
     }
 }
 
-std::vector<int>			Network::checkData(std::string &data, Message _mess)
+void			Network::checkData(std::string &data, Message _mess)
 {
   this->mess = _mess;
   std::string		word;
-  std::vector<int>	list;
 
   word = recup_firstPart(data);
   if (word == "msz")
     {
       std::cout << "msz" << std::endl;
-      list = recup_sizeMap(data);
+      recup_sizeMap(data);
     }
   else if (word == "bct")
     {
       std::cout << "bct" << std::endl;
-      list = recup_mapContent(data);
+      recup_mapContent(data);
     }
-  return list;
 }
 
 std::vector<int>	Network::recup_sizeMap(std::string &data)
@@ -304,7 +302,7 @@ std::vector<int>		Network::recup_mapContent(std::string &data)
   return (s2);
 }
 
-std::vector<std::string>	Network::playerExpulse(std::string &data)
+void	Network::playerExpulse(std::string &data)
 {
   unsigned int		i = 5;
   std::string	res = "";
@@ -319,7 +317,7 @@ std::vector<std::string>	Network::playerExpulse(std::string &data)
   this->mess.setPex(list[0]);
 }
 
-std::vector<std::string>	Network::playerBroadcast(std::string &data)
+void	Network::playerBroadcast(std::string &data)
 {
   unsigned int		i = 5;
   std::vector<std::string>	list;
@@ -342,7 +340,7 @@ std::vector<std::string>	Network::playerBroadcast(std::string &data)
   this->mess.setPbc(list[0], list[1]);
 }
 
-std::vector<std::string>	Network::launchIncantation(std::string &data)
+void	Network::launchIncantation(std::string &data)
 {
   unsigned int		i = 4;
   std::string		res = "";
@@ -377,10 +375,10 @@ std::vector<std::string>	Network::launchIncantation(std::string &data)
       else
 	i++;
     }
-  this->mess.setPic(list[0], list[1], list[2], list[3]);
+  this->mess.setPic(tata(list[0]), tata(list[1]), tata(list[2]), list[3]);
 }
 
-std::vector<std::string>	Network::endOfIncantation(std::string &data)
+void	Network::endOfIncantation(std::string &data)
 {
   std::string		res = "";
   std::vector<std::string>	list;
@@ -399,10 +397,10 @@ std::vector<std::string>	Network::endOfIncantation(std::string &data)
       i++;
       cpt++;
     }
-  this->mess.setPfk(list[0], list[1]);
+  this->mess.setPfk(tata(list[0]), tata(list[1]));
 }
 
-std::vector<std::string>		Network::putAnEgg(std::string &data)
+void		Network::putAnEgg(std::string &data)
 {
   unsigned int		i = 5;
   std::string	res = "";
@@ -414,10 +412,10 @@ std::vector<std::string>		Network::putAnEgg(std::string &data)
       i++;
     }
   list.push_back(res);
-  this->mess.setPfk(list[0], list[1]);
+  this->mess.setPfk(tata(list[0]), tata(list[1]));
 }
 
-std::vector<std::string>		Network::dropARessource(std::string &data)
+void		Network::dropARessource(std::string &data)
 {
   unsigned int	i = 5;
   std::string	res = "";
@@ -438,10 +436,10 @@ std::vector<std::string>		Network::dropARessource(std::string &data)
     }
   list.push_back(res);
   res = "";
-  this->mess.setPdr(list[0], list[1]);
+  this->mess.setPdr(tata(list[0]), tata(list[1]));
 }
 
-std::vector<std::string>		Network::takeARessource(std::string &data)
+void		Network::takeARessource(std::string &data)
 {
   unsigned int	i = 5;
   std::string	res = "";
@@ -462,10 +460,10 @@ std::vector<std::string>		Network::takeARessource(std::string &data)
     }
   list.push_back(res);
   res = "";
-  return list;
+  this->mess.setPgt(tata(list[0]), tata(list[1]));
 }
 
-std::vector<std::string>		Network::hungryDead(std::string &data)
+void		Network::hungryDead(std::string &data)
 {
   unsigned int	i = 5;
   std::string	res = "";
@@ -477,10 +475,10 @@ std::vector<std::string>		Network::hungryDead(std::string &data)
       i++;
     }
   list.push_back(res);
-  return list;
+  this->mess.setPdi(tata(list[0]));
 }
 
-std::vector<std::string>		Network::eggPutByPlayer(std::string &data)
+void	Network::eggPutByPlayer(std::string &data)
 {
   unsigned int		i = 4;
   std::string		res = "";
@@ -513,10 +511,10 @@ std::vector<std::string>		Network::eggPutByPlayer(std::string &data)
       res = "";
       i++;
     }
-  this->mess.setPgt(list[0], list[1]);
+  this->mess.setPgt(tata(list[0]), tata(list[1]));
 }
 
-std::vector<std::string>		Network::eggHatched(std::string &data)
+void		Network::eggHatched(std::string &data)
 {
   unsigned int	i = 5;
   std::string	res = "";
@@ -528,10 +526,10 @@ std::vector<std::string>		Network::eggHatched(std::string &data)
       i++;
     }
   list.push_back(res);
-  this->mess.setEht(list[0]);
+  this->mess.setEht(tata(list[0]));
 }
 
-std::vector<std::string>		Network::playerConnectedForEgg(std::string &data)
+void		Network::playerConnectedForEgg(std::string &data)
 {
   unsigned int	i = 5;
   std::string	res = "";
@@ -543,7 +541,7 @@ std::vector<std::string>		Network::playerConnectedForEgg(std::string &data)
       i++;
     }
   list.push_back(res);
-  this->mess.setEbo(list[0]);
+  this->mess.setEbo(tata(list[0]));
 }
 
 std::vector<std::string>		Network::eggDied(std::string &data)
@@ -558,7 +556,7 @@ std::vector<std::string>		Network::eggDied(std::string &data)
       i++;
     }
   list.push_back(res);
-  this->mess.setEdi(list[0]);
+  this->mess.setEdi(tata(list[0]));
 }
 
 std::vector<int>		Network::recup_caseContent(int y, int x)
@@ -630,7 +628,7 @@ std::vector<std::string>	Network::recup_teamName(std::string &data)
   return list;
 }
 
-std::vector<std::string>	Network::recup_playerInfos(std::string &data)
+void	Network::recup_playerInfos(std::string &data)
 {
   unsigned int		i = 5;
   std::string		s = "";
@@ -650,7 +648,7 @@ std::vector<std::string>	Network::recup_playerInfos(std::string &data)
 	  i++;
 	}
     }
-  this->mess.setPnw(list[0], list[1], list[2], list[3], list[4], list[5]);
+  this->mess.setPnw(tata(tmp[0]), tata(tmp[1]), tata(tmp[2]), tata(tmp[3]), tata(tmp[4]), tmp[5]);
 }
 
 void	Network::recup_playerPosition(int idPlayer)
@@ -663,6 +661,7 @@ void	Network::recup_playerPosition(int idPlayer)
   std::ostringstream	idp;
   unsigned int		j = 1;
   unsigned int		cpt = 0;
+  std::vector<std::string>	list;
 
   idp << idPlayer;
   chaine = "ppo #" + idp.str() + "\n";
@@ -693,7 +692,8 @@ void	Network::recup_playerPosition(int idPlayer)
 	  i++;
 	}
     }
-  this->mess.setPpo(list[0], list[1], list[2]);
+  list = this->_playerInfos;
+  this->mess.setPpo(tata(list[0]), tata(list[1]), tata(list[2]));
 }
 
 void	Network::recup_playerLevel(int idPlayer)
@@ -736,7 +736,7 @@ void	Network::recup_playerLevel(int idPlayer)
 	  i++;
 	}
     }
-  this->mess.setPlv(list[0]);
+  this->mess.setPlv(this->_playerInfos[3]);
 }
 
 void       Network::recup_playerInventaire(int idPlayer)
@@ -777,7 +777,7 @@ void       Network::recup_playerInventaire(int idPlayer)
 	  i++;
 	}
     }
-  this->mess.setPin(list[0], list[1], list[2], list[3], list[4], list[5], list[6], list[7], list[8]);
+  this->mess.setPin(tata(list[0]), tata(list[1]), tata(list[2]), tata(list[3]), tata(list[4]), tata(list[5]), tata(list[6]), tata(list[7]), tata(list[8]));
 }
 
 std::vector<std::string>	Network::askForTimeUnit(std::string &data)

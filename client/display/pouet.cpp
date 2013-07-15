@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Tue Jul  9 15:54:45 2013 Maxime Wojciak
-// Last update Mon Jul 15 17:36:50 2013 Maxime Wojciak
+// Last update Mon Jul 15 19:40:37 2013 gery baudry
 //
 
 #include	<string>
