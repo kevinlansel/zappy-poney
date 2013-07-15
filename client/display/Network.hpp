@@ -40,7 +40,7 @@ private:
   std::vector<std::string>		_sgt;
   std::vector<std::vector<int> >	_carte;
   std::vector<std::string>		_playerInfos;
-  std::vector<std::string> (Network::*ptr_func[MAX])(std::string &req);
+  void					 (Network::*ptr_func[MAX])(std::string &req);
   Message				mess;
 
 public:
