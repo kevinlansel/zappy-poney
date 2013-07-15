@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon Jul  8 15:02:08 2013 Maxime Wojciak
-// Last update Fri Jul 12 16:27:00 2013 gery baudry
+// Last update Mon Jul 15 12:45:59 2013 gery baudry
 //
 
 #ifndef				MESSAGE__
@@ -45,6 +45,9 @@ public:
   void				setPnw(int, int, int, int, int, std::string);
   void				setSuc();
   void				setSbp();
+
+public:
+  sf::Text			getText() const;
 
 private:
   sf::Text			text;
