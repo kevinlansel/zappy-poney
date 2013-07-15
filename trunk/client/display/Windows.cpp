@@ -55,6 +55,7 @@ void		Windows::CreateWindows(gnl &gl)
 	    }
 	  std::cout << "apres if" << std::endl;
 	  FD_ZERO(&fd_read);
+	  std::cout << this->_net.getSock() << std::endl;
 	  FD_SET(this->_net.getSock(), &fd_read);
 	  std::cout << "apres sock" << std::endl;
 	  if (gl.getbuffer() != "")
