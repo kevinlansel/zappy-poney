@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu Jul  4 12:01:21 2013 gery baudry
-// Last update Mon Jul 15 20:25:49 2013 gery baudry
+// Last update Mon Jul 15 20:35:32 2013 gery baudry
 //
 
 #include	"Network.hpp"
@@ -18,6 +18,10 @@ Network::Network(const std::string &host, int port, const std::string &team):
   this->_kill = 0;
   this->_tailleX = 0;
   this->_tailleY = 0;
+}
+
+Network::Network(const Network &d): _host(d.getHost()), _port(d.getPort()), _team(d.getTeam()), _mem(d.getMem()), mess(d.getMess())
+{
 }
 
 int		Network::getPort() const
