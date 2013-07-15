@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu Jul  4 12:01:16 2013 gery baudry
-// Last update Mon Jul 15 19:54:16 2013 gery baudry
+// Last update Mon Jul 15 20:18:00 2013 gery baudry
 //
 
 #ifndef					__NETWORK_HPP__
@@ -41,7 +41,9 @@ private:
   std::vector<std::vector<int> >	_carte;
   std::vector<std::string>		_playerInfos;
   void					 (Network::*ptr_func[MAX])(std::string &req);
+  Memory				*_mem;
   Message				mess;
+
 
 public:
   Network(const std::string &, int, const std::string &);

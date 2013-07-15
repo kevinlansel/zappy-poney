@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon Jul  8 15:02:02 2013 Maxime Wojciak
-// Last update Mon Jul 15 20:09:34 2013 gery baudry
+// Last update Mon Jul 15 20:11:54 2013 gery baudry
 //
 
 #include	"Message.hpp"
@@ -336,8 +336,7 @@ void	Message::setPnw(int _n, int _x, int _y, int _O, int _L, std::string _N) {
 void			Message::setPpo(int _x, int _y, int _O)
 {
   for (std::vector<Player>::iterator it = this->_mem->getPliste().begin(); it != this->_mem->getPliste().end(); ++it)
-    if (it->getId() == _n)
-      it->doText();
+    it->doTextPlayer(it->getPosition());
 }
 
 void			Message::setPin(int _x, int _y, int _n, int _l, int _d, int _s, int _m, int _p, int _t)
@@ -345,7 +344,7 @@ void			Message::setPin(int _x, int _y, int _n, int _l, int _d, int _s, int _m, i
   for (std::vector<Player>::iterator it = this->_mem->getPliste().begin(); it != this->_mem->getPliste().end(); ++it)
     {
       if (it->getId() == _n)
-	it->doText();
+	it->doTextPlayer(it->getPosition());
     }
 }
 
