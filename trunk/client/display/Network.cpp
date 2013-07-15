@@ -13,7 +13,7 @@
 int		tata(const std::string &noir);
 
 Network::Network(const std::string &host, int port, const std::string &team):
-  _host(host), _port(port), _team(team), _mem(new Memory), mess(this->_mem)
+  _host(host), _port(port), _team(team), _mem(new Memory), mess(this->_mem), _sock(0)
 {
   this->_kill = 0;
   this->_tailleX = 0;
