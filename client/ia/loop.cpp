@@ -28,6 +28,8 @@ using namespace std;
 	    msg = ;//connectnbr
 	  else if (str == "mort")
 	    error = -1;
+	  else if (str.find("message ") == 0)
+	    this->_msg.push_front(str);
 	  else
 	    msg = action(str);//<- à rename ? le reste de ce qui est utile est en attribut
 	}
