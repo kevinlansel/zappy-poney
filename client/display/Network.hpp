@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu Jul  4 12:01:16 2013 gery baudry
-// Last update Mon Jul 15 20:18:00 2013 gery baudry
+// Last update Mon Jul 15 20:38:59 2013 gery baudry
 //
 
 #ifndef					__NETWORK_HPP__
@@ -47,6 +47,7 @@ private:
 
 public:
   Network(const std::string &, int, const std::string &);
+  Network(const Network &);
   virtual ~Network();
   int					getPort() const;
   int					getSock() const;
