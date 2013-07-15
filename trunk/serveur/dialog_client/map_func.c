@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Tue Jun 18 14:50:20 2013 florian dewulf
-** Last update Sun Jul 14 16:43:54 2013 florian dewulf
+** Last update Mon Jul 15 14:08:58 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -96,11 +96,11 @@ void		givecaseall(t_client *cl)
   snprintf(str, size, "bct %d %d %d %d %d %d %d %d %d\n",
 	   m->x, m->y, m->ress[0], m->ress[1], m->ress[2],
 	   m->ress[3], m->ress[4], m->ress[5],
-	   m->ress[6]) + 1;
+	   m->ress[6]);
   while (tmp && tmp->end != 1)
     {
       if (tmp->type == GRAPHIC)
-	write(fd, str, strlen(str));
+	write(tmp->fd, str, strlen(str));
       tmp = tmp->nt;
     }
   free(str);

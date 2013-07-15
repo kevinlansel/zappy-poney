@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun 24 16:01:55 2013 guillaume duez
-** Last update Mon Jul 15 10:05:32 2013 florian dewulf
+** Last update Mon Jul 15 14:26:22 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -30,6 +30,7 @@ void		pose_objet(t_msg *msg, t_client *client, t_map **map, t_opt *o)
 			       "mendiane", "phiras", "thystame" };
 
   (void)o;
+  (void)map;
   i = -1;
   msg->time = get_time_client(client, 7);
   tab_cmd = my_str_to_wordtab(msg->comand, ' ');
@@ -68,8 +69,8 @@ void		prend_objet(t_msg *msg, t_client *cl, t_map **map, t_opt *o)
 	cl->ress[i] += (i > 0 ? 1 : 126);
 	sub_food(msg, cl, "ok\n");
 	take_ress(cl->id, i, cl);
-	giveinvall(client);
-	givecaseall(client);
+	giveinvall(cl);
+	givecaseall(cl);
 	printf("add : %s\n", tab[i]);
 	return;
       }
