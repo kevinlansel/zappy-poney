@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Thu Jun 27 16:21:12 2013 florian dewulf
-// Last update Thu Jun 27 16:32:08 2013 florian dewulf
+// Last update Mon Jul 15 22:28:59 2013 florian dewulf
 //
 
 #ifndef		TOTO_HPP__
@@ -26,9 +26,11 @@ public:
   virtual	~gnl();
   std::string	get_next_line();
   std::string	getbuffer() const;
+  bool		getError() const;
 
 private:
   int		_fd;
+  bool		_error;
   std::string	_buffer;
 };
 

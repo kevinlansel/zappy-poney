@@ -16,16 +16,21 @@ int		main(int ac, char **av)
   std::string	team;
   Audio		music;
   srand(time(NULL));
+  std::stringstream	ss;
 
   host = "localhost";
   while (i < ac)
     {
-      if ((std::string)av[i] == "-n")
+      if ((std::string)av[i] == "-n" && i + 1 < ac)
 	team = std::string(av[i + 1]);
-      else if ((std::string)av[i] == "-h")
+      else if ((std::string)av[i] == "-h" && i + 1 < ac)
 	host = (std::string)av[i + 1];
-      else if ((std::string)av[i] == "-p")
-	port = atoi(av[i + 1]);
+      else if ((std::string)av[i] == "-p" && i + 1 < ac)
+	{
+	  ss.str(string(av[i + 1]));
+	  ss >> port;
+	  ss.str("");
+	}
       i += 2;
     }
   Network	net(host, port, team);
