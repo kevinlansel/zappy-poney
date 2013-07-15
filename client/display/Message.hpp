@@ -45,15 +45,17 @@ public:
   void				setPnw(int, int, int, int, int, std::string);
   void				setSuc();
   void				setSbp();
+  int				checkString(std::string &);
 
 public:
   sf::Text			getText() const;
-
+  
 private:
   sf::Text			text;
   sf::Font			font;
   sf::Music			sound;
   Memory			*_mem;
+  std::map<int, std::string>	_map;
 };
 
 #endif		/* !MESSAGE__ */
