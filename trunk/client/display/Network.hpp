@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu Jul  4 12:01:16 2013 gery baudry
-// Last update Mon Jul 15 20:38:59 2013 gery baudry
+// Last update Mon Jul 15 20:40:00 2013 gery baudry
 //
 
 #ifndef					__NETWORK_HPP__
@@ -53,7 +53,7 @@ public:
   int					getSock() const;
   std::string				getHost() const;
   std::string				getTeam() const;
-  Memory				getMem() const;
+  Memory				*getMem() const;
   Message				getMess() const;
   int					getTailleX() const;
   int					getTailleY() const;

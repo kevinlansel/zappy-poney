@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu Jul  4 12:01:21 2013 gery baudry
-// Last update Mon Jul 15 20:35:32 2013 gery baudry
+// Last update Mon Jul 15 20:39:50 2013 gery baudry
 //
 
 #include	"Network.hpp"
@@ -39,7 +39,7 @@ std::string	Network::getHost() const
   return (this->_host);
 }
 
-Memory		Network::getMem() const
+Memory		*Network::getMem() const
 {
   return (this->_mem);
 }
