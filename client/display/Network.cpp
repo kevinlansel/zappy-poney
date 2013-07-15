@@ -39,6 +39,16 @@ std::string	Network::getHost() const
   return (this->_host);
 }
 
+Memory		Network::getMem() const
+{
+  return (this->_mem);
+}
+
+Message		Network::getMess() const
+{
+  return (this->mess);
+}
+
 int		Network::getTailleX() const
 {
   return (this->_tailleX);

@@ -52,6 +52,8 @@ public:
   int					getSock() const;
   std::string				getHost() const;
   std::string				getTeam() const;
+  Memory				getMem() const;
+  Message				getMess() const;
   int					getTailleX() const;
   int					getTailleY() const;
   std::vector<std::vector<int> >	getCarte() const;
