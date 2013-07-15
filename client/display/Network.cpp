@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu Jul  4 12:01:21 2013 gery baudry
-// Last update Mon Jul 15 13:16:36 2013 gery baudry
+// Last update Mon Jul 15 19:27:15 2013 gery baudry
 //
 
 #include	"Network.hpp"
@@ -175,8 +175,9 @@ void            Network::init_ptr()
   this->ptr_func[16] = (&Network::serverMessage);
 }
 
-std::vector<std::string>			Network::checkData2(std::string &data)
+std::vector<std::string>			Network::checkData2(std::string &data, Message _mess)
 {
+  this->mess = _mess;
   std::string		word;
   std::vector<std::string>	list;
   int           i;
@@ -197,10 +198,10 @@ std::vector<std::string>			Network::checkData2(std::string &data)
   return list;
 }
 
-void			Network::checkData3(std::string &data)
+void			Network::checkData3(std::string &data, Message _mess)
 {
   std::string		word;
-
+  this->mess = _mess;
   word = recup_firstPart(data);
   if (word == "suc")
     {
@@ -214,8 +215,9 @@ void			Network::checkData3(std::string &data)
     }
 }
 
-std::vector<int>			Network::checkData(std::string &data)
+std::vector<int>			Network::checkData(std::string &data, Message _mess)
 {
+  this->mess = _mess;
   std::string		word;
   std::vector<int>	list;
 
@@ -314,7 +316,7 @@ std::vector<std::string>	Network::playerExpulse(std::string &data)
       i++;
     }
   list.push_back(res);
-  return list;
+  this->mess.setPex(list[0]);
 }
 
 std::vector<std::string>	Network::playerBroadcast(std::string &data)
@@ -337,7 +339,7 @@ std::vector<std::string>	Network::playerBroadcast(std::string &data)
       i++;
     }
   list.push_back(res);
-  return list;
+  this->mess.setPbc(list[0], list[1]);
 }
 
 std::vector<std::string>	Network::launchIncantation(std::string &data)
@@ -375,7 +377,7 @@ std::vector<std::string>	Network::launchIncantation(std::string &data)
       else
 	i++;
     }
-  return list;
+  this->mess.setPic(list[0], list[1], list[2], list[3]);
 }
 
 std::vector<std::string>	Network::endOfIncantation(std::string &data)
@@ -397,7 +399,7 @@ std::vector<std::string>	Network::endOfIncantation(std::string &data)
       i++;
       cpt++;
     }
-  return list;
+  this->mess.setPfk(list[0], list[1]);
 }
 
 std::vector<std::string>		Network::putAnEgg(std::string &data)
@@ -412,7 +414,7 @@ std::vector<std::string>		Network::putAnEgg(std::string &data)
       i++;
     }
   list.push_back(res);
-  return list;
+  this->mess.setPfk(list[0], list[1]);
 }
 
 std::vector<std::string>		Network::dropARessource(std::string &data)
@@ -436,7 +438,7 @@ std::vector<std::string>		Network::dropARessource(std::string &data)
     }
   list.push_back(res);
   res = "";
-  return list;
+  this->mess.setPdr(list[0], list[1]);
 }
 
 std::vector<std::string>		Network::takeARessource(std::string &data)
@@ -511,7 +513,7 @@ std::vector<std::string>		Network::eggPutByPlayer(std::string &data)
       res = "";
       i++;
     }
-  return list;
+  this->mess.setPgt(list[0], list[1]);
 }
 
 std::vector<std::string>		Network::eggHatched(std::string &data)
@@ -526,7 +528,7 @@ std::vector<std::string>		Network::eggHatched(std::string &data)
       i++;
     }
   list.push_back(res);
-  return list;
+  this->mess.setEht(list[0]);
 }
 
 std::vector<std::string>		Network::playerConnectedForEgg(std::string &data)
@@ -541,7 +543,7 @@ std::vector<std::string>		Network::playerConnectedForEgg(std::string &data)
       i++;
     }
   list.push_back(res);
-  return list;
+  this->mess.setEbo(list[0]);
 }
 
 std::vector<std::string>		Network::eggDied(std::string &data)
@@ -556,7 +558,7 @@ std::vector<std::string>		Network::eggDied(std::string &data)
       i++;
     }
   list.push_back(res);
-  return list;
+  this->mess.setEdi(list[0]);
 }
 
 std::vector<int>		Network::recup_caseContent(int y, int x)
@@ -648,8 +650,7 @@ std::vector<std::string>	Network::recup_playerInfos(std::string &data)
 	  i++;
 	}
     }
-  this->_playerInfos = tmp;
-  return tmp;
+  this->mess.setPnw(list[0], list[1], list[2], list[3], list[4], list[5]);
 }
 
 void	Network::recup_playerPosition(int idPlayer)
@@ -692,6 +693,7 @@ void	Network::recup_playerPosition(int idPlayer)
 	  i++;
 	}
     }
+  this->mess.setPpo(list[0], list[1], list[2]);
 }
 
 void	Network::recup_playerLevel(int idPlayer)
@@ -734,6 +736,7 @@ void	Network::recup_playerLevel(int idPlayer)
 	  i++;
 	}
     }
+  this->mess.setPlv(list[0]);
 }
 
 void       Network::recup_playerInventaire(int idPlayer)
@@ -774,6 +777,7 @@ void       Network::recup_playerInventaire(int idPlayer)
 	  i++;
 	}
     }
+  this->mess.setPin(list[0], list[1], list[2], list[3], list[4], list[5], list[6], list[7], list[8]);
 }
 
 std::vector<std::string>	Network::askForTimeUnit(std::string &data)
@@ -828,16 +832,18 @@ std::vector<std::string>		Network::serverMessage(std::string &data)
       i++;
     }
   list.push_back(res);
-  return list;
+  this->mess.setSmg(list[0]);
 }
 
 void		Network::unknownCommand()
 {
+  this->mess.setSuc();
   std::cout << "Unknown Command" << std::endl;
 }
 
 void		Network::wrongParameters()
 {
+  this->mess.setSbp();
   std::cout << "Wrong Parameters" << std::endl;
 }
 

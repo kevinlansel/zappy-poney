@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:01:06 2013 Maxime Wojciak
-// Last update Mon Jul 15 17:50:46 2013 gery baudry
+// Last update Mon Jul 15 19:20:53 2013 gery baudry
 //
 
 #include	<iostream>
@@ -25,6 +25,7 @@
 Windows::Windows(int x, int y, const Network &net) : window(sf::VideoMode(1280, 1024), "Client Zappy", sf::Style::Fullscreen), _x(x), _y(y), _net(net), _mem(new Memory)
 {
   this->taille = sf::Vector2f((1100 / this->_x), (960 / this->_y));
+  this->mess = Message(this->_mem);
 }
 
 Windows::~Windows() {
@@ -65,9 +66,9 @@ void		Windows::CreateWindows(gnl &gl)
 	      if (FD_ISSET(this->_net.getSock(), &fd_read))
 		{
 		  req = gl.get_next_line();
-		  this->_net.checkData(req);
-		  this->_net.checkData2(req);
-		  this->_net.checkData3(req);
+		  this->_net.checkData(req, this->mess);
+		  this->_net.checkData2(req, this->mess);
+		  this->_net.checkData3(req, this->mess);
 		}
 	    }
 	}
@@ -101,104 +102,3 @@ void		Windows::DrawMap()
     }
   this->_mem->DrawRec(this->window);
 }
-
-void				Windows::checkMess()
-{
-  int		i;
-  Message		mess;
-
-  switch (i)
-    {
-    case 0:
-      {
-	mess.setPex(int);
-	break;
-      }
-    case 1:
-      {
-	mess.setPbc(string, string);
-	break;
-      }
-    case 2:
-      {
-	mess.setPic(int, int, int, string);
-	break;
-      }
-    case 3:
-      {
-	mess.setPie(int, int, int, int);
-	break;
-      }
-    case 4:
-      {
-	mess.setPfk(int, int);
-	break;
-      }
-    case 5:
-      {
-	mess.setPdr(int, int);
-	break;
-      }
-    case 6:
-      {
-	mess.setPgt(int, int);
-	break;
-      }
-    case 7:
-      {
-	mess.setPdi(int);
-	break;
-      }
-    case 8:
-      {
-	mess.setEnw(int, int, int, int);
-	break;
-      }
-    case 9:
-      {
-	mess.setEht(int);
-	break;
-      }
-    case 10:
-      {
-	mess.setEbo(int);
-	break;
-      }
-    case 11:
-      {
-	mess.setEdi(int);
-	break;
-      }
-    case 12:
-      {
-	mess.setSgt(int);
-	break;
-      }
-    case 13:
-      {
-	mess.setSeg(string);
-	break;
-      }
-    case 14:
-      {
-	mess.setSmg(string);
-	break;
-      }
-    case 15:
-      {
-	mess.setPnw(int, int, int, int, int, string);
-	break;
-      }
-    case 15:
-      {
-	mess.setSuc();
-	break;
-      }
-    }
-  return (void);
-}
-
-// std::vector<Case>		Windows::getVector() const
-// {
-//   return (this->map);
-// }
