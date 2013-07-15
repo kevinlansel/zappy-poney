@@ -5,17 +5,11 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Tue Jun 25 14:18:23 2013 guillaume duez
-** Last update Mon Jul 15 12:52:10 2013 guillaume duez
+** Last update Mon Jul 15 14:25:47 2013 florian dewulf
 */
 
 #include	"serveur.h"
 #include	<stdio.h>
-
-static void	send_mess_graphique(t_msg *msg)
-{
-  // to do passé les parametres et call client graphique
-  send_mess(msg);
-}
 
 static t_client	*get_client(t_client *client)
 {
@@ -61,31 +55,51 @@ static int	check_co(t_client *client, t_client *hurt, t_map **map)
   return 1;
 }
 
-void            expulse(t_msg *msg, t_client *client, t_map **map, t_opt *opt)
+static void	reduc_expulse(t_client *hurt, int *indice)
 {
-  t_client	*hurt;
+  if (*indice == 0)
+    {
+      *indice = 1;
+      player_expulse(hurt->id, hurt);
+    }
+}
+
+static char	*create_msg_depl(t_client *hurt, t_client *client)
+{
   int		size;
   char		*str;
 
-  (void)opt;
+  size = snprintf(NULL, 0, "deplacement: %d\n", calcul_K(hurt, client)) + 1;
+  str = xmalloc((size + 1) * sizeof(char));
+  snprintf(str, size, "deplacement: %d\n", calcul_K(hurt, client));
+  return (str);
+}
+
+void            expulse(t_msg *msg, t_client *client, t_map **map, t_opt *opt)
+{
+  t_client	*hurt;
+  char		*str;
+  int		indice;
+
+  indice = 0;
   msg->time = get_time_client(client, 7);
   client = (hurt = client) ? get_client(client) : get_client(client);
-  if (client && map)
+  if (client && map && opt)
     {
-      size = snprintf(NULL, 0, "deplacement: %d\n", calcul_K(hurt, client));
-      str = xmalloc(size + 1);
-      snprintf(str, size + 1, "deplacement: %d\n", calcul_K(hurt, client));
+      str = create_msg_depl(hurt, client);
       while (client && client->end != 1)
 	{
-	  msg->cmd = str;
-	  msg->client = client;
+	  msg->client = (msg->cmd = str) ? client : client;
 	  if (client && client->type == CLIENT && check_co(client, hurt, map) == 1)
-	    send_mess_graphique(msg);
+	    {
+	      reduc_expulse(hurt, &indice);
+	      giveposition(client, reroll(client));
+	      send_mess(msg);
+	    }
 	  client = client->nt;
 	}
     }
   msg->client = hurt;
   (!client) ? sub_food(msg, hurt, "ko\n") : sub_food(msg, hurt, "ok\n");
-  player_expulse(hurt->id, hurt);
   client = hurt;
 }

@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Tue Jul  9 14:54:23 2013 florian dewulf
-** Last update Sun Jul 14 16:38:09 2013 florian dewulf
+** Last update Mon Jul 15 14:11:15 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -87,7 +87,7 @@ void		giveinvall(t_client *cl)
   while (tmp && tmp->end != 1)
     {
       if (tmp->type == GRAPHIC)
-	write(fd, str, strlen(str));
+	write(tmp->fd, str, strlen(str));
       tmp = tmp->nt;
     }
   free(str);
