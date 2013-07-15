@@ -5,11 +5,17 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Tue Jun 25 14:18:23 2013 guillaume duez
-** Last update Fri Jul 12 16:46:15 2013 florian dewulf
+** Last update Mon Jul 15 12:52:10 2013 guillaume duez
 */
 
 #include	"serveur.h"
 #include	<stdio.h>
+
+static void	send_mess_graphique(t_msg *msg)
+{
+  // to do passé les parametres et call client graphique
+  send_mess(msg);
+}
 
 static t_client	*get_client(t_client *client)
 {
@@ -74,7 +80,7 @@ void            expulse(t_msg *msg, t_client *client, t_map **map, t_opt *opt)
 	  msg->cmd = str;
 	  msg->client = client;
 	  if (client && client->type == CLIENT && check_co(client, hurt, map) == 1)
-	    send_mess(msg);
+	    send_mess_graphique(msg);
 	  client = client->nt;
 	}
     }
