@@ -8,6 +8,11 @@
 #include	<cstdlib>
 #include	<ctime>
 
+static int	usage()
+{
+  std::cout << "Usage : -n team [-p port] [-h ip]" << std::endl;
+}
+
 int		main(int ac, char **av)
 {
   int		i = 1;
@@ -33,6 +38,8 @@ int		main(int ac, char **av)
 	}
       i += 2;
     }
+  if (team == "")
+    return (usage());
   Network	net(host, port, team);
   net.initConnexion();
   gnl gl(net.getSock());
