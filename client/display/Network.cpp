@@ -20,7 +20,7 @@ Network::Network(const std::string &host, int port, const std::string &team):
   this->_tailleY = 0;
 }
 
-Network::Network(const Network &d): _host(d.getHost()), _port(d.getPort()), _team(d.getTeam()), _mem(d.getMem()), mess(d.getMess())
+Network::Network(const Network &d): _host(d.getHost()), _port(d.getPort()), _team(d.getTeam()), _mem(d.getMem()), mess(d.getMess()), _sock(d.getSock())
 {
 }
 
