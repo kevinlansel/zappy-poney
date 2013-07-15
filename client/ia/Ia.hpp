@@ -5,7 +5,7 @@
 // Login   <lansel_k@epitech.net>
 // 
 // Started on  Thu Jun 27 17:17:11 2013 kevin lansel
-// Last update Mon Jul  8 13:19:50 2013 kevin lansel
+// Last update Mon Jul 15 10:46:14 2013 kevin lansel
 //
 
 #ifndef		IA_HPP_
@@ -26,6 +26,9 @@ enum	emsg {
   JOIN,
   BREAK,
   STOP,
+  POSE,
+  INCANT,
+  UP,
   ERROR,
 };
 
@@ -75,7 +78,7 @@ public:
   emsg				faim(void);
   emsg				move_rd(void) const;
   emsg				move_to(int cas);
-  emsg				voir(void);
+  std::vector<std::string>	voir(void);
   emsg				prendre_nourriture(void) const;
   emsg				prendre_pierre(void);
   emsg				msg_list(void) const;
@@ -91,7 +94,12 @@ public:
   emsg				join(void);
   emsg				break_group(void);
   emsg				brk(void);
-  emsg				check_case(void);
+  emsg				check_inc(void);
+  emsg				check_inv(void);
+  emsg				check_group(void);
+  emsg				vide_case(const std::vector<std::string> &);
+  emsg				incantation(void);
+  emsg				level_up(void);
   int				max_member(void);
 
   std::map<std::string, int>	ref(void);

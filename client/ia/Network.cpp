@@ -1,3 +1,13 @@
+//
+// Network.cpp for zappy in /home/seth/System_unix/zappy-poney/client/ia
+// 
+// Made by kevin lansel
+// Login   <lansel_k@epitech.net>
+// 
+// Started on  Mon Jul 15 09:58:50 2013 kevin lansel
+// Last update Mon Jul 15 09:58:55 2013 kevin lansel
+//
+
 #include	"Network.hpp"
 
 Network::Network(const std::string &host, int port, const std::string &team):
