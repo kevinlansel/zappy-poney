@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 01:07:42 2013 florian dewulf
-// Last update Tue Jul 16 14:05:06 2013 florian dewulf
+// Last update Wed Jul 17 00:15:14 2013 gery baudry
 //
 
 #ifndef		PLAYER__
@@ -13,6 +13,7 @@
 
 #include	<string>
 #include	<vector>
+#include	<sstream>
 #include	"Case.hpp"
 
 class		Player
@@ -32,6 +33,7 @@ public:
   std::vector<int>	getInventaire() const;
   int			getX() const;
   int			getY() const;
+  std::string		doText();
 
 private:
   int		_id;

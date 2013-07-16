@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 00:27:16 2013 florian dewulf
-// Last update Tue Jul 16 21:14:31 2013 florian dewulf
+// Last update Wed Jul 17 00:07:41 2013 gery baudry
 //
 
 #ifndef		MEMORY___
@@ -40,6 +40,7 @@ public:
   int				getY() const;
   void				close();
   bool				pool(sf::Event &);
+  void				checkSouris();
   void				rmPlayer(int);
   template<typename T>
   void				push(int type, T ptr)
@@ -75,6 +76,7 @@ private:
   std::list<Player *>			_player;
   std::map<int, sf::Texture>		_lvlsprite;
   sf::Text				_txt;
+  sf::Text				_infopla;
 };
 
 #endif
