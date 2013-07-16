@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Mon Jul 15 23:38:38 2013 florian dewulf
-// Last update Tue Jul 16 21:18:35 2013 florian dewulf
+// Last update Tue Jul 16 23:24:44 2013 gery baudry
 //
 
 #include	"Message.hpp"
@@ -114,6 +114,7 @@ bool		Message::newPlayer(Memory *mem)
   mem->push(0, new Player(toInt(vec[1]), toInt(vec[2]), toInt(vec[3]), toInt(vec[4]), toInt(vec[5]), vec[6]));
   mem->modiflastCase(mem->getCase(toInt(this->vec[2]), toInt(this->vec[3])));
   std::cout << mem->getPlayerlist().size() << std::endl;
+  this->_son.resetBuffer();
   if (!this->_buffer.loadFromFile("./ressources/audio/bloup.wav"))
     std::cout << "failed load sound" << std::endl;
   this->_son.setBuffer(this->_buffer);
@@ -188,6 +189,7 @@ bool		Message::endIncant(Memory *mem)
   if (c)
     c->changeColor();
   std::cout << this->vec[3] << std::endl;
+  this->_son.resetBuffer();
   if (this->vec[3] == "1" && !this->_buffer.loadFromFile("./ressources/audio/applause.wav"))
     std::cout << "failed load sound" << std::endl;
   else if (this->vec[3] != "1" && !this->_buffer.loadFromFile("./ressources/audio/point.wav"))
@@ -225,7 +227,8 @@ bool		Message::takeRess(Memory *mem)
 
 bool		Message::dead(Memory *mem)
 {
-  rmPlayer(toInt(this->vec[1]));
+  mem->rmPlayer(toInt(this->vec[1]));
+  this->_son.resetBuffer();
   if (!this->_buffer.loadFromFile("./ressources/audio/p.wav"))
     std::cout << "failed load sound" << std::endl;
   this->_son.setBuffer(this->_buffer);
