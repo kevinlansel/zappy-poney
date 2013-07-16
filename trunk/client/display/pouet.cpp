@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Tue Jul  9 15:54:45 2013 Maxime Wojciak
-// Last update Mon Jul 15 19:40:37 2013 gery baudry
+// Last update Tue Jul 16 13:21:11 2013 Maxime Wojciak
 //
 
 #include	<string>
@@ -19,7 +19,7 @@ std::string	tonton(int nazi) {
 
 int		tata(const std::string &noir) {
   std::stringstream	ss;
-  int			value;
+  int			value = 0;
 
   ss.str(noir);
   ss >> value;
