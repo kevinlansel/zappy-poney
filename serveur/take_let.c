@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun 24 16:01:55 2013 guillaume duez
-** Last update Tue Jul 16 09:23:16 2013 florian dewulf
+** Last update Tue Jul 16 18:45:17 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -57,7 +57,7 @@ static void	repop(t_map **map, int ress)
 
   x = rand() % map[0][0].x_world;
   y = rand() % map[0][0].y_world;
-  map[y][x].ress[ress] += 1;
+  map[y][x].ress[ress] += (ress == 0) ? 126 : 1;
 }
 
 void		prend_objet(t_msg *msg, t_client *cl, t_map **map, t_opt *o)
