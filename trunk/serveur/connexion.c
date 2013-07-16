@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Thu Jun 27 10:38:25 2013 florian dewulf
-** Last update Tue Jul 16 17:49:15 2013 florian dewulf
+** Last update Tue Jul 16 18:09:17 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -41,7 +41,8 @@ static void	graphic_connect(t_client *cl, t_map **map, t_opt *opt)
     }
 }
 
-static t_client	*transform_egg_to_client(t_client *egg, t_client **cl)
+static t_client	*transform_egg_to_client(t_client *egg, t_client **cl,
+					 t_opt *opt, int i)
 {
   egg_connect(egg->id, reroll(egg));
   egg->fd = (*cl)->fd;
@@ -50,6 +51,7 @@ static t_client	*transform_egg_to_client(t_client *egg, t_client **cl)
   egg->level = 1;
   egg->time = (*cl)->time;
   *cl = delete_client(*cl);
+  opt->nb_player[i] += 1;
   return (egg);
 }
 
@@ -82,7 +84,7 @@ static int	ia_connect(char *name_team, t_client **cl, t_opt *opt)
   if (opt->name_team[i] == NULL)
     return (0);
   if ((tmp = check_egg(name_team, cl)) != NULL)
-    *cl = transform_egg_to_client(tmp, cl);
+    *cl = transform_egg_to_client(tmp, cl, opt, i);
   if (opt->nb_player[i] >= 1)
     {
       size = snprintf(NULL, 0, "%d\n", opt->nb_player[i]) + 1;
@@ -93,7 +95,7 @@ static int	ia_connect(char *name_team, t_client **cl, t_opt *opt)
       opt->nb_player[i]--;
       (*cl)->type = CLIENT;
       (*cl)->team = strdup(name_team);
-      return (1);
+      return (connexiontoall(*cl, reroll(*cl)));
     }
   return (0);
 }

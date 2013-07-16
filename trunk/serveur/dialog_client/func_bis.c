@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Tue Jul  9 14:54:23 2013 florian dewulf
-** Last update Tue Jul 16 17:47:35 2013 florian dewulf
+** Last update Tue Jul 16 17:59:45 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -95,4 +95,26 @@ void		giveinvall(t_client *cl)
       tmp = tmp->nt;
     }
   free(str);
+}
+
+int		connexiontoall(t_client *cl, t_client *begin)
+{
+  int		size;
+  char		*str;
+
+  size = snprintf(NULL, 0, "pnw %d %d %d %d %d %s\n",
+		  cl->id, cl->map->x, cl->map->y,
+		  cl->direct + 1, cl->level, cl->team) + 1;
+  str = xmalloc((size + 1) * sizeof(char));
+  snprintf(str, size, "pnw %d %d %d %d %d %s\n",
+	   cl->id, cl->map->x, cl->map->y,
+	   cl->direct + 1, cl->level, cl->team);
+  while (begin && begin->end != 1)
+    {
+      if (begin->type == GRAPHIC)
+	write(begin->fd, str, strlen(str));
+      begin = begin->nt;
+    }
+  free(str);
+  return (1);
 }
