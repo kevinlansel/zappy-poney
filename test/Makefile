@@ -5,7 +5,7 @@
 ## Login   <dewulf_f@epitech.net>
 ## 
 ## Started on  Tue Jul 16 13:09:12 2013 florian dewulf
-## Last update Tue Jul 16 14:22:45 2013 florian dewulf
+## Last update Tue Jul 16 14:47:22 2013 florian dewulf
 ##
 
 NAME=		Display
@@ -14,6 +14,7 @@ SRC=		Case.cpp		\
 		Core.cpp		\
 		Except.cpp		\
 		get_next_line.cpp	\
+		Interpret.cpp		\
 		main.cpp		\
 		Memory.cpp		\
 		Message.cpp		\
