@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Tue Jul 16 16:16:35 2013 gery baudry
-// Last update Tue Jul 16 16:17:52 2013 gery baudry
+// Last update Tue Jul 16 14:20:21 2013 florian dewulf
 //
 
 #include	<cstdlib>
@@ -21,6 +21,7 @@
 static int	usage()
 {
   std::cout << "Usage : -n team [-p port] [-h ip]" << std::endl;
+  return (0);
 }
 
 int		main(int ac, char **av)
@@ -42,7 +43,7 @@ int		main(int ac, char **av)
         host = (std::string)av[i + 1];
       else if ((std::string)av[i] == "-p" && i + 1 < ac)
         {
-          ss.str(string(av[i + 1]));
+          ss.str(std::string(av[i + 1]));
           ss >> port;
           ss.str("");
         }
