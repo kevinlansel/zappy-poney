@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Mon Jul 15 23:38:38 2013 florian dewulf
-// Last update Tue Jul 16 15:10:44 2013 florian dewulf
+// Last update Tue Jul 16 15:15:08 2013 florian dewulf
 //
 
 #include	<cstdio>
@@ -88,8 +88,8 @@ bool		Message::work(const std::string &str, Memory *mem)
       std::cout << "|" << this->vec[0] << "|" << std::endl;
       inter.setVec(this->vec);
       std::cout << "YUUUU" << std::endl;
-      printf("%p %p\n", func, mem);
       func = ptr[this->vec[0]];
+      printf("%p %p\n", func, mem);
       b = (inter.*func)(mem);
       std::cout << "Coucou" << std::endl;
       return (b);
