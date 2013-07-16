@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu Jul  4 12:01:21 2013 gery baudry
-// Last update Tue Jul 16 12:23:29 2013 gery baudry
+// Last update Tue Jul 16 13:03:22 2013 gery baudry
 //
 
 #include	"Network.hpp"
@@ -214,6 +214,7 @@ void			Network::checkData2(std::string &data)
   word = recup_firstPart(data);
   init_ptr();
   i = 0;
+  std::cout << "checkdata2" << std::endl;
   while (i < MAX)
     {
       if (word == str[i])

@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:35:32 2013 gery baudry
-// Last update Sat Jul 13 16:52:15 2013 gery baudry
+// Last update Tue Jul 16 14:01:48 2013 gery baudry
 //
 
 #ifndef				MEMORY___
@@ -21,6 +21,7 @@ class				Memory
 {
 public:
   Memory();
+  Memory(const Memory &);
   virtual ~Memory();
 
 public:
@@ -28,6 +29,7 @@ public:
   std::vector<Case>		getMap() const;
   std::vector<Oeuf>		getOeuf() const;
   void				pushCase(const Case &);
+  void				pushPlayer(const Player &);
   void				DrawRec(sf::RenderWindow &);
 
 private:

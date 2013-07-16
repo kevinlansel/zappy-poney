@@ -5,12 +5,16 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Sat Jul 13 16:52:57 2013 gery baudry
+// Last update Tue Jul 16 14:01:50 2013 gery baudry
 //
 
 #include			"Memory.hpp"
 
 Memory::Memory()
+{
+}
+
+Memory::Memory(const Memory &d): _pliste(d.getPliste()), _map(d.getMap()), _oeuf(d.getOeuf())
 {
 }
 
@@ -27,6 +31,10 @@ void				Memory::pushCase(const Case &_case)
   this->_map.push_back(_case);
 }
 
+void				Memory::pushPlayer(const Player &_player)
+{
+  this->_pliste.push_back(_player);
+}
 std::vector<Oeuf>		Memory::getOeuf() const
 {
   return (this->_oeuf);
