@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Tue Jul 16 17:55:08 2013 guillaume duez
-** Last update Tue Jul 16 19:01:24 2013 guillaume duez
+** Last update Tue Jul 16 20:36:20 2013 florian dewulf
 */
 
 #include	<stdlib.h>
@@ -37,6 +37,7 @@ static int	check_team(t_client *client)
     }
   client = tmp;
   printf("The team %s has win\n", str);
+  end_game(client, str);
   return 1;
 }
 
