@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 00:27:16 2013 florian dewulf
-// Last update Tue Jul 16 19:02:52 2013 florian dewulf
+// Last update Tue Jul 16 22:25:51 2013 gery baudry
 //
 
 #ifndef		MEMORY___
@@ -38,6 +38,8 @@ public:
   void				setSizeMap(int, int);
   int				getX() const;
   int				getY() const;
+  void				close();
+  bool				pool(sf::Event &);
 
   template<typename T>
   void				push(int type, T ptr)

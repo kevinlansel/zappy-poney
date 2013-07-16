@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 09:20:23 2013 florian dewulf
-// Last update Tue Jul 16 19:01:40 2013 florian dewulf
+// Last update Tue Jul 16 22:26:30 2013 gery baudry
 //
 
 #include	"Core.hpp"
@@ -41,6 +41,11 @@ void		Core::init()
 
 bool		Core::update()
 {
+  if (this->_mem->pool(this->_event) == false && (this->_event.type == sf::Event::Closed || (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))))
+    {
+      this->_mem->close();
+      return (false);
+    }
   if (this->_net.init(this->_gnl))
     return (this->_mess.work(this->_gnl.get_next_line(), this->_mem));
   return (true);
