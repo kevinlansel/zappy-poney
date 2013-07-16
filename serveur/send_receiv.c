@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:15:13 2013 guillaume duez
-** Last update Tue Jul 16 22:28:43 2013 florian dewulf
+** Last update Tue Jul 16 23:00:00 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -49,7 +49,11 @@ int		send_mess(t_msg *msg)
   else if (!msg->client || !msg->cmd || strlen(msg->cmd) <= 0)
     ret = 0;
   if (ret != 0)
-    ret = send(msg->client->fd, msg->cmd ,strlen(msg->cmd) + 1, MSG_OOB);
+    {
+      ret = send(msg->client->fd, msg->cmd, strlen(msg->cmd) + 1, MSG_OOB);
+      printf("\033[01;32mThe message send is :\033[01;31m %s\033[01;00m\n",
+	     msg->cmd);
+    }
   if (ret <= 0 || strcmp(msg->cmd, "mort\n") == 0)
     printf("The client is dead or has leave\n");
   return 0;

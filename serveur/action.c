@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:08:13 2013 guillaume duez
-** Last update Tue Jul 16 15:40:44 2013 guillaume duez
+** Last update Tue Jul 16 22:56:08 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -47,7 +47,6 @@ static t_msg	*check_and_call(t_client *client, t_map **map,
   bool = (i = -1) ? 0 : 0;
   if ((msg = get_mess(client, opt)) != NULL)
     {
-      printf("%s\n", msg->comand);
       while (++i < NB_FUNC)
 	{
 	  tmp = my_str_to_wordtab(msg->comand, ' ')[0];

@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Tue Jul  9 14:54:23 2013 florian dewulf
-** Last update Tue Jul 16 17:59:45 2013 florian dewulf
+** Last update Tue Jul 16 22:52:52 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -26,7 +26,6 @@ void		giveposition(t_client *cl, t_client *begin)
 	   cl->map->y, cl->direct + 1);
   while (begin && begin->end != 1)
     {
-      printf("type = %d\n", begin->type);
       if (begin->type == GRAPHIC)
 	{
 	  printf("%s\n", str);
