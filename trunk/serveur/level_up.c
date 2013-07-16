@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Wed Jul  3 14:39:06 2013 guillaume duez
-** Last update Tue Jul 16 15:50:10 2013 guillaume duez
+** Last update Tue Jul 16 20:44:52 2013 gery baudry
 */
 
 #include	<string.h>
@@ -53,7 +53,7 @@ static int	check_nbr_client(int level, t_client *client,
     }
   if (player_need[level] == i)
     return 1;
-  return -1;OC
+  return -1;
 }
 
 static int	check_ress(int level, t_map *map,
