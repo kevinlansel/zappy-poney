@@ -17,15 +17,15 @@
 void		*launchDisplay(void *str)
 {
   char		*s = (char *)str;
-  //execlp("./display", "display", s, NULL);
-  std::cout << (std::string)s << "DISPLAY" << std::endl;
+  execlp("./display", "display", s, NULL);
+  //std::cout << (std::string)s << "DISPLAY" << std::endl;
 }
 
 void		*launchIA(void *str)
 {
   char		*s = (char *)str;
-  //execlp("./display", "display", s, NULL);
-  std::cout << (std::string)s << "IA" << std::endl;
+  execlp("./ia", "ia", s, NULL);
+  //std::cout << (std::string)s << "IA" << std::endl;
 }
 
 int		main(int ac, char **av)
@@ -44,7 +44,6 @@ int		main(int ac, char **av)
 	  i++;
 	}
       str = (char *)s.c_str();
-      // lancement des threads
       if (pthread_create(&th1, NULL, launchDisplay, str) < 0) {
 	std::cerr << "Erreur lors de la création du thread Display" << std::endl;
 	exit(1);
