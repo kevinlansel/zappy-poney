@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 09:20:23 2013 florian dewulf
-// Last update Tue Jul 16 14:32:48 2013 florian dewulf
+// Last update Tue Jul 16 14:35:21 2013 florian dewulf
 //
 
 #include	"Core.hpp"
@@ -25,21 +25,15 @@ void		Core::init()
 {
   int		i = 51;
 
-  std::cout << "toto" << std::endl;
   this->_net.initConnexion();
-  std::cout << "tata" << std::endl;
   gnl		tmp(this->_net.getSock());
 
   this->_gnl = tmp;
-  std::cout << "titi" << std::endl;
   while (--i > 0 && !this->_net.checkBinary())
     {
-      std::cout << "tutu" << std::endl;
       if (this->_net.init(this->_gnl))
 	{
-	  std::cout << "tyty" << std::endl;
 	  string tempo = this->_gnl.get_next_line();
-	  std::cout << "tempo = " << tempo << std::endl;
 	  if (this->_net.initConnexion(tempo))
 	    this->_mess.work(tempo, this->_mem);
 	}
