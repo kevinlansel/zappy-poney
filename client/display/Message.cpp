@@ -330,6 +330,7 @@ void	Message::setSmg(std::string _M) {
 }
 
 void	Message::setPnw(int _n, int _x, int _y, int _O, int _L, std::string _N) {
+  std::cout << "set pnw !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << std::endl;
   if (_n && _x && _y && _O && _L && _N != "") {
     sf::Vector2i	pos(_x, _y);
     Player		player(pos, _n, 10, 0, 0, 0, 0, 0, 0, _O, _L, _N);

@@ -113,6 +113,7 @@ void			Network::doLoop(gnl &gl)
 	  if (FD_ISSET(this->_sock, &fd_read))
 	    {
 	      req = gl.get_next_line();
+	      //	      std::cout << req << std::endl;
 	      if (req == "BIENVENUE")
 		write(this->_sock, "GRAPHIC\n", 8);
 	      else if (recup_firstPart(req) == "msz")
@@ -152,6 +153,7 @@ void			Network::doLoop(gnl &gl)
   		askForTimeUnit(req);
 	      else if (recup_firstPart(req) == "bct")
 		recup_mapContent(req);
+	      //std::cout << req << std::endl;
   	    }
   	}
       cpt++;
@@ -208,12 +210,13 @@ void			Network::checkData2(std::string &data)
 				"pgt", "pdi", "enw", "eht", "ebo",
 				"edi", "seg", "smg"};
 
+  std::cout << "checkdata2 " << data << std::endl;
   word = recup_firstPart(data);
   init_ptr();
   i = 0;
   while (i < MAX)
     {
-      if (word.c_str() == str[i])
+      if (word == str[i])
         (this->*ptr_func[i]) (data);
       i++;
     }
@@ -222,6 +225,8 @@ void			Network::checkData2(std::string &data)
 void			Network::checkData3(std::string &data)
 {
   std::string		word;
+
+  std::cout << "checkdata3 " << data << std::endl;
   word = recup_firstPart(data);
   if (word == "suc")
     {
@@ -239,6 +244,7 @@ void			Network::checkData(std::string &data)
 {
   std::string		word;
 
+  std::cout << "checkdata " << data << std::endl;
   word = recup_firstPart(data);
   if (word == "msz")
     {
@@ -657,6 +663,7 @@ void	Network::recup_playerInfos(std::string &data)
   std::string		s = "";
   std::vector<std::string>	tmp;
 
+  std::cout << "recup player infos" << std::endl;
   while (i < data.size())
     {
       while (data[i] != ' ' && i < data.size() && data[i] != '\n')
@@ -671,7 +678,9 @@ void	Network::recup_playerInfos(std::string &data)
 	  i++;
 	}
     }
-  //this->mess.setPnw(tata(tmp[0]), tata(tmp[1]), tata(tmp[2]), tata(tmp[3]), tata(tmp[4]), tmp[5]);
+  std::cout << "le serveur envoie pnw" << std::endl;
+  this->mess.setPnw(tata(tmp[0]), tata(tmp[1]), tata(tmp[2]), tata(tmp[3]), tata(tmp[4]), tmp[5]);
+  std::cout << "sortie du set pnw" << std::endl;
 }
 
 void	Network::recup_playerPosition(int idPlayer)

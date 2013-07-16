@@ -55,6 +55,7 @@ void		Windows::CreateWindows(gnl &gl)
 	  if (gl.getbuffer() != "")
 	    {
 	      req = gl.get_next_line();
+	      //std::cout << req << std::endl;
 	      this->_net.checkData(req);
 	      this->_net.checkData2(req);
 	      this->_net.checkData3(req);
@@ -64,6 +65,7 @@ void		Windows::CreateWindows(gnl &gl)
 	      if (FD_ISSET(this->_net.getSock(), &fd_read))
 		{
 		  req = gl.get_next_line();
+		  //		  std::cout << req << std::endl;
 		  this->_net.checkData(req);
 		  this->_net.checkData2(req);
 		  this->_net.checkData3(req);
@@ -72,7 +74,6 @@ void		Windows::CreateWindows(gnl &gl)
 	}
       this->window.clear();
       DrawMap();
-      std::cout << "sort de draw map" << std::endl;
       souris.CheckSouris(this->window, this->_mem->getMap(), this->_x, this->_y, this->taille);
       this->window.display();
     }
