@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Mon Jul 15 23:38:38 2013 florian dewulf
-// Last update Tue Jul 16 14:52:12 2013 florian dewulf
+// Last update Tue Jul 16 14:53:30 2013 florian dewulf
 //
 
 #include	"Message.hpp"
@@ -75,10 +75,13 @@ bool		Message::work(const std::string &str, Memory *mem)
       this->vec.push_back(part);
       part = "";
     }
+  std::cout << "before if" << std::endl;
   if ((vec.size() > 0 && this->vec[0] != "pic" && this->pattern.find(this->vec[0]) != this->pattern.end() &&
        vec.size() == static_cast<unsigned int>(this->pattern[this->vec[0]])) || (vec.size() > 0 && this->vec[0] != "pic" && vec.size() >= 5))
     {
+      std::cout << "YOOO" << std::endl;
       inter.setVec(this->vec);
+      std::cout << "YUUUU" << std::endl;
       return ((inter.*(ptr[this->vec[0]]))(mem));
     }
   this->vec.clear();
