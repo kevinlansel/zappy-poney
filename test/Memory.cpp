@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Tue Jul 16 20:31:17 2013 gery baudry
+// Last update Tue Jul 16 18:39:21 2013 florian dewulf
 //
 
 #include			"Memory.hpp"
@@ -137,7 +137,7 @@ void				Memory::drawCase()
 	  if (ress[i] > 0)
 	    {
 	      sf::Sprite		sp(this->_lvlsprite[9 + i]);
-	      sp.setPosition(sf::Vector2<float>(positionx[i], positiony[i]));
+	      sp.setPosition(sf::Vector2<float>(positionx[i] + (*it2)->getX() * this->_sizex, positiony[i] + (*it2)->getY() * this->_sizey));
 	      sp.scale(vecscale);
 	      this->_win.draw(sp);
 	    }
