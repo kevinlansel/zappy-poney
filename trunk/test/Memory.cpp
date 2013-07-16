@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Wed Jul 17 00:17:13 2013 gery baudry
+// Last update Wed Jul 17 00:29:02 2013 gery baudry
 //
 
 #include			"Memory.hpp"
@@ -268,6 +268,7 @@ void				Memory::checkSouris()
 	{
 	  this->_infopla = sf::Text((*it)->doText(), this->_font, 15);
 	  this->_infopla.move(sf::Vector2<float>(RES_X - 200, 100));
+	  return;
 	}
       else
 	{
