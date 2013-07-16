@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 00:27:16 2013 florian dewulf
-// Last update Tue Jul 16 16:37:51 2013 florian dewulf
+// Last update Tue Jul 16 16:44:08 2013 florian dewulf
 //
 
 #ifndef		MEMORY___
@@ -23,8 +23,8 @@
 #include	"Oeuf.hpp"
 #include	"Except.hpp"
 
-# define	RES_X	1280
-# define	RES_Y	1024
+# define	RES_X	800
+# define	RES_Y	600
 
 class		Memory {
 public:
