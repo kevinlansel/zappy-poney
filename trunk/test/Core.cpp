@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 09:20:23 2013 florian dewulf
-// Last update Tue Jul 16 14:31:50 2013 florian dewulf
+// Last update Tue Jul 16 14:32:48 2013 florian dewulf
 //
 
 #include	"Core.hpp"
@@ -37,7 +37,9 @@ void		Core::init()
       std::cout << "tutu" << std::endl;
       if (this->_net.init(this->_gnl))
 	{
+	  std::cout << "tyty" << std::endl;
 	  string tempo = this->_gnl.get_next_line();
+	  std::cout << "tempo = " << tempo << std::endl;
 	  if (this->_net.initConnexion(tempo))
 	    this->_mess.work(tempo, this->_mem);
 	}
