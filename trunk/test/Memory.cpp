@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Tue Jul 16 15:35:14 2013 florian dewulf
+// Last update Tue Jul 16 15:36:57 2013 florian dewulf
 //
 
 #include			"Memory.hpp"
@@ -61,12 +61,8 @@ Case				*Memory::getCase(int x, int y) const
 
 void				Memory::setSizeMap(int x, int y)
 {
-  std::cout << "toast" << std::endl;
-  std::cout << "x = " << x << std::endl;
-  std::cout << "y = " << y << std::endl;
   if (x > 0 && y > 0)
     {
-      std::cout << "toast2" << std::endl;
       this->_sizex = RES_X / x;
       this->_sizey = RES_Y / y;
       sf::Vector2<float>	vec(this->_sizex, this->_sizey);
@@ -74,7 +70,7 @@ void				Memory::setSizeMap(int x, int y)
 	{
 	  std::vector<Case *>	casetmp;
 
-	  for (int tmpx ; tmpx < x ; ++tmpx)
+	  for (int tmpx = 0; tmpx < x ; ++tmpx)
 	    {
 	      std::cout << "y = " << tmpy << "x = " << tmpx << std::endl;
 	      casetmp.push_back(new Case(vec, x, y));
