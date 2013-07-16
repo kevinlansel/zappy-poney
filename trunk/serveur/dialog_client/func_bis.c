@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Tue Jul  9 14:54:23 2013 florian dewulf
-** Last update Mon Jul 15 14:11:15 2013 florian dewulf
+** Last update Tue Jul 16 17:46:00 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -27,7 +27,10 @@ void		giveposition(t_client *cl, t_client *begin)
   while (begin && begin->end != 1)
     {
       if (begin->type == GRAPHIC)
-	write(begin->fd, str, strlen(str));
+	{
+	  printf("%s\n", str);
+	  write(begin->fd, str, strlen(str));
+	}
       begin = begin->nt;
     }
   free(str);
