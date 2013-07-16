@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Mon Jul 15 23:38:38 2013 florian dewulf
-// Last update Tue Jul 16 14:55:09 2013 florian dewulf
+// Last update Tue Jul 16 15:01:26 2013 florian dewulf
 //
 
 #include	"Message.hpp"
@@ -81,11 +81,13 @@ bool		Message::work(const std::string &str, Memory *mem)
        vec.size() == static_cast<unsigned int>(this->pattern[this->vec[0]])) || (vec.size() > 0 && this->vec[0] != "pic" && vec.size() >= 5))
     {
       bool b;
+      bool	(Interpret::*func)(Memory *);
 
       std::cout << "YOOO" << std::endl;
       inter.setVec(this->vec);
       std::cout << "YUUUU" << std::endl;
-      b = (inter.*(ptr[this->vec[0]]))(mem);
+      func = ptr[this->vec[0]];
+      b = (inter.*func)(mem);
       std::cout << "Coucou" << std::endl;
       return (b);
     }
