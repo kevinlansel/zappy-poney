@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Tue Jul 16 15:47:40 2013 florian dewulf
+// Last update Tue Jul 16 15:50:05 2013 florian dewulf
 //
 
 #include			"Memory.hpp"
@@ -145,4 +145,9 @@ std::list<std::string>		Memory::getTeamlist() const
 void				Memory::clear_win()
 {
   this->_win.clear();
+}
+
+void				Memory::display_win()
+{
+  this->_win.display();
 }
