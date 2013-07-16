@@ -13,13 +13,29 @@ static int	usage()
   std::cout << "Usage : -n team [-p port] [-h ip]" << std::endl;
 }
 
+static void	loop(const std::string &host, int port, const std::string &team)
+{
+  Core		core(host, port, team);
+
+  try
+    {
+      core.init();
+      while (core.update())
+	core.draw();
+    }
+  catch (const Except &e)
+    {
+      std::cerr << "Error : " << e.what() << std::endl;
+      return;
+    }
+}
+
 int		main(int ac, char **av)
 {
   int		i = 1;
   std::string	host;
   int		port;
   std::string	team;
-  Audio		music;
   srand(time(NULL));
   std::stringstream	ss;
 
@@ -40,11 +56,6 @@ int		main(int ac, char **av)
     }
   if (team == "")
     return (usage());
-  Network	net(host, port, team);
-  net.initConnexion();
-  gnl gl(net.getSock());
-  music.PlaySound();
-  net.doLoop(gl);
-  Windows	window(net.getTailleX(), net.getTailleY(), net);
-  window.CreateWindows(gl);
+  loop(host, port, team);
+  return (0);
 }
