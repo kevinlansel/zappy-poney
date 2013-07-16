@@ -253,7 +253,7 @@ void			Network::checkData(std::string &data)
     }
   else if (word == "bct")
     {
-      std::cout << "bct" << std::endl;
+      ;//std::cout << "bct" << std::endl;
       //recup_mapContent(data);
     }
 }

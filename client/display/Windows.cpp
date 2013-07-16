@@ -86,7 +86,7 @@ void		Windows::DrawMap()
   int		i = 0;
   std::vector<std::vector<int> >		ress;
 
-    ress = this->_net.getCarte();
+  ress = this->_net.getCarte();
     /*    for (std::vector<std::vector<int> >::iterator it = ress.begin(); it != ress.end(); ++it)
     {
       for (std::vector<int>::iterator ti = it->begin(); ti != it->end(); ++ti)
@@ -95,7 +95,7 @@ void		Windows::DrawMap()
       }*/
   while (y <= ((this->_y - 1) * this->taille.y))
     {
-        x = 0;
+      x = 0;
       while (x <= ((this->_x - 1) * this->taille.x))
 	{
 	  Case		macase(taille, ress, i);
