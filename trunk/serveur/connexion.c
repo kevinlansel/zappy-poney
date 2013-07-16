@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Thu Jun 27 10:38:25 2013 florian dewulf
-** Last update Sun Jul 14 18:20:23 2013 florian dewulf
+** Last update Tue Jul 16 14:59:38 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -105,7 +105,7 @@ void		connexion(t_client **cl, t_map **map, t_opt *opt)
 
   if ((msg = get_mess(*cl, opt)) != NULL)
     {
-      if (strcmp(msg->comand, "GRAPHIC\n") == 0)
+      if (strcmp(msg->comand, "GRAPHIC") == 0)
 	graphic_connect(*cl, map, opt);
       else if (ia_connect(msg->comand, cl, opt) == 1)
 	{
