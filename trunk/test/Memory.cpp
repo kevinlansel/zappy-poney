@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Tue Jul 16 17:05:27 2013 florian dewulf
+// Last update Tue Jul 16 17:23:55 2013 florian dewulf
 //
 
 #include			"Memory.hpp"
@@ -63,8 +63,8 @@ void				Memory::setSizeMap(int x, int y)
 {
   if (x > 0 && y > 0)
     {
-      this->_sizex = RES_X / x;
-      this->_sizey = RES_Y / y;
+      this->_sizex = (RES_X - 200) / x;
+      this->_sizey = (RES_Y - 100) / y;
       sf::Vector2<float>	vec(this->_sizex, this->_sizey);
       for (int tmpy = 0 ; tmpy < y ; ++tmpy)
 	{
@@ -104,8 +104,6 @@ void				Memory::drawCase()
 
 void				Memory::drawPlayer()
 {
-  float				sizecasex = this->_sizex / RES_X;
-  float				sizecasey = this->_sizey / RES_Y;
   sf::Vector2<float>		vecscale(sizecasex * 0.4 / 140, sizecasey * 0.4 / 140);
 
   for (std::list<Player *>::iterator it = this->_player.begin() ; it != this->_player.end() ; ++it)
