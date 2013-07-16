@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Tue Jul 16 18:05:44 2013 florian dewulf
+** Last update Tue Jul 16 18:52:52 2013 guillaume duez
 */
 
 #ifndef			__SERVEUR_H__
@@ -161,6 +161,7 @@ void			begin_incant(int, t_client *, int, int);
 void			broadcast(t_msg *, t_client *, t_map **, t_opt *);
 
 int			calcul_K(t_client *, t_client *);
+int			check_end(t_client *client);
 int			check_endgame(t_client *);
 int			check_name_team(char **name_team);
 int			cmp_nb_arg(int, char *, int);
