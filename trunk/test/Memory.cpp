@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Tue Jul 16 16:10:14 2013 florian dewulf
+// Last update Tue Jul 16 16:13:24 2013 florian dewulf
 //
 
 #include			"Memory.hpp"
@@ -127,7 +127,7 @@ void				Memory::drawOeuf()
   for (std::list<Player *>::iterator it = this->_player.begin() ; it != this->_player.end() ; ++it)
       {
 	sf::Sprite	sp(this->_lvlsprite[0]);
-	sp.move(sf::Vector2<float>((*it)->getX() * sizecasex, (*it)->getY() * sizecasey + sizecasey / 2));
+	sp.setPosition(sf::Vector2<float>((*it)->getX() * sizecasex, (*it)->getY() * sizecasey + sizecasey / 2));
 	sp.scale(vecscale);
 	this->_win.draw(sp);
       }
