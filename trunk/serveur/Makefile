@@ -5,7 +5,7 @@
 ## Login   <duez_a@epitech.net>
 ## 
 ## Started on  Mon Feb  4 12:48:16 2013 guillaume duez
-## Last update Fri Jul 12 11:48:12 2013 florian dewulf
+## Last update Tue Jul 16 16:30:13 2013 guillaume duez
 ##
 
 SERV	=	serveur
@@ -45,6 +45,7 @@ SRC_SERV=	action.c			\
 		tools/str_to_word.c		\
 		tools/tools_socket.c		\
 		tools/xmalloc.c			\
+		tools/xrealloc.c		\
 		vision.c
 
 OBJ_SERV=	$(SRC_SERV:.c=.o)

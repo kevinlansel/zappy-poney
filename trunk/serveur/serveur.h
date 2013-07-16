@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Tue Jul 16 16:02:32 2013 guillaume duez
+** Last update Tue Jul 16 16:32:43 2013 guillaume duez
 */
 
 #ifndef			__SERVEUR_H__
@@ -254,6 +254,7 @@ void			xlisten(int fd);
 int			xsocket(struct protoent *pe);
 int			xaccept(int, struct sockaddr_in, socklen_t);
 void			xbind(int fd, struct sockaddr_in s_in);
+void			*xrealloc(void *ptr, int size);
 
 
 #endif
