@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 09:20:23 2013 florian dewulf
-// Last update Tue Jul 16 16:09:58 2013 florian dewulf
+// Last update Tue Jul 16 19:01:40 2013 florian dewulf
 //
 
 #include	"Core.hpp"
@@ -52,5 +52,6 @@ void		Core::draw()
   this->_mem->drawCase();
   this->_mem->drawPlayer();
   this->_mem->drawOeuf();
+  this->_mem->printText();
   this->_mem->display_win();
 }

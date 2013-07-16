@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 00:27:16 2013 florian dewulf
-// Last update Tue Jul 16 17:24:09 2013 florian dewulf
+// Last update Tue Jul 16 19:02:52 2013 florian dewulf
 //
 
 #ifndef		MEMORY___
@@ -59,16 +59,20 @@ public:
   void				drawCase();
   void				drawPlayer();
   void				drawOeuf();
+  void				loadText(const std::string &);
+  void				printText();
 
 private:
   sf::RenderWindow			_win;
   float					_sizex;
   float					_sizey;
+  sf::Font				_font;
   std::list<std::string>		_team;
   std::vector<std::vector<Case *> >	_case;
   std::list<Oeuf *>			_oeuf;
   std::list<Player *>			_player;
   std::map<int, sf::Texture>		_lvlsprite;
+  sf::Text				_txt;
 };
 
 #endif
