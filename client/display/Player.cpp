@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Tue Jul  2 10:35:58 2013 gery baudry
-// Last update Fri Jul 12 18:47:08 2013 gery baudry
+// Last update Wed Jul 17 00:18:00 2013 gery baudry
 //
 
 #include		"Player.hpp"
@@ -23,7 +23,7 @@ std::string			Player::doTextPlayer(sf::Vector2<int> souris)
 {
   std::stringstream		inv;
 
-  inv << "Inventaire du player \nX = " << souris.x << " Y = " << souris.y << "\nNourriture = " << this->_nourriture << " \nLinemate = " << this->_linemate << " \nDeraumere = " << this->_deraumere << " \nSibur = " << this->_sibur << " \nMediane = " << this->_mendiane << " \nPhiras = " << this->_phiras << " \nThystame = " << this->_thystame << " \nLevel = " << this->_level << " \nTeam Name =" << this->_teamname;
+  inv << "Inventaire du player \nX = " << souris.x << " Y = " << souris.y << "\nNourriture = " << this->_nourriture << " \nLinemate = " << this->_linemate << " \nDeraumere = " << this>_deraumere << " \nSibur = " << this->_sibur << " \nMediane = " << this->_mendiane << " \nPhiras = " << this->_phiras << " \nThystame = " << this->_thystame << " \nLevel = " << this->_level << " \nTeam Name =" << this->_teamname;
   // std::cout << inv.str() << std::endl;
   return (inv.str());
 }
