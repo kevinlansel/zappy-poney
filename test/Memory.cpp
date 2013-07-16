@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Tue Jul 16 19:01:15 2013 florian dewulf
+// Last update Tue Jul 16 19:19:07 2013 florian dewulf
 //
 
 #include			"Memory.hpp"
@@ -14,7 +14,7 @@ Memory::Memory() : _win(sf::VideoMode(RES_X, RES_Y), "Client Zappy"/*, sf::Style
 {
   sf::Texture		tmp;
 
-  if (this->_font.loadFromFile("./ressources/font/Sansation_Bold.ttf") == false)
+  if (this->_font.loadFromFile("./ressources/fonts/Sansation_Bold.ttf") == false)
     throw Except("Fail on loading font");
   if (tmp.loadFromFile("./ressources/pictures/oeuf.png") == false)
     throw Except("Fail on loading ressources");
