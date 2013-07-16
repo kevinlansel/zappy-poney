@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 17:52:10 2013 guillaume duez
-** Last update Mon Jul 15 16:26:30 2013 guillaume duez
+** Last update Tue Jul 16 16:08:36 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -53,8 +53,8 @@ static t_map		**create_map(t_opt *opt)
   return (map);
 }
 
-static void     set_fd(fd_set *listen_select,
-                       t_client *client, int *max, t_connect *co)
+static void		set_fd(fd_set *listen_select,
+			       t_client *client, int *max, t_connect *co)
 {
   FD_ZERO(listen_select);
   FD_SET(co->fd, listen_select);
@@ -74,18 +74,18 @@ static void     set_fd(fd_set *listen_select,
   client = client_reset(client);
 }
 
-static void		open_serv(t_connect *co, t_client *client, t_opt *opt, t_map **map)
+static void		open_serv(t_connect *co, t_client *client,
+				  t_opt *opt, t_map **map)
 {
-  int		error;
-  fd_set        fd_read;
-  int		max;
-  t_msg		*msg;
+  fd_set		fd_read;
+  int			max;
+  t_msg			*msg;
 
-  error = ((msg = ((msg) ? NULL : NULL)) ? 0 : 0);
-  while (error != -1)
+  co->error = ((msg = ((msg) ? NULL : NULL)) ? 0 : 0);
+  while (co->error != -1)
     {
-      set_fd(&fd_read, client, &max, co);
-      if ((error = select(max + 1, &fd_read, NULL, NULL, co->tv)) != -1)
+      set_fd(&fd_read, (client = client_reset(client)), &max, co);
+      if ((co->error = select(max + 1, &fd_read, NULL, NULL, co->tv)) != -1)
         {
           if (FD_ISSET(co->fd, &fd_read))
 	    client = create_cl(xaccept(co->fd, co->s_in_client, co->s_in_size),
@@ -94,25 +94,21 @@ static void		open_serv(t_connect *co, t_client *client, t_opt *opt, t_map **map)
             {
               if (FD_ISSET(client->fd, &fd_read))
 		msg = do_action(&client, map, msg, opt);
-              if (client && client->end != 1)
-                client = client->nt;
 	      if (client && client->type == EGG)
 		sub_food(NULL, client, NULL);
+	      client = (client && client->end != 1) ? client->nt : client;
             }
         }
       msg = exec_task(msg);
       epur_client(&client);
-      client = client_reset(client);
-      //if (check_endgame(client))
-      //error = -1;
     }
 }
 
-void		run_server(t_opt *opt)
+void			run_server(t_opt *opt)
 {
-  t_connect	*connect;
-  t_client      *client;
-  t_map		**map;
+  t_connect		*connect;
+  t_client		*client;
+  t_map			**map;
 
   connect = xmalloc(sizeof(t_connect));
   connect->s_in_size = sizeof(connect->s_in_client);

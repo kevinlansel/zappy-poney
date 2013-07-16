@@ -5,12 +5,12 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:19:39 2013 guillaume duez
-** Last update Wed Jul  3 11:04:51 2013 florian dewulf
+** Last update Tue Jul 16 16:05:20 2013 guillaume duez
 */
 
 #include	"serveur.h"
 
-t_client        *end_client(t_client *client)
+t_client	*end_client(t_client *client)
 {
   if (client && client->prev == NULL && client->end != 1)
     {
@@ -28,7 +28,7 @@ t_client        *end_client(t_client *client)
   return client;
 }
 
-t_client        *client_reset(t_client *client)
+t_client	*client_reset(t_client *client)
 {
   while (client && client->prev != NULL)
     client = client->prev;

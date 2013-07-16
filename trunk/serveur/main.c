@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Tue May 28 17:55:49 2013 guillaume duez
-** Last update Thu Jun 27 18:10:53 2013 florian dewulf
+** Last update Tue Jul 16 16:06:54 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -21,7 +21,7 @@ int		give_id()
   return (ret);
 }
 
-int             main(int ac, char **av)
+int		main(int ac, char **av)
 {
   srand(time(NULL));
   if (ac < 2)
