@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Mon Jul 15 23:38:38 2013 florian dewulf
-// Last update Tue Jul 16 16:59:39 2013 florian dewulf
+// Last update Tue Jul 16 17:03:14 2013 florian dewulf
 //
 
 #include	"Message.hpp"
@@ -112,7 +112,7 @@ bool		Message::addTeamName(Memory *mem)
 bool		Message::newPlayer(Memory *mem)
 {
   mem->push(0, new Player(toInt(vec[1]), toInt(vec[2]), toInt(vec[3]), toInt(vec[4]), toInt(vec[5]), vec[6]));
-  mem->modiflastCase(mem->getCase(toInt(this->vec[1]), toInt(this->vec[2])));//
+  mem->modiflastCase(mem->getCase(toInt(this->vec[1]), toInt(this->vec[2])));
   std::cout << mem->getPlayerlist().size() << std::endl;
   return (true);
 }
