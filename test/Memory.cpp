@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Tue Jul 16 19:30:16 2013 florian dewulf
+// Last update Tue Jul 16 19:44:58 2013 florian dewulf
 //
 
 #include			"Memory.hpp"
@@ -71,7 +71,25 @@ Memory::Memory() : _win(sf::VideoMode(RES_X, RES_Y), "Client Zappy"/*, sf::Style
 
 Memory::~Memory()
 {
-  
+  for (std::vector<std::vector<Case *> >::iterator it = this->_case.begin() ; it != this->_case.end() ; ++it)
+    {
+      for (std::vector<Case *>::iterator it2 = it->begin() ; it2 != it->end() ; ++it2)
+	{
+	  delete (*it2);
+	  it2 = it->erase(it2);
+	}
+      it = this->_case.erase(it);
+    }
+  for (std::vector<Oeuf *>::iterator it = this->_oeuf.begin() ; it != this->_oeuf.end() ; ++it)
+    {
+      delete (*it);
+      it = this->_oeuf.erase(it);
+    }
+  for (std::vector<Player *>::iterator it = this->_player.begin() ; it != this->_player.end() ; ++it)
+    {
+      delete (*it);
+      it = this->_player.erase(it);
+    }
 }
 
 std::list<Player *>		Memory::getPlayerlist() const
