@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:15:13 2013 guillaume duez
-** Last update Mon Jul 15 16:29:35 2013 guillaume duez
+** Last update Tue Jul 16 15:29:36 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -45,11 +45,13 @@ int		send_mess(t_msg *msg)
 
   if (!msg || !msg->client)
     return -1;
-  if ((ret = send(msg->client->fd, msg->cmd ,strlen(msg->cmd) + 1, MSG_OOB) <= 0))
+  if (!msg->client || !msg->cmd || msg->client->fd == 0)
+    return -1;
+  ret = send(msg->client->fd, msg->cmd ,strlen(msg->cmd) + 1, MSG_DONTWAIT);
+  if (ret <= 0 || strcmp(msg->cmd, "mort\n") == 0)
     {
-      printf("Unable to send message, for client :%d", msg->client->id);
       close(msg->client->fd);
-      return -1;
+      printf("The client is dead or has leave\n");
     }
   return 0;
 }

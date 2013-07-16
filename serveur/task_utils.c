@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun  3 15:13:05 2013 guillaume duez
-** Last update Mon Jul 15 14:57:34 2013 guillaume duez
+** Last update Tue Jul 16 15:30:44 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -96,7 +96,6 @@ void		sub_food(t_msg *msg, t_client *client, const char *str)
     {
       msg->cmd = strdup("mort\n");
       player_dead(client->id, client);
-      close(client->fd);
       client->type = TO_DEL;
     }
   else if (client->type == EGG)
@@ -104,4 +103,5 @@ void		sub_food(t_msg *msg, t_client *client, const char *str)
       egg_dead(client->id, client);
       client->type = TO_DEL;
     }
+  msg->client = client;
 }
