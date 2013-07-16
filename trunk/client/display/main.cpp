@@ -32,7 +32,7 @@ int		main(int ac, char **av)
 	host = (std::string)av[i + 1];
       else if ((std::string)av[i] == "-p" && i + 1 < ac)
 	{
-	  ss.str(string(av[i + 1]));
+	  ss.str(std::string(av[i + 1]));
 	  ss >> port;
 	  ss.str("");
 	}
@@ -46,5 +46,6 @@ int		main(int ac, char **av)
   music.PlaySound();
   net.doLoop(gl);
   Windows	window(net.getTailleX(), net.getTailleY(), net);
+  std::cout << "monann" << std::endl;
   window.CreateWindows(gl);
 }

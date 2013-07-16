@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 11:12:44 2013 gery baudry
-// Last update Fri Jul 12 18:47:31 2013 gery baudry
+// Last update Tue Jul 16 11:39:10 2013 gery baudry
 //
 
 #include	<iostream>
@@ -13,6 +13,7 @@
 
 Case::Case(sf::Vector2f taille, std::vector<std::vector<int> > ressources, int i) : rectangle(taille), _nourriture(ressources[i][0]), _linemate(ressources[i][1]), _deraumere(ressources[i][2]), _sibur(ressources[i][3]), _mendiane(ressources[i][4]), _phiras(ressources[i][5]), _thystame(ressources[i][6]), _casevide(0, 204, 204), _casepleine(0, 204, 0)
 {
+  std::cout << "je crée une case" << std::endl;
   if (this->_nourriture == 0 && this->_linemate == 0 && this->_deraumere == 0 && this->_sibur == 0 && this->_mendiane == 0 && this->_phiras == 0 && this->_thystame == 0)
     this->rectangle.setFillColor(_casevide);
   else

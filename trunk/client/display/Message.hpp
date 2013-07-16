@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon Jul  8 15:02:08 2013 Maxime Wojciak
-// Last update Mon Jul 15 20:50:47 2013 gery baudry
+// Last update Mon Jul 15 20:56:39 2013 gery baudry
 //
 
 #ifndef				MESSAGE__
@@ -49,7 +49,7 @@ public:
   void				setSbp();
   void				setPpo(int, int, int);
   void				setPlv(int);
-  void				setPin(int, int, int, int, int, int, int, int, int);
+  void				setPin(/*int, int, int, int, int, int, int, int, int*/);
 
 public:
   sf::Text			getText() const;

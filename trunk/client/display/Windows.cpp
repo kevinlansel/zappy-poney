@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:01:06 2013 Maxime Wojciak
-// Last update Mon Jul 15 20:51:45 2013 gery baudry
+// Last update Tue Jul 16 12:16:52 2013 gery baudry
 //
 
 #include	<iostream>
@@ -22,7 +22,7 @@
 #include	"Souris.hpp"
 #include	"Message.hpp"
 
-Windows::Windows(int x, int y, const Network &net) : window(sf::VideoMode(1280, 1024), "Client Zappy", sf::Style::Fullscreen), _x(x), _y(y), _net(net), _mem(new Memory), mess(this->_mem)
+Windows::Windows(int x, int y, const Network &net) : window(sf::VideoMode(1280, 1024), "Client Zappy"/*, sf::Style::Fullscreen*/), _x(x), _y(y), _net(net), _mem(new Memory), mess(this->_mem)
 {
   this->taille = sf::Vector2f((1100 / this->_x), (960 / this->_y));
 }
@@ -97,15 +97,29 @@ void		Windows::DrawMap()
   int		i = 0;
   std::vector<std::vector<int> >		ress;
 
+  std::cout << "drawmap1" << std::endl;
   ress = this->_net.getCarte();
+  std::cout << "drawmap2" << std::endl;
+  for (std::vector<std::vector<int> >::iterator it = ress.begin(); it != ress.end(); ++it)
+    {
+      std::cout << "print ress" << std::endl;
+      for (std::vector<int>::iterator ti = it->begin(); ti != it->end(); ++ti)
+	std::cout << *ti;
+      std::cout << std::endl;
+    }
   while (y <= ((this->_y - 1) * this->taille.y))
     {
+      std::cout << "drawmap3" << std::endl;
       x = 0;
       while (x <= ((this->_x - 1) * this->taille.x))
 	{
+	  std::cout << "drawmap4" << std::endl;
 	  Case		macase(taille, ress, i);
+	  std::cout << "drawmap5" << std::endl;
 	  macase.setPosition(sf::Vector2f(x, y));
+	  std::cout << "drawmap6" << std::endl;
 	  this->_mem->pushCase(macase);
+	  std::cout << "drawmap7" << std::endl;
 	  x += this->taille.x;
 	  i += 1;
 	}
