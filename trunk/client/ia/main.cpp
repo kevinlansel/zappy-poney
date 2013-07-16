@@ -5,13 +5,13 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Mon Jul 15 16:26:43 2013 florian dewulf
-// Last update Mon Jul 15 18:07:08 2013 kevin lansel
+// Last update Tue Jul 16 10:38:14 2013 kevin lansel
 //
 
 #include	<sstream>
 #include	<string>
 #include	"Network.hpp"
-#include	"Ia.hpp"
+#include	"tmp.hpp"
 #include	"get_next_line.hpp"
 
 using namespace	std;
@@ -43,14 +43,14 @@ static int	main_loop(const string &str, const int &port, const string &team)
 
   net.initConnexion();
   gnl		getnext(net.getSock());
-  data = gnl.get_next_line();
-  if (data == "BIENVENUE\n")
+  data = getnext.get_next_line();
+  if (data == "BIENVENUE")
     {
-      write(data.getSock(), team.c_str(), team.size());
-      data = gnl.get_next_line();
+      write(net.getSock(), team.c_str(), team.size());
+      data = getnext.get_next_line();
       nb_connexion = string_to_int(data);
       std::cout << nb_connexion << " connexion remaining" << std::endl;
-      data = gnl.get_next_line();
+      data = getnext.get_next_line();
     }
   else
     {
@@ -60,17 +60,17 @@ static int	main_loop(const string &str, const int &port, const string &team)
   ss.str(data);
   ss >> x;
   ss >> y;
-  Ia		ia(x, y, team);
-  ia.loop(gnl, net.getSock());
+  Tmp		ia(x, y, team);
+  ia.loop(getnext, net.getSock());
   return (0);
 }
 
 int		main(int ac, char **av)
 {
-  string	str = 127.0.0.1;
+  string	str = "127.0.0.1";
   int		port = 4243;
   string	team = "";
-  unsigned int	i = 1;
+  int		i = 1;
 
   while (av[i])
     {

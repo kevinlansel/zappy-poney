@@ -5,7 +5,7 @@
 // Login   <lansel_k@epitech.net>
 // 
 // Started on  Thu Jun 27 17:17:04 2013 kevin lansel
-// Last update Mon Jul 15 18:01:33 2013 kevin lansel
+// Last update Tue Jul 16 20:00:29 2013 kevin lansel
 //
 
 #include	<vector>
@@ -372,7 +372,6 @@ std::vector<std::string>	Ia::voir(void)
       std::cout << "--[" << *it << "]--"<< std::endl;
       i++;
     }*/
-  vide_case(vec);
   return (vec);
 }
 

@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Thu Jun 27 16:21:12 2013 florian dewulf
-// Last update Mon Jul 15 11:25:38 2013 florian dewulf
+// Last update Mon Jul 15 19:21:28 2013 kevin lansel
 //
 
 #ifndef		TOTO_HPP__
@@ -27,7 +27,7 @@ public:
   std::string	get_next_line();
   std::string	get_answer();
   std::string	getbuffer() const;
-  std::string	geterror() const;
+  bool		getError() const;
 
 private:
   int		_fd;
