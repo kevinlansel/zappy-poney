@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 09:20:23 2013 florian dewulf
-// Last update Tue Jul 16 15:38:55 2013 florian dewulf
+// Last update Tue Jul 16 15:43:35 2013 florian dewulf
 //
 
 #include	"Core.hpp"
