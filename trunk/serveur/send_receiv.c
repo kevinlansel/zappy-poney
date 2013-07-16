@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:15:13 2013 guillaume duez
-** Last update Tue Jul 16 20:49:16 2013 guillaume duez
+** Last update Tue Jul 16 22:24:13 2013 kevin lansel
 */
 
 #include	<stdio.h>
@@ -41,7 +41,7 @@ t_msg		*remove_msg(t_msg *msg, t_client *client)
 
 int		send_mess(t_msg *msg)
 {
-  int	ret;
+  int		ret;
 
   ret = 1;
   if (!msg || !msg->client)
