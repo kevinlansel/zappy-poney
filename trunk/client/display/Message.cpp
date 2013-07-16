@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Mon Jul  8 15:02:02 2013 Maxime Wojciak
-// Last update Mon Jul 15 21:20:31 2013 gery baudry
+// Last update Tue Jul 16 14:02:07 2013 gery baudry
 //
 
 #include	"Message.hpp"
@@ -335,7 +335,8 @@ void	Message::setPnw(int _n, int _x, int _y, int _O, int _L, std::string _N) {
     std::cout << "creation player" << std::endl;
     sf::Vector2i	pos(_x, _y);
     Player		player(pos, _n, 10, 0, 0, 0, 0, 0, 0, _O, _L, _N);
-    this->_mem->getPliste().push_back(player);
+    this->_mem->pushPlayer(player);
+    std::cout << this->_mem->getPliste().size() << std::endl;
     std::string _text = tonton(_n) + " case x: " + tonton(_x) + ", y: " + tonton(_y) + " Orientation: " + tonton(_O) + " Level: " + tonton(_L) + " Equipe: " + _N;
     this->text = sf::Text(_text, this->font, 15);
     this->text.move(sf::Vector2f(1110, 900));

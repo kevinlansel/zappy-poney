@@ -5,7 +5,7 @@
 // Login   <wojcia_m@epitech.net>
 // 
 // Started on  Thu Jun 27 18:01:06 2013 Maxime Wojciak
-// Last update Tue Jul 16 12:16:52 2013 gery baudry
+// Last update Tue Jul 16 13:47:20 2013 gery baudry
 //
 
 #include	<iostream>
@@ -54,6 +54,7 @@ void		Windows::CreateWindows(gnl &gl)
 	  FD_SET(this->_net.getSock(), &fd_read);
 	  if (gl.getbuffer() != "")
 	    {
+	      std::cout << "if" << std::endl;
 	      req = gl.get_next_line();
 	      //std::cout << req << std::endl;
 	      this->_net.checkData(req);
@@ -64,6 +65,7 @@ void		Windows::CreateWindows(gnl &gl)
 	    {
 	      if (FD_ISSET(this->_net.getSock(), &fd_read))
 		{
+		  std::cout << "else if" << std::endl;
 		  req = gl.get_next_line();
 		  //		  std::cout << req << std::endl;
 		  this->_net.checkData(req);
@@ -73,6 +75,13 @@ void		Windows::CreateWindows(gnl &gl)
 	    }
 	}
       this->window.clear();
+      std::cout << "player draw 1" << this->_mem->getPliste().size() << std::endl;
+      for (std::vector<Player>::iterator it = this->_mem->getPliste().begin(); it != this->_mem->getPliste().end(); ++it)
+	{
+	  std::cout << "player draw 2" << std::endl;
+	  this->window.draw(it->getImage().loadPokemon(it->getPosition()));
+	}
+      std::cout << "player draw 3" << std::endl;
       DrawMap();
       souris.CheckSouris(this->window, this->_mem->getMap(), this->_x, this->_y, this->taille);
       this->window.display();
