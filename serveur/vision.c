@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun  3 18:42:55 2013 guillaume duez
-** Last update Tue Jul 16 19:14:23 2013 florian dewulf
+** Last update Tue Jul 16 20:19:28 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -68,7 +68,7 @@ static char	**get_line(t_map *map, int len, e_direct dir)
   move = map;
   while (i < len)
     {
-      tmp = get_object_case(map);
+      tmp = get_object_case(move);
       str[i] = (tmp ? tmp : "");
       if (move && dir == NORD)
 	move = move->right;
@@ -138,5 +138,6 @@ void		voir(t_msg *msg, t_client *client, t_map **map, t_opt *opt)
 				+ (3 * sizeof(char)))) ? t : t;
   snprintf(fin + (fin ? strlen(fin) : 0), (fin ? strlen(fin) : 0) + 3,  "}\n");
   sub_food(msg, client, fin);
+  printf("fin:%s\n", fin);
   msg->time = get_time_client(client, 7);
 }
