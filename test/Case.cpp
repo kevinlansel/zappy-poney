@@ -5,18 +5,18 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 11:12:44 2013 gery baudry
-// Last update Tue Jul 16 15:56:55 2013 florian dewulf
+// Last update Tue Jul 16 16:07:29 2013 florian dewulf
 //
 
 #include	<iostream>
 #include	"Case.hpp"
 
-Case::Case(const sf::Vector2<float> &size, int x, int y) : _rectangle(size), _x(x), _y(y), pos(sf::Vector2<float>(size.x * x, size.y * y))
+Case::Case(const sf::Vector2<float> &size, int x, int y) : _rectangle(size), _x(x), _y(y)
 {
   this->_rectangle.setFillColor(sf::Color(0, 204, 0));
   this->_rectangle.setOutlineThickness(1);
   this->_rectangle.setOutlineColor(sf::Color(150, 50, 250));
-  this->_rectangle.move(sf::Vector2<float>(size.x * x, size.y * y));
+  this->_rectangle.setPosition(sf::Vector2<float>(size.x * x, size.y * y));
   this->_ress[0] = 0;
   this->_ress[1] = 0;
   this->_ress[2] = 0;
@@ -36,9 +36,6 @@ Case::~Case()
 
 sf::RectangleShape		Case::getRectangle()
 {
-  this->_rectangle.move(this->pos);
-  std::cout << "Test x : " << this->pos.x << std::endl;
-  std::cout << "Test y : " << this->pos.y << std::endl;
   return (this->_rectangle);
 }
 
