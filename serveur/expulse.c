@@ -5,11 +5,11 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Tue Jun 25 14:18:23 2013 guillaume duez
-** Last update Tue Jul 16 16:05:55 2013 guillaume duez
+** Last update Tue Jul 16 17:26:52 2013 guillaume duez
 */
 
-#include	"serveur.h"
 #include	<stdio.h>
+#include	"serveur.h"
 
 static t_client	*get_client(t_client *client)
 {

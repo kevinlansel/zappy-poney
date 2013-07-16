@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Tue Jun 18 14:50:20 2013 florian dewulf
-** Last update Mon Jul 15 14:08:58 2013 florian dewulf
+** Last update Tue Jul 16 17:30:14 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -20,7 +20,8 @@ void		getmapsize(char **arg, int fd, t_map **map, t_client *cl)
 
   (void)arg;
   (void)cl;
-  size = snprintf(NULL, 0, "msz %d %d\n", map[0][0].x_world, map[0][0].y_world) + 1;
+  size = snprintf(NULL, 0, "msz %d %d\n", map[0][0].x_world,
+		  map[0][0].y_world) + 1;
   str = xmalloc((size + 1) * sizeof(char));
   snprintf(str, size, "msz %d %d\n", map[0][0].x_world, map[0][0].y_world);
   write(fd, str, strlen(str));

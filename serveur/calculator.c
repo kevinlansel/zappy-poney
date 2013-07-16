@@ -5,13 +5,14 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Tue Jun 25 14:43:22 2013 florian dewulf
-** Last update Tue Jun 25 15:28:00 2013 florian dewulf
+** Last update Tue Jul 16 17:26:24 2013 guillaume duez
 */
 
 #include	<math.h>
 #include	"serveur.h"
 
-static t_angle	*create_angle(int offone, int offtwo, int pond, t_angle *next)
+static t_angle	*create_angle(int offone, int offtwo, int pond,
+			      t_angle *next)
 {
   t_angle	*ang;
 
@@ -94,8 +95,8 @@ static int	create_vtor(int s[2], int d[2], int size[2], int dir)
     newd[0] = s[0] + (size[0] - s[0]) + d[0];
   v[0] += ((dir == OUEST) ? -1 : ((dir == EST) ? 1 : 0));
   v[1] += ((dir == NORD) ? -1 : ((dir == SUD) ? 1 : 0));
-  scalaire = (s[0] - newd[0]) * (v[0] - newd[0]) +
-    (s[1] - newd[1]) * (v[1] - newd[1]);
+  scalaire = (s[0] - newd[0]) * (v[0] - newd[0]) + (s[1] - newd[1])
+    * (v[1] - newd[1]);
   normeab = sqrt(pow((s[0] - newd[0]), 2) + pow((s[1] - newd[1]), 2));
   normeac = sqrt(pow((v[0] - newd[0]), 2) + pow((v[1] - newd[1]), 2));
   return (acos(scalaire / (normeab * normeac)));
