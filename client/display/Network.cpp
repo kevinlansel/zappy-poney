@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu Jul  4 12:01:21 2013 gery baudry
-// Last update Mon Jul 15 20:39:50 2013 gery baudry
+// Last update Tue Jul 16 12:23:29 2013 gery baudry
 //
 
 #include	"Network.hpp"
@@ -20,7 +20,7 @@ Network::Network(const std::string &host, int port, const std::string &team):
   this->_tailleY = 0;
 }
 
-Network::Network(const Network &d): _host(d.getHost()), _port(d.getPort()), _team(d.getTeam()), _sock(d.getSock()), _mem(d.getMem()), mess(d.getMess())
+Network::Network(const Network &d): _host(d.getHost()), _port(d.getPort()), _team(d.getTeam()), _sock(d.getSock()), _carte(d.getCarte()), _mem(d.getMem()), mess(d.getMess())
 {
 }
 
@@ -709,7 +709,7 @@ void	Network::recup_playerPosition(int idPlayer)
 	}
     }
   list = this->_playerInfos;
-  //this->mess.setPpo(tata(list[0]), tata(list[1]), tata(list[2]));
+  this->mess.setPpo(tata(list[0]), tata(list[1]), tata(list[2]));
 }
 
 void	Network::recup_playerLevel(int idPlayer)
@@ -752,7 +752,7 @@ void	Network::recup_playerLevel(int idPlayer)
 	  i++;
 	}
     }
-  //  this->mess.setPlv(this->_playerInfos[3]);
+  this->mess.setPlv(tata(this->_playerInfos[3]));
 }
 
 void       Network::recup_playerInventaire(int idPlayer)
@@ -793,7 +793,7 @@ void       Network::recup_playerInventaire(int idPlayer)
 	  i++;
 	}
     }
-  this->mess.setPin(tata(this->_playerInfos[0]), tata(this->_playerInfos[1]), tata(this->_playerInfos[2]), tata(this->_playerInfos[3]), tata(this->_playerInfos[4]), tata(this->_playerInfos[5]), tata(this->_playerInfos[6]), tata(this->_playerInfos[7]), tata(this->_playerInfos[8]));
+  this->mess.setPin(/*tata(this->_playerInfos[0]), tata(this->_playerInfos[1]), tata(this->_playerInfos[2]), tata(this->_playerInfos[3]), tata(this->_playerInfos[4]), tata(this->_playerInfos[5]), tata(this->_playerInfos[6]), tata(this->_playerInfos[7]), tata(this->_playerInfos[8])*/);
 }
 
 void	Network::askForTimeUnit(std::string &data)
