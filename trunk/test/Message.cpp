@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Mon Jul 15 23:38:38 2013 florian dewulf
-// Last update Tue Jul 16 19:12:46 2013 florian dewulf
+// Last update Tue Jul 16 19:22:27 2013 florian dewulf
 //
 
 #include	"Message.hpp"
@@ -156,13 +156,13 @@ bool		Message::setInvPlayer(Memory *mem)
 
 bool		Message::expulsePlayer(Memory *mem)
 {
-  mem->loadText("The player n°" + this->vec[1] + " expulsed");
+  mem->loadText("The player number " + this->vec[1] + " expulsed");
   return (true);
 }
 
 bool		Message::broadcastPlayer(Memory *mem)
 {
-  mem->loadText("The player n°" + this->vec[1] + " broadcasted \"" + this->vec[2] + "\"");
+  mem->loadText("The player number " + this->vec[1] + " saied \"" + this->vec[2] + "\"");
   return (true);
 }
 
@@ -188,7 +188,7 @@ bool		Message::endIncant(Memory *mem)
 
 bool		Message::eggPop(Memory *mem)
 {
-  mem->loadText("The player n°" + this->vec[1] + " dropped an egg");
+  mem->loadText("The player number " + this->vec[1] + " dropped an egg");
   return (true);
 }
 
@@ -234,7 +234,7 @@ bool		Message::eggOnCase(Memory *mem)
 
 bool		Message::eggSpawn(Memory *mem)
 {
-  mem->loadText("The egg n°" + this->vec[1] + " hatch");
+  mem->loadText("The egg number " + this->vec[1] + " hatch");
   return (true);
 }
 
