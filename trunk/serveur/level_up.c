@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Wed Jul  3 14:39:06 2013 guillaume duez
-** Last update Tue Jul 16 20:44:52 2013 gery baudry
+** Last update Tue Jul 16 19:51:42 2013 guillaume duez
 */
 
 #include	<string.h>
@@ -111,7 +111,7 @@ int		up_level(t_msg *msg)
       if (check_ress(msg->client->level - 1,
 		     msg->client->map, msg->client, 1) == 1)
 	{
-	  sub_food(msg, msg->client, get_mess_level_up(msg->client->level));
+	  sub_food(msg, msg->client, "");
 	  msg->client = client_reset(msg->client);
 	  check_nbr_client(msg->client->level - 1,
 			   msg->client, msg->client->map, 1);
