@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Tue Jul 16 21:11:39 2013 florian dewulf
+// Last update Tue Jul 16 21:18:08 2013 florian dewulf
 //
 
 #include			"Memory.hpp"
@@ -246,4 +246,15 @@ void				Memory::close()
 bool				Memory::pool(sf::Event &event)
 {
   return (this->_win.pollEvent(event));
+}
+
+void				Memory::rmPlayer(int id)
+{
+  for (std::list<Player *>::iterator it = this->_player.begin() ; it != this->_player.end() ; ++it)
+    if ((*it)->getId() == id)
+      {
+	delete *it;
+	this->_player.erase(it);
+	return;
+      }
 }

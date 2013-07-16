@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Mon Jul 15 23:38:38 2013 florian dewulf
-// Last update Tue Jul 16 23:04:56 2013 gery baudry
+// Last update Tue Jul 16 21:18:35 2013 florian dewulf
 //
 
 #include	"Message.hpp"
@@ -225,15 +225,7 @@ bool		Message::takeRess(Memory *mem)
 
 bool		Message::dead(Memory *mem)
 {
-  std::list<Player *>	list = mem->getPlayerlist();
-
-  for (std::list<Player *>::iterator it = list.begin() ; it != list.end() ; ++it)
-    if ((*it)->getId() == toInt(this->vec[1]))
-      {
-	delete *it;
-	list.erase(it);
-	break;
-      }
+  rmPlayer(toInt(this->vec[1]));
   if (!this->_buffer.loadFromFile("./ressources/audio/p.wav"))
     std::cout << "failed load sound" << std::endl;
   this->_son.setBuffer(this->_buffer);
