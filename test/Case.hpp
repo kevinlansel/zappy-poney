@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 11:11:59 2013 gery baudry
-// Last update Tue Jul 16 13:19:48 2013 florian dewulf
+// Last update Tue Jul 16 15:55:54 2013 florian dewulf
 //
 
 #ifndef			CASE__
@@ -21,7 +21,7 @@ public:
   virtual			~Case();
 
 public:
-  sf::RectangleShape		getRectangle() const;
+  sf::RectangleShape		getRectangle();
   std::vector<int>		getInv() const;
 
 public:
@@ -34,6 +34,7 @@ private:
   sf::RectangleShape		_rectangle;
   int				_x;
   int				_y;
+  sf::Vector2<float>		pos;
   int				_ress[7];
 };
 
