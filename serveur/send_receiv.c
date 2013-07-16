@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:15:13 2013 guillaume duez
-** Last update Tue Jul 16 22:24:13 2013 kevin lansel
+** Last update Tue Jul 16 22:28:43 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -79,8 +79,7 @@ t_msg		*get_mess(t_client *client, t_opt *opt)
   size = recv(client->fd, str, 1024, MSG_DONTWAIT);
   if (size > 0)
     {
-      if (str[size - 1] == '\n')
-	str[size - 1] = '\0';
+      str[(str[size - 1] == '\n') ? (size - 1) : size] = '\0';
       msg = xmalloc(sizeof(t_msg));
       msg->comand = str;
       msg->client = client;
