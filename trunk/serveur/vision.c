@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun  3 18:42:55 2013 guillaume duez
-** Last update Tue Jul 16 17:29:46 2013 guillaume duez
+** Last update Tue Jul 16 19:14:23 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -19,6 +19,7 @@ static char	*get_object(char *str, int i, int nb)
   int		size;
 
   size = 0;
+  nb /= (i == 0) ? 126 : 1;
   while (nb > 0)
     {
       if (!str)
