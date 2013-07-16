@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 09:20:23 2013 florian dewulf
-// Last update Tue Jul 16 14:35:21 2013 florian dewulf
+// Last update Tue Jul 16 15:18:53 2013 florian dewulf
 //
 
 #include	"Core.hpp"
@@ -26,6 +26,7 @@ void		Core::init()
   int		i = 51;
 
   this->_net.initConnexion();
+  this->_mess.init();
   gnl		tmp(this->_net.getSock());
 
   this->_gnl = tmp;
