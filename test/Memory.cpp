@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Tue Jul 16 22:25:50 2013 gery baudry
+// Last update Tue Jul 16 20:46:38 2013 florian dewulf
 //
 
 #include			"Memory.hpp"
@@ -90,6 +90,7 @@ Memory::~Memory()
       delete (*it);
       it = this->_player.erase(it);
     }
+  this->_win.close();
 }
 
 std::list<Player *>		Memory::getPlayerlist() const
@@ -142,11 +143,11 @@ std::list<Oeuf *>		Memory::getOeuf() const
 void				Memory::drawCase()
 {
   double				positionx[] = {this->_sizex / 2.45, this->_sizex - this->_sizex * 0.4,
-					       this->_sizex / 2.45, this->_sizex - this->_sizex * 0.4,
-					       this->_sizex / 2.45, this->_sizex - this->_sizex * 0.4,
-					       this->_sizex / 2.45};
+						       this->_sizex / 2.45, this->_sizex - this->_sizex * 0.4,
+						       this->_sizex / 2.45, this->_sizex - this->_sizex * 0.4,
+						       this->_sizex / 2.45};
   double				positiony[] = {0, 0, this->_sizey * 0.2, this->_sizey * 0.2,
-					       this->_sizey * 0.45, this->_sizey * 0.45, this->_sizey * 0.70};
+						       this->_sizey * 0.45, this->_sizey * 0.45, this->_sizey * 0.70};
   sf::Vector2<float>            vecscale(this->_sizex * 0.5 / 640, this->_sizey * 0.5 / 840);
 
   for (std::vector<std::vector<Case *> >::iterator it = this->_case.begin() ; it != this->_case.end() ; ++it)
