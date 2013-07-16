@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Tue Jul 16 17:23:55 2013 florian dewulf
+// Last update Tue Jul 16 19:24:34 2013 gery baudry
 //
 
 #include			"Memory.hpp"
@@ -54,8 +54,10 @@ std::list<Player *>		Memory::getPlayerlist() const
 
 Case				*Memory::getCase(int x, int y) const
 {
+  std::cout << "x= " << x << "y = " << y << std::endl;
   if (this->_case.size() >= static_cast<unsigned int>(y) && this->_case[y].size() >= static_cast<unsigned int>(x))
     return (this->_case[y][x]);
+  std::cout << "scout" << std::endl;
   return (NULL);
 }
 
@@ -104,16 +106,16 @@ void				Memory::drawCase()
 
 void				Memory::drawPlayer()
 {
-  sf::Vector2<float>		vecscale(sizecasex * 0.4 / 140, sizecasey * 0.4 / 140);
+  sf::Vector2<float>		vecscale(this->_sizex * 0.4 / 140, this->_sizey * 0.4 / 140);
 
   for (std::list<Player *>::iterator it = this->_player.begin() ; it != this->_player.end() ; ++it)
     if ((*it)->getLvl() >= 1 && (*it)->getLvl() <= 8)
       {
 	std::cout << "Test ?" << std::endl;
 	sf::Sprite	sp(this->_lvlsprite[(*it)->getLvl()]);
-	sp.setPosition(sf::Vector2<float>((*it)->getX() * sizecasex, (*it)->getY() * sizecasey));
+	sp.setPosition(sf::Vector2<float>((*it)->getX() * this->_sizex, (*it)->getY() * this->_sizey));
 	sp.scale(vecscale);
-	std::cout << "x = " << (*it)->getX() * sizecasex << " y = " << (*it)->getY() * sizecasey << std::endl;
+	std::cout << "x = " << (*it)->getX() * this->_sizex << " y = " << (*it)->getY() * this->_sizey << std::endl;
 	std::cout << "scale x = " << vecscale.x << " scale y = " << vecscale.y << std::endl;
 	this->_win.draw(sp);
       }
@@ -159,6 +161,6 @@ void				Memory::modifCase(int id, Case *c)
 
 void				Memory::modiflastCase(Case *c)
 {
-  std::cout << this->_player.size() << std::endl;
+  std::cout << c->getX() << std::endl;
   this->_player.back()->setCase(c);
 }
