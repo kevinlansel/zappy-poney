@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Mon Jul 15 23:38:38 2013 florian dewulf
-// Last update Tue Jul 16 22:13:51 2013 gery baudry
+// Last update Tue Jul 16 23:04:56 2013 gery baudry
 //
 
 #include	"Message.hpp"
@@ -114,8 +114,9 @@ bool		Message::newPlayer(Memory *mem)
   mem->push(0, new Player(toInt(vec[1]), toInt(vec[2]), toInt(vec[3]), toInt(vec[4]), toInt(vec[5]), vec[6]));
   mem->modiflastCase(mem->getCase(toInt(this->vec[2]), toInt(this->vec[3])));
   std::cout << mem->getPlayerlist().size() << std::endl;
-  if (!this->_son.openFromFile("./ressources/audio/bloup.wav"))
+  if (!this->_buffer.loadFromFile("./ressources/audio/bloup.wav"))
     std::cout << "failed load sound" << std::endl;
+  this->_son.setBuffer(this->_buffer);
   this->_son.play();
   return (true);
 }
@@ -187,10 +188,11 @@ bool		Message::endIncant(Memory *mem)
   if (c)
     c->changeColor();
   std::cout << this->vec[3] << std::endl;
-  if (this->vec[3] == "1" && !this->_son.openFromFile("./ressources/audio/applause.wav"))
+  if (this->vec[3] == "1" && !this->_buffer.loadFromFile("./ressources/audio/applause.wav"))
     std::cout << "failed load sound" << std::endl;
-  else if (this->vec[3] != "1" && !this->_son.openFromFile("./ressources/audio/point.wav"))
+  else if (this->vec[3] != "1" && !this->_buffer.loadFromFile("./ressources/audio/point.wav"))
     std::cout << "failed load sound" << std::endl;
+  this->_son.setBuffer(this->_buffer);
   this->_son.play();
   return (true);
 }
@@ -232,8 +234,9 @@ bool		Message::dead(Memory *mem)
 	list.erase(it);
 	break;
       }
-  if (!this->_son.openFromFile("./ressources/audio/p.wav"))
+  if (!this->_buffer.loadFromFile("./ressources/audio/p.wav"))
     std::cout << "failed load sound" << std::endl;
+  this->_son.setBuffer(this->_buffer);
   this->_son.play();
   return (true);
 }

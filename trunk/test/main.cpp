@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 13:38:21 2013 florian dewulf
-// Last update Tue Jul 16 19:26:15 2013 florian dewulf
+// Last update Tue Jul 16 22:43:18 2013 gery baudry
 //
 
 #include	<iostream>
@@ -13,6 +13,7 @@
 #include	<SFML/Graphics.hpp>
 #include	<cstdlib>
 #include	<ctime>
+#include	<unistd.h>
 #include	"Network.hpp"
 #include	"Core.hpp"
 
@@ -41,6 +42,7 @@ static void	loop(const std::string &host, int port, const std::string &team)
       core.init();
       while (core.update())
 	core.draw();
+      sleep(5);
     }
   catch (const Except &e)
     {

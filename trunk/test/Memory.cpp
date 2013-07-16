@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Tue Jul 16 20:46:38 2013 florian dewulf
+// Last update Tue Jul 16 22:52:23 2013 gery baudry
 //
 
 #include			"Memory.hpp"
@@ -80,16 +80,19 @@ Memory::~Memory()
 	}
       it = this->_case.erase(it);
     }
+  std::cout << "Clavier" << std::endl;
   for (std::list<Oeuf *>::iterator it = this->_oeuf.begin() ; it != this->_oeuf.end() ; ++it)
     {
       delete (*it);
       it = this->_oeuf.erase(it);
     }
+  std::cout << "de" << std::endl;
   for (std::list<Player *>::iterator it = this->_player.begin() ; it != this->_player.end() ; ++it)
     {
       delete (*it);
       it = this->_player.erase(it);
     }
+  std::cout << "merde" << std::endl;
   this->_win.close();
 }
 

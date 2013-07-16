@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Mon Jul 15 23:16:18 2013 florian dewulf
-// Last update Tue Jul 16 21:42:12 2013 gery baudry
+// Last update Tue Jul 16 23:05:24 2013 gery baudry
 //
 
 #ifndef		MESSAGE_HPP__
@@ -53,7 +53,8 @@ private:
   std::map<std::string, int>	pattern;
   std::map<std::string, bool (Message::*)(Memory *)>	ptr;
   std::vector<std::string>	vec;
-  sf::Music			_son;
+  sf::SoundBuffer		_buffer;
+  sf::Sound			_son;
 };
 
 #endif
