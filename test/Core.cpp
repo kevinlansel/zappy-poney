@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 09:20:23 2013 florian dewulf
-// Last update Tue Jul 16 15:18:53 2013 florian dewulf
+// Last update Tue Jul 16 15:24:59 2013 florian dewulf
 //
 
 #include	"Core.hpp"
@@ -23,14 +23,12 @@ Core::~Core()
 
 void		Core::init()
 {
-  int		i = 51;
-
   this->_net.initConnexion();
   this->_mess.init();
   gnl		tmp(this->_net.getSock());
 
   this->_gnl = tmp;
-  while (--i > 0 && !this->_net.checkBinary())
+  while (!this->_net.checkBinary())
     {
       if (this->_net.init(this->_gnl))
 	{
@@ -39,8 +37,7 @@ void		Core::init()
 	    this->_mess.work(tempo, this->_mem);
 	}
     }
-  if (i == 0)
-    throw Except("Timeout");
+  throw Except("Timeout");
 }
 
 bool		Core::update()
