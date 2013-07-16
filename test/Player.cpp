@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 01:14:00 2013 florian dewulf
-// Last update Tue Jul 16 11:47:22 2013 florian dewulf
+// Last update Tue Jul 16 14:04:52 2013 florian dewulf
 //
 
 #include	"Player.hpp"
@@ -25,7 +25,7 @@ Player::~Player()
 {
 }
 
-void		Player::setCase(const Case *c)
+void		Player::setCase(Case *c)
 {
   this->_case = c;
 }
@@ -75,7 +75,7 @@ void		Player::drop(int ress)
   this->ress[ress] -= 1;
 }
 
-void		Player::take(int)
+void		Player::take(int ress)
 {
   if (this->_case)
     this->_case->downRess(ress);
@@ -85,4 +85,14 @@ void		Player::take(int)
 std::vector<int>	Player::getInventaire() const
 {
   return (std::vector<int>(this->ress, this->ress + sizeof(this->ress) / sizeof(int)));
+}
+
+int		Player::getX() const
+{
+  return (this->x);
+}
+
+int		Player::getY() const
+{
+  return (this->y);
 }

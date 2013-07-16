@@ -5,14 +5,15 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 00:27:16 2013 florian dewulf
-// Last update Tue Jul 16 11:42:46 2013 florian dewulf
+// Last update Tue Jul 16 14:10:34 2013 florian dewulf
 //
 
 #ifndef		MEMORY___
 # define	MEMORY___
 
-#include	<SFML/Graphics.hpp>
 #include	<SFML/Audio.hpp>
+#include	<SFML/Graphics.hpp>
+#include	<SFML/Window.hpp>
 #include	<string>
 #include	<list>
 #include	<vector>
@@ -20,6 +21,7 @@
 #include	"Case.hpp"
 #include	"Player.hpp"
 #include	"Oeuf.hpp"
+#include	"Except.hpp"
 
 # define	RES_X	1280
 # define	RES_Y	1024

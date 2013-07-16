@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 09:20:23 2013 florian dewulf
-// Last update Tue Jul 16 10:59:13 2013 florian dewulf
+// Last update Tue Jul 16 13:42:30 2013 florian dewulf
 //
 
 #include	"Core.hpp"
@@ -33,17 +33,18 @@ void		Core::init()
     if (this->_net.init(this->_gnl))
       {
 	string tempo = this->_gnl.get_next_line();
-	if (this->_net.initConnexion(tempo, this->_mem))
+	if (this->_net.initConnexion(tempo))
 	  this->_mess.work(tempo, this->_mem);
       }
   if (i == 0)
     throw Except("Timeout");
 }
 
-void		Core::update()
+bool		Core::update()
 {
-  if (this->init(this->_gnl))
-    this->_mess.work(this->_gnl.get_next_line(), this->_mem);
+  if (this->_net.init(this->_gnl))
+    return (this->_mess.work(this->_gnl.get_next_line(), this->_mem));
+  return (true);
 }
 
 void		Core::draw()

@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 09:07:48 2013 florian dewulf
-// Last update Tue Jul 16 10:41:48 2013 florian dewulf
+// Last update Tue Jul 16 13:42:46 2013 florian dewulf
 //
 
 #ifndef		CORE_HPP__
@@ -27,7 +27,7 @@ public:
   virtual	~Core();
 
   void		init();
-  void		update();
+  bool		update();
   void		draw();
 
 private:

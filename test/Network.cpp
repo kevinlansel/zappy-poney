@@ -5,12 +5,16 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu Jul  4 12:01:21 2013 gery baudry
-// Last update Tue Jul 16 10:23:48 2013 florian dewulf
+// Last update Tue Jul 16 14:06:21 2013 florian dewulf
 //
 
 #include	"Network.hpp"
 
 Network::Network(const std::string &host, int port, const std::string &team) : _host(host), _port(port), _team(team), _sock(0), _binary(0)
+{
+}
+
+Network::~Network()
 {
 }
 
@@ -69,11 +73,11 @@ bool			Network::init(const gnl &gl)
   return (false);
 }
 
-bool		Network::initConnexion(const std::string &str, Memory *mem)
+bool		Network::initConnexion(const std::string &str)
 {
-  if (req == "BIENVENUE")
+  if (str == "BIENVENUE")
     {
-      this->_binary = this->_binary | 0x001
+      this->_binary = this->_binary | 0x001;
       write(this->_sock, "GRAPHIC\n", 8);
       return (false);
     }
@@ -92,7 +96,7 @@ bool		Network::initConnexion(const std::string &str, Memory *mem)
 
 bool		Network::checkBinary() const
 {
-  if (this->_binary & 0x111 == 0x111)
+  if ((this->_binary & 0x111) == 0x111)
     return (true);
   return (false);
 }

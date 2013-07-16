@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 01:07:42 2013 florian dewulf
-// Last update Tue Jul 16 11:46:58 2013 florian dewulf
+// Last update Tue Jul 16 14:05:06 2013 florian dewulf
 //
 
 #ifndef		PLAYER__
@@ -20,7 +20,7 @@ class		Player
 public:
   Player(int, int, int, int, int, const std::string &);
   virtual		~Player();
-  void			setCase(const Case *);
+  void			setCase(Case *);
   int			getId() const;
   int			getLvl() const;
   void			majPos(int, int, int);
@@ -30,6 +30,8 @@ public:
   void			drop(int);
   void			take(int);
   std::vector<int>	getInventaire() const;
+  int			getX() const;
+  int			getY() const;
 
 private:
   int		_id;
