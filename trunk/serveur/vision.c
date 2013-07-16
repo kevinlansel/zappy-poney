@@ -5,11 +5,12 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun  3 18:42:55 2013 guillaume duez
-** Last update Tue Jul 16 21:57:11 2013 florian dewulf
+** Last update Tue Jul 16 22:51:09 2013 florian dewulf
 */
 
 #include	<stdio.h>
 #include	<string.h>
+#include	<unistd.h>
 #include	"serveur.h"
 
 static char	*get_object(char *str, int i, int nb)
@@ -19,7 +20,6 @@ static char	*get_object(char *str, int i, int nb)
   int		size;
 
   size = 0;
-  nb /= (i == 0) ? 126 : 1;
   while (nb > 0)
     {
       if (!str)
@@ -151,6 +151,5 @@ void		voir(t_msg *msg, t_client *client, t_map **map, t_opt *opt)
 				+ (3 * sizeof(char)))) ? t : t;
   snprintf(fin + (fin ? strlen(fin) : 0), (fin ? strlen(fin) : 0) + 3,  "}\n");
   sub_food(msg, client, fin);
-  printf("fin:%s\n", fin);
   msg->time = get_time_client(client, 7);
 }
