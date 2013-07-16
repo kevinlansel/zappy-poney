@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Tue Jul 16 18:39:21 2013 florian dewulf
+// Last update Tue Jul 16 19:01:15 2013 florian dewulf
 //
 
 #include			"Memory.hpp"
@@ -14,6 +14,8 @@ Memory::Memory() : _win(sf::VideoMode(RES_X, RES_Y), "Client Zappy"/*, sf::Style
 {
   sf::Texture		tmp;
 
+  if (this->_font.loadFromFile("./ressources/font/Sansation_Bold.ttf") == false)
+    throw Except("Fail on loading font");
   if (tmp.loadFromFile("./ressources/pictures/oeuf.png") == false)
     throw Except("Fail on loading ressources");
   this->_lvlsprite[0] = tmp;
@@ -199,4 +201,15 @@ void				Memory::modiflastCase(Case *c)
 {
   std::cout << c->getX() << std::endl;
   this->_player.back()->setCase(c);
+}
+
+void				Memory::loadText(const std::string &str)
+{
+  this->_txt = sf::Text("Last Message : " + str, this->_font, 25);
+  this->_txt.move(sf::Vector2<float>(100, RES_Y - 100));
+}
+
+void				Memory::printText()
+{
+  this->_win.draw(this->_txt);
 }
