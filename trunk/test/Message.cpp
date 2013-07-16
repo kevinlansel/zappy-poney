@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Mon Jul 15 23:38:38 2013 florian dewulf
-// Last update Tue Jul 16 16:12:24 2013 florian dewulf
+// Last update Tue Jul 16 16:37:35 2013 florian dewulf
 //
 
 #include	"Message.hpp"
@@ -105,14 +105,14 @@ bool		Message::setCaseContent(Memory *mem)
 bool		Message::addTeamName(Memory *mem)
 {
   if (std::find(mem->getTeamlist().begin(), mem->getTeamlist().end(), vec[1]) == mem->getTeamlist().end())
-    mem->getTeamlist().push_back(vec[1]);
+    mem->push(2, &(vec[1]));
   return (true);
 }
 
 bool		Message::newPlayer(Memory *mem)
 {
-  mem->getPlayerlist().push_back(new Player(toInt(vec[1]), toInt(vec[2]), toInt(vec[3]), toInt(vec[4]), toInt(vec[5]), vec[6]));
-  mem->getPlayerlist().back()->setCase(mem->getCase(toInt(this->vec[1]), toInt(this->vec[2])));
+  mem->push(0, new Player(toInt(vec[1]), toInt(vec[2]), toInt(vec[3]), toInt(vec[4]), toInt(vec[5]), vec[6]));
+  mem->modifCase(mem->getCase(toInt(this->vec[1]), toInt(this->vec[2])));//
   std::cout << mem->getPlayerlist().size() << std::endl;
   return (true);
 }
@@ -228,7 +228,7 @@ bool		Message::dead(Memory *mem)
 
 bool		Message::eggOnCase(Memory *mem)
 {
-  mem->getOeuf().push_back(new Oeuf(toInt(vec[1]), toInt(vec[3]), toInt(vec[4])));
+  mem->push(1, new Oeuf(toInt(vec[1]), toInt(vec[3]), toInt(vec[4])));
   return (true);
 }
 

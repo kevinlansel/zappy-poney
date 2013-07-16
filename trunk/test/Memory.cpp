@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Tue Jul 16 16:16:47 2013 florian dewulf
+// Last update Tue Jul 16 16:36:14 2013 florian dewulf
 //
 
 #include			"Memory.hpp"
@@ -49,7 +49,6 @@ Memory::~Memory()
 
 std::list<Player *>		Memory::getPlayerlist() const
 {
-  std::cout << "GET MOTHERFUCKER : " << this->_player.size() << std::endl;
   return (this->_player);
 }
 
@@ -147,4 +146,9 @@ void				Memory::clear_win()
 void				Memory::display_win()
 {
   this->_win.display();
+}
+
+void				Memory::modifCase(Case *c)
+{
+  this->_player.back()->setCase(c);
 }

@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 00:27:16 2013 florian dewulf
-// Last update Tue Jul 16 15:50:22 2013 florian dewulf
+// Last update Tue Jul 16 16:37:51 2013 florian dewulf
 //
 
 #ifndef		MEMORY___
@@ -38,6 +38,19 @@ public:
   void				setSizeMap(int, int);
   int				getX() const;
   int				getY() const;
+
+  template<typename T>
+  void				push(int type, T ptr)
+  {
+    if (type == 0)
+      this->_player.push_back(reinterpret_cast<Player *>(ptr));
+    else if (type == 1)
+      this->_oeuf.push_back(reinterpret_cast<Oeuf *>(ptr));
+    else if (type == 2)
+      this->_team.push_back(*(reinterpret_cast<std::string *>(ptr)));
+  }
+
+  void				modifCase(Case *);
 
 public:
   void				clear_win();
