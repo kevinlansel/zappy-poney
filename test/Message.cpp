@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Mon Jul 15 23:38:38 2013 florian dewulf
-// Last update Tue Jul 16 17:20:07 2013 florian dewulf
+// Last update Tue Jul 16 18:37:10 2013 florian dewulf
 //
 
 #include	"Message.hpp"
@@ -99,6 +99,8 @@ bool		Message::setCaseContent(Memory *mem)
   c = mem->getCase(toInt(this->vec[1]), toInt(this->vec[2]));
   if (c)
     c->setRessource(toInt(this->vec[3]), toInt(this->vec[4]), toInt(this->vec[5]), toInt(this->vec[6]), toInt(this->vec[7]), toInt(this->vec[8]), toInt(this->vec[9]));
+  std::vector<int>        ress = c->getInv();
+  std::cout << ress[0] << " " << ress[0] << " " << ress[1] << " " << ress[2] << " " << ress[3] << " " << ress[4] << " " << ress[5] << " " << ress[6] << std::endl;
   return (true);
 }
 
