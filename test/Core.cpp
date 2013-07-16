@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 09:20:23 2013 florian dewulf
-// Last update Tue Jul 16 15:49:49 2013 florian dewulf
+// Last update Tue Jul 16 16:09:58 2013 florian dewulf
 //
 
 #include	"Core.hpp"
@@ -48,7 +48,6 @@ bool		Core::update()
 
 void		Core::draw()
 {
-  std::cout << "Je dessine lol mdr yolo" << std::endl;
   this->_mem->clear_win();
   this->_mem->drawCase();
   this->_mem->drawPlayer();
