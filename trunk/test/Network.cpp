@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu Jul  4 12:01:21 2013 gery baudry
-// Last update Tue Jul 16 14:58:50 2013 florian dewulf
+// Last update Tue Jul 16 15:39:21 2013 florian dewulf
 //
 
 #include	"Network.hpp"
@@ -98,6 +98,7 @@ bool		Network::initConnexion(const std::string &str)
 
 bool		Network::checkBinary() const
 {
+  std::cout << this->_binary << std::endl;
   if ((this->_binary & 0x111) == 0x111)
     return (true);
   return (false);
