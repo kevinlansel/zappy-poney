@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 11:11:59 2013 gery baudry
-// Last update Tue Jul 16 15:55:54 2013 florian dewulf
+// Last update Tue Jul 16 15:58:14 2013 florian dewulf
 //
 
 #ifndef			CASE__
@@ -30,7 +30,7 @@ public:
   void				upRess(int);
   void				downRess(int);
 
-private:
+public:
   sf::RectangleShape		_rectangle;
   int				_x;
   int				_y;
