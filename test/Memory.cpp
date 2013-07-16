@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Tue Jul 16 16:36:14 2013 florian dewulf
+// Last update Tue Jul 16 16:39:41 2013 florian dewulf
 //
 
 #include			"Memory.hpp"
@@ -111,6 +111,7 @@ void				Memory::drawPlayer()
   for (std::list<Player *>::iterator it = this->_player.begin() ; it != this->_player.end() ; ++it)
     if ((*it)->getLvl() >= 1 && (*it)->getLvl() <= 8)
       {
+	std::cout << "Test ?" << std::endl;
 	sf::Sprite	sp(this->_lvlsprite[(*it)->getLvl()]);
 	sp.move(sf::Vector2<float>((*it)->getX() * sizecasex, (*it)->getY() * sizecasey));
 	sp.scale(vecscale);
