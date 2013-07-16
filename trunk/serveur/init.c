@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Wed Jun 26 13:00:58 2013 florian dewulf
-** Last update Tue Jul 16 16:32:17 2013 guillaume duez
+** Last update Tue Jul 16 16:55:25 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -98,8 +98,7 @@ void		parse_args(int ac, char **av)
 
   val = xmalloc(sizeof(int) * OPT_INT);
   bzero(val, OPT_INT * sizeof(int));
-  name_team = NULL;
-  i = 1;
+  name_team = (i = 1) ? NULL : NULL;
   while (i < ac)
     {
       if ((ret = check_tab(i, ac, av)) != -1)
@@ -110,10 +109,7 @@ void		parse_args(int ac, char **av)
 	printf("unknow parameter :%s\n", av[i]);
       i += 2;
     }
-  if (name_team == NULL)
-    {
-      printf("Error : argument -n not specified\n");
-      exit(EXIT_FAILURE);
-    }
+  if (print_code_error(check_name_team(name_team)) == -1)
+    exit(EXIT_FAILURE);
   run_server(check(val, name_team));
 }
