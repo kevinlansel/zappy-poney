@@ -5,12 +5,12 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Tue Jul 16 14:07:15 2013 florian dewulf
+// Last update Tue Jul 16 17:06:14 2013 gery baudry
 //
 
 #include			"Memory.hpp"
 
-Memory::Memory() : _win(sf::VideoMode(RES_X, RES_Y), "Client Zappy", sf::Style::Fullscreen), _sizex(0), _sizey(0)
+Memory::Memory() : _win(sf::VideoMode(RES_X, RES_Y), "Client Zappy"/*, sf::Style::Fullscreen*/), _sizex(0), _sizey(0)
 {
   sf::Texture		tmp;
 
