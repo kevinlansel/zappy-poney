@@ -66,7 +66,7 @@ public:
   void					checkData2(std::string &data);
   void					checkData3(std::string &data);
   std::vector<int>			recup_sizeMap(std::string &data);
-  std::vector<int>			recup_mapContent(std::string &data);
+  void					recup_mapContent(std::string &data);
   std::vector<int>			recup_caseContent(int y, int x);
   void					recup_teamName(std::string &data);
   void					recup_playerInfos(std::string &data);
