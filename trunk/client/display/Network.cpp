@@ -84,7 +84,6 @@ void		Network::initConnexion()
   s_in.sin_port = htons(this->_port);
   s_in.sin_addr.s_addr = inet_addr(this->_host.c_str());
   this->_sock = socket(AF_INET, SOCK_STREAM, pe->p_proto);
-  std::cout << this->_sock << std::endl;
   if (connect(this->_sock, (struct sockaddr *)&s_in, sizeof(s_in)) == -1)
     {
       std::cerr << "Probleme lors de la connexion" << std::endl;
@@ -141,7 +140,8 @@ void			Network::doLoop(gnl &gl)
       if (gl.getbuffer() != "")
   	{
   	  req = gl.get_next_line();
-  	  this->_carte.push_back(recup_mapContent(req));
+	  if (recup_firstPart(req) == "bct")
+	    recup_mapContent(req);
   	}
       else if ((a = select(this->_sock + 1, &fd_read, NULL, NULL, NULL)) != -1)
         {
@@ -150,11 +150,13 @@ void			Network::doLoop(gnl &gl)
   	      req = gl.get_next_line();
   	      if (recup_firstPart(req) == "sgt")
   		askForTimeUnit(req);
+	      else if (recup_firstPart(req) == "bct")
+		recup_mapContent(req);
   	    }
   	}
       cpt++;
     }
-  this->_carte.erase(this->_carte.begin());
+  //this->_carte.erase(this->_carte.begin());
 }
 
 std::string		Network::recup_firstPart(std::string &data)
@@ -246,7 +248,7 @@ void			Network::checkData(std::string &data)
   else if (word == "bct")
     {
       std::cout << "bct" << std::endl;
-      recup_mapContent(data);
+      //recup_mapContent(data);
     }
 }
 
@@ -284,7 +286,7 @@ std::vector<int>	Network::recup_sizeMap(std::string &data)
   return list;
 }
 
-std::vector<int>		Network::recup_mapContent(std::string &data)
+void		Network::recup_mapContent(std::string &data)
 {
   std::vector<int>		s2;
   unsigned int			i = 0;
@@ -316,7 +318,12 @@ std::vector<int>		Network::recup_mapContent(std::string &data)
 	}
       i++;
     }
-  return (s2);
+  for (std::vector<int>::iterator it = s2.begin(); it != s2.end(); ++it)
+    std::cout << *it << " ";
+  std::cout << std::endl;
+  this->_carte.push_back(s2);
+  //return (s2);
+  std::cout << this->_carte.size() << std::endl;
 }
 
 void	Network::playerExpulse(std::string &data)

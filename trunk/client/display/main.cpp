@@ -46,6 +46,5 @@ int		main(int ac, char **av)
   music.PlaySound();
   net.doLoop(gl);
   Windows	window(net.getTailleX(), net.getTailleY(), net);
-  std::cout << "monann" << std::endl;
   window.CreateWindows(gl);
 }
