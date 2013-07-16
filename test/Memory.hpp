@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 00:27:16 2013 florian dewulf
-// Last update Tue Jul 16 22:25:51 2013 gery baudry
+// Last update Tue Jul 16 21:14:31 2013 florian dewulf
 //
 
 #ifndef		MEMORY___
@@ -40,7 +40,7 @@ public:
   int				getY() const;
   void				close();
   bool				pool(sf::Event &);
-
+  void				rmPlayer(int);
   template<typename T>
   void				push(int type, T ptr)
   {
