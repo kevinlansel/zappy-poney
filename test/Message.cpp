@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Mon Jul 15 23:38:38 2013 florian dewulf
-// Last update Tue Jul 16 16:37:35 2013 florian dewulf
+// Last update Tue Jul 16 16:59:39 2013 florian dewulf
 //
 
 #include	"Message.hpp"
@@ -112,7 +112,7 @@ bool		Message::addTeamName(Memory *mem)
 bool		Message::newPlayer(Memory *mem)
 {
   mem->push(0, new Player(toInt(vec[1]), toInt(vec[2]), toInt(vec[3]), toInt(vec[4]), toInt(vec[5]), vec[6]));
-  mem->modifCase(mem->getCase(toInt(this->vec[1]), toInt(this->vec[2])));//
+  mem->modiflastCase(mem->getCase(toInt(this->vec[1]), toInt(this->vec[2])));//
   std::cout << mem->getPlayerlist().size() << std::endl;
   return (true);
 }
@@ -125,7 +125,7 @@ bool		Message::setPosPlayer(Memory *mem)
     if ((*it)->getId() == toInt(this->vec[1]))
       {
 	(*it)->majPos(toInt(vec[2]), toInt(vec[3]), toInt(vec[4]));
-	(*it)->setCase(mem->getCase(toInt(this->vec[2]), toInt(this->vec[3])));
+	mem->modifCase((*it)->getId(), mem->getCase(toInt(this->vec[2]), toInt(this->vec[3])));
       }
   return (true);
 }
@@ -148,7 +148,7 @@ bool		Message::setInvPlayer(Memory *mem)
     if ((*it)->getId() == toInt(this->vec[1]))
       {
 	(*it)->majPos(toInt(vec[2]), toInt(vec[3]), (*it)->getDirec());
-	(*it)->setCase(mem->getCase(toInt(this->vec[2]), toInt(this->vec[3])));
+	mem->modifCase((*it)->getId(), mem->getCase(toInt(this->vec[2]), toInt(this->vec[3])));
 	(*it)->majInv(toInt(vec[4]), toInt(vec[5]), toInt(vec[6]), toInt(vec[7]), toInt(vec[8]), toInt(vec[9]), toInt(vec[10]));
       }
   return (true);

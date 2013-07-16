@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Tue Jul 16 16:48:54 2013 florian dewulf
+// Last update Tue Jul 16 16:58:14 2013 florian dewulf
 //
 
 #include			"Memory.hpp"
@@ -152,7 +152,14 @@ void				Memory::display_win()
   this->_win.display();
 }
 
-void				Memory::modifCase(Case *c)
+void				Memory::modifCase(int id, Case *c)
+{
+  for (std::list<Player *>::iterator it = this->_player.begin() ; it != this->_player.end() ; ++it)
+    if ((*it)->getId() == id)
+      (*it)->setCase(c);
+}
+
+void				Memory::modiflastCase(Case *c)
 {
   this->_player.back()->setCase(c);
 }

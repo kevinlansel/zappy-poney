@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 00:27:16 2013 florian dewulf
-// Last update Tue Jul 16 16:44:08 2013 florian dewulf
+// Last update Tue Jul 16 16:58:44 2013 florian dewulf
 //
 
 #ifndef		MEMORY___
@@ -50,7 +50,8 @@ public:
       this->_team.push_back(*(reinterpret_cast<std::string *>(ptr)));
   }
 
-  void				modifCase(Case *);
+  void				modifCase(int, Case *);
+  void				modiflastCase(Case *);
 
 public:
   void				clear_win();
