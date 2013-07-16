@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Tue Jul 16 15:30:05 2013 florian dewulf
+// Last update Tue Jul 16 15:30:52 2013 florian dewulf
 //
 
 #include			"Memory.hpp"
@@ -61,6 +61,7 @@ Case				*Memory::getCase(int x, int y) const
 
 void				Memory::setSizeMap(int x, int y)
 {
+  std::cout << "toast" << std::endl;
   if (x > 0 && y > 0)
     {
       this->_sizex = RES_X / x;
