@@ -5,7 +5,7 @@
 // Login   <lansel_k@epitech.net>
 // 
 // Started on  Mon Jul 15 09:58:50 2013 kevin lansel
-// Last update Mon Jul 15 09:58:55 2013 kevin lansel
+// Last update Mon Jul 15 19:12:29 2013 kevin lansel
 //
 
 #include	"Network.hpp"
@@ -43,7 +43,7 @@ void		Network::initConnexion()
   connect(this->_sock, (struct sockaddr *)&s_in, sizeof(s_in));
 }
 
-std::string		Network::communicate(std::string &data)
+/*std::string		Network::communicate(std::string &data)
 {
   fd_set		fd_read;
   char			buff[4096];
@@ -77,7 +77,7 @@ std::string		Network::communicate(std::string &data)
 	}
     }
   return NULL;
-}
+  }*/
 
 Network::~Network()
 {

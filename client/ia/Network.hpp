@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Mon Jul 15 17:11:03 2013 florian dewulf
-// Last update Mon Jul 15 17:54:48 2013 florian dewulf
+// Last update Mon Jul 15 19:12:38 2013 kevin lansel
 //
 
 #ifndef		__NETWORK_HPP__
@@ -34,7 +34,7 @@ public:
   Network(const std::string &, int, const std::string &);
   virtual ~Network();
   void		initConnexion();
-  std::string	communicate(std::string &);
+  //  std::string	communicate(std::string &);
   int		getPort() const;
   int		getSock() const;
   std::string	getHost() const;
