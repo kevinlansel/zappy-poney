@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 13:38:21 2013 florian dewulf
-// Last update Tue Jul 16 22:43:18 2013 gery baudry
+// Last update Tue Jul 16 23:20:50 2013 gery baudry
 //
 
 #include	<iostream>
@@ -42,7 +42,7 @@ static void	loop(const std::string &host, int port, const std::string &team)
       core.init();
       while (core.update())
 	core.draw();
-      sleep(5);
+      sleep(1);
     }
   catch (const Except &e)
     {

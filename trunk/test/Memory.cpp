@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Tue Jul 16 21:18:08 2013 florian dewulf
+// Last update Tue Jul 16 23:19:19 2013 gery baudry
 //
 
 #include			"Memory.hpp"
@@ -71,13 +71,11 @@ Memory::Memory() : _win(sf::VideoMode(RES_X, RES_Y), "Client Zappy"/*, sf::Style
 
 Memory::~Memory()
 {
-  std::cout << "Projet : " << std::endl;
   for (std::list<Player *>::iterator it = this->_player.begin() ; it != this->_player.end() ; ++it)
     {
       delete (*it);
       it = this->_player.erase(it);
     }
-  std::cout << "Trop cool" << std::endl;
   for (std::vector<std::vector<Case *> >::iterator it = this->_case.begin() ; it != this->_case.end() ; ++it)
     {
       for (std::vector<Case *>::iterator it2 = it->begin() ; it2 != it->end() ; ++it2)
@@ -87,13 +85,11 @@ Memory::~Memory()
 	}
       it = this->_case.erase(it);
     }
-  std::cout << "Clavier" << std::endl;
   for (std::list<Oeuf *>::iterator it = this->_oeuf.begin() ; it != this->_oeuf.end() ; ++it)
     {
       delete (*it);
       it = this->_oeuf.erase(it);
     }
-  std::cout << "merde" << std::endl;
   this->_win.close();
 }
 
