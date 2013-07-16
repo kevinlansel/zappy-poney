@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Tue Jul 16 15:38:27 2013 florian dewulf
+// Last update Tue Jul 16 15:47:40 2013 florian dewulf
 //
 
 #include			"Memory.hpp"
@@ -94,8 +94,10 @@ std::list<Oeuf *>		Memory::getOeuf() const
 
 void				Memory::drawCase()
 {
+  std::cout << "Draw case !" << std::endl;
   for (std::vector<std::vector<Case *> >::iterator it = this->_case.begin() ; it != this->_case.end() ; ++it)
     {
+      std::cout << "case !" << std::endl;
       for (std::vector<Case *>::iterator it2 = it->begin() ; it2 != it->end() ; ++it2)
 	{
 	  this->_win.draw((*it2)->getRectangle());
@@ -138,4 +140,9 @@ void				Memory::drawOeuf()
 std::list<std::string>		Memory::getTeamlist() const
 {
   return (this->_team);
+}
+
+void				Memory::clear_win()
+{
+  this->_win.clear();
 }
