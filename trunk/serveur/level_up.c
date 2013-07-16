@@ -53,7 +53,7 @@ static int	check_nbr_client(int level, t_client *client,
     }
   if (player_need[level] == i)
     return 1;
-  return -1;
+  return -1;OC
 }
 
 static int	check_ress(int level, t_map *map,
