@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Thu Jul  4 12:01:21 2013 gery baudry
-// Last update Tue Jul 16 14:06:21 2013 florian dewulf
+// Last update Tue Jul 16 14:56:44 2013 florian dewulf
 //
 
 #include	"Network.hpp"
@@ -75,9 +75,11 @@ bool			Network::init(const gnl &gl)
 
 bool		Network::initConnexion(const std::string &str)
 {
+  std::cout << "str = " << str << std::endl;
   if (str == "BIENVENUE")
     {
       this->_binary = this->_binary | 0x001;
+      std::cout << "GRAPHIC SEND" << std::endl;
       write(this->_sock, "GRAPHIC\n", 8);
       return (false);
     }
