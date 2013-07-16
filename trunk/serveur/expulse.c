@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Tue Jun 25 14:18:23 2013 guillaume duez
-** Last update Tue Jul 16 17:26:52 2013 guillaume duez
+** Last update Tue Jul 16 22:34:18 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -13,7 +13,7 @@
 
 static t_client	*get_client(t_client *client)
 {
-  t_client *hurt;
+  t_client	*hurt;
 
   hurt = client;
   while (client && client->prev != NULL)
@@ -90,7 +90,7 @@ void		expulse(t_msg *msg, t_client *client, t_map **map, t_opt *opt)
       while (client && client->end != 1)
 	{
 	  msg->client = (msg->cmd = str) ? client : client;
-	  if (client && client->type == CLIENT && check_co(client, hurt, map) == 1)
+	  if (client && client->type == CLIENT && check_co(client, hurt, map))
 	    {
 	      reduc_expulse(hurt, &indice);
 	      giveposition(client, reroll(client));

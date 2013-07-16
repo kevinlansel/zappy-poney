@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Tue May 28 16:48:58 2013 guillaume duez
-** Last update Tue Jul 16 15:39:06 2013 guillaume duez
+** Last update Tue Jul 16 22:31:59 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -111,9 +111,9 @@ void		connecnb(t_msg *mess, t_client *cl, t_map **map, t_opt *opt)
   while (opt && opt->name_team && opt->name_team[i] &&
 	 strcmp(opt->name_team[i], cl->team) != 0)
     i++;
-  len = snprintf(NULL, 0, "%d", opt->nb_player[i]) + 1;
+  len = snprintf(NULL, 0, "%d\n", opt->nb_player[i]) + 1;
   str = xmalloc((len + 1) * sizeof(char));
-  snprintf(str, len, "%d", opt->nb_player[i]);
+  snprintf(str, len, "%d\n", opt->nb_player[i]);
   mess->time = get_time_client(cl, 0);
   sub_food(mess, cl, str);
 }
