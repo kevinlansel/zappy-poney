@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun  3 18:42:55 2013 guillaume duez
-** Last update Tue Jul 16 10:57:34 2013 florian dewulf
+** Last update Tue Jul 16 15:06:25 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -102,7 +102,7 @@ static char	*transform(char **str, char *final)
 	}
       else
 	{
-	  len = strlen(str[i]) + strlen(final) + 1;
+	  len = strlen(str[i]) + strlen(final) + 2;
 	  if (len > 0)
 	    final = realloc(final, len + 1 * sizeof(char));
 	  snprintf(final + strlen(final), len + 1,  ", %s", str[i]);
@@ -119,10 +119,9 @@ void            voir(t_msg *msg, t_client *client, t_map **map, t_opt *opt)
   char		*fin;
   int		len;
 
-  (void)opt;
   t = (len = 1) ? client->map : client->map;
   level = (fin = NULL) ? client->level + 1 : client->level + 1;
-  while (level > 0 && map)
+  while (level > 0 && map && opt)
     {
       fin = transform(get_line(client->map, len, client->direct), fin);
       if (client->direct == NORD)
@@ -136,7 +135,7 @@ void            voir(t_msg *msg, t_client *client, t_map **map, t_opt *opt)
       len += (level -= 1) ? 2 : 2;
     }
   client->map = (fin = realloc(fin, strlen(fin) + (3 * sizeof(char)))) ? t : t;
-  snprintf(fin + strlen(fin), strlen(fin) + 3,  "}\n");
+  snprintf(fin + (fin ? strlen(fin) : 0), (fin ? strlen(fin) : 0) + 3,  "}\n");
   sub_food(msg, client, fin);
   msg->time = get_time_client(client, 7);
 }
