@@ -49,7 +49,7 @@ void			Souris::CheckSouris(sf::RenderWindow &window, std::vector<Case> map, int 
 		  this->textcase.setColor(sf::Color(100, 85, 12));
 		  break;
 		}
-	      std::cout << posplayer.x << std::endl;
+	      std::cout << "position player x = " << posplayer.x << std::endl;
 	      if ((this->_position.x >= posplayer.x && !(this->_position.x >= (posplayer.x + taille.x)) && this->_position.y >= posplayer.y && !(this->_position.y >= (posplayer.y + taille.y))))
 		{
 		  for (std::vector<Player>::iterator nit = this->_mem->getPliste().begin(); nit != this->_mem->getPliste().end(); ++nit)
