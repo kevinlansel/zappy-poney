@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Tue Jul 16 16:44:40 2013 florian dewulf
+// Last update Tue Jul 16 16:47:17 2013 florian dewulf
 //
 
 #include			"Memory.hpp"
@@ -115,6 +115,8 @@ void				Memory::drawPlayer()
 	sf::Sprite	sp(this->_lvlsprite[(*it)->getLvl()]);
 	sp.setPosition(sf::Vector2<float>((*it)->getX() * sizecasex, (*it)->getY() * sizecasey));
 	sp.scale(vecscale);
+	std::cout << "x = " << (*it)->getX() * sizecasex << " y = " << (*it)->getY() * sizecasey << std::endl;
+	std::cout << "scale x = " << vecscale.x << " scale y = " << vecscale.y << std::endl;
 	this->_win.draw(sp);
       }
   std::cout << "Test sorti fin draw" << std::endl;
