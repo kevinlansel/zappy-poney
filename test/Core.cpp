@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 09:20:23 2013 florian dewulf
-// Last update Tue Jul 16 15:24:59 2013 florian dewulf
+// Last update Tue Jul 16 15:38:55 2013 florian dewulf
 //
 
 #include	"Core.hpp"
@@ -37,7 +37,6 @@ void		Core::init()
 	    this->_mess.work(tempo, this->_mem);
 	}
     }
-  throw Except("Timeout");
 }
 
 bool		Core::update()
