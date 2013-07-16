@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun  3 18:42:55 2013 guillaume duez
-** Last update Fri Jul 12 17:15:27 2013 florian dewulf
+** Last update Tue Jul 16 10:51:52 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -19,17 +19,21 @@ static char	*get_object(char *str, int i, int nb)
   int		size;
 
   size = 0;
-  if (!str)
+  while (nb > 0)
     {
-      size = strlen(tab[i]) + snprintf(NULL, size, "%s %d", tab[i] , nb) + 1;
-      str = xmalloc(size + 1);
-      snprintf(str, size + 1,  "%s %d", tab[i] , nb);
-    }
-  else
-    {
-      size = strlen(str) + strlen(tab[i]) + snprintf(NULL, size, " %s %d", tab[i] , nb) + 1;
-      str = realloc(str, size + 1);
-      snprintf(str + strlen(str), size + 1, " %s %d", tab[i] , nb);
+      if (!str)
+	{
+	  size = strlen(tab[i]) + snprintf(NULL, size, " %s", tab[i]) + 1;
+	  str = xmalloc(size + 1);
+	  snprintf(str, size + 1,  " %s", tab[i]);
+	}
+      else
+	{
+	  size = strlen(str) + strlen(tab[i]) + snprintf(NULL, size, " %s", tab[i]) + 1;
+	  str = realloc(str, size + 1);
+	  snprintf(str + strlen(str), size + 1, " %s", tab[i]);
+	}
+      nb--;
     }
   return (str);
 }
@@ -100,7 +104,7 @@ static char	*transform(char **str, char *final)
 	  len = strlen(str[i]) + strlen(final) + 1;
 	  if (len > 0)
 	    final = realloc(final, len + 1 * sizeof(char));
-	  snprintf(final + strlen(final), len + 1,  ",%s", str[i]);
+	  snprintf(final + strlen(final), len + 1,  ", %s", str[i]);
 	}
       i++;
     }
