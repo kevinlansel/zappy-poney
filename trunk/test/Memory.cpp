@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Tue Jul 16 23:19:19 2013 gery baudry
+// Last update Wed Jul 17 00:17:13 2013 gery baudry
 //
 
 #include			"Memory.hpp"
@@ -100,10 +100,8 @@ std::list<Player *>		Memory::getPlayerlist() const
 
 Case				*Memory::getCase(int x, int y) const
 {
-  std::cout << "x= " << x << "y = " << y << std::endl;
   if (this->_case.size() >= static_cast<unsigned int>(y) && this->_case[y].size() >= static_cast<unsigned int>(x))
     return (this->_case[y][x]);
-  std::cout << "scout" << std::endl;
   return (NULL);
 }
 
@@ -232,6 +230,7 @@ void				Memory::loadText(const std::string &str)
 void				Memory::printText()
 {
   this->_win.draw(this->_txt);
+  this->_win.draw(this->_infopla);
 }
 
 void				Memory::close()
@@ -253,4 +252,27 @@ void				Memory::rmPlayer(int id)
 	this->_player.erase(it);
 	return;
       }
+}
+
+void				Memory::checkSouris()
+{
+  int			x;
+  int			y;
+
+  sf::Vector2i position = sf::Mouse::getPosition(this->_win);
+  x = position.x / this->_sizex;
+  y = position.y / this->_sizey;
+  for (std::list<Player *>::iterator it = this->_player.begin(); it != this->_player.end(); ++it)
+    {
+      if ((*it)->getX() == x && (*it)->getY() == y)
+	{
+	  this->_infopla = sf::Text((*it)->doText(), this->_font, 15);
+	  this->_infopla.move(sf::Vector2<float>(RES_X - 200, 100));
+	}
+      else
+	{
+	  this->_infopla = sf::Text("No info", this->_font, 15);
+	  this->_infopla.move(sf::Vector2<float>(RES_X - 200, 100));
+	}
+    }
 }

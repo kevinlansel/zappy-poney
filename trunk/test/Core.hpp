@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 09:07:48 2013 florian dewulf
-// Last update Tue Jul 16 22:19:58 2013 gery baudry
+// Last update Tue Jul 16 23:56:26 2013 gery baudry
 //
 
 #ifndef		CORE_HPP__
@@ -36,6 +36,7 @@ private:
   Message	_mess;
   gnl		_gnl;
   sf::Event	_event;
+  bool		_check;
 };
 
 #endif

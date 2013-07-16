@@ -5,14 +5,14 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 09:20:23 2013 florian dewulf
-// Last update Tue Jul 16 22:26:30 2013 gery baudry
+// Last update Tue Jul 16 23:58:53 2013 gery baudry
 //
 
 #include	"Core.hpp"
 
 using namespace std;
 
-Core::Core(const string &host, int port, const string &team) : _mem(new Memory), _net(host, port, team)
+Core::Core(const string &host, int port, const string &team) : _mem(new Memory), _net(host, port, team), _check(false)
 {
 }
 
@@ -46,6 +46,13 @@ bool		Core::update()
       this->_mem->close();
       return (false);
     }
+  if (sf::Mouse::isButtonPressed(sf::Mouse::Left) == true && this->_check == false)
+    {
+      this->_mem->checkSouris();
+      this->_check = true;
+    }
+  else if (sf::Mouse::isButtonPressed(sf::Mouse::Left) == false && this->_check == true)
+    this->_check = false;
   if (this->_net.init(this->_gnl))
     return (this->_mess.work(this->_gnl.get_next_line(), this->_mem));
   return (true);

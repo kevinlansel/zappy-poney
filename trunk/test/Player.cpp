@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 01:14:00 2013 florian dewulf
-// Last update Tue Jul 16 17:00:33 2013 florian dewulf
+// Last update Wed Jul 17 00:12:32 2013 gery baudry
 //
 
 #include	"Player.hpp"
@@ -100,4 +100,12 @@ int		Player::getX() const
 int		Player::getY() const
 {
   return (this->y);
+}
+
+std::string	Player::doText()
+{
+  std::stringstream	str;
+
+  str << "Player id = " << this->_id << "\nTeam name = " << this->team << "\nNourriture = " << this->ress[0] << "\n Linemate = " << this->ress[1] << "\nDeraumere = " << this->ress[2] << "\nSibur = " << this->ress[3] << "\nMendiane = " << this->ress[4] << "\nPhiras = " << this->ress[5] << "\nThystame = " << this->ress[6];
+  return (str.str());
 }

@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Mon Jul 15 23:38:38 2013 florian dewulf
-// Last update Tue Jul 16 23:24:44 2013 gery baudry
+// Last update Tue Jul 16 23:42:49 2013 gery baudry
 //
 
 #include	"Message.hpp"
@@ -77,8 +77,6 @@ bool		Message::work(const std::string &str, Memory *mem)
       this->vec.push_back(part);
       part = "";
     }
-  std::cout << "Size vec : " << this->vec.size() << std::endl;
-  std::cout << "|" << this->vec[0] << "|" << std::endl;
   if ((vec.size() > 0 && this->vec[0] != "pic" && this->pattern.find(this->vec[0]) != this->pattern.end() &&
        vec.size() == static_cast<unsigned int>(this->pattern[this->vec[0]])) || (vec.size() > 0 && this->vec[0] != "pic" && vec.size() >= 5))
     ret = (this->*(this->ptr[this->vec[0]]))(mem);
@@ -113,7 +111,6 @@ bool		Message::newPlayer(Memory *mem)
 {
   mem->push(0, new Player(toInt(vec[1]), toInt(vec[2]), toInt(vec[3]), toInt(vec[4]), toInt(vec[5]), vec[6]));
   mem->modiflastCase(mem->getCase(toInt(this->vec[2]), toInt(this->vec[3])));
-  std::cout << mem->getPlayerlist().size() << std::endl;
   this->_son.resetBuffer();
   if (!this->_buffer.loadFromFile("./ressources/audio/bloup.wav"))
     std::cout << "failed load sound" << std::endl;
@@ -188,7 +185,6 @@ bool		Message::endIncant(Memory *mem)
   c = mem->getCase(toInt(this->vec[1]), toInt(this->vec[2]));
   if (c)
     c->changeColor();
-  std::cout << this->vec[3] << std::endl;
   this->_son.resetBuffer();
   if (this->vec[3] == "1" && !this->_buffer.loadFromFile("./ressources/audio/applause.wav"))
     std::cout << "failed load sound" << std::endl;
