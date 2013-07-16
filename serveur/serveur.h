@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Sun Jul 14 16:42:28 2013 florian dewulf
+** Last update Tue Jul 16 16:02:32 2013 guillaume duez
 */
 
 #ifndef			__SERVEUR_H__
@@ -125,6 +125,7 @@ typedef	struct		s_connect
   struct timeval        *tv;
   int			fd;
   int			port;
+  int			error;
 }			t_connect;
 
 typedef struct		s_msg

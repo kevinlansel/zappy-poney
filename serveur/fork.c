@@ -5,14 +5,14 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jul  8 15:37:27 2013 guillaume duez
-** Last update Fri Jul 12 17:28:25 2013 guillaume duez
+** Last update Tue Jul 16 16:06:27 2013 guillaume duez
 */
 
 #include	"serveur.h"
 
 int		give_id_egg()
 {
-  static int    ret = -1;
+  static int	ret = -1;
 
   ret++;
   return (ret);
@@ -20,7 +20,7 @@ int		give_id_egg()
 
 void		fork_egg(t_msg *msg, t_client *client, t_map **map, t_opt *opt)
 {
-  t_client      *new;
+  t_client	*new;
 
   (void) map;
   (void) opt;

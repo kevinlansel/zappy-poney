@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Tue May 28 16:48:58 2013 guillaume duez
-** Last update Mon Jul 15 15:00:35 2013 guillaume duez
+** Last update Tue Jul 16 15:39:06 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -28,15 +28,16 @@ void		avance(t_msg *msg, t_client *client, t_map **map, t_opt *opt)
       &map[client->map->y][client->map->x + 1] : &map[client->map->y][0];
   else if (type == OUEST)
     client->map = (client->map->x - 1) >= 0 ?
-      &map[client->map->y][client->map->x - 1] : &map[client->map->y][client->map->x_world - 1];
+      &map[client->map->y][client->map->x - 1] :
+      &map[client->map->y][client->map->x_world - 1];
   else if (type == NORD)
     {
       client->map = (client->map->y - 1) >= 0 ?
-	&map[client->map->y - 1][client->map->x] : &map[client->map->y_world - 1][client->map->x];
+	&map[client->map->y - 1][client->map->x] :
+	&map[client->map->y_world - 1][client->map->x];
     }
   client->direct = type;
   giveposition(client, reroll(client));
-  printf("position x : %d , position y : %d level : %d\n",  client->map->x, client->map->y, client->level);
 }
 
 void		droite(t_msg *msg, t_client *client, t_map **map, t_opt *opt)

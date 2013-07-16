@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 17:54:04 2013 guillaume duez
-** Last update Thu May 23 18:46:57 2013 guillaume duez
+** Last update Tue Jul 16 16:13:14 2013 guillaume duez
 */
 
 #include <arpa/inet.h>
@@ -17,9 +17,9 @@
 #include <stdio.h>
 #include <netdb.h>
 
-int     xaccept(int fd, struct sockaddr_in s_in, socklen_t s_in_size)
+int		xaccept(int fd, struct sockaddr_in s_in, socklen_t s_in_size)
 {
-  int ret;
+  int		ret;
 
   if ((ret = accept(fd, (struct sockaddr *)&s_in, &s_in_size))  == -1)
     {
@@ -30,7 +30,7 @@ int     xaccept(int fd, struct sockaddr_in s_in, socklen_t s_in_size)
   return ret;
 }
 
-void    xbind(int fd, struct sockaddr_in s_in)
+void		xbind(int fd, struct sockaddr_in s_in)
 {
   if (bind(fd, (struct sockaddr *)&s_in, sizeof(s_in)) == -1)
     {
@@ -40,7 +40,7 @@ void    xbind(int fd, struct sockaddr_in s_in)
     }
 }
 
-void    xlisten(int fd)
+void		xlisten(int fd)
 {
   if (listen(fd, 42) == -1)
     {
@@ -50,9 +50,9 @@ void    xlisten(int fd)
     }
 }
 
-int     xsocket(struct protoent *pe)
+int		xsocket(struct protoent *pe)
 {
-  int fd;
+  int		fd;
 
   fd = socket(AF_INET, SOCK_STREAM, pe->p_proto);
   if (fd == -1)

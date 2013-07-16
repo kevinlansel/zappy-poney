@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Tue Jun 25 14:18:23 2013 guillaume duez
-** Last update Mon Jul 15 14:25:47 2013 florian dewulf
+** Last update Tue Jul 16 16:05:55 2013 guillaume duez
 */
 
 #include	"serveur.h"
@@ -75,7 +75,7 @@ static char	*create_msg_depl(t_client *hurt, t_client *client)
   return (str);
 }
 
-void            expulse(t_msg *msg, t_client *client, t_map **map, t_opt *opt)
+void		expulse(t_msg *msg, t_client *client, t_map **map, t_opt *opt)
 {
   t_client	*hurt;
   char		*str;

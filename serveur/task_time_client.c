@@ -5,17 +5,17 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun 24 15:22:19 2013 guillaume duez
-** Last update Wed Jun 26 14:20:49 2013 florian dewulf
+** Last update Tue Jul 16 16:10:14 2013 guillaume duez
 */
 
 #include	<sys/timeb.h>
 #include	"serveur.h"
 
-double		get_time_client(t_client *client, int action)
+double			get_time_client(t_client *client, int action)
 {
-  struct timeb   tp;
-  double         time;
-  double         milli;
+  struct timeb		tp;
+  double		time;
+  double		milli;
 
   ftime(&tp);
   milli =  (double)tp.millitm / 1000;
@@ -24,5 +24,5 @@ double		get_time_client(t_client *client, int action)
     time = client->action;
   if (client)
     client->action = time + (action / client->time);
-  return  client->action;
+  return client->action;
 }

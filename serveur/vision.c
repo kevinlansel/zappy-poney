@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun  3 18:42:55 2013 guillaume duez
-** Last update Tue Jul 16 15:06:25 2013 guillaume duez
+** Last update Tue Jul 16 16:10:45 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -112,7 +112,7 @@ static char	*transform(char **str, char *final)
   return final;
 }
 
-void            voir(t_msg *msg, t_client *client, t_map **map, t_opt *opt)
+void		voir(t_msg *msg, t_client *client, t_map **map, t_opt *opt)
 {
   int		level;
   t_map		*t;

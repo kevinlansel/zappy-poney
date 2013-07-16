@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Wed Jul  3 14:39:06 2013 guillaume duez
-** Last update Mon Jul 15 15:31:42 2013 guillaume duez
+** Last update Tue Jul 16 15:50:10 2013 guillaume duez
 */
 
 #include	<string.h>
@@ -26,7 +26,8 @@ static char	*get_mess_level_up(int level)
   return str;
 }
 
-static int	check_nbr_client(int level, t_client *client, t_map *map, int opt)
+static int	check_nbr_client(int level, t_client *client,
+				 t_map *map, int opt)
 {
   static int	player_need[LVL] = {1, 2, 2, 4, 4, 6, 6};
   int		i;
@@ -107,11 +108,13 @@ int		up_level(t_msg *msg)
   client = msg->client;
   if (msg && msg->client && strcmp(msg->cmd, "elevation fail\n") != 0)
     {
-      if (check_ress(msg->client->level - 1, msg->client->map, msg->client, 1) == 1)
+      if (check_ress(msg->client->level - 1,
+		     msg->client->map, msg->client, 1) == 1)
 	{
 	  sub_food(msg, msg->client, get_mess_level_up(msg->client->level));
 	  msg->client = client_reset(msg->client);
-	  check_nbr_client(msg->client->level - 1, msg->client, msg->client->map, 1);
+	  check_nbr_client(msg->client->level - 1,
+			   msg->client, msg->client->map, 1);
 	  msg->client = client;
 	  end_incant(1, client);
 	  return 1;
