@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Tue Jul 16 15:58:52 2013 florian dewulf
+// Last update Tue Jul 16 15:59:16 2013 florian dewulf
 //
 
 #include			"Memory.hpp"
@@ -100,7 +100,7 @@ void				Memory::drawCase()
       std::cout << "case !" << std::endl;
       for (std::vector<Case *>::iterator it2 = it->begin() ; it2 != it->end() ; ++it2)
 	{
-	  std::cout << "x = " << (*it2)->x << " y = " << (*it2)->y << std:endl;
+	  std::cout << "x = " << (*it2)->_x << " y = " << (*it2)->_y << std:endl;
 	  this->_win.draw((*it2)->getRectangle());
 	  ;//draw ressource
 	}
