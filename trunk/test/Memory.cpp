@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Tue Jul 16 20:12:56 2013 florian dewulf
+// Last update Tue Jul 16 22:25:50 2013 gery baudry
 //
 
 #include			"Memory.hpp"
@@ -231,4 +231,14 @@ void				Memory::loadText(const std::string &str)
 void				Memory::printText()
 {
   this->_win.draw(this->_txt);
+}
+
+void				Memory::close()
+{
+  this->_win.close();
+}
+
+bool				Memory::pool(sf::Event &event)
+{
+  return (this->_win.pollEvent(event));
 }

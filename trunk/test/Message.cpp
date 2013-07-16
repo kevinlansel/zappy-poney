@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Mon Jul 15 23:38:38 2013 florian dewulf
-// Last update Tue Jul 16 22:09:38 2013 gery baudry
+// Last update Tue Jul 16 22:13:51 2013 gery baudry
 //
 
 #include	"Message.hpp"
@@ -187,9 +187,9 @@ bool		Message::endIncant(Memory *mem)
   if (c)
     c->changeColor();
   std::cout << this->vec[3] << std::endl;
-  if (!this->_son.openFromFile("./ressources/audio/applause.wav") && this->vec[3] != "1")
+  if (this->vec[3] == "1" && !this->_son.openFromFile("./ressources/audio/applause.wav"))
     std::cout << "failed load sound" << std::endl;
-  else if (!this->_son.openFromFile("./ressources/audio/point.wav") && this->vec[3] == "1")
+  else if (this->vec[3] != "1" && !this->_son.openFromFile("./ressources/audio/point.wav"))
     std::cout << "failed load sound" << std::endl;
   this->_son.play();
   return (true);
