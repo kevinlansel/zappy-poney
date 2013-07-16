@@ -5,15 +5,17 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Mon Jul 15 23:16:18 2013 florian dewulf
-// Last update Tue Jul 16 12:54:40 2013 florian dewulf
+// Last update Tue Jul 16 14:22:48 2013 florian dewulf
 //
 
 #ifndef		MESSAGE_HPP__
 # define	MESSAGE_HPP__
 
+#include	<sstream>
 #include	<string>
 #include	<vector>
 #include	"Memory.hpp"
+#include	"Oeuf.hpp"
 
 class		Message
 {
@@ -25,7 +27,7 @@ public:
 
 private:
   bool		setSizeMap(Memory *);
-  bool		setCaseContent(Memory *):
+  bool		setCaseContent(Memory *);
   bool		addTeamName(Memory *);
   bool		newPlayer(Memory *);
   bool		setPosPlayer(Memory *);
@@ -48,7 +50,7 @@ private:
 
 private:
   std::map<std::string, int>	pattern;
-  std::map<std::string, void (Message::*)(Memory *)>	ptr;
+  std::map<std::string, bool (Message::*)(Memory *)>	ptr;
   std::vector<std::string>	vec;
 };
 

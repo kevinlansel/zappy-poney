@@ -5,7 +5,7 @@
 ## Login   <dewulf_f@epitech.net>
 ## 
 ## Started on  Tue Jul 16 13:09:12 2013 florian dewulf
-## Last update Tue Jul 16 13:11:46 2013 florian dewulf
+## Last update Tue Jul 16 14:22:45 2013 florian dewulf
 ##
 
 NAME=		Display
@@ -18,14 +18,17 @@ SRC=		Case.cpp		\
 		Memory.cpp		\
 		Message.cpp		\
 		Network.cpp		\
+		Oeuf.cpp		\
 		Player.cpp
 
 OBJ=		$(SRC:.cpp=.o)
 
+CXXFLAGS=	-W -Wall -Wextra
+
 all:		$(NAME)
 
 $(NAME):	$(OBJ)
-		g++ -o $(NAME) $(OBJ)
+		g++ -o $(NAME) $(OBJ) -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
 
 clean:
 		rm -f $(OBJ)

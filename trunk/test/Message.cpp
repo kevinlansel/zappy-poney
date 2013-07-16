@@ -5,58 +5,64 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Mon Jul 15 23:38:38 2013 florian dewulf
-// Last update Tue Jul 16 12:56:03 2013 florian dewulf
+// Last update Tue Jul 16 14:06:02 2013 florian dewulf
 //
 
 #include	"Message.hpp"
 
-Message::Message(const std::string &str)
+int		toInt(const std::string &);
+
+Message::Message()
 {
-  ptr["msz"] = 3;
-  ptr["bct"] = 10;
-  ptr["tna"] = 1;
-  ptr["pnw"] = 7;
-  ptr["ppo"] = 5;
-  ptr["plv"] = 3;
-  ptr["pin"] = 11;
-  ptr["pex"] = 2;
-  ptr["pbc"] = 3;
-  ptr["pie"] = 4;
-  ptr["pfk"] = 2;
-  ptr["pdr"] = 3;
-  ptr["pgt"] = 3;
-  ptr["pdi"] = 2;
-  ptr["enw"] = 5;
-  ptr["eht"] = 2;
-  ptr["ebo"] = 2;
-  ptr["edi"] = 2;
-  ptr["sgt"] = 2;
-  ptr["seg"] = 2;
+  this->pattern["msz"] = 3;
+  this->pattern["bct"] = 10;
+  this->pattern["tna"] = 1;
+  this->pattern["pnw"] = 7;
+  this->pattern["ppo"] = 5;
+  this->pattern["plv"] = 3;
+  this->pattern["pin"] = 11;
+  this->pattern["pex"] = 2;
+  this->pattern["pbc"] = 3;
+  this->pattern["pie"] = 4;
+  this->pattern["pfk"] = 2;
+  this->pattern["pdr"] = 3;
+  this->pattern["pgt"] = 3;
+  this->pattern["pdi"] = 2;
+  this->pattern["enw"] = 5;
+  this->pattern["eht"] = 2;
+  this->pattern["ebo"] = 2;
+  this->pattern["edi"] = 2;
+  this->pattern["sgt"] = 2;
+  this->pattern["seg"] = 2;
+}
+
+Message::~Message()
+{
 }
 
 void	Message::init()
 {
-  ptr["msz"] = &Message::setSizeMap;
-  ptr["bct"] = &Message::setCaseContent;
-  ptr["tna"] = &Message::addTeamName;
-  ptr["pnw"] = &Message::newPlayer;
-  ptr["ppo"] = &Message::setPosPlayer;
-  ptr["plv"] = &Message::setLvlPlayer;
-  ptr["pin"] = &Message::setInvPlayer;
-  ptr["pex"] = &Message::expulsePlayer;
-  ptr["pbc"] = &Message::broadcastPlayer;
-  ptr["pic"] = &Message::beginIncant;
-  ptr["pie"] = &Message::endIncant;
-  ptr["pfk"] = &Message::eggPop;
-  ptr["pdr"] = &Message::dropRess;
-  ptr["pgt"] = &Message::takeRess;
-  ptr["pdi"] = &Message::dead;
-  ptr["enw"] = &Message::eggOnCase;
-  ptr["eht"] = &Message::eggSpawn;
-  ptr["ebo"] = &Message::eggConnexion;
-  ptr["edi"] = &Message::eggDead;
-  ptr["sgt"] = &Message::setTime;
-  ptr["seg"] = &Message::endGame;
+  this->ptr["msz"] = &Message::setSizeMap;
+  this->ptr["bct"] = &Message::setCaseContent;
+  this->ptr["tna"] = &Message::addTeamName;
+  this->ptr["pnw"] = &Message::newPlayer;
+  this->ptr["ppo"] = &Message::setPosPlayer;
+  this->ptr["plv"] = &Message::setLvlPlayer;
+  this->ptr["pin"] = &Message::setInvPlayer;
+  this->ptr["pex"] = &Message::expulsePlayer;
+  this->ptr["pbc"] = &Message::broadcastPlayer;
+  this->ptr["pic"] = &Message::beginIncant;
+  this->ptr["pie"] = &Message::endIncant;
+  this->ptr["pfk"] = &Message::eggPop;
+  this->ptr["pdr"] = &Message::dropRess;
+  this->ptr["pgt"] = &Message::takeRess;
+  this->ptr["pdi"] = &Message::dead;
+  this->ptr["enw"] = &Message::eggOnCase;
+  this->ptr["eht"] = &Message::eggSpawn;
+  this->ptr["ebo"] = &Message::eggConnexion;
+  this->ptr["edi"] = &Message::eggDead;
+  this->ptr["sgt"] = &Message::setTime;
+  this->ptr["seg"] = &Message::endGame;
 }
 
 bool		Message::work(const std::string &str, Memory *mem)
@@ -70,9 +76,9 @@ bool		Message::work(const std::string &str, Memory *mem)
       this->vec.push_back(part);
       part = "";
     }
-  if ((vec.size() > 0 && vec[0] != "pic" && this->pattern.find(vec[0]) != this->pattern.end() &&
-       vec.size() == this->pattern[vec[0]]) || (vec.size() > 0 && vec[0] != "pic" && vec.size() >= 5))
-    return ((this->*ptr[vec[0]])(mem));
+  if ((vec.size() > 0 && this->vec[0] != "pic" && this->pattern.find(this->vec[0]) != this->pattern.end() &&
+       vec.size() == static_cast<unsigned int>(this->pattern[this->vec[0]])) || (vec.size() > 0 && this->vec[0] != "pic" && vec.size() >= 5))
+    return ((this->*ptr[this->vec[0]])(mem));
   this->vec.clear();
   return (true);
 }
@@ -95,21 +101,21 @@ bool		Message::setCaseContent(Memory *mem)
 
 bool		Message::addTeamName(Memory *mem)
 {
-  if (std::find(mem->getTeamlist().begin, mem->getTeamlist().end(), vec[1]) == mem->getTeamlist().end())
+  if (std::find(mem->getTeamlist().begin(), mem->getTeamlist().end(), vec[1]) == mem->getTeamlist().end())
     mem->getTeamlist().push_back(vec[1]);
   return (true);
 }
 
 bool		Message::newPlayer(Memory *mem)
 {
-  mem->getPlayerlist().push_back(new Player(toInt(vec[1]), toInt(vec[2]), toInt(vec[3]), toInt(vec[4]), toInt(vec[5]), toInt(vec[6])));
-  mem->getPlayerlist().back->setCase(mem->getCase(toInt(this->vec[1]), toInt(this->vec[2])));
+  mem->getPlayerlist().push_back(new Player(toInt(vec[1]), toInt(vec[2]), toInt(vec[3]), toInt(vec[4]), toInt(vec[5]), vec[6]));
+  mem->getPlayerlist().back()->setCase(mem->getCase(toInt(this->vec[1]), toInt(this->vec[2])));
   return (true);
 }
 
 bool		Message::setPosPlayer(Memory *mem)
 {
-  std::list<Player *>	list mem->getPlayerlist();
+  std::list<Player *>	list = mem->getPlayerlist();
 
   for (std::list<Player *>::iterator it = list.begin() ; it != list.end() ; ++it)
     if ((*it)->getId() == toInt(this->vec[1]))
@@ -122,7 +128,7 @@ bool		Message::setPosPlayer(Memory *mem)
 
 bool		Message::setLvlPlayer(Memory *mem)
 {
-  std::list<Player *>	list mem->getPlayerlist();
+  std::list<Player *>	list = mem->getPlayerlist();
 
   for (std::list<Player *>::iterator it = list.begin() ; it != list.end() ; ++it)
     if ((*it)->getId() == toInt(this->vec[1]))
@@ -132,7 +138,7 @@ bool		Message::setLvlPlayer(Memory *mem)
 
 bool		Message::setInvPlayer(Memory *mem)
 {
-  std::list<Player *>	list mem->getPlayerlist();
+  std::list<Player *>	list = mem->getPlayerlist();
 
   for (std::list<Player *>::iterator it = list.begin() ; it != list.end() ; ++it)
     if ((*it)->getId() == toInt(this->vec[1]))
@@ -184,7 +190,7 @@ bool		Message::eggPop(Memory *mem)
 
 bool		Message::dropRess(Memory *mem)
 {
-  std::list<Player *>	list mem->getPlayerlist();
+  std::list<Player *>	list = mem->getPlayerlist();
 
   for (std::list<Player *>::iterator it = list.begin() ; it != list.end() ; ++it)
     if ((*it)->getId() == toInt(this->vec[1]))
@@ -194,7 +200,7 @@ bool		Message::dropRess(Memory *mem)
 
 bool		Message::takeRess(Memory *mem)
 {
-  std::list<Player *>	list mem->getPlayerlist();
+  std::list<Player *>	list = mem->getPlayerlist();
 
   for (std::list<Player *>::iterator it = list.begin() ; it != list.end() ; ++it)
     if ((*it)->getId() == toInt(this->vec[1]))
@@ -204,7 +210,7 @@ bool		Message::takeRess(Memory *mem)
 
 bool		Message::dead(Memory *mem)
 {
-  std::list<Player *>	list mem->getPlayerlist();
+  std::list<Player *>	list = mem->getPlayerlist();
 
   for (std::list<Player *>::iterator it = list.begin() ; it != list.end() ; ++it)
     if ((*it)->getId() == toInt(this->vec[1]))
@@ -218,7 +224,7 @@ bool		Message::dead(Memory *mem)
 
 bool		Message::eggOnCase(Memory *mem)
 {
-  mem->getEgglist(new Oeuf(toInt(vec[1]), toInt(vec[3]), toInt(vec[4])));
+  mem->getOeuf().push_back(new Oeuf(toInt(vec[1]), toInt(vec[3]), toInt(vec[4])));
   return (true);
 }
 
@@ -230,7 +236,7 @@ bool		Message::eggSpawn(Memory *mem)
 
 bool		Message::eggConnexion(Memory *mem)
 {
-  std::list<Oeuf *>	list mem->getOeuflist();
+  std::list<Oeuf *>	list = mem->getOeuf();
 
   for (std::list<Oeuf *>::iterator it = list.begin() ; it != list.end() ; ++it)
     if ((*it)->getId() == toInt(this->vec[1]))
@@ -256,6 +262,7 @@ bool		Message::setTime(Memory *mem)
 
 bool		Message::endGame(Memory *mem)
 {
+  (void)mem;
   std::cout << "L'équipe " << this->vec[1] << " a gagné" << std::endl;
   return (false);
 }

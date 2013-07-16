@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Thu Jun 27 16:20:21 2013 florian dewulf
-// Last update Tue Jul 16 10:33:49 2013 florian dewulf
+// Last update Tue Jul 16 13:43:18 2013 florian dewulf
 //
 
 #include	"get_next_line.hpp"
@@ -27,6 +27,7 @@ gnl			&gnl::operator=(const gnl &getnext)
   this->_fd = getnext.getFd();
   this->_error = getnext.getError();
   this->_buffer = getnext.getbuffer();
+  return (*this);
 }
 
 std::string		gnl::get_next_line()

@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Tue Jul 16 13:06:09 2013 florian dewulf
+// Last update Tue Jul 16 14:07:15 2013 florian dewulf
 //
 
 #include			"Memory.hpp"
@@ -47,14 +47,14 @@ Memory::~Memory()
 {
 }
 
-std::vector<Player>		Memory::getPlayerlist() const
+std::list<Player *>		Memory::getPlayerlist() const
 {
-  return (this->_pliste);
+  return (this->_player);
 }
 
-Case				Memory::getCase(int x, int y) const
+Case				*Memory::getCase(int x, int y) const
 {
-  if (this->_case.size() >= y && this->_case[y].size() >= x)
+  if (this->_case.size() >= static_cast<unsigned int>(y) && this->_case[y].size() >= static_cast<unsigned int>(x))
     return (this->_case[y][x]);
   return (NULL);
 }
@@ -66,11 +66,11 @@ void				Memory::setSizeMap(int x, int y)
       this->_sizex = RES_X / x;
       this->_sizey = RES_Y / y;
       sf::Vector2<float>	vec(this->_sizex, this->_sizey);
-      for (unsigned int tmpy = 0 ; tmpy < y ; ++tmpy)
+      for (int tmpy = 0 ; tmpy < y ; ++tmpy)
 	{
 	  std::vector<Case *>	casetmp;
 
-	  for (unsigned int tmpx ; tmpx < x ; ++tmpx)
+	  for (int tmpx ; tmpx < x ; ++tmpx)
 	    casetmp.push_back(new Case(vec, x, y));
 	  this->_case.push_back(casetmp);
 	}
@@ -108,13 +108,13 @@ void				Memory::drawPlayer()
 {
   int				sizecasex = this->_sizex / RES_X;
   int				sizecasey = this->_sizey / RES_Y;
-  sf::Vector2<float>		vecscale(sizecasex * 0.4 / 140, sizecasey * 0.4 / 140)
+  sf::Vector2<float>		vecscale(sizecasex * 0.4 / 140, sizecasey * 0.4 / 140);
 
   for (std::list<Player *>::iterator it = this->_player.begin() ; it != this->_player.end() ; ++it)
     if ((*it)->getLvl() >= 1 && (*it)->getLvl() <= 8)
       {
 	sf::Sprite	sp(this->_lvlsprite[(*it)->getLvl()]);
-	sp.move(sf::Vector2<float>(x * sizecasex, y * sizecasey));
+	sp.move(sf::Vector2<float>((*it)->getX() * sizecasex, (*it)->getY() * sizecasey));
 	sp.scale(vecscale);
 	this->_win.draw(sp);
       }
@@ -124,13 +124,18 @@ void				Memory::drawOeuf()
 {
   int				sizecasex = this->_sizex / RES_X;
   int				sizecasey = this->_sizey / RES_Y;
-  sf::Vector2<float>		vecscale(sizecasex * 0.4 / 140, sizecasey * 0.4 / 140)
+  sf::Vector2<float>		vecscale(sizecasex * 0.4 / 140, sizecasey * 0.4 / 140);
 
   for (std::list<Player *>::iterator it = this->_player.begin() ; it != this->_player.end() ; ++it)
       {
 	sf::Sprite	sp(this->_lvlsprite[0]);
-	sp.move(sf::Vector2<float>(x * sizecasex, y * sizecasey + sizecasey / 2));
+	sp.move(sf::Vector2<float>((*it)->getX() * sizecasex, (*it)->getY() * sizecasey + sizecasey / 2));
 	sp.scale(vecscale);
 	this->_win.draw(sp);
       }
+}
+
+std::list<std::string>		Memory::getTeamlist() const
+{
+  return (this->_team);
 }

@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 11:12:44 2013 gery baudry
-// Last update Tue Jul 16 13:08:29 2013 florian dewulf
+// Last update Tue Jul 16 13:19:24 2013 florian dewulf
 //
 
 #include	"Case.hpp"
@@ -35,12 +35,7 @@ Case::~Case()
 
 sf::RectangleShape		Case::getRectangle() const
 {
-  return (this->rectangle);
-}
-
-sf::Vector2f			Case::getPosition() const
-{
-  return (this->_pos);
+  return (this->_rectangle);
 }
 
 std::vector<int>		Case::getInv() const
