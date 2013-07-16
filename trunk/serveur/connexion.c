@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Thu Jun 27 10:38:25 2013 florian dewulf
-** Last update Tue Jul 16 14:59:38 2013 florian dewulf
+** Last update Tue Jul 16 17:49:15 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -18,6 +18,7 @@ static void	graphic_connect(t_client *cl, t_map **map, t_opt *opt)
 {
   t_client	*tmp;
 
+  cl->type = GRAPHIC;
   tmp = reroll(cl);
   getmapsize(NULL, cl->fd, map, cl);
   gettime(NULL, cl->fd, NULL, cl);
@@ -26,7 +27,7 @@ static void	graphic_connect(t_client *cl, t_map **map, t_opt *opt)
   while (tmp && tmp->end != 1)
     {
       if (tmp->type == CLIENT)
-	  connexion_player(NULL, cl->fd, NULL, tmp);
+	connexion_player(NULL, cl->fd, NULL, tmp);
       else if (tmp->type == EGG)
 	connec_egg(cl->fd, tmp);
       tmp = tmp->nt;
