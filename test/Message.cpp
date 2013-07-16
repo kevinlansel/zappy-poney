@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Mon Jul 15 23:38:38 2013 florian dewulf
-// Last update Tue Jul 16 18:39:29 2013 florian dewulf
+// Last update Tue Jul 16 18:48:39 2013 florian dewulf
 //
 
 #include	"Message.hpp"
@@ -88,7 +88,7 @@ bool		Message::work(const std::string &str, Memory *mem)
 
 bool		Message::setSizeMap(Memory *mem)
 {
-  mem->setSizeMap(toInt(this->vec[1]) + 1, toInt(this->vec[2]) + 1);//crée toute la map de case
+  mem->setSizeMap(toInt(this->vec[1]), toInt(this->vec[2]));//crée toute la map de case
   return (true);
 }
 
