@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Tue Jul 16 17:58:19 2013 gery baudry
+// Last update Tue Jul 16 16:01:16 2013 florian dewulf
 //
 
 #include			"Memory.hpp"
@@ -71,7 +71,7 @@ void				Memory::setSizeMap(int x, int y)
 	  std::vector<Case *>	casetmp;
 
 	  for (int tmpx = 0; tmpx < x ; ++tmpx)
-	    casetmp.push_back(new Case(vec, x, y));
+	    casetmp.push_back(new Case(vec, tmpx, tmpy));
 	  this->_case.push_back(casetmp);
 	}
     }
