@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Mon Jul 15 23:38:38 2013 florian dewulf
-// Last update Tue Jul 16 15:23:45 2013 florian dewulf
+// Last update Tue Jul 16 15:26:34 2013 florian dewulf
 //
 
 #include	"Message.hpp"
@@ -69,6 +69,7 @@ bool		Message::work(const std::string &str, Memory *mem)
 {
   std::stringstream	ss;
   std::string		part;
+  bool			ret = true;
 
   ss.str(str);
   while ((ss >> part) && part != "")
@@ -80,16 +81,14 @@ bool		Message::work(const std::string &str, Memory *mem)
   std::cout << "before if" << std::endl;
   if ((vec.size() > 0 && this->vec[0] != "pic" && this->pattern.find(this->vec[0]) != this->pattern.end() &&
        vec.size() == static_cast<unsigned int>(this->pattern[this->vec[0]])) || (vec.size() > 0 && this->vec[0] != "pic" && vec.size() >= 5))
-    return ((this->*(this->ptr[this->vec[0]]))(mem));
+    ret = (this->*(this->ptr[this->vec[0]]))(mem);
   this->vec.clear();
-  return (true);
+  return (ret);
 }
 
 bool		Message::setSizeMap(Memory *mem)
 {
-  std::cout << "Haha !\n" << std::endl;
   mem->setSizeMap(toInt(this->vec[1]), toInt(this->vec[2]));//crée toute la map de case
-  std::cout << "Héhé !\n" << std::endl;
   return (true);
 }
 
