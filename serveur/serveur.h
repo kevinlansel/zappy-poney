@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 18:17:20 2013 guillaume duez
-** Last update Tue Jul 16 16:32:43 2013 guillaume duez
+** Last update Tue Jul 16 16:55:46 2013 guillaume duez
 */
 
 #ifndef			__SERVEUR_H__
@@ -162,6 +162,7 @@ void			broadcast(t_msg *, t_client *, t_map **, t_opt *);
 
 int			calcul_K(t_client *, t_client *);
 int			check_endgame(t_client *);
+int			check_name_team(char **name_team);
 int			cmp_nb_arg(int, char *, int);
 void			connec_egg(int, t_client *);
 void			connecnb(t_msg *, t_client *, t_map **, t_opt *);
@@ -229,6 +230,7 @@ void			player_dead(int, t_client *);
 void			player_expulse(int, t_client *);
 void			player_message(int, char *, t_client *);
 void			prend_objet(t_msg *, t_client *, t_map **, t_opt *);
+int			print_code_error(int error);
 void			pose_objet(t_msg *, t_client *, t_map **, t_opt *);
 
 t_client		*reroll(t_client *);
