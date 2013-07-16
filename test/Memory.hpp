@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 00:27:16 2013 florian dewulf
-// Last update Tue Jul 16 14:10:34 2013 florian dewulf
+// Last update Tue Jul 16 15:47:57 2013 florian dewulf
 //
 
 #ifndef		MEMORY___
@@ -40,6 +40,7 @@ public:
   int				getY() const;
 
 public:
+  void				clear_win();
   void				drawCase();
   void				drawPlayer();
   void				drawOeuf();

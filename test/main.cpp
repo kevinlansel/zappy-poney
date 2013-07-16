@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 13:38:21 2013 florian dewulf
-// Last update Tue Jul 16 14:30:48 2013 florian dewulf
+// Last update Tue Jul 16 15:45:49 2013 florian dewulf
 //
 
 #include	<iostream>
@@ -38,7 +38,6 @@ static void	loop(const std::string &host, int port, const std::string &team)
 
   try
     {
-      std::cout << "1" << std::endl;
       core.init();
       std::cout << "2" << std::endl;
       while (core.update())
