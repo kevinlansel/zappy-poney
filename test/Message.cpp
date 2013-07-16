@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Mon Jul 15 23:38:38 2013 florian dewulf
-// Last update Tue Jul 16 15:01:26 2013 florian dewulf
+// Last update Tue Jul 16 15:02:46 2013 florian dewulf
 //
 
 #include	"Message.hpp"
@@ -84,6 +84,7 @@ bool		Message::work(const std::string &str, Memory *mem)
       bool	(Interpret::*func)(Memory *);
 
       std::cout << "YOOO" << std::endl;
+      std::cout << "|" << this->vec[0] << "|" << std::endl;
       inter.setVec(this->vec);
       std::cout << "YUUUU" << std::endl;
       func = ptr[this->vec[0]];
