@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 00:27:16 2013 florian dewulf
-// Last update Tue Jul 16 16:58:44 2013 florian dewulf
+// Last update Tue Jul 16 17:24:09 2013 florian dewulf
 //
 
 #ifndef		MEMORY___
@@ -62,8 +62,8 @@ public:
 
 private:
   sf::RenderWindow			_win;
-  int					_sizex;
-  int					_sizey;
+  float					_sizex;
+  float					_sizey;
   std::list<std::string>		_team;
   std::vector<std::vector<Case *> >	_case;
   std::list<Oeuf *>			_oeuf;
