@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Tue Jul 16 18:25:25 2013 florian dewulf
+// Last update Tue Jul 16 18:29:11 2013 florian dewulf
 //
 
 #include			"Memory.hpp"
@@ -126,19 +126,21 @@ void				Memory::drawCase()
 					       this->_sizex / 1.75};
   float				positiony[] = {0, 0, this->_sizey * 0.2, this->_sizey * 0.2,
 					       this->_sizey * 0.45, this->_sizey * 0.45, this->_sizey * 0.70};
-  sf::Vector2<float>            vecscale(this->_sizex * 0.2 / 640, this->_sizey * 0.2 / 840);
+  sf::Vector2<float>            vecscale(this->_sizex * 0.3 / 640, this->_sizey * 0.3 / 840);
 
   for (std::vector<std::vector<Case *> >::iterator it = this->_case.begin() ; it != this->_case.end() ; ++it)
     for (std::vector<Case *>::iterator it2 = it->begin() ; it2 != it->end() ; ++it2)
       {
 	this->_win.draw((*it2)->getRectangle());
+	std::vector<int>	ress = (*it2)->getInv();
 	for (unsigned int i = 0 ; i < 7 ; ++i)
-	  {
-	    sf::Sprite		sp(this->_lvlsprite[9 + i]);
-	    sp.setPosition(sf::Vector2<float>(positionx[i], positiony[i]));
-	    sp.scale(vecscale);
-	    this->_win.draw(sp);
-	  }
+	  if (ress[i] > 0)
+	    {
+	      sf::Sprite		sp(this->_lvlsprite[9 + i]);
+	      sp.setPosition(sf::Vector2<float>(positionx[i], positiony[i]));
+	      sp.scale(vecscale);
+	      this->_win.draw(sp);
+	    }
       }
 }
 
