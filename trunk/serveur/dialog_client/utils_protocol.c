@@ -5,7 +5,7 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Tue Jun 18 11:50:21 2013 florian dewulf
-** Last update Thu Jun 27 10:16:39 2013 florian dewulf
+** Last update Tue Jul 16 17:30:40 2013 guillaume duez
 */
 
 #include	<stdlib.h>
@@ -64,7 +64,7 @@ char		**to_tab(char *cmd, int offset, int size)
 	while (str[tmp] && str[tmp] != ' ' && str[tmp] != '\t' && str[tmp] != '\n')
 	  tmp++;
 	tab[j] = xmalloc((tmp - i + 1) * sizeof(char));
-	strncpy(tab[j], str + i ,tmp - i);
+	strncpy(tab[j], str + i , tmp - i);
 	i = tmp;
       }
   return ((tab[j] = NULL) ? tab : tab);
