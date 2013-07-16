@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Tue Jul 16 16:42:37 2013 florian dewulf
+// Last update Tue Jul 16 16:44:40 2013 florian dewulf
 //
 
 #include			"Memory.hpp"
@@ -117,6 +117,7 @@ void				Memory::drawPlayer()
 	sp.scale(vecscale);
 	this->_win.draw(sp);
       }
+  std::cout << "Test sorti fin draw" << std::endl;
 }
 
 void				Memory::drawOeuf()
