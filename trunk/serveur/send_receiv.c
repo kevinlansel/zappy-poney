@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon May 27 15:15:13 2013 guillaume duez
-** Last update Tue Jul 16 17:28:02 2013 guillaume duez
+** Last update Tue Jul 16 18:49:41 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -43,16 +43,15 @@ int		send_mess(t_msg *msg)
 {
   int	ret;
 
+  ret = 1;
   if (!msg || !msg->client)
-    return -1;
-  if (!msg->client || !msg->cmd || msg->client->fd == 0)
-    return -1;
-  ret = send(msg->client->fd, msg->cmd , strlen(msg->cmd) + 1, MSG_DONTWAIT);
+    ret = 0;
+  else if (!msg->client || !msg->cmd || strlen(msg->cmd) <= 0)
+    ret = 0;
+  if (ret != 0)
+    ret = send(msg->client->fd, msg->cmd ,strlen(msg->cmd) + 1, MSG_OOB);
   if (ret <= 0 || strcmp(msg->cmd, "mort\n") == 0)
-    {
-      close(msg->client->fd);
-      printf("The client is dead or has leave\n");
-    }
+    printf("The client is dead or has leave\n");
   return 0;
 }
 

@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Thu May 23 17:52:10 2013 guillaume duez
-** Last update Tue Jul 16 16:08:36 2013 guillaume duez
+** Last update Tue Jul 16 18:52:04 2013 guillaume duez
 */
 
 #include	<stdio.h>
@@ -82,7 +82,7 @@ static void		open_serv(t_connect *co, t_client *client,
   t_msg			*msg;
 
   co->error = ((msg = ((msg) ? NULL : NULL)) ? 0 : 0);
-  while (co->error != -1)
+  while (co->error != -1 && check_end(client) != 1)
     {
       set_fd(&fd_read, (client = client_reset(client)), &max, co);
       if ((co->error = select(max + 1, &fd_read, NULL, NULL, co->tv)) != -1)

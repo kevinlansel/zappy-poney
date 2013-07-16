@@ -5,10 +5,11 @@
 ** Login   <dewulf_f@epitech.net>
 ** 
 ** Started on  Fri Jul 12 11:05:03 2013 florian dewulf
-** Last update Fri Jul 12 16:52:04 2013 florian dewulf
+** Last update Tue Jul 16 18:50:50 2013 guillaume duez
 */
 
 #include	<string.h>
+#include	<unistd.h>
 #include	"../serveur.h"
 
 int		check_endgame(t_client *client)
@@ -47,7 +48,10 @@ void		epur_client(t_client **client)
   while (cl && cl->end != 1)
     {
       if (cl->type == TO_DEL)
-	cl = delete_client(cl);
+	{
+	  close(cl->fd);
+	  cl = delete_client(cl);
+	}
       else
 	cl = cl->nt;
     }

@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun 24 15:22:19 2013 guillaume duez
-** Last update Tue Jul 16 16:10:14 2013 guillaume duez
+** Last update Tue Jul 16 18:45:54 2013 guillaume duez
 */
 
 #include	<sys/timeb.h>
@@ -17,6 +17,8 @@ double			get_time_client(t_client *client, int action)
   double		time;
   double		milli;
 
+  if (client && client->type == TO_DEL)
+    return 0;
   ftime(&tp);
   milli =  (double)tp.millitm / 1000;
   time = (double)tp.time + milli;
