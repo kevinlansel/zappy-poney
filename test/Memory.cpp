@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Tue Jul 16 19:24:34 2013 gery baudry
+// Last update Tue Jul 16 18:25:25 2013 florian dewulf
 //
 
 #include			"Memory.hpp"
@@ -41,6 +41,30 @@ Memory::Memory() : _win(sf::VideoMode(RES_X, RES_Y), "Client Zappy"/*, sf::Style
   if (tmp.loadFromFile("./ressources/pictures/voltali.png") == false)
     throw Except("Fail on loading ressources");
   this->_lvlsprite[8] = tmp;
+
+  //-----------------//
+
+  if (tmp.loadFromFile("./ressources/pictures/nourriture.png") == false)
+    throw Except("Fail on loading ressources");
+  this->_lvlsprite[9] = tmp;
+  if (tmp.loadFromFile("./ressources/pictures/linemate.png") == false)
+    throw Except("Fail on loading ressources");
+  this->_lvlsprite[10] = tmp;
+  if (tmp.loadFromFile("./ressources/pictures/deraumere.png") == false)
+    throw Except("Fail on loading ressources");
+  this->_lvlsprite[11] = tmp;
+  if (tmp.loadFromFile("./ressources/pictures/sibur.png") == false)
+    throw Except("Fail on loading ressources");
+  this->_lvlsprite[12] = tmp;
+  if (tmp.loadFromFile("./ressources/pictures/mendiane.png") == false)
+    throw Except("Fail on loading ressources");
+  this->_lvlsprite[13] = tmp;
+  if (tmp.loadFromFile("./ressources/pictures/phiras.png") == false)
+    throw Except("Fail on loading ressources");
+  this->_lvlsprite[14] = tmp;
+  if (tmp.loadFromFile("./ressources/pictures/thystame.png") == false)
+    throw Except("Fail on loading ressources");
+  this->_lvlsprite[15] = tmp;
 }
 
 Memory::~Memory()
@@ -96,11 +120,25 @@ std::list<Oeuf *>		Memory::getOeuf() const
 
 void				Memory::drawCase()
 {
+  float				positionx[] = {this->_sizex / 1.75, this->_sizex - this->_sizex * 0.2,
+					       this->_sizex / 1.75, this->_sizex - this->_sizex * 0.2,
+					       this->_sizex / 1.75, this->_sizex - this->_sizex * 0.2,
+					       this->_sizex / 1.75};
+  float				positiony[] = {0, 0, this->_sizey * 0.2, this->_sizey * 0.2,
+					       this->_sizey * 0.45, this->_sizey * 0.45, this->_sizey * 0.70};
+  sf::Vector2<float>            vecscale(this->_sizex * 0.2 / 640, this->_sizey * 0.2 / 840);
+
   for (std::vector<std::vector<Case *> >::iterator it = this->_case.begin() ; it != this->_case.end() ; ++it)
     for (std::vector<Case *>::iterator it2 = it->begin() ; it2 != it->end() ; ++it2)
       {
 	this->_win.draw((*it2)->getRectangle());
-	;//draw ressource
+	for (unsigned int i = 0 ; i < 7 ; ++i)
+	  {
+	    sf::Sprite		sp(this->_lvlsprite[9 + i]);
+	    sp.setPosition(sf::Vector2<float>(positionx[i], positiony[i]));
+	    sp.scale(vecscale);
+	    this->_win.draw(sp);
+	  }
       }
 }
 
@@ -111,15 +149,11 @@ void				Memory::drawPlayer()
   for (std::list<Player *>::iterator it = this->_player.begin() ; it != this->_player.end() ; ++it)
     if ((*it)->getLvl() >= 1 && (*it)->getLvl() <= 8)
       {
-	std::cout << "Test ?" << std::endl;
 	sf::Sprite	sp(this->_lvlsprite[(*it)->getLvl()]);
 	sp.setPosition(sf::Vector2<float>((*it)->getX() * this->_sizex, (*it)->getY() * this->_sizey));
 	sp.scale(vecscale);
-	std::cout << "x = " << (*it)->getX() * this->_sizex << " y = " << (*it)->getY() * this->_sizey << std::endl;
-	std::cout << "scale x = " << vecscale.x << " scale y = " << vecscale.y << std::endl;
 	this->_win.draw(sp);
       }
-  std::cout << "Test sorti fin draw" << std::endl;
 }
 
 void				Memory::drawOeuf()
