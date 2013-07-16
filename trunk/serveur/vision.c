@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun  3 18:42:55 2013 guillaume duez
-** Last update Tue Jul 16 20:19:28 2013 guillaume duez
+** Last update Tue Jul 16 21:57:11 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -40,23 +40,36 @@ static char	*get_object(char *str, int i, int nb)
   return (str);
 }
 
-static char	*get_object_case(t_map *map)
+static char	*get_object_case(t_map *map, t_client *client)
 {
   int		i;
   char		*str;
+  t_client	*tmp;
 
-  i = 0;
+  tmp = reroll(client);
   str = NULL;
-  while (i < MAX)
+  while (tmp && tmp->end != 1)
     {
-      if (map && map->ress[i] != 0)
-	str = get_object(str, i, map->ress[i]);
-      i++;
+      if (tmp != client && tmp->map == map)
+	{
+	  if (str)
+	    i = strlen(str) + snprintf(NULL, 0, " joueur") + 1;
+	  else
+	    i = snprintf(NULL, 0, "joueur") + 1;
+	  str = xrealloc(str, i + 1);
+	  snprintf(str + ((str) ? strlen(str) : 0), i + 1,
+		   str ? " joueur" : "joueur");
+	}
+      tmp = tmp->nt;
     }
+  i = -1;
+  while (++i < MAX)
+    if (map && map->ress[i] != 0)
+      str = get_object(str, i, map->ress[i]);
   return (str);
 }
 
-static char	**get_line(t_map *map, int len, e_direct dir)
+static char	**get_line(t_map *map, int len, e_direct dir, t_client *cl)
 {
   int		i;
   t_map		*move;
@@ -68,7 +81,7 @@ static char	**get_line(t_map *map, int len, e_direct dir)
   move = map;
   while (i < len)
     {
-      tmp = get_object_case(move);
+      tmp = get_object_case(move, cl);
       str[i] = (tmp ? tmp : "");
       if (move && dir == NORD)
 	move = move->right;
@@ -123,7 +136,7 @@ void		voir(t_msg *msg, t_client *client, t_map **map, t_opt *opt)
   level = (fin = NULL) ? client->level + 1 : client->level + 1;
   while (level > 0 && map && opt)
     {
-      fin = transform(get_line(client->map, len, client->direct), fin);
+      fin = transform(get_line(client->map, len, client->direct, client), fin);
       if (client->direct == NORD)
 	client->map = client->map->up->left;
       else if (client->direct == SUD)
