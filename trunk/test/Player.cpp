@@ -5,7 +5,7 @@
 // Login   <dewulf_f@epitech.net>
 // 
 // Started on  Tue Jul 16 01:14:00 2013 florian dewulf
-// Last update Tue Jul 16 14:04:52 2013 florian dewulf
+// Last update Tue Jul 16 17:00:33 2013 florian dewulf
 //
 
 #include	"Player.hpp"
@@ -27,7 +27,12 @@ Player::~Player()
 
 void		Player::setCase(Case *c)
 {
-  this->_case = c;
+  if (c)
+    {
+      this->x = c->getX();
+      this->y = c->getY();
+      this->_case = c;
+    }
 }
 
 int		Player::getId() const

@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Mon Jul  1 11:12:44 2013 gery baudry
-// Last update Tue Jul 16 16:07:29 2013 florian dewulf
+// Last update Tue Jul 16 16:54:12 2013 florian dewulf
 //
 
 #include	<iostream>
@@ -72,4 +72,14 @@ void			Case::upRess(int index)
 void			Case::downRess(int index)
 {
   this->_ress[index] -= 1;
+}
+
+int			Case::getX() const
+{
+  return (this->_x);
+}
+
+int			Case::getY() const
+{
+  return (this->_y);
 }
