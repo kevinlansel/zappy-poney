@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Tue Jul 16 19:19:07 2013 florian dewulf
+// Last update Tue Jul 16 19:30:16 2013 florian dewulf
 //
 
 #include			"Memory.hpp"
@@ -71,6 +71,7 @@ Memory::Memory() : _win(sf::VideoMode(RES_X, RES_Y), "Client Zappy"/*, sf::Style
 
 Memory::~Memory()
 {
+  
 }
 
 std::list<Player *>		Memory::getPlayerlist() const
