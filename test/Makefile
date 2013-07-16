@@ -5,7 +5,7 @@
 ## Login   <dewulf_f@epitech.net>
 ## 
 ## Started on  Tue Jul 16 13:09:12 2013 florian dewulf
-## Last update Tue Jul 16 14:47:22 2013 florian dewulf
+## Last update Tue Jul 16 17:05:08 2013 gery baudry
 ##
 
 NAME=		Display
@@ -29,7 +29,7 @@ CXXFLAGS=	-W -Wall -Wextra
 all:		$(NAME)
 
 $(NAME):	$(OBJ)
-		g++ -o $(NAME) $(OBJ) -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
+		g++ -o $(NAME) $(OBJ) -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system -ggdb3
 
 clean:
 		rm -f $(OBJ)
