@@ -5,7 +5,7 @@
 ** Login   <duez_a@epitech.net>
 ** 
 ** Started on  Mon Jun  3 18:42:55 2013 guillaume duez
-** Last update Tue Jul 16 10:51:52 2013 florian dewulf
+** Last update Tue Jul 16 10:54:17 2013 florian dewulf
 */
 
 #include	<stdio.h>
@@ -23,15 +23,15 @@ static char	*get_object(char *str, int i, int nb)
     {
       if (!str)
 	{
-	  size = strlen(tab[i]) + snprintf(NULL, size, " %s", tab[i]) + 1;
+	  size = strlen(tab[i]) + snprintf(NULL, size, "%s", tab[i]) + 1;
 	  str = xmalloc(size + 1);
-	  snprintf(str, size + 1,  " %s", tab[i]);
+	  snprintf(str, size + 1,  "%s", tab[i]);
 	}
       else
 	{
-	  size = strlen(str) + strlen(tab[i]) + snprintf(NULL, size, " %s", tab[i]) + 1;
+	  size = strlen(str) + strlen(tab[i]) + snprintf(NULL, size, "%s", tab[i]) + 1;
 	  str = realloc(str, size + 1);
-	  snprintf(str + strlen(str), size + 1, " %s", tab[i]);
+	  snprintf(str + strlen(str), size + 1, "%s", tab[i]);
 	}
       nb--;
     }
