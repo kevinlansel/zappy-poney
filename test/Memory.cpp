@@ -5,7 +5,7 @@
 // Login   <baudry_g@epitech.net>
 // 
 // Started on  Fri Jul 12 15:37:57 2013 gery baudry
-// Last update Tue Jul 16 19:44:58 2013 florian dewulf
+// Last update Tue Jul 16 20:12:56 2013 florian dewulf
 //
 
 #include			"Memory.hpp"
@@ -80,12 +80,12 @@ Memory::~Memory()
 	}
       it = this->_case.erase(it);
     }
-  for (std::vector<Oeuf *>::iterator it = this->_oeuf.begin() ; it != this->_oeuf.end() ; ++it)
+  for (std::list<Oeuf *>::iterator it = this->_oeuf.begin() ; it != this->_oeuf.end() ; ++it)
     {
       delete (*it);
       it = this->_oeuf.erase(it);
     }
-  for (std::vector<Player *>::iterator it = this->_player.begin() ; it != this->_player.end() ; ++it)
+  for (std::list<Player *>::iterator it = this->_player.begin() ; it != this->_player.end() ; ++it)
     {
       delete (*it);
       it = this->_player.erase(it);
@@ -141,11 +141,11 @@ std::list<Oeuf *>		Memory::getOeuf() const
 
 void				Memory::drawCase()
 {
-  float				positionx[] = {this->_sizex / 2.45, this->_sizex - this->_sizex * 0.4,
+  double				positionx[] = {this->_sizex / 2.45, this->_sizex - this->_sizex * 0.4,
 					       this->_sizex / 2.45, this->_sizex - this->_sizex * 0.4,
 					       this->_sizex / 2.45, this->_sizex - this->_sizex * 0.4,
 					       this->_sizex / 2.45};
-  float				positiony[] = {0, 0, this->_sizey * 0.2, this->_sizey * 0.2,
+  double				positiony[] = {0, 0, this->_sizey * 0.2, this->_sizey * 0.2,
 					       this->_sizey * 0.45, this->_sizey * 0.45, this->_sizey * 0.70};
   sf::Vector2<float>            vecscale(this->_sizex * 0.5 / 640, this->_sizey * 0.5 / 840);
 
